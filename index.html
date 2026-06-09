@@ -1,0 +1,42 @@
+---
+layout: default
+title: "Podcast Studio in Jaipur | Premium Podcast Recording & Studio Rent | ShuBook Labs"
+description: "Looking for a premium podcast studio in Jaipur? ShuBook Labs offers podcast recording, studio rent, video podcast production, and personal branding content for founders, creators, and businesses."
+keywords: "podcast studio in Jaipur, podcast studio on rent in Jaipur, podcast recording studio in Jaipur, podcast studio for rent in Jaipur, best podcast studio in Jaipur, podcast production services Jaipur, video podcast studio Jaipur"
+canonical_url: "https://shubook.in/"
+---
+
+<!-- Include all sections -->
+{% include sections/hero.html %}
+
+{% include sections/why-shubook.html %}
+
+{% include sections/services.html %}
+
+{% include sections/who-is-it-for.html %}
+
+{% include sections/why-choose-us.html %}
+
+{% include sections/studio-rent.html %}
+
+{% include sections/podcast-production.html %}
+
+{% include sections/studio-experience.html %}
+
+{% include sections/portfolio-preview.html %}
+
+{% include sections/faq.html %}
+
+{% include sections/cta.html %}
+
+<!-- FAQ JavaScript -->
+<script>
+document.querySelectorAll('.faq-question').forEach(button => {
+  button.addEventListener('click', () => {
+    const answer = button.nextElementSibling;
+    const span = button.querySelector('span');
+    answer.classList.toggle('hidden');
+    span.textContent = answer.classList.contains('hidden') ? '+' : '−';
+  });
+});
+</script>

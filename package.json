@@ -1,0 +1,25 @@
+{
+  "name": "mycompany",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+
+  "scripts": {
+    "dev": "concurrently \"bundle exec jekyll serve --livereload\" \"npx tailwindcss -i ./assets/css/input.css -o ./assets/css/style.css --watch\"",
+    
+    "build-css": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/style.css --minify",
+
+    "build": "npm run build-css && bundle exec jekyll build"
+  },
+
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "concurrently": "^9.2.1",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3"
+  }
+}

@@ -1,0 +1,33 @@
+# Site settings
+title: "ShuBook Labs"
+description: "Premium Podcast Studio in Jaipur"
+url: "https://shubook.in"
+baseurl: ""
+timezone: Asia/Kolkata
+
+# Build settings
+markdown: kramdown
+permalink: /blog/:title/
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate-v2
+  - jekyll-lucide
+
+# Pagination (jekyll-paginate-v2)
+pagination:
+  enabled: true
+  collection: posts
+  per_page: 9
+  permalink: "/blog/page/:num/"
+
+# Exclude files from build
+exclude:
+  - node_modules
+  - vendor
+  - package-lock.json
+  - package.json
+  - postcss.config.js
+  - tailwind.config.js

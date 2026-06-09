@@ -1,0 +1,202 @@
+<!-- sections/studio-rent.html -->
+<section class="relative py-24 md:py-32 bg-dark-bg overflow-hidden">
+
+    <!-- Premium ambient glow -->
+    <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-brand/5 blur-[150px]">
+    </div>
+
+    <div class="relative z-10 container mx-auto px-4 max-w-5xl">
+
+        <!-- Premium Main Card -->
+        <!-- <div class="premium-card rounded-3xl p-8 md:p-12"> -->
+
+        <!-- Price Badge - Premium -->
+        <div class="flex justify-center mb-8">
+            <div class="premium-badge inline-flex items-center gap-2 px-6 py-3 rounded-full">
+                <span class="relative flex h-2 w-2">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
+                </span>
+                <span class="font-bold tracking-wide">BEST PRICE IN JAIPUR</span>
+            </div>
+        </div>
+
+        <!-- Heading - Premium -->
+        <div class="text-center mb-6">
+            <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
+                Podcast Studio
+                <span class="premium-gradient-text">on Rent</span>
+            </h2>
+            <p class="text-2xl md:text-3xl text-white/60 tracking-wide">in Jaipur</p>
+            <div class="premium-divider mx-auto mt-6"></div>
+        </div>
+
+        <!-- Question -->
+        <div class="text-center mb-10">
+            <p class="text-xl md:text-2xl text-white font-light tracking-wide">
+                Looking for a premium podcast studio for rent in Jaipur?
+            </p>
+        </div>
+
+        <!-- Premium Price Highlight -->
+        <div class="text-center mb-12">
+            <div class="premium-price-container inline-block relative">
+
+                <!-- Premium glow rings -->
+                <div
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] rounded-full bg-brand/20 blur-[140px]">
+                </div>
+                <div
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-brand/30 blur-[80px]">
+                </div>
+
+                <!-- Premium price card -->
+                <!-- <div class="premium-price-card relative px-10 py-8 rounded-3xl"> -->
+                <!-- <div class="flex items-baseline justify-center gap-3 mb-4"> -->
+                <span class="text-6xl md:text-7xl lg:text-8xl font-black premium-gradient-text">₹1,000</span>
+                <span class="text-xl md:text-2xl text-white/50">/ hour</span>
+                <!-- </div> -->
+                <div class="premium-price-divider my-4"></div>
+                <p class="text-white/60 max-w-md mx-auto text-base md:text-lg">
+                    Premium recording space for creators, professionals, and businesses
+                </p>
+            </div>
+        </div>
+        <!-- </div> -->
+
+        <!-- Perfect For Grid - Premium Style -->
+        <div class="mb-12 mt-16">
+            <h3 class="text-center text-lg font-semibold text-white/70 tracking-wide mb-8">PERFECT FOR</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
+
+                <div class="premium-chip flex items-center justify-center gap-2 px-3 py-2 rounded-full">
+                    {% lucide_icon "mic" size="16" class="text-brand" %}
+                    <span class="text-sm font-medium text-white/80">Podcast shooting</span>
+                </div>
+
+                <div class="premium-chip flex items-center justify-center gap-2 px-3 py-2 rounded-full">
+                    {% lucide_icon "users" size="16" class="text-brand" %}
+                    <span class="text-sm font-medium text-white/80">Video interviews</span>
+                </div>
+
+                <div class="premium-chip flex items-center justify-center gap-2 px-3 py-2 rounded-full">
+                    {% lucide_icon "smartphone" size="16" class="text-brand" %}
+                    <span class="text-sm font-medium text-white/80">Reels & shorts</span>
+                </div>
+
+                <div class="premium-chip flex items-center justify-center gap-2 px-3 py-2 rounded-full">
+                    {% lucide_icon "youtube" size="16" class="text-brand" %}
+                    <span class="text-sm font-medium text-white/80">YouTube recordings</span>
+                </div>
+
+                <div
+                    class="premium-chip flex items-center justify-center gap-2 px-3 py-2 rounded-full sm:col-span-3 lg:col-span-1">
+                    {% lucide_icon "briefcase" size="16" class="text-brand" %}
+                    <span class="text-sm font-medium text-white/80">Client brand content</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Premium CTA Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center gap-5 md:gap-6">
+            {% include components/button.html url="/check-availability" text="Check Availability" type="secondary" icon="calendar"
+            %}
+            {% include components/button.html url="/book-studio" text="Book Studio Now" type="primary" icon="mic" %}
+        </div>
+    </div>
+    </div>
+</section>
+
+<style>
+    /* Premium Card */
+    .premium-card {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Premium Badge */
+    .premium-badge {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.05) 100%);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        letter-spacing: 1px;
+        font-size: 0.75rem;
+    }
+
+    /* Premium Gradient Text */
+    .premium-gradient-text {
+        background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 50%, #2563EB 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    /* Premium Divider */
+    .premium-divider {
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #3B82F6, #60A5FA, #3B82F6, transparent);
+    }
+
+    /* Premium Price Card */
+    .premium-price-card {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        box-shadow: 0 0 40px rgba(59, 130, 246, 0.1);
+    }
+
+    /* Premium Price Divider */
+    .premium-price-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), rgba(96, 165, 250, 0.8), rgba(59, 130, 246, 0.5), transparent);
+    }
+
+    /* Premium Chip */
+    .premium-chip {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        transition: all 0.3s ease;
+    }
+
+    .premium-chip:hover {
+        background: rgba(59, 130, 246, 0.1);
+        border-color: rgba(59, 130, 246, 0.3);
+        transform: translateY(-2px);
+    }
+
+    /* Premium Button Outline */
+    .premium-btn-outline {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .premium-btn-outline:hover {
+        border-color: #3B82F6;
+        background: rgba(59, 130, 246, 0.1);
+        transform: translateY(-2px);
+    }
+
+    /* Premium Button Primary */
+    .premium-btn-primary {
+        background: linear-gradient(135deg, #2563EB 0%, #3B82F6 50%, #60A5FA 100%);
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .premium-btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    }
+
+    /* No borders on unwanted elements */
+    a,
+    button {
+        text-decoration: none;
+    }
+</style>

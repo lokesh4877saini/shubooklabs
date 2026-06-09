@@ -1,0 +1,32 @@
+<!-- Blog Preview Section -->
+<section class="py-20">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Podcast & Content Creation Tips & Insights</h2>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      {% for post in site.posts limit:3 %}
+      <div class="bg-dark-card rounded-xl overflow-hidden hover:scale-105 transition-all duration-300">
+        <img src="{{ post.image }}" alt="{{ post.title }}" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <div class="text-sm text-gold-light mb-2">{{ post.date | date: "%B %d, %Y" }}</div>
+          <h3 class="text-xl font-bold mb-2">{{ post.title }}</h3>
+          <p class="text-gray-400 mb-4">{{ post.excerpt | strip_html | truncate: 100 }}</p>
+          <a href="{{ post.url }}" class="text-gold-light hover:text-gold-dark">Read More →</a>
+        </div>
+      </div>
+      {% else %}
+      {% for blog in site.data.homepage.sample_blogs %}
+      <div class="bg-dark-card rounded-xl p-6">
+        <div class="h-48 bg-gray-700 rounded-lg mb-4"></div>
+        <h3 class="text-xl font-bold mb-2">{{ blog.title }}</h3>
+        <p class="text-gray-400">{{ blog.description }}</p>
+      </div>
+      {% endfor %}
+      {% endfor %}
+    </div>
+    
+    <div class="text-center mt-12">
+      <a href="/blog" class="inline-block border border-gold-light text-gold-light px-8 py-3 rounded-lg hover:bg-gold-light hover:text-dark-bg transition-all">View All Articles</a>
+    </div>
+  </div>
+</section>

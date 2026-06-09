@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | Shubook Labs</title>
+  <meta name="description" content="{{ page.description | default: 'Premium podcast and content creation studio' }}">
+  <link href="{{ '/assets/css/style.css' | relative_url }}" rel="stylesheet">
+  
+  <style>
+    /* Button Shine Effect - Global */
+    .button-shine {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+    }
+    
+    .scan-line {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      animation: scan-shine 3s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    @keyframes scan-shine {
+      0% {
+        left: -100%;
+      }
+      50% {
+        left: 100%;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+    
+    /* Ensure button content stays above scan line */
+    .button-shine > :not(.scan-line) {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .button-shine:hover {
+      transform: scale(1.05);
+    }
+    
+    /* Secondary button hover fix */
+    .button-shine.border-brand:hover {
+      background: linear-gradient(135deg, #2563EB 0%, #3B82F6 50%, #60A5FA 100%) !important;
+      border-color: transparent !important;
+      color: white !important;
+    }
+    
+    /* Glass effect utility */
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Animation utilities */
+    .animate-pulse {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-dark-bg text-gray-300">
+
+  {% include header.html %}
+
+  <main class="container rounded-lg shadow-lg">
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

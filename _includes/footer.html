@@ -1,0 +1,198 @@
+<footer class="relative mt-20">
+
+  <!-- Main Footer -->
+  <div class="bg-dark-card/80 backdrop-blur-xl border-t border-brand/20">
+    <div class="max-w-7xl mx-auto px-6 py-14">
+
+      <!-- Footer Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 text-center md:text-left">
+
+        <!-- Brand -->
+        <div class="text-center md:text-left">
+          <a href="/" class="inline-flex items-center gap-2 mb-4">
+            <span class="font-semibold text-white text-xl">Shubook</span>
+          </a>
+          <p class="text-sm leading-relaxed text-text-secondary">
+            A premium podcast and content creation studio based in Jaipur.
+            We build stories, brands, and impact through quality content.
+          </p>
+        </div>
+
+        <!-- Features -->
+        <div class="text-center md:text-left">
+          <h3 class="text-brand-light font-semibold mb-4 text-lg">Features</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/services" class="footer-link">Our Services</a></li>
+            <li><a href="/studio-rent" class="footer-link">Studio Rent</a></li>
+            <li><a href="/podcast" class="footer-link">Podcast</a></li>
+            <li><a href="/portfolio" class="footer-link">Portfolio</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div class="text-center md:text-left">
+          <h3 class="text-brand-light font-semibold mb-4 text-lg">Company</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/about" class="footer-link">About Us</a></li>
+            <li><a href="/contact" class="footer-link">Contact</a></li>
+            <li><a href="/faq" class="footer-link">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div class="text-center md:text-left">
+          <h3 class="text-brand-light font-semibold mb-4 text-lg">Legal</h3>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/privacy" class="footer-link">Privacy Policy</a></li>
+            <li><a href="/terms" class="footer-link">Terms & Conditions</a></li>
+            <li><a href="/refund" class="footer-link">Refund Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-brand/20">
+      <div class="max-w-7xl mx-auto px-6 py-6">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+
+          <p class="text-text-muted text-center md:text-left">
+            © {{ site.time | date: "%Y" }} Shubook Labs. All rights reserved.
+          </p>
+
+          <!-- Social Links -->
+          <div class="flex gap-4">
+            <a href="https://www.instagram.com/shubook.in" target="_blank" rel="noopener noreferrer"
+              class="social-icon instagram">
+              {% lucide_icon "instagram" size="18" %}
+            </a>
+            <a href="https://www.youtube.com/@shubook" target="_blank" rel="noopener noreferrer"
+              class="social-icon youtube">
+              {% lucide_icon "youtube" size="18" %}
+            </a>
+            <a href="https://www.linkedin.com/in/shubham-saini-9a217a326/" target="_blank" rel="noopener noreferrer"
+              class="social-icon linkedin">
+              {% lucide_icon "linkedin" size="18" %}
+            </a>
+            <a href="https://wa.me/919887247112" target="_blank" rel="noopener noreferrer" class="social-icon whatsapp">
+              {% lucide_icon "message-circle-more" size="18" %}
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* ============================================
+     FOOTER NAVIGATION STYLES - MATCHING HEADER
+  ============================================ */
+  
+  /* Remove all focus outlines and shadows */
+  *:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  
+  /* Footer Links - Matching nav-link style */
+  .footer-link {
+    position: relative;
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: #CBD5E1;
+    transition: color 0.3s ease;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .footer-link:hover {
+    color: #60A5FA;
+  }
+  
+  /* Active link indicator - underline effect like header */
+  .footer-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+    transform-origin: center;
+  }
+  
+  .footer-link:hover::after {
+    transform: translateX(-50%) scaleX(1);
+  }
+  
+  /* Social Icons - Matching header button style */
+  .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #CBD5E1;
+    transition: all 0.3s ease;
+  }
+  
+  .social-icon:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Instagram Brand Color */
+  .social-icon.instagram:hover {
+    background: linear-gradient(135deg, #833AB4, #E4405F, #F56040);
+    color: white;
+    border-color: transparent;
+  }
+  
+  /* YouTube Brand Color */
+  .social-icon.youtube:hover {
+    background: #FF0000;
+    color: white;
+    border-color: transparent;
+  }
+  
+  /* LinkedIn Brand Color */
+  .social-icon.linkedin:hover {
+    background: #0077B5;
+    color: white;
+    border-color: transparent;
+  }
+  
+  /* WhatsApp Brand Color */
+  .social-icon.whatsapp:hover {
+    background: #25D366;
+    color: white;
+    border-color: transparent;
+  }
+  
+  /* Remove focus outlines */
+  .footer-link:focus,
+  .social-icon:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  
+  /* Section headings */
+  .text-brand-light {
+    color: #60A5FA;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .footer-link {
+      font-size: 0.8125rem;
+    }
+  }
+</style>
