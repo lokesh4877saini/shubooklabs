@@ -30,17 +30,15 @@
       <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-6"></div>
     </div>
     
-    <!-- FAQ Accordion -->
-    <div class="space-y-4">
+    <!-- FAQ Accordion - Now with accordion behavior -->
+    <div class="space-y-4" id="faqAccordion">
       {% for faq in site.data.faq %}
-      <div class="faq-item group">
-        <details class="faq-details">
+      <div class="faq-item group" data-faq-item>
+        <details class="faq-details" {% if forloop.first %}open{% endif %}>
           <summary class="faq-summary">
             <span class="faq-question">{{ faq.question }}</span>
             <span class="faq-icon">
-              <svg class="plus-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
+              {% lucide_icon "plus" size="20" class="plus-icon" %}
             </span>
           </summary>
           <div class="faq-answer">
@@ -52,7 +50,7 @@
     </div>
 
     <!-- Still Have Questions -->
-    <div class="text-center mt-12 pt-8">
+    <div class="text-center mt-4 pt-8">
       <p class="text-text-muted">
         Still have questions? 
         <a href="/contact" class="text-brand hover:text-brand-light font-semibold transition-colors">
@@ -109,9 +107,11 @@
   
   .faq-icon {
     color: #3B82F6;
-    font-size: 1.5rem;
     transition: transform 0.3s ease;
     flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .plus-icon {
@@ -185,3 +185,29 @@
     }
   }
 </style>
+
+<script>
+  // Accordion functionality - Only one FAQ open at a time
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-details');
+    
+    faqItems.forEach((item) => {
+      item.addEventListener('click', function(e) {
+        // Prevent closing if clicking on summary
+        if (e.target.closest('summary')) {
+          e.preventDefault();
+          
+          // Close all other FAQs
+          faqItems.forEach((otherItem) => {
+            if (otherItem !== item && otherItem.open) {
+              otherItem.open = false;
+            }
+          });
+          
+          // Toggle current FAQ
+          item.open = !item.open;
+        }
+      });
+    });
+  });
+</script>
