@@ -28,15 +28,3 @@ canonical_url: "https://shubook.in/"
 {% include sections/faq.html %}
 
 {% include sections/cta.html %}
-
-<!-- FAQ JavaScript -->
-<script>
-document.querySelectorAll('.faq-question').forEach(button => {
-  button.addEventListener('click', () => {
-    const answer = button.nextElementSibling;
-    const span = button.querySelector('span');
-    answer.classList.toggle('hidden');
-    span.textContent = answer.classList.contains('hidden') ? '+' : '−';
-  });
-});
-</script>

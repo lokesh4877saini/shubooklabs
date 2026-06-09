@@ -1,5 +1,4 @@
 <header class="fixed top-4 left-0 right-0 z-50 px-4 md:left-1/2 md:-translate-x-1/2 md:w-fit">
-
   <div class="max-w-md mx-auto lg:max-w-none">
 
     <div
@@ -194,28 +193,3 @@
     }
   }
 </style>
-
-<script>
-  // Wait for DOM to be fully loaded before running
-  document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle functionality
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    if (menuBtn && mobileMenu) {
-      menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-    }
-    
-    // Close mobile menu when clicking a link
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        if (mobileMenu) {
-          mobileMenu.classList.add('hidden');
-        }
-      });
-    });
-  });
-</script>
