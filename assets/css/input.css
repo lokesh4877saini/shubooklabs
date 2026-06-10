@@ -7,7 +7,7 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     @apply bg-dark-bg text-gray-300;
   }
@@ -20,11 +20,13 @@
 }
 
 @layer utilities {
+
   /* Fallback for group-hover if needed */
   .group:hover .group-hover\:block {
     display: block !important;
   }
 }
+
 .glass-header {
   background: rgba(17, 24, 39, 0.45);
   backdrop-filter: blur(24px);
@@ -33,8 +35,8 @@
   border: 1px solid rgba(96, 165, 250, 0.15);
 
   box-shadow:
-    0 8px 32px rgba(0,0,0,.35),
-    0 0 30px rgba(59,130,246,.15);
+    0 8px 32px rgba(0, 0, 0, .35),
+    0 0 30px rgba(59, 130, 246, .15);
 
   position: relative;
 }
@@ -46,14 +48,13 @@
   border-radius: inherit;
 
   background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.12),
-      rgba(255,255,255,0)
-    );
+    linear-gradient(135deg,
+      rgba(255, 255, 255, .12),
+      rgba(255, 255, 255, 0));
 
   pointer-events: none;
 }
+
 .mobile-link {
   @apply px-4 py-3 rounded-xl text-white transition-all duration-300;
 }
@@ -61,13 +62,25 @@
 .mobile-link:hover {
   @apply bg-white/5;
 }
+
 @layer utilities {
 
-.glass {
-@apply bg-white/5
-backdrop-blur-xl
-border
-border-white/10;
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+
 }
 
+@media (max-width:768px) {
+
+  .animate-spin-slow,
+  .animate-spin-slow-reverse,
+  .animate-float,
+  .animate-pulse {
+    animation: none !important;
+  }
+
+  .glass {
+    backdrop-filter: none !important;
+  }
 }
