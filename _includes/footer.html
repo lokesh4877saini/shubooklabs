@@ -1,198 +1,259 @@
-<footer class="relative mt-20">
+<footer class="relative mt-24 bg-gradient-to-b from-dark-card/40 to-dark-card/60 border-t border-brand/10">
 
   <!-- Main Footer -->
-  <div class="bg-dark-card/80 backdrop-blur-xl border-t border-brand/20">
-    <div class="max-w-7xl mx-auto px-6 py-14">
+  <div class="max-w-7xl mx-auto px-6 py-16">
 
-      <!-- Footer Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 text-center md:text-left">
+    <!-- Top Section with Newsletter -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 pb-12 mb-12 border-b border-brand/10">
 
-        <!-- Brand -->
-        <div class="text-center md:text-left">
-          <a href="/" class="inline-flex items-center gap-2 mb-4">
-            <span class="font-semibold text-white text-xl">Shubook</span>
-          </a>
-          <p class="text-sm leading-relaxed text-text-secondary">
-            A premium podcast and content creation studio based in Jaipur.
-            We build stories, brands, and impact through quality content.
-          </p>
+      <!-- Brand Section -->
+      <div>
+        <a href="/" class="inline-flex items-center gap-3 mb-4">
+          <img src="/assets/images/logo/shubook-labs.jpeg" alt="Shubook Labs"
+            class="w-32 h-10 lg:w-32 lg:h-12 rounded-lg object-cover object-center">
+        </a>
+        <p class="text-text-secondary text-sm leading-relaxed max-w-md mt-3">
+          India's premier podcast and content creation studio. We transform ideas into impactful stories that resonate
+          with your audience.
+        </p>
+
+        <!-- Contact Info -->
+        <div class="mt-6 space-y-3">
+          <!-- <div class="flex items-center gap-3 text-text-muted hover:text-brand transition-colors group">
+            {% lucide_icon "mail" size="16" class="text-brand" %}
+            <a href="mailto:hello@shubook.com"
+              class="text-sm group-hover:text-brand transition-colors">hello@shubook.com</a>
+          </div> -->
+          <div class="flex items-center gap-3 text-text-muted">
+            {% lucide_icon "phone" size="16" class="text-brand" %}
+            <a href="tel:+919887247112" class="text-sm hover:text-brand transition-colors">+91 98872 47112</a>
+          </div>
+          <div class="flex items-center gap-3 text-text-muted">
+            {% lucide_icon "map-pin" size="16" class="text-brand" %}
+            <span class="text-sm">Jaipur, Rajasthan, India</span>
+          </div>
         </div>
+      </div>
 
-        <!-- Features -->
-        <div class="text-center md:text-left">
-          <h3 class="text-brand-light font-semibold mb-4 text-lg">Features</h3>
-          <ul class="space-y-2 text-sm">
-            <li><a href="/services" class="footer-link">Our Services</a></li>
-            <li><a href="/studio-rent" class="footer-link">Studio Rent</a></li>
-            <li><a href="/podcast" class="footer-link">Podcast</a></li>
-            <li><a href="/portfolio" class="footer-link">Portfolio</a></li>
-          </ul>
-        </div>
-
-        <!-- Company -->
-        <div class="text-center md:text-left">
-          <h3 class="text-brand-light font-semibold mb-4 text-lg">Company</h3>
-          <ul class="space-y-2 text-sm">
-            <li><a href="/about" class="footer-link">About Us</a></li>
-            <li><a href="/contact" class="footer-link">Contact</a></li>
-            <li><a href="/faq" class="footer-link">FAQ</a></li>
-          </ul>
-        </div>
-
-        <!-- Legal -->
-        <div class="text-center md:text-left">
-          <h3 class="text-brand-light font-semibold mb-4 text-lg">Legal</h3>
-          <ul class="space-y-2 text-sm">
-            <li><a href="/privacy" class="footer-link">Privacy Policy</a></li>
-            <li><a href="/terms" class="footer-link">Terms & Conditions</a></li>
-            <li><a href="/refund" class="footer-link">Refund Policy</a></li>
-          </ul>
-        </div>
+      <!-- Newsletter Signup -->
+      <div class="lg:pl-12">
+        <h3 class="text-white font-semibold text-lg mb-2">Stay Updated On WhatsApp</h3>
+        <p class="text-text-secondary text-sm mb-4">Get the latest updates on studio launches and exclusive content.</p>
+        <form class="flex flex-col sm:flex-row gap-3">
+          <input type="number" placeholder="Enter your WhatsApp number"
+            class="flex-1 px-4 py-2.5 bg-dark-card/50 border border-brand/20 rounded-xl text-white text-sm placeholder:text-text-muted focus:outline-none focus:border-brand transition-colors">
+          <button
+            class="px-6 py-2.5 bg-brand hover:bg-brand/90 text-white rounded-xl font-medium text-sm transition-all hover:scale-105">
+            Subscribe
+          </button>
+        </form>
+        <p class="text-text-muted text-xs mt-3">No spam. Unsubscribe anytime.</p>
       </div>
     </div>
 
-    <!-- Bottom Bar -->
-    <div class="border-t border-brand/20">
-      <div class="max-w-7xl mx-auto px-6 py-6">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+    <!-- Map Section - Beautiful Card Between Sections -->
+    <div class="mb-12 pb-12 border-b border-brand/10">
+      <div
+        class="group relative bg-gradient-to-br from-dark-card/60 to-dark-card/40 backdrop-blur-sm rounded-2xl overflow-hidden border border-brand/20 hover:border-brand/40 transition-all duration-500 hover:shadow-glow">
 
-          <p class="text-text-muted text-center md:text-left">
-            © {{ site.time | date: "%Y" }} Shubook Labs. All rights reserved.
-          </p>
-
-          <!-- Social Links -->
-          <div class="flex gap-4">
-            <a href="https://www.instagram.com/shubook.in" target="_blank" rel="noopener noreferrer"
-              class="social-icon instagram">
-              {% lucide_icon "instagram" size="18" %}
-            </a>
-            <a href="https://www.youtube.com/@shubook" target="_blank" rel="noopener noreferrer"
-              class="social-icon youtube">
-              {% lucide_icon "youtube" size="18" %}
-            </a>
-            <a href="https://www.linkedin.com/in/shubham-saini-9a217a326/" target="_blank" rel="noopener noreferrer"
-              class="social-icon linkedin">
-              {% lucide_icon "linkedin" size="18" %}
-            </a>
-            <a href="https://wa.me/919887247112" target="_blank" rel="noopener noreferrer" class="social-icon whatsapp">
-              {% lucide_icon "message-circle-more" size="18" %}
-            </a>
+        <!-- Map Header -->
+        <div class="flex items-center justify-between p-6 pb-0">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center group-hover:bg-brand/20 transition-colors">
+              {% lucide_icon "map" size="20" class="text-brand" %}
+            </div>
+            <div>
+              <h3 class="text-white font-bold text-lg">Find Us Here</h3>
+              <p class="text-text-secondary text-sm">Visit our state-of-the-art studio in Jaipur</p>
+            </div>
           </div>
 
+          <!-- Location Chip -->
+          <div class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-brand/10 rounded-full border border-brand/20">
+            {% lucide_icon "navigation" size="14" class="text-brand" %}
+            <span class="text-xs text-brand font-medium">Get Directions</span>
+          </div>
         </div>
+
+        <!-- Map Embed -->
+        <div class="p-6 pt-4">
+          <div
+            class="w-full rounded-xl overflow-hidden border border-brand/10 shadow-lg transition-all duration-300 group-hover:shadow-brand/5">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.751810287951!2d75.7954962!3d26.8160302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396dcb806f410f67%3A0xe2fb674c21f51e89!2sShubook%20Labs%20-%20Podcast%20Studio%20%7C%20AI%20%26%20Website%20Development!5e0!3m2!1sen!2sin!4v1781085690142!5m2!1sen!2sin"
+              width="100%" height="280" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade" class="w-full h-64 md:h-72">
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Map Footer with Address Details -->
+        <div
+          class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 p-6 pt-0 border-t border-brand/10 mt-2">
+          <div class="flex items-center gap-4 mt-4">
+            <div class="flex items-center gap-2 text-text-muted">
+              {% lucide_icon "building" size="14" class="text-brand" %}
+              <span class="text-xs">Shubook Labs, Jaipur</span>
+            </div>
+            <div class="flex items-center gap-2 text-text-muted">
+              {% lucide_icon "clock" size="14" class="text-brand" %}
+              <span class="text-xs">Mon-Sat: 10AM - 7PM</span>
+            </div>
+          </div>
+
+          <!-- Action Button -->
+          <a href="https://maps.google.com/?q=Shubook+Labs+Jaipur" target="_blank"
+            class="inline-flex items-center gap-2 mt-5 px-4 py-2 bg-brand/10 hover:bg-brand/20 rounded-lg transition-all group/btn">
+            <span class="text-xs text-brand font-medium">Open in Google Maps</span>
+            {% lucide_icon "external-link" size="12" class="text-brand" %}
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer Navigation Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 pb-12">
+
+      <!-- Services Column -->
+      <div>
+        <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Services</h4>
+        <ul class="space-y-2.5">
+          <li><a href="/services" class="footer-link">Podcast Production</a></li>
+          <li><a href="/services" class="footer-link">Video Production</a></li>
+          <li><a href="/studio-rent" class="footer-link">Studio Rental</a></li>
+          <li><a href="/services" class="footer-link">Content Strategy</a></li>
+        </ul>
+      </div>
+
+      <!-- Company Column -->
+      <div>
+        <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Company</h4>
+        <ul class="space-y-2.5">
+          <li><a href="/about" class="footer-link">About Us</a></li>
+          <li><a href="/portfolio" class="footer-link">Portfolio</a></li>
+          <li><a href="/contact" class="footer-link">Contact</a></li>
+          <li><a href="/careers" class="footer-link">Careers</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources Column -->
+      <div>
+        <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Resources</h4>
+        <ul class="space-y-2.5">
+          <li><a href="/blog" class="footer-link">Blog</a></li>
+          <li><a href="/faq" class="footer-link">FAQ</a></li>
+          <li><a href="/podcast" class="footer-link">Our Podcast</a></li>
+          <li><a href="/case-studies" class="footer-link">Case Studies</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal Column -->
+      <div>
+        <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Legal</h4>
+        <ul class="space-y-2.5">
+          <li><a href="/privacy" class="footer-link">Privacy Policy</a></li>
+          <li><a href="/terms" class="footer-link">Terms of Service</a></li>
+          <li><a href="/refund" class="footer-link">Refund Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="border-t border-brand/10">
+    <div class="max-w-7xl mx-auto px-6 py-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+
+        <!-- Copyright -->
+        <p class="text-text-muted text-sm">
+          © {{ site.time | date: "%Y" }} Shubook Labs. All rights reserved.
+        </p>
+
+        <!-- Social Links -->
+        <div class="flex gap-3">
+          <a href="https://www.instagram.com/shubook.in" target="_blank" rel="noopener noreferrer" class="social-icon">
+            {% lucide_icon "instagram" size="18" %}
+          </a>
+          <a href="https://www.youtube.com/@shubook" target="_blank" rel="noopener noreferrer" class="social-icon">
+            {% lucide_icon "youtube" size="18" %}
+          </a>
+          <a href="https://www.linkedin.com/in/shubham-saini-9a217a326/" target="_blank" rel="noopener noreferrer"
+            class="social-icon">
+            {% lucide_icon "linkedin" size="18" %}
+          </a>
+          <a href="https://wa.me/919887247112" target="_blank" rel="noopener noreferrer" class="social-icon">
+            <img src="/assets/images/logo/whatsapp.png" alt="WhatsApp" class="w-4 h-4">
+          </a>
+        </div>
+
       </div>
     </div>
   </div>
+
 </footer>
 
 <style>
-  /* ============================================
-     FOOTER NAVIGATION STYLES - MATCHING HEADER
-  ============================================ */
-  
-  /* Remove all focus outlines and shadows */
-  *:focus {
-    outline: none;
-    box-shadow: none;
-  }
-  
-  /* Footer Links - Matching nav-link style */
+  /* Professional Footer Styles */
+
   .footer-link {
-    position: relative;
-    font-weight: 500;
     font-size: 0.875rem;
-    color: #CBD5E1;
-    transition: color 0.3s ease;
-    letter-spacing: 0.3px;
+    color: #94A3B8;
+    transition: all 0.2s ease;
     text-decoration: none;
     display: inline-block;
   }
-  
+
   .footer-link:hover {
     color: #60A5FA;
+    transform: translateX(4px);
   }
-  
-  /* Active link indicator - underline effect like header */
-  .footer-link::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 50%;
-    transform: translateX(-50%) scaleX(0);
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
-    border-radius: 2px;
-    transition: transform 0.3s ease;
-    transform-origin: center;
-  }
-  
-  .footer-link:hover::after {
-    transform: translateX(-50%) scaleX(1);
-  }
-  
-  /* Social Icons - Matching header button style */
+
+  /* Social Icons - Clean & Professional */
   .social-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #CBD5E1;
-    transition: all 0.3s ease;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #94A3B8;
+    transition: all 0.25s ease;
   }
-  
+
   .social-icon:hover {
+    background: #60A5FA;
+    color: white;
+    border-color: transparent;
     transform: translateY(-2px);
   }
-  
-  /* Instagram Brand Color */
-  .social-icon.instagram:hover {
-    background: linear-gradient(135deg, #833AB4, #E4405F, #F56040);
-    color: white;
-    border-color: transparent;
+
+  /* Map Card Glow Effect */
+  .hover\:shadow-glow:hover {
+    box-shadow: 0 0 20px rgba(96, 165, 250, 0.15);
   }
-  
-  /* YouTube Brand Color */
-  .social-icon.youtube:hover {
-    background: #FF0000;
-    color: white;
-    border-color: transparent;
-  }
-  
-  /* LinkedIn Brand Color */
-  .social-icon.linkedin:hover {
-    background: #0077B5;
-    color: white;
-    border-color: transparent;
-  }
-  
-  /* WhatsApp Brand Color */
-  .social-icon.whatsapp:hover {
-    background: #25D366;
-    color: white;
-    border-color: transparent;
-  }
-  
+
   /* Remove focus outlines */
   .footer-link:focus,
-  .social-icon:focus {
+  .social-icon:focus,
+  input:focus {
     outline: none;
     box-shadow: none;
   }
-  
-  /* Section headings */
-  .text-brand-light {
-    color: #60A5FA;
+
+  /* Newsletter button */
+  button {
+    cursor: pointer;
   }
-  
-  /* Responsive */
+
+  /* Responsive adjustments */
   @media (max-width: 768px) {
-    .footer-link {
-      font-size: 0.8125rem;
+    .footer-link:hover {
+      transform: translateX(0);
     }
   }
 </style>

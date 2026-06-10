@@ -6,10 +6,7 @@
         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-brand/5 blur-[150px]">
     </div>
 
-    <div class="relative z-10 container mx-auto px-4 max-w-5xl">
-
-        <!-- Premium Main Card -->
-        <!-- <div class="premium-card rounded-3xl p-8 md:p-12"> -->
+    <div class="relative z-10 container mx-auto px-4 max-w-7xl">
 
         <!-- Price Badge - Premium -->
         <div class="flex justify-center mb-8">
@@ -40,75 +37,225 @@
             </p>
         </div>
 
-        <!-- Premium Price Highlight -->
-        <div class="text-center mb-12">
-            <div class="premium-price-container inline-block relative">
-
-                <!-- Premium glow rings -->
-                <div
-                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] rounded-full bg-brand/20 blur-[140px]">
+        <!-- Full Width Image Carousel -->
+        <div class="mb-12 mt-8">
+            <div class="relative bg-gradient-to-br from-[#2a2a28] to-yellow-500/10 backdrop-blur-md rounded-2xl shadow-xl overflow-hidden border border-yellow-500/20">
+                
+                <!-- Main Image Container -->
+                <div class="relative">
+                    <div class="relative overflow-hidden h-[400px] md:h-[500px] lg:h-[600px]">
+                        <img id="carouselImage" 
+                             src="" 
+                             alt="Studio Image" 
+                             class="w-full h-full object-cover transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    </div>
+                    
+                    <!-- Left Arrow -->
+                    <button id="prevBtn" 
+                            class="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 hover:bg-black/70 text-white rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20">
+                    {% lucide_icon "arrow-left" size="20" class="text-white" %}
+                    </button>
+                    
+                    <!-- Right Arrow -->
+                    <button id="nextBtn" 
+                            class="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 hover:bg-black/70 text-white rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20">
+                    {% lucide_icon "arrow-right" size="20" class="text-white" %}
+                    </button>
+                    
+                    <!-- Dots Indicator -->
+                    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex space-x-3" id="dotsContainer">
+                    </div>
                 </div>
-                <div
-                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-brand/30 blur-[80px]">
-                </div>
-
-                <!-- Premium price card -->
-                <!-- <div class="premium-price-card relative px-10 py-8 rounded-3xl"> -->
-                <!-- <div class="flex items-baseline justify-center gap-3 mb-4"> -->
-                <span class="text-6xl md:text-7xl lg:text-8xl font-black premium-gradient-text">₹1,000</span>
-                <span class="text-xl md:text-2xl text-white/50">/ hour</span>
-                <!-- </div> -->
-                <div class="premium-price-divider my-4"></div>
-                <p class="text-white/60 max-w-md mx-auto text-base md:text-lg">
-                    Premium recording space for creators, professionals, and businesses
-                </p>
             </div>
         </div>
-        <!-- </div> -->
-
+        
+        <!-- Studio Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            <div class="text-center p-4 rounded-xl bg-white/5 border border-white/10">
+                <div class="text-brand text-2xl font-bold">100+</div>
+                <div class="text-text-secondary text-sm">Podcasts Recorded</div>
+            </div>
+            <div class="text-center p-4 rounded-xl bg-white/5 border border-white/10">
+                <div class="text-brand text-2xl font-bold">50+</div>
+                <div class="text-text-secondary text-sm">Happy Clients</div>
+            </div>
+            <div class="text-center p-4 rounded-xl bg-white/5 border border-white/10">
+                <div class="text-brand text-2xl font-bold">24/7</div>
+                <div class="text-text-secondary text-sm">Support Available</div>
+            </div>
+            <div class="text-center p-4 rounded-xl bg-white/5 border border-white/10">
+                <div class="text-brand text-2xl font-bold">4.9</div>
+                <div class="text-text-secondary text-sm">Rating on Google</div>
+            </div>
+        </div>
+        
         <!-- Perfect For Grid - Premium Style -->
         <div class="mb-12 mt-16">
             <h3 class="text-center text-lg font-semibold text-white/70 tracking-wide mb-8">PERFECT FOR</h3>
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
-
-                <div class="premium-chip flex items-center justify-center gap-2 px-3 py-2 rounded-full">
+                <div class="premium-chip flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full">
                     {% lucide_icon "mic" size="16" class="text-brand" %}
                     <span class="text-sm font-medium text-white/80">Podcast shooting</span>
                 </div>
-
-                <div class="premium-chip flex items-center justify-center gap-2 px-3 py-2 rounded-full">
+                <div class="premium-chip flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full">
                     {% lucide_icon "users" size="16" class="text-brand" %}
                     <span class="text-sm font-medium text-white/80">Video interviews</span>
                 </div>
-
-                <div class="premium-chip flex items-center justify-center gap-2 px-3 py-2 rounded-full">
+                <div class="premium-chip flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full">
                     {% lucide_icon "smartphone" size="16" class="text-brand" %}
                     <span class="text-sm font-medium text-white/80">Reels & shorts</span>
                 </div>
-
-                <div class="premium-chip flex items-center justify-center gap-2 px-3 py-2 rounded-full">
+                <div class="premium-chip flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full">
                     {% lucide_icon "youtube" size="16" class="text-brand" %}
                     <span class="text-sm font-medium text-white/80">YouTube recordings</span>
                 </div>
-
-                <div
-                    class="premium-chip flex items-center justify-center gap-2 px-3 py-2 rounded-full sm:col-span-3 lg:col-span-1">
+                <div class="premium-chip flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full sm:col-span-3 lg:col-span-1">
                     {% lucide_icon "briefcase" size="16" class="text-brand" %}
                     <span class="text-sm font-medium text-white/80">Client brand content</span>
                 </div>
-
             </div>
         </div>
 
         <!-- Premium CTA Buttons -->
         <div class="flex flex-col sm:flex-row justify-center gap-5 md:gap-6">
-            {% include components/button.html url="/check-availability" text="Check Availability" type="secondary" icon="calendar"
-            %}
             {% include components/button.html url="/book-studio" text="Book Studio Now" type="primary" icon="mic" %}
         </div>
     </div>
-    </div>
+
 </section>
+
+<script>
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // Fetch studio images from JSON file
+        fetch('{{ "/assets/data/studio-images.json" | relative_url }}')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(studioImages => {
+                console.log('Images loaded successfully:', studioImages);
+                
+                let currentIndex = 0;
+                
+                // Get DOM elements
+                const carouselImage = document.getElementById('carouselImage');
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+                const dotsContainer = document.getElementById('dotsContainer');
+                
+                if (!carouselImage) {
+                    console.error('Carousel image element not found');
+                    return;
+                }
+                
+                // Function to update image
+                function updateCarousel(index) {
+                    if (!studioImages[index]) {
+                        console.error('Image not found at index:', index);
+                        return;
+                    }
+                    
+                    const image = studioImages[index];
+                    console.log('Loading image:', image.url, image.title);
+                    
+                    carouselImage.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        carouselImage.src = image.url;
+                        carouselImage.alt = image.title;
+                        carouselImage.style.opacity = '1';
+                    }, 300);
+                    
+                    // Update active dot
+                    const dots = document.querySelectorAll('.dot');
+                    dots.forEach((dot, i) => {
+                        if (i === index) {
+                            dot.classList.add('bg-brand', 'scale-125');
+                            dot.classList.remove('bg-white/40');
+                        } else {
+                            dot.classList.remove('bg-brand', 'scale-125');
+                            dot.classList.add('bg-white/40');
+                        }
+                    });
+                }
+                
+                // Create dots
+                function createDots() {
+                    if (!dotsContainer) return;
+                    
+                    dotsContainer.innerHTML = ''; // Clear existing dots
+                    
+                    studioImages.forEach((_, index) => {
+                        const dot = document.createElement('button');
+                        dot.setAttribute('aria-label', `Go to image ${index + 1}`);
+                        dot.className = `dot w-2.5 h-2.5 rounded-full transition-all duration-300 ${index === 0 ? 'bg-brand scale-125' : 'bg-white/40'} hover:bg-white/70`;
+                        dot.addEventListener('click', () => {
+                            currentIndex = index;
+                            updateCarousel(currentIndex);
+                        });
+                        dotsContainer.appendChild(dot);
+                    });
+                }
+                
+                // Next image
+                function nextImage() {
+                    currentIndex = (currentIndex + 1) % studioImages.length;
+                    updateCarousel(currentIndex);
+                }
+                
+                // Previous image
+                function prevImage() {
+                    currentIndex = (currentIndex - 1 + studioImages.length) % studioImages.length;
+                    updateCarousel(currentIndex);
+                }
+                
+                // Event listeners
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', prevImage);
+                    console.log('Previous button listener attached');
+                }
+                
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', nextImage);
+                    console.log('Next button listener attached');
+                }
+                
+                // Auto-play (optional - every 5 seconds)
+                let autoPlayInterval = setInterval(nextImage, 5000);
+                
+                // Pause auto-play on hover
+                const carouselContainer = document.querySelector('.relative.bg-gradient-to-br');
+                if (carouselContainer) {
+                    carouselContainer.addEventListener('mouseenter', () => {
+                        clearInterval(autoPlayInterval);
+                    });
+                    
+                    carouselContainer.addEventListener('mouseleave', () => {
+                        autoPlayInterval = setInterval(nextImage, 5000);
+                    });
+                }
+                
+                // Initialize carousel
+                createDots();
+                updateCarousel(0);
+                console.log('Carousel initialized successfully');
+            })
+            .catch(error => {
+                console.error('Error loading studio images:', error);
+                // Show error message to user
+                const carouselImage = document.getElementById('carouselImage');
+                if (carouselImage) {
+                    carouselImage.src = 'https://via.placeholder.com/1200x800?text=Error+Loading+Images';
+                    carouselImage.alt = 'Error loading images';
+                }
+            });
+    });
+</script>
 
 <style>
     /* Premium Card */
@@ -168,30 +315,10 @@
         border-color: rgba(59, 130, 246, 0.3);
         transform: translateY(-2px);
     }
-
-    /* Premium Button Outline */
-    .premium-btn-outline {
-        background: transparent;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        transition: all 0.3s ease;
-    }
-
-    .premium-btn-outline:hover {
-        border-color: #3B82F6;
-        background: rgba(59, 130, 246, 0.1);
-        transform: translateY(-2px);
-    }
-
-    /* Premium Button Primary */
-    .premium-btn-primary {
-        background: linear-gradient(135deg, #2563EB 0%, #3B82F6 50%, #60A5FA 100%);
-        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-        transition: all 0.3s ease;
-    }
-
-    .premium-btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    
+    /* Image transition */
+    #carouselImage {
+        transition: opacity 0.3s ease;
     }
 
     /* No borders on unwanted elements */

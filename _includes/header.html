@@ -1,29 +1,27 @@
-<header class="fixed top-4 left-0 right-0 z-50 px-4 md:left-1/2 md:-translate-x-1/2 md:w-fit">
-  <div class="max-w-md mx-auto lg:max-w-none">
-
-    <div
-      class="flex items-center justify-between
-             px-7 py-4
-             gap-2
-             rounded-full
+<header class="fixed top-0 left-0 right-0 z-50 px-4 py-3 lg:px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex items-center justify-between
+             px-5 py-3 lg:px-6 lg:py-3
+             gap-4
              bg-dark-card/80
              backdrop-blur-xl
-             border border-brand/20">
+             border border-brand/20
+             rounded-2xl
+             shadow-lg shadow-black/5">
 
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-3">
-        <span class="font-semibold text-white text-sm">
-          Shubook
-        </span>
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-brand/20 to-transparent p-0.5">
+          <img src="/assets/images/logo/shubook-labs.jpeg" alt="Shubook Labs"
+            class="w-32 h-10 lg:w-32 lg:h-12 rounded-lg object-cover object-center">
+        </div>
+        <!-- <div class="hidden sm:block">
+          <span class="font-bold text-lg lg:text-xl text-white tracking-tight">Shubook<span class="text-brand"> Labs</span></span>
+        </div> -->
       </a>
 
-      <!-- Divider -->
-      <div class="hidden lg:block">
-        {% lucide_icon "minus" size="30" class="text-white/50 rotate-90" %}
-      </div>
-
-      <!-- Desktop Nav -->
-      <nav class="hidden lg:flex items-center gap-8">
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
         <a href="/services" class="nav-link">Services</a>
         <a href="/studio-rent" class="nav-link">Studio Rent</a>
         <a href="/podcast" class="nav-link">Podcast</a>
@@ -33,43 +31,87 @@
         <a href="/contact" class="nav-link">Contact</a>
       </nav>
 
-      <!-- Mobile Button -->
-      <button
-        id="menuBtn"
-        class="lg:hidden
-               h-10 w-10
-               rounded-full
-               border border-white/10
-               bg-white/5
-               flex items-center justify-center
-               hover:bg-white/10 transition-colors">
+      <!-- Right Side Actions -->
+      <div class="flex items-center gap-3">
+        {% include components/button.html
+        url="https://wa.me/919887247112?text=Hey%2C%20I%20am%20coming%20from%20your%20website.%20I%20want%20to%20record%20a%20podcast."
+        text="WhatsApp"
+        type="secondary"
+        image_url="/assets/images/logo/whatsapp.png"
+        hide_text_on_mobile=true
+        custom_class="px-[15px] py-[8px] text-sm"
+        %}
+        <!-- Mobile Menu Button -->
+        <button id="menuBtn" class="lg:hidden
+                 h-10 w-10
+                 rounded-xl
+                 border border-white/10
+                 bg-white/5
+                 flex items-center justify-center
+                 hover:bg-white/10 
+                 hover:border-brand/40
+                 transition-all duration-300">
 
-        {% lucide_icon "menu" size="20" class="text-white" %}
+          {% lucide_icon "menu" size="20" class="text-white" %}
 
-      </button>
+        </button>
+      </div>
 
     </div>
 
     <!-- Floating Mobile Menu -->
-    <div
-      id="mobileMenu"
-      class="hidden lg:hidden mt-3">
+    <div id="mobileMenu" class="hidden lg:hidden mt-3">
 
-      <div
-        class="rounded-3xl
+      <div class="rounded-2xl
                bg-dark-card/95
                backdrop-blur-xl
                border border-brand/20
-               overflow-hidden">
+               overflow-hidden
+               shadow-xl shadow-black/20">
 
         <nav class="flex flex-col p-2">
-          <a href="/services" class="mobile-link">Services</a>
-          <a href="/studio-rent" class="mobile-link">Studio Rent</a>
-          <a href="/podcast" class="mobile-link">Podcast</a>
-          <a href="/portfolio" class="mobile-link">Portfolio</a>
-          <a href="/about" class="mobile-link">About</a>
-          <a href="/faq" class="mobile-link">FAQ</a>
-          <a href="/contact" class="mobile-link">Contact</a>
+          <a href="/services" class="mobile-link">
+            <span class="flex items-center gap-3">
+              {% lucide_icon "mic" size="16" class="text-brand/60" %}
+              Services
+            </span>
+          </a>
+          <a href="/studio-rent" class="mobile-link">
+            <span class="flex items-center gap-3">
+              {% lucide_icon "video" size="16" class="text-brand/60" %}
+              Studio Rent
+            </span>
+          </a>
+          <a href="/podcast" class="mobile-link">
+            <span class="flex items-center gap-3">
+              {% lucide_icon "headphones" size="16" class="text-brand/60" %}
+              Podcast
+            </span>
+          </a>
+          <a href="/portfolio" class="mobile-link">
+            <span class="flex items-center gap-3">
+              {% lucide_icon "folder" size="16" class="text-brand/60" %}
+              Portfolio
+            </span>
+          </a>
+          <a href="/about" class="mobile-link">
+            <span class="flex items-center gap-3">
+              {% lucide_icon "users" size="16" class="text-brand/60" %}
+              About
+            </span>
+          </a>
+          <a href="/faq" class="mobile-link">
+            <span class="flex items-center gap-3">
+              {% lucide_icon "help-circle" size="16" class="text-brand/60" %}
+              FAQ
+            </span>
+          </a>
+          <a href="/contact" class="mobile-link border-t border-brand/10 mt-2 pt-3">
+            <span class="flex items-center gap-3 text-brand">
+              {% lucide_icon "calendar" size="16" %}
+              Book a Session
+            </span>
+          </a>
         </nav>
 
       </div>
@@ -82,114 +124,131 @@
 
 <style>
   /* ============================================
-     HEADER NAVIGATION STYLES - NO SHADOWS
+     HEADER NAVIGATION STYLES - MODERN & CLEAN
   ============================================ */
-  
+
   /* Remove all focus outlines and shadows */
   *:focus {
     outline: none;
     box-shadow: none;
   }
-  
+
   /* Desktop Navigation Links */
   .nav-link {
     position: relative;
     font-weight: 500;
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     color: #CBD5E1;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
     letter-spacing: 0.3px;
     text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
   }
-  
+
   .nav-link:hover {
     color: #60A5FA;
+    background: rgba(96, 165, 250, 0.08);
   }
-  
+
   /* Active link indicator */
   .nav-link::after {
     content: '';
     position: absolute;
-    bottom: -4px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%) scaleX(0);
-    width: 100%;
+    width: calc(100% - 2rem);
     height: 2px;
     background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
     border-radius: 2px;
     transition: transform 0.3s ease;
     transform-origin: center;
   }
-  
+
   .nav-link:hover::after {
     transform: translateX(-50%) scaleX(1);
   }
-  
+
   .nav-link.active {
     color: #60A5FA;
+    background: rgba(96, 165, 250, 0.08);
   }
-  
+
   .nav-link.active::after {
     transform: translateX(-50%) scaleX(1);
   }
-  
+
   /* Mobile Navigation Links */
   .mobile-link {
     display: block;
     padding: 0.875rem 1.25rem;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.9375rem;
     color: #CBD5E1;
     transition: all 0.3s ease;
-    border-radius: 1rem;
+    border-radius: 0.75rem;
     letter-spacing: 0.3px;
     text-decoration: none;
   }
-  
+
   .mobile-link:hover {
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(96, 165, 250, 0.05) 100%);
     color: #60A5FA;
-    transform: translateX(4px);
   }
-  
+
   .mobile-link.active {
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(96, 165, 250, 0.08) 100%);
     color: #60A5FA;
-    border-left: 2px solid #3B82F6;
   }
-  
+
   /* Mobile Menu Animation */
   @keyframes slideDown {
     from {
       opacity: 0;
       transform: translateY(-10px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-  
+
   #mobileMenu:not(.hidden) {
     animation: slideDown 0.3s ease-out;
   }
-  
+
   /* Remove any button focus ring */
   button:focus,
   button:focus-visible {
     outline: none;
     box-shadow: none;
   }
-  
-  /* Remove any shadow from header container */
+
+  /* Header container styling */
   header div div {
     box-shadow: none !important;
   }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
+
+  /* Logo image optimization */
+  .logo-image {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
     .nav-link {
-      font-size: 0.875rem;
+      font-size: 0.8125rem;
+      padding: 0.5rem 0.75rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    header {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
     }
   }
 </style>

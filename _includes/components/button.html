@@ -2,8 +2,12 @@
 {% assign type = include.type | default: "primary" %}
 {% assign url = include.url %}
 {% assign text = include.text %}
+{% assign size = include.size | default: "md" %}
 {% assign icon = include.icon %}
+{% assign image_url = include.image_url %}
 {% assign external = include.external %}
+{% assign custom_class = include.custom_class | default: "" %}
+{% assign hide_text_on_mobile = include.hide_text_on_mobile | default: false %}
 
 <a 
   href="{{ url | relative_url }}"
@@ -23,6 +27,7 @@
     transition-all duration-300
     active:scale-[0.98]
     focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40
+    {{ custom_class }}
 
     {% if type == 'primary' %}
       bg-brand-gradient text-white
@@ -38,14 +43,26 @@
 
   <div class="scan-line"></div>
 
+  <!-- Support for both icon and image_url -->
   {% if icon %}
     {% lucide_icon icon class="w-5 h-5 shrink-0" %}
+  {% elsif image_url %}
+    <img src="{{ image_url }}" alt="" class="w-5 h-5 shrink-0 object-cover">
   {% endif %}
 
-  {{ text }}
+  <!-- Text with conditional responsive visibility -->
+  {% if hide_text_on_mobile == true %}
+    <span class="hidden sm:inline">{{ text }}</span>
+  {% else %}
+    <span>{{ text }}</span>
+  {% endif %}
 
   {% if type == 'primary' or type == 'premium' %}
-    {% lucide_icon "arrow-right" class="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" %}
+    {% if hide_text_on_mobile == true %}
+      {% lucide_icon "arrow-right" class="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform hidden sm:block" %}
+    {% else %}
+      {% lucide_icon "arrow-right" class="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" %}
+    {% endif %}
   {% endif %}
 
 </a>

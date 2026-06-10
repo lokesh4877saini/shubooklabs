@@ -2,21 +2,30 @@
 <section class="relative py-24 md:py-32 overflow-hidden">
 
     <!-- Background -->
-    <div class="absolute inset-0 bg-gradient-to-b from-black via-brand/3 to-black"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black via-brand/5 to-black"></div>
 
-    <!-- Animated background elements -->
+    <!-- Animated background elements - Enhanced thickness -->
     <div
-        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full bg-brand/5 blur-[150px]">
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full bg-brand/15 blur-[150px]">
     </div>
-    <div class="absolute top-0 right-0 w-72 h-72 rounded-full bg-brand/8 blur-[100px] animate-pulse-slow"></div>
-    <div class="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-brand/5 blur-[120px] animate-pulse-slow"
+    <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-brand/20 blur-[100px] animate-pulse-slow"></div>
+    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-brand/15 blur-[120px] animate-pulse-slow"
         style="animation-delay: 3s"></div>
 
-    <!-- Grid pattern -->
+    <!-- Grid pattern - More visible -->
     <div
-        class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]">
+        class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:50px_50px]">
     </div>
 
+    <!-- Background Glow - Thicker and more intense -->
+    <div class="absolute inset-0 flex items-center justify-center">
+        <div class="w-[500px] md:w-[800px] h-[500px] md:h-[800px] rounded-full bg-brand/20 blur-[160px]"></div>
+    </div>
+
+    <!-- Additional central glow for depth -->
+    <div class="absolute inset-0 flex items-center justify-center">
+        <div class="w-[300px] md:w-[500px] h-[300px] md:h-[500px] rounded-full bg-brand/30 blur-[100px]"></div>
+    </div>
     <div class="relative z-10 container mx-auto px-4 max-w-7xl">
 
         <!-- Section Header -->
@@ -39,33 +48,350 @@
             </p>
         </div>
 
-        <!-- Trust Statement Card -->
-        <div class="max-w-4xl mx-auto">
-            <div class="glass-premium rounded-2xl p-8 md:p-10 text-center border border-brand/20">
-                <div class="w-16 h-16 rounded-full bg-brand/10 flex items-center justify-center mx-auto mb-6">
-                    {% lucide_icon "sparkles" size="30" class="text-brand" %}
+        <!-- Carousel Container -->
+        <div class="max-w-4xl mx-auto mb-12">
+            <div class="glass-premium rounded-2xl p-8 md:p-10 border border-brand/20">
+
+                <!-- Carousel Main Content -->
+                <div class="relative">
+                    <!-- YouTube Embed Container with Thumbnail -->
+                    <div class="relative aspect-video rounded-xl overflow-hidden bg-black mb-6" id="videoContainer">
+                        <!-- Thumbnail Image -->
+                        <img id="videoThumbnail" src="" alt="Video thumbnail"
+                            class="absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-300">
+                        <!-- YouTube Player -->
+                        <div id="youtubePlayer" class="absolute inset-0"></div>
+                        <!-- Play Button Overlay -->
+                        <button id="playButton"
+                            class="absolute inset-0 z-20 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-all duration-300 opacity-100 group cursor-pointer">
+                            <div
+                                class="w-16 h-16 rounded-full bg-brand/90 hover:bg-brand flex items-center justify-center transition-all duration-300 hover:scale-110">
+                                {% lucide_icon "play" size="32" class="text-white ml-1" %}
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Episode Info -->
+                    <div class="text-center">
+                        <div class="inline-flex items-center gap-2 mb-3">
+                            <span class="px-2 py-1 text-xs font-medium bg-brand/20 text-brand rounded-full">Featured
+                                Episode</span>
+                        </div>
+                        <h3 id="episodeTitle" class="text-xl md:text-2xl font-bold text-white mb-2">Loading...</h3>
+                        <p id="episodeDesc" class="text-text-secondary text-sm md:text-base">Loading...</p>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <button id="prevEpisode"
+                        class="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 flex items-center justify-center bg-black/60 hover:bg-black/80 text-white rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20">
+                        {% lucide_icon "chevron-left" size="18" class="text-white" %}
+                    </button>
+
+                    <button id="nextEpisode"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 flex items-center justify-center bg-black/60 hover:bg-black/80 text-white rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20">
+                        {% lucide_icon "chevron-right" size="18" class="text-white" %}
+                    </button>
+
+                    <!-- Dots Indicator -->
+                    <div class="flex justify-center gap-2 mt-6" id="dotsContainer">
+                    </div>
                 </div>
-                <p class="text-lg md:text-xl lg:text-2xl text-white font-medium leading-relaxed">
-                    If you are comparing the best podcast studio in Jaipur,<br>
-                    <span class="bg-brand-gradient bg-clip-text text-transparent font-bold">our work will show you the
-                        difference.</span>
-                </p>
-                <div class="flex justify-center gap-1 mt-6">
-                    <span class="w-2 h-2 rounded-full bg-brand"></span>
-                    <span class="w-2 h-2 rounded-full bg-brand/60"></span>
-                    <span class="w-2 h-2 rounded-full bg-brand/30"></span>
-                    <span class="w-2 h-2 rounded-full bg-brand/10"></span>
-                </div>
+
             </div>
         </div>
 
         <!-- View All Button -->
         <div class="text-center mt-12">
-            {% include components/button.html url="/portfolio" text="View Full Portfolio" type="ghost" icon="arrow-right" %}
+            {% include components/button.html url="/portfolio" text="View Full Portfolio" type="ghost"
+            icon="arrow-right" %}
         </div>
 
     </div>
 </section>
+
+<script>
+    let episodes = [];
+    let currentIndex = 0;
+    let player = null;
+    let isPlaying = false;
+    let hideTimeout = null;
+
+    // Get DOM elements
+    const episodeTitle = document.getElementById('episodeTitle');
+    const episodeDesc = document.getElementById('episodeDesc');
+    const prevBtn = document.getElementById('prevEpisode');
+    const nextBtn = document.getElementById('nextEpisode');
+    const dotsContainer = document.getElementById('dotsContainer');
+    const videoContainer = document.getElementById('videoContainer');
+    const videoThumbnail = document.getElementById('videoThumbnail');
+    const playButton = document.getElementById('playButton');
+
+    // Extract YouTube video ID from URL
+    function getYouTubeId(url) {
+        const patterns = [
+            /youtu\.be\/([^?]+)/,
+            /youtube\.com\/watch\?v=([^&]+)/,
+            /youtube\.com\/embed\/([^?]+)/
+        ];
+
+        for (const pattern of patterns) {
+            const match = url.match(pattern);
+            if (match) return match[1];
+        }
+        return null;
+    }
+
+    // Get YouTube thumbnail URL
+    function getYouTubeThumbnail(videoId) {
+        return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+    }
+
+    // Load YouTube API
+    function loadYouTubeAPI() {
+        return new Promise((resolve) => {
+            if (window.YT && window.YT.Player) {
+                resolve();
+                return;
+            }
+
+            const tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            window.onYouTubeIframeAPIReady = () => {
+                resolve();
+            };
+        });
+    }
+
+    // Initialize player
+    async function initPlayer(videoId) {
+        await loadYouTubeAPI();
+
+        if (player && player.destroy) {
+            player.destroy();
+            player = null;
+        }
+
+        player = new YT.Player('youtubePlayer', {
+            height: '100%',
+            width: '100%',
+            videoId: videoId,
+            playerVars: {
+                autoplay: 0,
+                rel: 0,
+                modestbranding: 1,
+                controls: 1,
+                showinfo: 0
+            },
+            events: {
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    function onPlayerStateChange(event) {
+        // Video playing
+        if (event.data === YT.PlayerState.PLAYING) {
+            isPlaying = true;
+            // Hide thumbnail and play button smoothly
+            if (videoThumbnail) {
+                videoThumbnail.style.opacity = '0';
+                setTimeout(() => {
+                    if (videoThumbnail) videoThumbnail.style.display = 'none';
+                }, 300);
+            }
+            if (playButton) {
+                playButton.style.opacity = '0';
+                setTimeout(() => {
+                    if (playButton) playButton.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        // Video paused or ended
+        if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+            isPlaying = false;
+            // Show thumbnail and play button again when paused
+            if (videoThumbnail && videoThumbnail.style.display === 'none') {
+                videoThumbnail.style.display = 'block';
+                setTimeout(() => {
+                    if (videoThumbnail) videoThumbnail.style.opacity = '1';
+                }, 10);
+            }
+            if (playButton && playButton.style.display === 'none') {
+                playButton.style.display = 'flex';
+                setTimeout(() => {
+                    if (playButton) playButton.style.opacity = '1';
+                }, 10);
+            }
+        }
+    }
+
+    // Play video
+    function playVideo() {
+        if (player && player.playVideo) {
+            player.playVideo();
+        }
+    }
+
+    // Pause video
+    function pauseVideo() {
+        if (player && player.pauseVideo) {
+            player.pauseVideo();
+        }
+    }
+
+    // Update carousel content
+    async function updateCarousel(index) {
+        const episode = episodes[index];
+        if (!episode) return;
+
+        const videoId = getYouTubeId(episode.url);
+        if (videoId) {
+            // Reset thumbnail and play button
+            if (videoThumbnail) {
+                videoThumbnail.src = getYouTubeThumbnail(videoId);
+                videoThumbnail.style.display = 'block';
+                videoThumbnail.style.opacity = '1';
+            }
+
+            if (playButton) {
+                playButton.style.display = 'flex';
+                playButton.style.opacity = '1';
+            }
+
+            // Load video in player
+            if (player && player.loadVideoById) {
+                player.loadVideoById(videoId);
+                player.stopVideo();
+            } else {
+                await initPlayer(videoId);
+            }
+        }
+
+        episodeTitle.textContent = episode.title;
+        episodeDesc.textContent = episode.description;
+
+        // Update active dot
+        const dots = document.querySelectorAll('.dot');
+        dots.forEach((dot, i) => {
+            if (i === index) {
+                dot.classList.add('bg-brand', 'scale-125');
+                dot.classList.remove('bg-white/40');
+            } else {
+                dot.classList.remove('bg-brand', 'scale-125');
+                dot.classList.add('bg-white/40');
+            }
+        });
+    }
+
+    // Create navigation dots
+    function createDots() {
+        dotsContainer.innerHTML = '';
+        episodes.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.setAttribute('aria-label', `Go to episode ${index + 1}`);
+            dot.className = `dot w-2 h-2 rounded-full transition-all duration-300 ${index === 0 ? 'bg-brand scale-125' : 'bg-white/40'} hover:bg-white/70`;
+            dot.addEventListener('click', async () => {
+                if (index !== currentIndex) {
+                    currentIndex = index;
+                    await updateCarousel(currentIndex);
+                }
+            });
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    // Next episode
+    async function nextEpisode() {
+        if (episodes.length === 0) return;
+        currentIndex = (currentIndex + 1) % episodes.length;
+        await updateCarousel(currentIndex);
+    }
+
+    // Previous episode
+    async function prevEpisode() {
+        if (episodes.length === 0) return;
+        currentIndex = (currentIndex - 1 + episodes.length) % episodes.length;
+        await updateCarousel(currentIndex);
+    }
+
+    // Setup play button click
+    function setupPlayButton() {
+        if (playButton) {
+            playButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                playVideo();
+            });
+        }
+    }
+
+    // Setup hover play/pause
+    function setupHoverPlay() {
+        if (videoContainer) {
+            videoContainer.addEventListener('mouseenter', () => {
+                if (!isPlaying) {
+                    playVideo();
+                }
+            });
+
+            videoContainer.addEventListener('mouseleave', () => {
+                if (isPlaying) {
+                    pauseVideo();
+                }
+            });
+        }
+    }
+
+    // Fetch JSON data
+    async function loadEpisodes() {
+        try {
+            const response = await fetch('/assets/data/podcast-episodes.json');
+            if (!response.ok) throw new Error('Failed to load episodes');
+            episodes = await response.json();
+            createDots();
+
+            // Initialize first video with thumbnail
+            const firstVideoId = getYouTubeId(episodes[0].url);
+            if (firstVideoId) {
+                if (videoThumbnail) {
+                    videoThumbnail.src = getYouTubeThumbnail(firstVideoId);
+                }
+                await initPlayer(firstVideoId);
+            }
+
+            episodeTitle.textContent = episodes[0].title;
+            episodeDesc.textContent = episodes[0].description;
+
+            setupPlayButton();
+            setupHoverPlay();
+        } catch (error) {
+            console.error('Error loading episodes:', error);
+            if (episodeTitle) episodeTitle.textContent = 'Failed to Load Episodes';
+            if (episodeDesc) episodeDesc.textContent = 'Please refresh the page or check back later.';
+        }
+    }
+
+    // Event listeners for manual navigation
+    if (prevBtn) {
+        prevBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            await prevEpisode();
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            await nextEpisode();
+        });
+    }
+
+    // Initialize
+    loadEpisodes();
+</script>
 
 <style>
     .glass-card {
@@ -108,5 +434,29 @@
 
     .animate-pulse-slow {
         animation: pulse-slow 8s ease-in-out infinite;
+    }
+
+    #youtubePlayer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: auto;
+    }
+
+    #videoThumbnail {
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        cursor: pointer;
+    }
+
+    #playButton {
+        transition: opacity 0.3s ease;
+        cursor: pointer;
+    }
+
+    .relative.aspect-video {
+        position: relative;
     }
 </style>

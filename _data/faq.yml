@@ -1,14 +1,29 @@
-- question: "What is the cost of podcast studio rent in Jaipur?"
-  answer: "Our studio rent starts at ₹1,000 per hour."
+home:
+  - question: "What is the cost of podcast studio rent in Jaipur?"
+    answer: "Our studio rent starts at ₹1,000 per hour."
 
-- question: "Do you provide full podcast production services?"
-  answer: "Yes, ShuBook Labs offers complete podcast production in Jaipur."
+  - question: "Do you provide full podcast production services?"
+    answer: "Yes, Shubook Labs offers complete podcast production in Jaipur."
 
-- question: "Is this studio suitable for video podcasts?"
-  answer: "Yes, it is built for both audio and video podcast recording."
+  - question: "Is this studio suitable for video podcasts?"
+    answer: "Yes, it is built for both audio and video podcast recording."
 
-- question: "Can I book the studio for content shoots?"
-  answer: "Yes, the studio can be rented for podcast shoots, interviews, and premium content creation."
+  - question: "Can I book the studio for content shoots?"
+    answer: "Yes, the studio can be rented for podcast shoots, interviews, and premium content creation."
 
-- question: "Where is your studio located?"
-  answer: "We serve Jaipur and nearby local clients looking for a professional podcast studio in Jaipur."
+  - question: "Where is your studio located?"
+    answer: "We serve Jaipur and nearby local clients looking for a professional podcast studio in Jaipur."
+
+services: []
+
+studio: []
+
+podcast_with_us: []
+
+about: []
+
+portfolio: []
+
+contact: []
+
+policies: []
