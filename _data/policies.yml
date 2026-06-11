@@ -1,0 +1,260 @@
+# _data/policies.yml
+
+privacy_policy:
+  title: "Privacy Policy"
+  last_updated: "Jun 2026"
+  content: |
+    <p>Shubook Labs respects your privacy and is committed to protecting your personal information.</p>
+    
+    <h2>Information We Collect</h2>
+    <p>When you submit a form, book a podcast, rent our studio, or contact us, we may collect:</p>
+    <ul>
+      <li>Name</li>
+      <li>Phone Number</li>
+      <li>Email Address</li>
+      <li>Company Name</li>
+      <li>Social Media Profiles</li>
+      <li>Website Information</li>
+      <li>Booking Information</li>
+    </ul>
+    
+    <h2>How We Use Information</h2>
+    <p>The information collected may be used for:</p>
+    <ul>
+      <li>Booking confirmations</li>
+      <li>Podcast production services</li>
+      <li>Studio rental services</li>
+      <li>Customer support</li>
+      <li>Service communication</li>
+      <li>Business operations</li>
+    </ul>
+    
+    <h2>Information Protection</h2>
+    <p>We take reasonable measures to protect your information from unauthorized access or misuse.</p>
+    
+    <h2>Third-Party Platforms</h2>
+    <p>Our website may contain links to YouTube, Instagram, Spotify, Apple Podcasts, LinkedIn, Amazon Music, and other third-party websites. We are not responsible for their privacy practices.</p>
+    
+    <h2>Cookies</h2>
+    <p>Our website may use cookies to improve user experience and website performance.</p>
+    
+    <h2>Changes To Privacy Policy</h2>
+    <p>Shubook Labs reserves the right to update this Privacy Policy at any time.</p>
+    
+    <h2>Contact</h2>
+    <p>Shubook Labs<br>Sanganer, Jaipur, Rajasthan<br>Email: hello@shubook.in<br>Phone: +91 98294 42870</p>
+
+terms_conditions:
+  title: "Terms & Conditions"
+  last_updated: "Jun 2026"
+  content: |
+    <p>By booking a podcast, renting our studio, or using our website, you agree to the following terms.</p>
+    
+    <h2>Services Offered</h2>
+    <p>Shubook Labs provides:</p>
+    <ul>
+      <li>Podcast Production Services</li>
+      <li>Podcast Studio Rental</li>
+      <li>Podcast Editing</li>
+      <li>Content Creation Services</li>
+      <li>Personal Branding Services</li>
+    </ul>
+    
+    <h2>Booking Confirmation</h2>
+    <p>All bookings require a booking amount (token amount) to confirm the slot. Without advance payment, a booking is not considered confirmed.</p>
+    
+    <h2>Final Payment</h2>
+    <p>For podcast production services, the remaining payment must be completed on the recording day immediately after the podcast session. Editing, content delivery, and publishing processes will begin only after full payment has been received.</p>
+    
+    <h2>Studio Usage</h2>
+    <p>Clients are expected to use the studio and equipment responsibly. Any intentional damage to studio equipment, furniture, or property may result in additional charges.</p>
+    
+    <h2>Guest Responsibility</h2>
+    <p>Guests are responsible for ensuring the information shared during the podcast is accurate and lawful. Shubook Labs is not responsible for statements made by guests during recording sessions.</p>
+    
+    <h2>Changes To Services</h2>
+    <p>Shubook Labs reserves the right to modify, improve, discontinue, or update services at any time.</p>
+    
+    <h2>Governing Law</h2>
+    <p>These terms are governed by the laws of India.</p>
+
+refund_policy:
+  title: "Refund Policy"
+  last_updated: "Jun 2026"
+  content: |
+    <p>At Shubook Labs, studio time, equipment, production resources, and team members are reserved specifically for each booking.</p>
+    
+    <h2>Booking Amount</h2>
+    <p>The booking amount paid to reserve a slot is non-refundable.</p>
+    
+    <h2>Podcast Production Services</h2>
+    <p>Once a podcast recording session has been completed, all payments become non-refundable. This includes:</p>
+    <ul>
+      <li>Booking Amount</li>
+      <li>Production Charges</li>
+      <li>Editing Charges</li>
+      <li>Content Creation Charges</li>
+    </ul>
+    <p>The client acknowledges that the payment is made for podcast production services, studio usage, equipment usage, production support, editing, and content creation.</p>
+    
+    <h2>Distribution Is Complimentary</h2>
+    <p>Distribution on YouTube, Instagram, LinkedIn, Spotify, Apple Podcasts, Amazon Music, and other platforms is provided as a complimentary service. The payment made by the client is only for production services. No amount is charged specifically for distribution.</p>
+    <p>Therefore, requests for refunds based on publishing schedules, platform decisions, content performance, views, reach, engagement, or distribution outcomes will not be accepted.</p>
+    
+    <h2>Approved Refunds</h2>
+    <p>If Shubook Labs is unable to provide the agreed recording service due to operational issues from our side, a refund or rescheduling option may be offered at our discretion.</p>
+    
+    <h2>Refund Processing</h2>
+    <p>Approved refunds, if any, will be processed within 7-14 business days.</p>
+
+cancellation_policy:
+  title: "Cancellation Policy"
+  last_updated: "Jun 2026"
+  content: |
+    <h2>Podcast Production Bookings</h2>
+    
+    <h3>More Than 72 Hours Before Recording</h3>
+    <p>Clients may request one complimentary reschedule, subject to availability.</p>
+    
+    <h3>Within 72 Hours Of Recording</h3>
+    <p>The booking amount remains non-refundable.</p>
+    
+    <h3>Within 24 Hours Of Recording</h3>
+    <p>The booking amount may be forfeited.</p>
+    
+    <h2>No-Show Policy</h2>
+    <p>If a guest fails to attend the scheduled recording session without prior notice, the booking shall be considered cancelled and no refund shall be provided.</p>
+    
+    <h2>Communication Delays</h2>
+    <p>Guests are expected to respond to communication requests in a timely manner. These requests may include:</p>
+    <ul>
+      <li>Podcast Topic Confirmation</li>
+      <li>Thumbnail Approval</li>
+      <li>Content Review</li>
+      <li>Publishing Coordination</li>
+      <li>Information Requests</li>
+    </ul>
+    <p>Failure to respond may delay content delivery and publishing schedules. Shubook Labs shall not be responsible for delays caused by lack of communication from the guest.</p>
+    
+    <h2>Podcast Publishing Rights</h2>
+    <p>By participating in a podcast recording session, the guest grants Shubook Labs permission to record, edit, distribute, publish, promote, and market the podcast content.</p>
+    
+    <h2>Editorial Rights</h2>
+    <p>Shubook Labs reserves the right to:</p>
+    <ul>
+      <li>Publish Content</li>
+      <li>Delay Publishing</li>
+      <li>Reschedule Publishing</li>
+      <li>Edit Content</li>
+      <li>Decline Publishing</li>
+    </ul>
+    <p>if required due to operational, legal, editorial, business, or brand considerations.</p>
+    
+    <h2>Complimentary Distribution</h2>
+    <p>Distribution is provided as a complimentary service. Since no separate fee is charged for distribution, publishing decisions remain solely at the discretion of Shubook Labs.</p>
+    
+    <h2>No Guarantee</h2>
+    <p>Shubook Labs does not guarantee:</p>
+    <ul>
+      <li>Views</li>
+      <li>Reach</li>
+      <li>Followers</li>
+      <li>Leads</li>
+      <li>Sales</li>
+      <li>Engagement</li>
+      <li>Revenue</li>
+    </ul>
+    <p>Results depend on audience interest, content quality, platform algorithms, market demand, and various external factors.</p>
+    
+    <h2>Media Release</h2>
+    <p>The guest grants Shubook Labs permission to use podcast footage, photographs, BTS content, promotional clips, thumbnails, and related materials for marketing, portfolio, website, and promotional purposes.</p>
+
+podcast_guest_agreement:
+  title: "Podcast Guest Agreement"
+  last_updated: "Jun 2026"
+  content: |
+    <h2>Recording Consent</h2>
+    <p>By participating in a podcast recording session at Shubook Labs, you (the "Guest") acknowledge and agree that:</p>
+    <p>You are voluntarily participating in the recording of a podcast episode (the "Episode") with Shubook Labs and/or The Shubook Show (the "Producer").</p>
+    <p>You consent to being recorded in both audio and video formats during the entire session.</p>
+    
+    <h2>Publishing Rights</h2>
+    <p>You grant Shubook Labs and The Shubook Show full permission to:</p>
+    <ul>
+      <li>Publish the Episode in its original or edited form</li>
+      <li>Distribute the Episode across all platforms including but not limited to YouTube, Spotify, Apple Podcasts, Amazon Music, Instagram, LinkedIn, and any other platform chosen by the Producer</li>
+      <li>Use the Episode for promotional purposes</li>
+      <li>Use clips, excerpts, and highlights from the Episode</li>
+      <li>Repurpose the content for reels, shorts, clips, and other short-form content</li>
+    </ul>
+    
+    <h2>Distribution Rights</h2>
+    <p>You acknowledge that:</p>
+    <ul>
+      <li>Distribution of the Episode is provided as a complimentary service</li>
+      <li>No fee has been charged specifically for distribution</li>
+      <li>The Producer has sole discretion over publishing timelines and platforms</li>
+      <li>The Producer may delay, reschedule, or decline publishing at any time</li>
+      <li>The Episode may be removed or unpublished at the Producer's discretion</li>
+    </ul>
+    
+    <h2>Media Release</h2>
+    <p>You grant Shubook Labs and The Shubook Show permission to use:</p>
+    <ul>
+      <li>Podcast footage (audio and video)</li>
+      <li>Photographs taken during the session</li>
+      <li>Behind-the-scenes (BTS) content</li>
+      <li>Promotional clips and trailers</li>
+      <li>Thumbnails featuring your likeness</li>
+      <li>Related marketing materials</li>
+    </ul>
+    <p>for purposes including but not limited to:</p>
+    <ul>
+      <li>Marketing and advertising</li>
+      <li>Portfolio display</li>
+      <li>Website content</li>
+      <li>Social media promotion</li>
+      <li>Future promotional campaigns</li>
+    </ul>
+    
+    <h2>Guest Approval Terms</h2>
+    <p>You understand and agree that:</p>
+    <ul>
+      <li>You will not have final editorial approval over the Episode</li>
+      <li>The Producer may edit the Episode for length, clarity, content, and quality</li>
+      <li>You may request reasonable edits, but final decisions rest with the Producer</li>
+      <li>Requests for removal of specific content will be considered but not guaranteed</li>
+      <li>Once published, the Producer is not obligated to remove or unpublish the Episode</li>
+    </ul>
+    
+    <h2>Accuracy of Information</h2>
+    <p>You confirm that:</p>
+    <ul>
+      <li>The information you share during the Episode is accurate to the best of your knowledge</li>
+      <li>You have the right to share any stories, experiences, or information disclosed</li>
+      <li>You will not share confidential, proprietary, or defamatory information</li>
+      <li>You are not violating any agreements with third parties by participating</li>
+    </ul>
+    
+    <h2>Indemnification</h2>
+    <p>You agree to indemnify and hold harmless Shubook Labs, The Shubook Show, its owner, employees, and affiliates from any claims, damages, liabilities, or expenses arising from:</p>
+    <ul>
+      <li>Statements made by you during the Episode</li>
+      <li>Any legal claims related to the content you shared</li>
+      <li>Any third-party claims arising from your participation</li>
+    </ul>
+    
+    <h2>No Compensation</h2>
+    <p>You acknowledge that:</p>
+    <ul>
+      <li>You are participating as a guest voluntarily</li>
+      <li>No monetary compensation will be provided for your appearance</li>
+      <li>The value received is the promotional exposure and content assets provided</li>
+      <li>You are not an employee or contractor of Shubook Labs</li>
+    </ul>
+    
+    <h2>Content Assets</h2>
+    <p>As a guest, you will receive content assets as described in your selected package. These assets are for your personal and professional use. You may repost, share, and use the content for your own promotional purposes with proper credit to The Shubook Show.</p>
+    
+    <h2>Acknowledgment</h2>
+    <p>By booking a podcast session, submitting a booking form, or participating in a recording, you acknowledge that you have read, understood, and agree to be bound by this Podcast Guest Agreement, along with the Terms & Conditions, Refund Policy, and Cancellation Policy.</p>

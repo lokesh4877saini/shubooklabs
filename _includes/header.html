@@ -1,38 +1,37 @@
-<header class="fixed top-0 left-0 right-0 z-50 px-4 py-3 lg:px-6">
+<header class="fixed top-0 left-0 right-0 z-50 bg-transparent px-4 py-3">
   <div class="max-w-7xl mx-auto">
-    <div class="flex items-center justify-between
-             px-5 py-3 lg:px-6 lg:py-3
-             gap-4
-             bg-dark-card/80
-             backdrop-blur-xl
-             border border-brand/20
-             rounded-2xl
-             shadow-lg shadow-black/5">
+    <div
+      class="flex items-center justify-between px-5 py-3 gap-4 bg-dark-card/80 backdrop-blur-xl border border-brand/20 rounded-2xl shadow-lg shadow-black/5">
 
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-3 group">
+      <a href="/" aria-label="Shubook Labs Home" class="flex items-center gap-3 group shrink-0">
         <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-brand/20 to-transparent p-0.5">
           <img src="/assets/images/logo/shubook-labs.jpeg" alt="Shubook Labs"
             class="w-32 h-10 lg:w-32 lg:h-12 rounded-lg object-cover object-center">
         </div>
-        <!-- <div class="hidden sm:block">
-          <span class="font-bold text-lg lg:text-xl text-white tracking-tight">Shubook<span class="text-brand"> Labs</span></span>
-        </div> -->
       </a>
 
-      <!-- Desktop Navigation -->
-      <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
-        <a href="/services" class="nav-link">Services</a>
-        <a href="/studio-rent" class="nav-link">Studio Rent</a>
-        <a href="/podcast" class="nav-link">Podcast</a>
-        <a href="/portfolio" class="nav-link">Portfolio</a>
-        <a href="/about" class="nav-link">About</a>
-        <a href="/faq" class="nav-link">FAQ</a>
-        <a href="/contact" class="nav-link">Contact</a>
+      <!-- Desktop Navigation - Visible only on desktop -->
+      <nav class="desktop-nav items-center gap-1 xl:gap-2">
+        {% assign current_url = page.url %}
+        <a href="/services" class="nav-link {% if current_url contains '/services' %}active{% endif %}"
+          aria-current="{% if current_url contains '/services' %}page{% endif %}">Services</a>
+        <a href="/studio-rent" class="nav-link {% if current_url contains '/studio-rent' %}active{% endif %}"
+          aria-current="{% if current_url contains '/studio-rent' %}page{% endif %}">Studio Rent</a>
+        <a href="/podcast" class="nav-link {% if current_url contains '/podcast' %}active{% endif %}"
+          aria-current="{% if current_url contains '/podcast' %}page{% endif %}">Podcast</a>
+        <a href="/portfolio" class="nav-link {% if current_url contains '/portfolio' %}active{% endif %}"
+          aria-current="{% if current_url contains '/portfolio' %}page{% endif %}">Portfolio</a>
+        <a href="/about" class="nav-link {% if current_url contains '/about' %}active{% endif %}"
+          aria-current="{% if current_url contains '/about' %}page{% endif %}">About</a>
+        <a href="/blog" class="nav-link {% if current_url contains '/blog' %}active{% endif %}"
+          aria-current="{% if current_url contains '/blog' %}page{% endif %}">Blog</a>
+        <a href="/contact" class="nav-link {% if current_url contains '/contact' %}active{% endif %}"
+          aria-current="{% if current_url contains '/contact' %}page{% endif %}">Contact</a>
       </nav>
 
       <!-- Right Side Actions -->
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2 sm:gap-3">
         {% include components/button.html
         url="https://wa.me/919887247112?text=Hey%2C%20I%20am%20coming%20from%20your%20website.%20I%20want%20to%20record%20a%20podcast."
         text="WhatsApp"
@@ -42,7 +41,7 @@
         custom_class="px-[15px] py-[8px] text-sm"
         %}
         <!-- Mobile Menu Button -->
-        <button id="menuBtn" class="lg:hidden
+        <button id="menuBtn" aria-label="Menu" aria-expanded="false" class="lg:hidden
                  h-10 w-10
                  rounded-xl
                  border border-white/10
@@ -59,75 +58,97 @@
 
     </div>
 
-    <!-- Floating Mobile Menu -->
-    <div id="mobileMenu" class="hidden lg:hidden mt-3">
-
-      <div class="rounded-2xl
-               bg-dark-card/95
-               backdrop-blur-xl
-               border border-brand/20
-               overflow-hidden
-               shadow-xl shadow-black/20">
-
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu hidden mt-3">
+      <div
+        class="rounded-2xl bg-dark-card/95 backdrop-blur-xl border border-brand/20 overflow-hidden shadow-xl shadow-black/20">
         <nav class="flex flex-col p-2">
-          <a href="/services" class="mobile-link">
+          <a href="/services" class="mobile-link {% if current_url contains '/services' %}active{% endif %}"
+            aria-current="{% if current_url contains '/services' %}page{% endif %}">
             <span class="flex items-center gap-3">
-              {% lucide_icon "mic" size="16" class="text-brand/60" %}
+              {% lucide_icon "mic" size="16" class="text-brand/60" aria-hidden="true" %}
               Services
             </span>
           </a>
-          <a href="/studio-rent" class="mobile-link">
+          <a href="/studio-rent" class="mobile-link {% if current_url contains '/studio-rent' %}active{% endif %}"
+            aria-current="{% if current_url contains '/studio-rent' %}page{% endif %}">
             <span class="flex items-center gap-3">
-              {% lucide_icon "video" size="16" class="text-brand/60" %}
+              {% lucide_icon "video" size="16" class="text-brand/60" aria-hidden="true" %}
               Studio Rent
             </span>
           </a>
-          <a href="/podcast" class="mobile-link">
+          <a href="/podcast" class="mobile-link {% if current_url contains '/podcast' %}active{% endif %}"
+            aria-current="{% if current_url contains '/podcast' %}page{% endif %}">
             <span class="flex items-center gap-3">
-              {% lucide_icon "headphones" size="16" class="text-brand/60" %}
+              {% lucide_icon "headphones" size="16" class="text-brand/60" aria-hidden="true" %}
               Podcast
             </span>
           </a>
-          <a href="/portfolio" class="mobile-link">
+          <a href="/portfolio" class="mobile-link {% if current_url contains '/portfolio' %}active{% endif %}"
+            aria-current="{% if current_url contains '/portfolio' %}page{% endif %}">
             <span class="flex items-center gap-3">
-              {% lucide_icon "folder" size="16" class="text-brand/60" %}
+              {% lucide_icon "folder" size="16" class="text-brand/60" aria-hidden="true" %}
               Portfolio
             </span>
           </a>
-          <a href="/about" class="mobile-link">
+          <a href="/about" class="mobile-link {% if current_url contains '/about' %}active{% endif %}"
+            aria-current="{% if current_url contains '/about' %}page{% endif %}">
             <span class="flex items-center gap-3">
-              {% lucide_icon "users" size="16" class="text-brand/60" %}
+              {% lucide_icon "users" size="16" class="text-brand/60" aria-hidden="true" %}
               About
             </span>
           </a>
-          <a href="/faq" class="mobile-link">
+          <a href="/blog" class="mobile-link {% if current_url contains '/blog' %}active{% endif %}"
+            aria-current="{% if current_url contains '/blog' %}page{% endif %}">
             <span class="flex items-center gap-3">
-              {% lucide_icon "help-circle" size="16" class="text-brand/60" %}
-              FAQ
+              {% lucide_icon "book-open" size="16" class="text-brand/60" aria-hidden="true" %}
+              Blog
             </span>
           </a>
-          <a href="/contact" class="mobile-link border-t border-brand/10 mt-2 pt-3">
+          <a href="/contact"
+            class="mobile-link border-t border-brand/10 mt-2 pt-3 {% if current_url contains '/contact' %}active{% endif %}"
+            aria-current="{% if current_url contains '/contact' %}page{% endif %}">
             <span class="flex items-center gap-3 text-brand">
-              {% lucide_icon "calendar" size="16" %}
+              {% lucide_icon "calendar" size="16" aria-hidden="true" %}
               Book a Session
             </span>
           </a>
         </nav>
-
       </div>
-
     </div>
 
   </div>
-
 </header>
 
 <style>
   /* ============================================
-     HEADER NAVIGATION STYLES - MODERN & CLEAN
+     RESPONSIVE BREAKPOINT - 1024px is the switch point
   ============================================ */
 
-  /* Remove all focus outlines and shadows */
+  /* DEFAULT: Mobile & Tablet (below 1024px) - Show mobile button, hide desktop nav */
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .menu-btn {
+    display: flex !important;
+  }
+
+  /* DESKTOP: 1024px and above - Hide mobile button, show desktop nav */
+  @media (min-width: 1024px) {
+    .desktop-nav {
+      display: flex !important;
+    }
+
+    .menu-btn {
+      display: none !important;
+    }
+  }
+
+  /* ============================================
+     NAVIGATION STYLES
+  ============================================ */
+
   *:focus {
     outline: none;
     box-shadow: none;
@@ -151,7 +172,6 @@
     background: rgba(96, 165, 250, 0.08);
   }
 
-  /* Active link indicator */
   .nav-link::after {
     content: '';
     position: absolute;
@@ -219,32 +239,70 @@
     animation: slideDown 0.3s ease-out;
   }
 
-  /* Remove any button focus ring */
   button:focus,
   button:focus-visible {
     outline: none;
     box-shadow: none;
   }
 
-  /* Header container styling */
-  header div div {
-    box-shadow: none !important;
+  /* ============================================
+     WHATSAPP BUTTON STYLES
+  ============================================ */
+
+  .whatsapp-btn {
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.75rem !important;
+    border-radius: 0.75rem !important;
+    gap: 0.375rem !important;
   }
 
-  /* Logo image optimization */
-  .logo-image {
-    object-fit: cover;
-    object-position: center;
+  .whatsapp-btn img {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
   }
 
-  /* Responsive adjustments */
-  @media (max-width: 1024px) {
-    .nav-link {
-      font-size: 0.8125rem;
-      padding: 0.5rem 0.75rem;
+  /* Tablet */
+  @media (min-width: 640px) {
+    .whatsapp-btn {
+      padding: 0.5rem 1rem !important;
+      font-size: 0.813rem !important;
+      border-radius: 1rem !important;
+    }
+
+    .whatsapp-btn img {
+      width: 1rem !important;
+      height: 1rem !important;
     }
   }
 
+  /* Desktop */
+  @media (min-width: 1024px) {
+    .whatsapp-btn {
+      padding: 0.5rem 1.25rem !important;
+      font-size: 0.875rem !important;
+      border-radius: 1.5rem !important;
+    }
+
+    .whatsapp-btn img {
+      width: 1.125rem !important;
+      height: 1.125rem !important;
+    }
+  }
+
+  /* Hide WhatsApp text on mobile (below 640px), show on tablet+ */
+  @media (max-width: 639px) {
+    .whatsapp-btn span {
+      display: none !important;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .whatsapp-btn span {
+      display: inline-block !important;
+    }
+  }
+
+  /* Responsive header padding */
   @media (max-width: 640px) {
     header {
       padding-left: 0.75rem;

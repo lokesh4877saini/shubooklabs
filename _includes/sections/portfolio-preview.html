@@ -1,20 +1,12 @@
 <!-- sections/featured-portfolio.html -->
-<section class="relative py-24 md:py-32 overflow-hidden">
+<section class="relative py-6 lg:py-24 md:py-32 overflow-hidden">
 
     <!-- Background -->
-    <div class="absolute inset-0 bg-gradient-to-b from-black via-brand/5 to-black"></div>
+    <div class="absolute md:block hidden inset-0 bg-gradient-to-b from-black via-brand/5 to-black"></div>
 
     <!-- Animated background elements - Enhanced thickness -->
     <div
-        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full bg-brand/15 blur-[150px]">
-    </div>
-    <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-brand/20 blur-[100px] animate-pulse-slow"></div>
-    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-brand/15 blur-[120px] animate-pulse-slow"
-        style="animation-delay: 3s"></div>
-
-    <!-- Grid pattern - More visible -->
-    <div
-        class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:50px_50px]">
+        class="absolute hidden md:block top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full bg-brand/15 blur-[150px]">
     </div>
 
     <!-- Background Glow - Thicker and more intense -->
@@ -50,23 +42,24 @@
 
         <!-- Carousel Container -->
         <div class="max-w-4xl mx-auto mb-12">
-            <div class="glass-premium rounded-2xl p-8 md:p-10 border border-brand/20">
+            <div class="glass-premium rounded-2xl md:p-8 p-2 border border-brand/20">
 
                 <!-- Carousel Main Content -->
                 <div class="relative">
                     <!-- YouTube Embed Container with Thumbnail -->
                     <div class="relative aspect-video rounded-xl overflow-hidden bg-black mb-6" id="videoContainer">
                         <!-- Thumbnail Image -->
-                        <img id="videoThumbnail" src="" alt="Video thumbnail"
+                        <img id="videoThumbnail" src="" alt="Video thumbnail" loading="lazy"
                             class="absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-300">
                         <!-- YouTube Player -->
                         <div id="youtubePlayer" class="absolute inset-0"></div>
                         <!-- Play Button Overlay -->
-                        <button id="playButton"
+                        <button id="playButton" aria-label="Play video"
                             class="absolute inset-0 z-20 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-all duration-300 opacity-100 group cursor-pointer">
                             <div
-                                class="w-16 h-16 rounded-full bg-brand/90 hover:bg-brand flex items-center justify-center transition-all duration-300 hover:scale-110">
-                                {% lucide_icon "play" size="32" class="text-white ml-1" %}
+                                class="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-brand/90 hover:bg-brand flex items-center justify-center transition-all duration-300 hover:scale-110">
+                                {% lucide_icon "play" size="20" class="text-white ml-1 sm:w-8 sm:h-8" aria-hidden="true"
+                                %}
                             </div>
                         </button>
                     </div>
@@ -77,40 +70,47 @@
                             <span class="px-2 py-1 text-xs font-medium bg-brand/20 text-brand rounded-full">Featured
                                 Episode</span>
                         </div>
-                        <h3 id="episodeTitle" class="text-xl md:text-2xl font-bold text-white mb-2">Loading...</h3>
-                        <p id="episodeDesc" class="text-text-secondary text-sm md:text-base">Loading...</p>
+                        <!-- Add aria-live region for screen readers -->
+                        <div aria-live="polite" aria-atomic="true">
+                            <h3 id="episodeTitle" class="text-xl md:text-2xl font-bold text-white mb-2">Loading...</h3>
+                            <p id="episodeDesc" class="text-text-secondary text-sm md:text-base">Loading...</p>
+                        </div>
                     </div>
 
                     <!-- Navigation Buttons -->
-                    <button id="prevEpisode"
+                    <button id="prevEpisode" aria-label="Previous episode"
                         class="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 flex items-center justify-center bg-black/60 hover:bg-black/80 text-white rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20">
-                        {% lucide_icon "chevron-left" size="18" class="text-white" %}
+                        {% lucide_icon "chevron-left" size="18" class="text-white" aria-hidden="true" %}
                     </button>
 
-                    <button id="nextEpisode"
+                    <button id="nextEpisode" aria-label="Next episode"
                         class="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 flex items-center justify-center bg-black/60 hover:bg-black/80 text-white rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20">
-                        {% lucide_icon "chevron-right" size="18" class="text-white" %}
+                        {% lucide_icon "chevron-right" size="18" class="text-white" aria-hidden="true" %}
                     </button>
 
                     <!-- Dots Indicator -->
-                    <div class="flex justify-center gap-2 mt-6" id="dotsContainer">
-                    </div>
+                    <!-- <div class="flex justify-center gap-2 mt-6" id="dotsContainer" role="tablist"
+                        aria-label="Episode navigation">
+                    </div> -->
                 </div>
-
             </div>
-        </div>
 
-        <!-- View All Button -->
-        <div class="text-center mt-12">
-            {% include components/button.html url="/portfolio" text="View Full Portfolio" type="ghost"
-            icon="arrow-right" %}
         </div>
+    </div>
+
+    <!-- View All Button -->
+    <div class="text-center mt-12">
+        {% include components/button.html url="/portfolio" text="View Full Portfolio" type="ghost"
+        icon="arrow-right" %}
+    </div>
 
     </div>
 </section>
 
 <script>
-    let episodes = [];
+    //  Data is now generated by Jekyll at build time - NO fetch needed!
+    const episodes = {{ site.data.podcast-episodes | jsonify }};
+
     let currentIndex = 0;
     let player = null;
     let isPlaying = false;
@@ -125,6 +125,13 @@
     const videoContainer = document.getElementById('videoContainer');
     const videoThumbnail = document.getElementById('videoThumbnail');
     const playButton = document.getElementById('playButton');
+
+    // Validate episodes exist
+    if (!episodes || episodes.length === 0) {
+        console.error('No episodes found');
+        if (episodeTitle) episodeTitle.textContent = 'No Episodes Available';
+        if (episodeDesc) episodeDesc.textContent = 'Please check back later for new content.';
+    }
 
     // Extract YouTube video ID from URL
     function getYouTubeId(url) {
@@ -181,9 +188,10 @@
             playerVars: {
                 autoplay: 0,
                 rel: 0,
-                modestbranding: 1,
-                controls: 1,
-                showinfo: 0
+                modestbranding: 0,
+                controls: 0,
+                showinfo: 0,
+                origin: window.location.origin  // Adds security
             },
             events: {
                 'onStateChange': onPlayerStateChange
@@ -195,7 +203,6 @@
         // Video playing
         if (event.data === YT.PlayerState.PLAYING) {
             isPlaying = true;
-            // Hide thumbnail and play button smoothly
             if (videoThumbnail) {
                 videoThumbnail.style.opacity = '0';
                 setTimeout(() => {
@@ -213,7 +220,6 @@
         // Video paused or ended
         if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
             isPlaying = false;
-            // Show thumbnail and play button again when paused
             if (videoThumbnail && videoThumbnail.style.display === 'none') {
                 videoThumbnail.style.display = 'block';
                 setTimeout(() => {
@@ -245,12 +251,13 @@
 
     // Update carousel content
     async function updateCarousel(index) {
+        if (!episodes || episodes.length === 0) return;
+
         const episode = episodes[index];
         if (!episode) return;
 
         const videoId = getYouTubeId(episode.url);
         if (videoId) {
-            // Reset thumbnail and play button
             if (videoThumbnail) {
                 videoThumbnail.src = getYouTubeThumbnail(videoId);
                 videoThumbnail.style.display = 'block';
@@ -262,7 +269,6 @@
                 playButton.style.opacity = '1';
             }
 
-            // Load video in player
             if (player && player.loadVideoById) {
                 player.loadVideoById(videoId);
                 player.stopVideo();
@@ -272,7 +278,7 @@
         }
 
         episodeTitle.textContent = episode.title;
-        episodeDesc.textContent = episode.description;
+        episodeDesc.textContent = episode.description || `Episode ${index + 1} - Click play to watch`;
 
         // Update active dot
         const dots = document.querySelectorAll('.dot');
@@ -289,15 +295,23 @@
 
     // Create navigation dots
     function createDots() {
+        if (!dotsContainer || !episodes) return;
+
         dotsContainer.innerHTML = '';
-        episodes.forEach((_, index) => {
+        episodes.forEach((episode, index) => {
             const dot = document.createElement('button');
-            dot.setAttribute('aria-label', `Go to episode ${index + 1}`);
+            dot.setAttribute('aria-label', `Go to ${episode.title}`);
+            dot.setAttribute('aria-current', index === 0 ? 'true' : 'false');
+            dot.setAttribute('role', 'tab');
             dot.className = `dot w-2 h-2 rounded-full transition-all duration-300 ${index === 0 ? 'bg-brand scale-125' : 'bg-white/40'} hover:bg-white/70`;
             dot.addEventListener('click', async () => {
                 if (index !== currentIndex) {
                     currentIndex = index;
                     await updateCarousel(currentIndex);
+                    // Update aria-current on all dots
+                    document.querySelectorAll('.dot').forEach((d, i) => {
+                        d.setAttribute('aria-current', i === currentIndex ? 'true' : 'false');
+                    });
                 }
             });
             dotsContainer.appendChild(dot);
@@ -306,14 +320,14 @@
 
     // Next episode
     async function nextEpisode() {
-        if (episodes.length === 0) return;
+        if (!episodes || episodes.length === 0) return;
         currentIndex = (currentIndex + 1) % episodes.length;
         await updateCarousel(currentIndex);
     }
 
     // Previous episode
     async function prevEpisode() {
-        if (episodes.length === 0) return;
+        if (!episodes || episodes.length === 0) return;
         currentIndex = (currentIndex - 1 + episodes.length) % episodes.length;
         await updateCarousel(currentIndex);
     }
@@ -345,33 +359,30 @@
         }
     }
 
-    // Fetch JSON data
-    async function loadEpisodes() {
-        try {
-            const response = await fetch('/assets/data/podcast-episodes.json');
-            if (!response.ok) throw new Error('Failed to load episodes');
-            episodes = await response.json();
-            createDots();
-
-            // Initialize first video with thumbnail
-            const firstVideoId = getYouTubeId(episodes[0].url);
-            if (firstVideoId) {
-                if (videoThumbnail) {
-                    videoThumbnail.src = getYouTubeThumbnail(firstVideoId);
-                }
-                await initPlayer(firstVideoId);
-            }
-
-            episodeTitle.textContent = episodes[0].title;
-            episodeDesc.textContent = episodes[0].description;
-
-            setupPlayButton();
-            setupHoverPlay();
-        } catch (error) {
-            console.error('Error loading episodes:', error);
-            if (episodeTitle) episodeTitle.textContent = 'Failed to Load Episodes';
-            if (episodeDesc) episodeDesc.textContent = 'Please refresh the page or check back later.';
+    // Initialize everything
+    async function initialize() {
+        if (!episodes || episodes.length === 0) {
+            console.error('No episodes data available');
+            if (episodeTitle) episodeTitle.textContent = 'No Episodes Found';
+            if (episodeDesc) episodeDesc.textContent = 'Please check back later.';
+            return;
         }
+
+        createDots();
+
+        const firstVideoId = getYouTubeId(episodes[0].url);
+        if (firstVideoId) {
+            if (videoThumbnail) {
+                videoThumbnail.src = getYouTubeThumbnail(firstVideoId);
+            }
+            await initPlayer(firstVideoId);
+        }
+
+        episodeTitle.textContent = episodes[0].title;
+        episodeDesc.textContent = episodes[0].description || `Episode 1 - Click play to watch`;
+
+        setupPlayButton();
+        setupHoverPlay();
     }
 
     // Event listeners for manual navigation
@@ -389,8 +400,8 @@
         });
     }
 
-    // Initialize
-    loadEpisodes();
+    // Start everything
+    initialize();
 </script>
 
 <style>

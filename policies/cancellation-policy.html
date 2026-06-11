@@ -1,0 +1,69 @@
+---
+layout: default
+title: Cancellation Policy | Shubook Labs
+permalink: /cancellation-policy/
+---
+
+{% assign policy = site.data.policies.cancellation_policy %}
+
+<section class="relative py-20 md:py-28 bg-dark-bg overflow-hidden">
+    <div style="height: 100px;"></div>
+    
+    <div class="absolute top-20 right-1/4 w-96 h-96 rounded-full bg-brand/20 blur-[120px]"></div>
+    <div class="absolute bottom-20 left-1/4 w-80 h-80 rounded-full bg-brand/10 blur-[100px]"></div>
+    
+    <div class="relative z-10 container mx-auto px-6 max-w-4xl">
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center gap-2 glass rounded-full px-5 py-2 mb-6">
+                <span class="w-2 h-2 rounded-full bg-brand"></span>
+                <span class="text-sm font-medium tracking-wide text-text-secondary">Legal</span>
+                <span class="w-2 h-2 rounded-full bg-brand"></span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ policy.title }}</h1>
+            <p class="text-text-muted text-sm">Last Updated: {{ policy.last_updated }}</p>
+            <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-6"></div>
+        </div>
+        
+        <div class="glass rounded-2xl p-6 md:p-8 border border-white/10">
+            <div class="text-text-muted leading-relaxed policy-content">
+                {{ policy.content }}
+            </div>
+        </div>
+        
+        <div class="text-center mt-12 pt-8">
+            <p class="text-text-muted text-sm">
+                For any questions regarding this policy, please contact us at 
+                <a href="mailto:hello@shubook.in" class="text-brand hover:underline">hello@shubook.in</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .policy-content h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #3B82F6;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    .policy-content h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #CBD5E1;
+        margin-top: 1.25rem;
+        margin-bottom: 0.75rem;
+    }
+    .policy-content p {
+        margin-bottom: 1rem;
+        line-height: 1.7;
+    }
+    .policy-content ul {
+        margin: 1rem 0;
+        padding-left: 1.5rem;
+    }
+    .policy-content li {
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+    }
+</style>

@@ -1,6 +1,6 @@
 <div class="bg-dark-card rounded-xl overflow-hidden hover:scale-105 transition-all duration-300 {{ include.class }}">
   {% if include.image %}
-  <img src="{{ include.image }}" alt="{{ include.title }}" class="w-full h-48 object-cover">
+  <img src="{{ include.image }}" alt="{{ include.title }}" loading="lazy" class="w-full h-48 object-cover">
   {% endif %}
   <div class="p-6">
     {% if include.icon %}

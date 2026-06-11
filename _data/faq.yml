@@ -1,29 +1,93 @@
 home:
   - question: "What is the cost of podcast studio rent in Jaipur?"
     answer: "Our studio rent starts at ₹1,000 per hour."
-
   - question: "Do you provide full podcast production services?"
     answer: "Yes, Shubook Labs offers complete podcast production in Jaipur."
-
   - question: "Is this studio suitable for video podcasts?"
     answer: "Yes, it is built for both audio and video podcast recording."
-
   - question: "Can I book the studio for content shoots?"
     answer: "Yes, the studio can be rented for podcast shoots, interviews, and premium content creation."
-
   - question: "Where is your studio located?"
     answer: "We serve Jaipur and nearby local clients looking for a professional podcast studio in Jaipur."
 
-services: []
+services:
+  - question: "What are podcast production services?"
+    answer: "Podcast production services include recording, editing, trailer creation, thumbnails, reels, and content optimization."
+  - question: "Do you provide podcast recording services in Jaipur?"
+    answer: "Yes, Shubook Labs provides premium podcast recording services in Jaipur."
+  - question: "Can I book only editing services?"
+    answer: "Yes, we can discuss editing-only or content repurposing services based on your needs."
+  - question: "Is this suitable for business owners and founders?"
+    answer: "Yes, our services are designed specifically for premium professionals and personal brands."
+  - question: "What is included in the podcast package?"
+    answer: "Depending on the package, you get recording, trailer, thumbnail, reels, editing, and premium delivery."
 
-studio: []
+studio:
+  - question: "What is the cost of podcast studio rent in Jaipur?"
+    answer: "Our current introductory pricing is ₹1,000 per hour. The standard rental rate is ₹2,000 per hour."
+  - question: "Do you provide cameras and microphones?"
+    answer: "Yes. Professional cameras, microphones, lighting, and operator support are included."
+  - question: "Is raw footage included?"
+    answer: "Yes. Every booking includes raw footage at no extra charge."
+  - question: "Is BTS content included?"
+    answer: "Yes. Behind-the-scenes content is included."
+  - question: "Do I need technical knowledge?"
+    answer: "No. Our operator will assist you throughout the recording session."
+  - question: "Where is your studio located?"
+    answer: "Shubook Labs is located in Sanganer, Jaipur, Rajasthan."
 
-podcast_with_us: []
+podcast_with_us:
+  - question: "How long is the podcast?"
+    answer: "The recording typically lasts between 60 and 90 minutes."
+  - question: "Do I need podcast experience?"
+    answer: "No. Our team guides you throughout the process."
+  - question: "Do you provide editing?"
+    answer: "Yes. Complete editing and production are included."
+  - question: "How many content pieces will I receive?"
+    answer: "You receive one long-form podcast, ten reels, five mid-length videos, and a custom thumbnail."
+  - question: "Where will my podcast be published?"
+    answer: "The podcast can be distributed across YouTube, Instagram, LinkedIn, Spotify, Apple Podcasts, and Amazon Music."
+  - question: "Can I collaborate on Instagram posts?"
+    answer: "Yes. Reels published through The Shubook Show are shared as collaboration posts."
 
-about: []
+about:
+  - question: "What is Shubook Labs?"
+    answer: "Shubook Labs is a premium podcast studio and podcast production company in Jaipur dedicated to helping entrepreneurs, business owners, creators, and professionals build authority through podcasting and content creation."
+  - question: "Where is Shubook Labs located?"
+    answer: "Our premium podcast studio is located in Sanganer, Jaipur, Rajasthan."
+  - question: "What services do you offer?"
+    answer: "We offer podcast production, podcast studio rental, podcast editing, video podcast production, personal branding content, reels & short-form content, thumbnail design, podcast distribution, and content repurposing."
+  - question: "Who is the founder of Shubook Labs?"
+    answer: "Shubook Labs was founded by Shubham Saini, who is also the host of The Shubook Show."
+  - question: "What is The Shubook Show?"
+    answer: "The Shubook Show is the flagship podcast produced by Shubook Labs, featuring conversations with entrepreneurs, founders, business leaders, professionals, creators, and industry experts."
+  - question: "How many podcast episodes has The Shubook Show published?"
+    answer: "The Shubook Show has published 65+ podcast episodes featuring 30+ guests across YouTube, Spotify, Apple Podcasts, and Amazon Music."
 
-portfolio: []
+portfolio:
+  - question: "What type of content is in your portfolio?"
+    answer: "Our portfolio features podcast studio setups, podcast episodes, reels, thumbnails, BTS content, and premium podcast production projects produced by ShuBook Labs."
+  - question: "Can I see examples of your podcast episodes?"
+    answer: "Yes. The Shubook Show has 65+ published episodes featuring 30+ guests available on YouTube, Spotify, Apple Podcasts, and Amazon Music."
+  - question: "Do you share behind-the-scenes content?"
+    answer: "Yes. Our portfolio includes BTS photos and videos from podcast shoots, content production sessions, guest interactions, and studio experiences."
+  - question: "What equipment do you use in your studio?"
+    answer: "Our studio features dual camera setup (Canon 750D & Sony Alpha II), professional lighting, premium audio recording, and operator support."
+  - question: "How many reels do you create per podcast?"
+    answer: "Depending on the package, we create 4-10 professionally edited reels plus short-form content for YouTube, Instagram, and LinkedIn."
+  - question: "Do you design YouTube thumbnails?"
+    answer: "Yes. Every podcast package includes custom YouTube thumbnail design to increase clicks and improve performance."
 
-contact: []
+contact:
+  - question: "How do I book a podcast recording?"
+    answer: "Simply contact our team through WhatsApp, phone, email, or the contact form on this page."
+  - question: "How do I rent the studio?"
+    answer: "Choose your preferred date and time, confirm availability, and complete the booking process through our studio rental form."
+  - question: "Do I need prior podcast experience?"
+    answer: "No. Our team will guide you through the entire recording process."
+  - question: "Can I visit the studio before booking?"
+    answer: "Yes. Studio visits can be arranged by appointment. Contact us to schedule a visit."
+  - question: "Do you work with businesses and professionals?"
+    answer: "Yes. We regularly work with founders, business owners, professionals, creators, coaches, consultants, and brands."
 
 policies: []

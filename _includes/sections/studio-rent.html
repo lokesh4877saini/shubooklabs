@@ -1,33 +1,26 @@
 <!-- sections/studio-rent.html -->
-<section class="relative py-24 md:py-32 bg-dark-bg overflow-hidden">
-
-    <!-- Premium ambient glow -->
-    <div
-        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-brand/5 blur-[150px]">
-    </div>
+<section class="relative py-6 lg:py-24  md:py-32 bg-dark-bg">
 
     <div class="relative z-10 container mx-auto px-4 max-w-7xl">
 
-        <!-- Price Badge - Premium -->
+        <!-- Price Badge -->
         <div class="flex justify-center mb-8">
-            <div class="premium-badge inline-flex items-center gap-2 px-6 py-3 rounded-full">
+            <div class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/5">
                 <span class="relative flex h-2 w-2">
-                    <span
-                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
                 </span>
-                <span class="font-bold tracking-wide">BEST PRICE IN JAIPUR</span>
+                <span class="font-bold tracking-wide text-sm">BEST PRICE IN JAIPUR</span>
             </div>
         </div>
 
-        <!-- Heading - Premium -->
+        <!-- Heading -->
         <div class="text-center mb-6">
             <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
                 Podcast Studio
-                <span class="premium-gradient-text">on Rent</span>
+                <span class="text-brand">on Rent</span>
             </h2>
             <p class="text-2xl md:text-3xl text-white/60 tracking-wide">in Jaipur</p>
-            <div class="premium-divider mx-auto mt-6"></div>
+            <div class="w-20 h-1 bg-brand rounded-full mx-auto mt-6"></div>
         </div>
 
         <!-- Question -->
@@ -39,37 +32,35 @@
 
         <!-- Full Width Image Carousel -->
         <div class="mb-12 mt-8">
-            <div class="relative bg-gradient-to-br from-[#2a2a28] to-yellow-500/10 backdrop-blur-md rounded-2xl shadow-xl overflow-hidden border border-yellow-500/20">
-                
+            <div class="relative bg-white/5 rounded-2xl overflow-hidden border border-white/10">
+
                 <!-- Main Image Container -->
                 <div class="relative">
                     <div class="relative overflow-hidden h-[400px] md:h-[500px] lg:h-[600px]">
-                        <img id="carouselImage" 
-                             src="" 
-                             alt="Studio Image" 
-                             class="w-full h-full object-cover transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                        <img id="carouselImage" loading="lazy" src="" alt="Studio Image"
+                            class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
                     </div>
-                    
+
                     <!-- Left Arrow -->
-                    <button id="prevBtn" 
-                            class="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 hover:bg-black/70 text-white rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20">
-                    {% lucide_icon "arrow-left" size="20" class="text-white" %}
+                    <button id="prevBtn"
+                        class="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 text-white rounded-full border border-white/20">
+                        {% lucide_icon "arrow-left" size="20" class="text-white" %}
                     </button>
-                    
+
                     <!-- Right Arrow -->
-                    <button id="nextBtn" 
-                            class="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 hover:bg-black/70 text-white rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20">
-                    {% lucide_icon "arrow-right" size="20" class="text-white" %}
+                    <button id="nextBtn"
+                        class="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 text-white rounded-full border border-white/20">
+                        {% lucide_icon "arrow-right" size="20" class="text-white" %}
                     </button>
-                    
+
                     <!-- Dots Indicator -->
                     <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex space-x-3" id="dotsContainer">
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <!-- Studio Stats -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
             <div class="text-center p-4 rounded-xl bg-white/5 border border-white/10">
@@ -89,35 +80,35 @@
                 <div class="text-text-secondary text-sm">Rating on Google</div>
             </div>
         </div>
-        
-        <!-- Perfect For Grid - Premium Style -->
+
+        <!-- Perfect For Grid -->
         <div class="mb-12 mt-16">
             <h3 class="text-center text-lg font-semibold text-white/70 tracking-wide mb-8">PERFECT FOR</h3>
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
-                <div class="premium-chip flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full">
+            <div class="grid grid-cols-2 text-center sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
+                <div class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10">
                     {% lucide_icon "mic" size="16" class="text-brand" %}
                     <span class="text-sm font-medium text-white/80">Podcast shooting</span>
                 </div>
-                <div class="premium-chip flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full">
+                <div class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10">
                     {% lucide_icon "users" size="16" class="text-brand" %}
                     <span class="text-sm font-medium text-white/80">Video interviews</span>
                 </div>
-                <div class="premium-chip flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full">
+                <div class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10">
                     {% lucide_icon "smartphone" size="16" class="text-brand" %}
                     <span class="text-sm font-medium text-white/80">Reels & shorts</span>
                 </div>
-                <div class="premium-chip flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full">
+                <div class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10">
                     {% lucide_icon "youtube" size="16" class="text-brand" %}
                     <span class="text-sm font-medium text-white/80">YouTube recordings</span>
                 </div>
-                <div class="premium-chip flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full sm:col-span-3 lg:col-span-1">
+                <div class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10 sm:col-span-3 lg:col-span-1">
                     {% lucide_icon "briefcase" size="16" class="text-brand" %}
                     <span class="text-sm font-medium text-white/80">Client brand content</span>
                 </div>
             </div>
         </div>
 
-        <!-- Premium CTA Buttons -->
+        <!-- CTA Buttons -->
         <div class="flex flex-col sm:flex-row justify-center gap-5 md:gap-6">
             {% include components/button.html url="/book-studio" text="Book Studio Now" type="primary" icon="mic" %}
         </div>
@@ -126,204 +117,134 @@
 </section>
 
 <script>
+    // Data is now generated by Jekyll at build time
+    const studioImages = {{ site.data.studio-images | jsonify }};
+
     // Wait for DOM to be fully loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        
-        // Fetch studio images from JSON file
-        fetch('{{ "/assets/data/studio-images.json" | relative_url }}')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(studioImages => {
-                console.log('Images loaded successfully:', studioImages);
-                
-                let currentIndex = 0;
-                
-                // Get DOM elements
-                const carouselImage = document.getElementById('carouselImage');
-                const prevBtn = document.getElementById('prevBtn');
-                const nextBtn = document.getElementById('nextBtn');
-                const dotsContainer = document.getElementById('dotsContainer');
-                
-                if (!carouselImage) {
-                    console.error('Carousel image element not found');
-                    return;
-                }
-                
-                // Function to update image
-                function updateCarousel(index) {
-                    if (!studioImages[index]) {
-                        console.error('Image not found at index:', index);
-                        return;
-                    }
-                    
-                    const image = studioImages[index];
-                    console.log('Loading image:', image.url, image.title);
-                    
-                    carouselImage.style.opacity = '0';
-                    
-                    setTimeout(() => {
-                        carouselImage.src = image.url;
-                        carouselImage.alt = image.title;
-                        carouselImage.style.opacity = '1';
-                    }, 300);
-                    
-                    // Update active dot
-                    const dots = document.querySelectorAll('.dot');
-                    dots.forEach((dot, i) => {
-                        if (i === index) {
-                            dot.classList.add('bg-brand', 'scale-125');
-                            dot.classList.remove('bg-white/40');
-                        } else {
-                            dot.classList.remove('bg-brand', 'scale-125');
-                            dot.classList.add('bg-white/40');
-                        }
-                    });
-                }
-                
-                // Create dots
-                function createDots() {
-                    if (!dotsContainer) return;
-                    
-                    dotsContainer.innerHTML = ''; // Clear existing dots
-                    
-                    studioImages.forEach((_, index) => {
-                        const dot = document.createElement('button');
-                        dot.setAttribute('aria-label', `Go to image ${index + 1}`);
-                        dot.className = `dot w-2.5 h-2.5 rounded-full transition-all duration-300 ${index === 0 ? 'bg-brand scale-125' : 'bg-white/40'} hover:bg-white/70`;
-                        dot.addEventListener('click', () => {
-                            currentIndex = index;
-                            updateCarousel(currentIndex);
-                        });
-                        dotsContainer.appendChild(dot);
-                    });
-                }
-                
-                // Next image
-                function nextImage() {
-                    currentIndex = (currentIndex + 1) % studioImages.length;
-                    updateCarousel(currentIndex);
-                }
-                
-                // Previous image
-                function prevImage() {
-                    currentIndex = (currentIndex - 1 + studioImages.length) % studioImages.length;
-                    updateCarousel(currentIndex);
-                }
-                
-                // Event listeners
-                if (prevBtn) {
-                    prevBtn.addEventListener('click', prevImage);
-                    console.log('Previous button listener attached');
-                }
-                
-                if (nextBtn) {
-                    nextBtn.addEventListener('click', nextImage);
-                    console.log('Next button listener attached');
-                }
-                
-                // Auto-play (optional - every 5 seconds)
-                let autoPlayInterval = setInterval(nextImage, 5000);
-                
-                // Pause auto-play on hover
-                const carouselContainer = document.querySelector('.relative.bg-gradient-to-br');
-                if (carouselContainer) {
-                    carouselContainer.addEventListener('mouseenter', () => {
-                        clearInterval(autoPlayInterval);
-                    });
-                    
-                    carouselContainer.addEventListener('mouseleave', () => {
-                        autoPlayInterval = setInterval(nextImage, 5000);
-                    });
-                }
-                
-                // Initialize carousel
-                createDots();
-                updateCarousel(0);
-                console.log('Carousel initialized successfully');
-            })
-            .catch(error => {
-                console.error('Error loading studio images:', error);
-                // Show error message to user
-                const carouselImage = document.getElementById('carouselImage');
-                if (carouselImage) {
-                    carouselImage.src = 'https://via.placeholder.com/1200x800?text=Error+Loading+Images';
-                    carouselImage.alt = 'Error loading images';
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // Validate images exist
+        if (!studioImages || studioImages.length === 0) {
+            console.error('No studio images found');
+            const carouselImage = document.getElementById('carouselImage');
+            if (carouselImage) {
+                carouselImage.src = 'https://via.placeholder.com/1200x800?text=No+Images+Available';
+                carouselImage.alt = 'No images available';
+            }
+            return;
+        }
+
+        let currentIndex = 0;
+
+        // Get DOM elements
+        const carouselImage = document.getElementById('carouselImage');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('dotsContainer');
+
+        if (!carouselImage) {
+            console.error('Carousel image element not found');
+            return;
+        }
+
+        // Function to update image
+        function updateCarousel(index) {
+            if (!studioImages[index]) {
+                console.error('Image not found at index:', index);
+                return;
+            }
+
+            const image = studioImages[index];
+
+            carouselImage.style.opacity = '0';
+
+            setTimeout(() => {
+                carouselImage.src = image.url;
+                carouselImage.alt = image.title;
+                carouselImage.style.opacity = '1';
+            }, 300);
+
+            // Update active dot
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('bg-brand');
+                    dot.classList.remove('bg-white/40');
+                } else {
+                    dot.classList.remove('bg-brand');
+                    dot.classList.add('bg-white/40');
                 }
             });
+        }
+
+        // Create dots
+        function createDots() {
+            if (!dotsContainer) return;
+
+            dotsContainer.innerHTML = '';
+
+            studioImages.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.setAttribute('aria-label', `Go to image ${index + 1}`);
+                dot.className = `dot w-2.5 h-2.5 rounded-full ${index === 0 ? 'bg-brand' : 'bg-white/40'}`;
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel(currentIndex);
+                });
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        // Next image
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % studioImages.length;
+            updateCarousel(currentIndex);
+        }
+
+        // Previous image
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + studioImages.length) % studioImages.length;
+            updateCarousel(currentIndex);
+        }
+
+        // Event listeners
+        if (prevBtn) {
+            prevBtn.addEventListener('click', prevImage);
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', nextImage);
+        }
+
+        // Auto-play (every 5 seconds)
+        let autoPlayInterval = setInterval(nextImage, 5000);
+
+        // Pause auto-play on hover
+        const carouselContainer = document.querySelector('.relative.bg-white\\/5');
+        if (carouselContainer) {
+            carouselContainer.addEventListener('mouseenter', () => {
+                clearInterval(autoPlayInterval);
+            });
+
+            carouselContainer.addEventListener('mouseleave', () => {
+                autoPlayInterval = setInterval(nextImage, 5000);
+            });
+        }
+
+        // Initialize carousel
+        createDots();
+        updateCarousel(0);
     });
 </script>
 
 <style>
-    /* Premium Card */
-    .premium-card {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    }
-
-    /* Premium Badge */
-    .premium-badge {
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.05) 100%);
-        border: 1px solid rgba(59, 130, 246, 0.3);
-        letter-spacing: 1px;
-        font-size: 0.75rem;
-    }
-
-    /* Premium Gradient Text */
-    .premium-gradient-text {
-        background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 50%, #2563EB 100%);
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-    }
-
-    /* Premium Divider */
-    .premium-divider {
-        width: 60px;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, #3B82F6, #60A5FA, #3B82F6, transparent);
-    }
-
-    /* Premium Price Card */
-    .premium-price-card {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
-        backdrop-filter: blur(16px);
-        border: 1px solid rgba(59, 130, 246, 0.2);
-        box-shadow: 0 0 40px rgba(59, 130, 246, 0.1);
-    }
-
-    /* Premium Price Divider */
-    .premium-price-divider {
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), rgba(96, 165, 250, 0.8), rgba(59, 130, 246, 0.5), transparent);
-    }
-
-    /* Premium Chip */
-    .premium-chip {
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        transition: all 0.3s ease;
-    }
-
-    .premium-chip:hover {
-        background: rgba(59, 130, 246, 0.1);
-        border-color: rgba(59, 130, 246, 0.3);
-        transform: translateY(-2px);
-    }
-    
     /* Image transition */
     #carouselImage {
         transition: opacity 0.3s ease;
     }
-
-    /* No borders on unwanted elements */
-    a,
-    button {
-        text-decoration: none;
+    
+    /* Dot transitions */
+    .dot {
+        transition: all 0.2s ease;
     }
 </style>

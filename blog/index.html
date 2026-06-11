@@ -1,0 +1,127 @@
+---
+layout: default
+title: Blog | Coming Soon - ShuBook Labs
+permalink: /blog/
+---
+
+<!-- Hero Section -->
+<section class="relative overflow-hidden bg-dark-bg">
+    <div style="height: 130px;"></div>
+    
+    <div class="absolute top-20 right-1/4 w-96 h-96 rounded-full bg-brand/20 blur-[120px]"></div>
+    <div class="absolute bottom-20 left-1/4 w-80 h-80 rounded-full bg-brand/10 blur-[100px]"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]">
+    </div>
+
+    <div class="relative z-10 container mx-auto px-6 max-w-6xl text-center py-20 md:py-28">
+        <div class="inline-flex items-center gap-2 glass rounded-full px-5 py-2 mb-6">
+            <span class="w-2 h-2 rounded-full bg-brand"></span>
+            <span class="text-sm font-medium tracking-wide text-text-secondary">Coming Soon</span>
+            <span class="w-2 h-2 rounded-full bg-brand"></span>
+        </div>
+        
+        <div class="mb-8">
+            <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-brand/20 flex items-center justify-center mx-auto mb-6">
+                {% lucide_icon "file-text" size="48" class="text-brand" %}
+            </div>
+        </div>
+        
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+            Blog
+            <span class="bg-brand-gradient bg-clip-text text-transparent block mt-2">
+                Coming Soon
+            </span>
+        </h1>
+        
+        <p class="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto mb-6">
+            Insights, stories, and expertise from the world of podcasting, personal branding, and content creation.
+        </p>
+        
+        <p class="text-base text-text-muted max-w-2xl mx-auto mb-10">
+            We're working on creating valuable content to help you grow your podcast, build your personal brand, and create professional content that stands out.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="/contact/" class="bg-brand hover:bg-brand-dark text-white font-semibold px-6 py-3 rounded-xl transition-all flex items-center justify-center gap-2">
+                {% lucide_icon "mail" size="18" %} Get Notified
+            </a>
+            <a href="/" class="glass hover:bg-brand/20 border border-white/10 hover:border-brand/40 rounded-xl px-6 py-3 font-medium text-text-secondary hover:text-brand transition-all flex items-center justify-center gap-2">
+                {% lucide_icon "home" size="18" %} Back to Home
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- What to Expect Section -->
+<section class="py-20 md:py-28 bg-dark-card">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">What to Expect</h2>
+            <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="glass rounded-2xl p-6 text-center border border-white/10">
+                <div class="w-14 h-14 rounded-full bg-brand/20 flex items-center justify-center mx-auto mb-4">
+                    {% lucide_icon "mic" size="24" class="text-brand" %}
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Podcast Tips</h3>
+                <p class="text-text-muted text-sm">Expert advice on recording, editing, and growing your podcast audience.</p>
+            </div>
+            
+            <div class="glass rounded-2xl p-6 text-center border border-white/10">
+                <div class="w-14 h-14 rounded-full bg-brand/20 flex items-center justify-center mx-auto mb-4">
+                    {% lucide_icon "trending-up" size="24" class="text-brand" %}
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Personal Branding</h3>
+                <p class="text-text-muted text-sm">Strategies to build authority and visibility through content.</p>
+            </div>
+            
+            <div class="glass rounded-2xl p-6 text-center border border-white/10">
+                <div class="w-14 h-14 rounded-full bg-brand/20 flex items-center justify-center mx-auto mb-4">
+                    {% lucide_icon "video" size="24" class="text-brand" %}
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Studio Insights</h3>
+                <p class="text-text-muted text-sm">Behind-the-scenes looks at professional podcast production.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Signup -->
+<section class="py-20 md:py-28 bg-dark-bg">
+    <div class="container mx-auto px-6 max-w-4xl text-center">
+        <div class="glass rounded-2xl p-8 md:p-12 border border-brand/20 bg-gradient-to-b from-brand/5 to-transparent">
+            <h2 class="text-2xl md:text-3xl font-bold mb-3">Get Notified When We Launch</h2>
+            <p class="text-text-muted mb-6">Be the first to know when our blog goes live with fresh content.</p>
+            
+            <form action="#" method="POST" class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input type="email" 
+                       placeholder="Your email address" 
+                       required 
+                       class="flex-1 glass rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary">
+                <button type="submit" class="bg-brand hover:bg-brand-dark text-white font-semibold px-6 py-3 rounded-xl transition-all whitespace-nowrap">
+                    Notify Me
+                </button>
+            </form>
+            
+            <p class="text-text-muted text-xs mt-4">No spam. Unsubscribe anytime.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA Section -->
+<section class="py-20 md:py-28 bg-dark-card">
+    <div class="container mx-auto px-6 max-w-5xl text-center">
+        <div class="glass rounded-2xl p-8 md:p-12 border border-brand/20 bg-gradient-to-b from-brand/5 to-transparent">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Ready to Start Your Podcast?</h2>
+            <p class="text-text-secondary text-lg mb-8 max-w-2xl mx-auto">
+                While we prepare our blog content, our studio is ready for you.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="/contact/" class="bg-brand hover:bg-brand-dark text-white font-semibold px-6 py-3 rounded-xl transition-all">Book Your Session</a>
+                <a href="/studio-rent/" class="glass hover:bg-brand/20 border border-white/10 hover:border-brand/40 rounded-xl px-6 py-3 font-medium text-text-secondary hover:text-brand transition-all">Rent the Studio</a>
+            </div>
+        </div>
+    </div>
+</section>

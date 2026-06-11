@@ -1,0 +1,428 @@
+---
+layout: default
+title: Podcast Studio Portfolio Jaipur | Studio Gallery & Podcast Projects | Shubook Labs
+meta_description: "Explore the Shubook Labs portfolio featuring podcast studio setups, podcast episodes, reels, thumbnails, BTS content, and premium podcast production projects in Jaipur."
+permalink: /portfolio/
+---
+
+<!-- Hero Section -->
+<section class="relative overflow-hidden bg-dark-bg">
+    <!-- Spacer for fixed header -->
+    <div style="height: 130px;"></div>
+    
+    <!-- Background orbs -->
+    <div class="absolute top-20 right-1/4 w-96 h-96 rounded-full bg-brand/20 blur-[120px] animate-pulse-slow"></div>
+    <div class="absolute bottom-20 left-1/4 w-80 h-80 rounded-full bg-brand-light/10 blur-[100px] animate-pulse-slow" style="animation-delay: 3s"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]">
+    </div>
+
+    <div class="relative z-10 container mx-auto px-6 max-w-6xl text-center pb-20 md:pb-28">
+        <div class="inline-flex items-center gap-2 glass rounded-full px-5 py-2 mb-6">
+            <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+            <span class="text-sm font-medium tracking-wide text-text-secondary">Our Work</span>
+            <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+            Our Portfolio
+            <span class="bg-brand-gradient bg-clip-text text-transparent block mt-2">
+                & Studio Gallery
+            </span>
+        </h1>
+        <p class="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto mb-6">
+            Explore the work, conversations, content, and creative projects produced by Shubook Labs.
+        </p>
+        <p class="text-base text-text-muted max-w-3xl mx-auto">
+            From podcast episodes and studio recordings to reels, thumbnails, and personal branding content, this portfolio showcases the quality, creativity, and professionalism behind every project we produce.
+        </p>
+    </div>
+</section>
+
+<!-- Section: Inside Shubook Labs -->
+<section class="py-20 md:py-28 bg-dark-card relative overflow-hidden">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">Inside Shubook Labs</h2>
+            <p class="text-text-secondary mt-4">Premium Podcast Studio In Jaipur</p>
+            <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-4"></div>
+        </div>
+        <p class="text-center text-text-muted max-w-2xl mx-auto mb-10">
+            Our studio is designed for founders, entrepreneurs, creators, professionals, and brands who want their content to look professional and stand out online.
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {% assign studio_features = "Dual Camera Podcast Setup,Canon 750D & Sony Alpha II,Professional Lighting Setup,Premium Podcast Background,Professional Audio Recording,Operator Support,BTS Content Creation,Comfortable Recording Environment,Refreshments & Parking" | split: "," %}
+            {% for feature in studio_features %}
+            <div class="glass rounded-xl p-3 text-center border border-white/5 hover:border-brand/30 transition-all">
+                <div class="flex items-center justify-center gap-2">
+                    <span class="text-brand">{% lucide_icon "check" size="14" %}</span>
+                    <span class="text-text-secondary text-sm">{{ feature | strip }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="mt-10 grid md:grid-cols-2 gap-6">
+            <div class="glass rounded-xl p-6 text-center border border-white/10 h-48 flex items-center justify-center">
+                <div>
+                    {% lucide_icon "image" size="48" class="text-brand mx-auto mb-2" %}
+                    <p class="text-text-muted text-sm">Studio Photos</p>
+                    <p class="text-text-muted text-xs mt-1">[ADD STUDIO PHOTOS]</p>
+                </div>
+            </div>
+            <div class="glass rounded-xl p-6 text-center border border-white/10 h-48 flex items-center justify-center">
+                <div>
+                    {% lucide_icon "video" size="48" class="text-brand mx-auto mb-2" %}
+                    <p class="text-text-muted text-sm">Studio Tour Video</p>
+                    <p class="text-text-muted text-xs mt-1">[ADD STUDIO TOUR VIDEO]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section: Podcast Episodes -->
+<section class="py-20 md:py-28 bg-dark-bg">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">Podcast Episodes</h2>
+            <p class="text-text-secondary mt-2">Real Conversations. Real Stories.</p>
+            <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-4"></div>
+        </div>
+        <p class="text-center text-text-muted max-w-2xl mx-auto mb-10">
+            The Shubook Show features conversations with entrepreneurs, founders, professionals, creators, coaches, consultants, and industry leaders.
+            <br><br>
+            Our goal is to capture meaningful stories and transform them into content that creates impact.
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-10">
+            <div class="glass rounded-xl p-6 text-center">
+                <div class="text-3xl font-bold text-brand">65+</div>
+                <p class="text-text-muted text-xs">Published Episodes</p>
+            </div>
+            <div class="glass rounded-xl p-6 text-center">
+                <div class="text-3xl font-bold text-brand">30+</div>
+                <p class="text-text-muted text-xs">Featured Guests</p>
+            </div>
+            <div class="glass rounded-xl p-6 text-center">
+                <div class="text-3xl font-bold text-brand">4+</div>
+                <p class="text-text-muted text-xs">Platforms</p>
+            </div>
+        </div>
+        <div class="glass rounded-xl p-6 text-center border border-white/10 h-48 flex items-center justify-center">
+            <div>
+                {% lucide_icon "play-circle" size="48" class="text-brand mx-auto mb-2" %}
+                <p class="text-text-muted text-sm">Podcast Episode Embeds</p>
+                <p class="text-text-muted text-xs mt-1">[ADD PODCAST EPISODE EMBEDS]</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section: Featured Guests -->
+<section class="py-20 md:py-28 bg-dark-card">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">Featured Guests</h2>
+            <p class="text-text-secondary mt-2">Meet Some Of The People We've Worked With</p>
+            <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-4"></div>
+        </div>
+        <p class="text-center text-text-muted max-w-2xl mx-auto mb-10">
+            From business owners and startup founders to creators and professionals, our guests come from diverse industries and backgrounds.
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="glass rounded-xl p-6 text-center h-32 flex items-center justify-center">
+                <div>
+                    {% lucide_icon "user" size="32" class="text-brand mx-auto mb-2" %}
+                    <p class="text-text-muted text-xs">Guest Photos</p>
+                </div>
+            </div>
+            <div class="glass rounded-xl p-6 text-center h-32 flex items-center justify-center">
+                <div>
+                    {% lucide_icon "message-square" size="32" class="text-brand mx-auto mb-2" %}
+                    <p class="text-text-muted text-xs">Testimonials</p>
+                </div>
+            </div>
+            <div class="glass rounded-xl p-6 text-center h-32 flex items-center justify-center">
+                <div>
+                    {% lucide_icon "award" size="32" class="text-brand mx-auto mb-2" %}
+                    <p class="text-text-muted text-xs">Guest Highlights</p>
+                </div>
+            </div>
+            <div class="glass rounded-xl p-6 text-center h-32 flex items-center justify-center">
+                <div>
+                    {% lucide_icon "users" size="32" class="text-brand mx-auto mb-2" %}
+                    <p class="text-text-muted text-xs">Industry Experts</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section: Video Podcast Production -->
+<section class="py-20 md:py-28 bg-dark-bg">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Video Podcast Production</h2>
+                <p class="text-text-secondary mb-4">Professional Podcast Production Services In Jaipur</p>
+                <p class="text-text-muted mb-6">Every podcast goes through a complete production workflow to ensure a premium final result.</p>
+                <div class="grid grid-cols-2 gap-3">
+                    {% assign production = "Multi-Camera Recording,Audio Enhancement,Professional Editing,Color Correction,Content Optimization,Export For Multiple Platforms" | split: "," %}
+                    {% for item in production %}
+                    <div class="flex items-center gap-2">
+                        <span class="text-brand">{% lucide_icon "check" size="14" %}</span>
+                        <span class="text-text-secondary text-sm">{{ item | strip }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="glass rounded-xl p-6 text-center border border-white/10 h-64 flex items-center justify-center">
+                <div>
+                    {% lucide_icon "clapperboard" size="48" class="text-brand mx-auto mb-2" %}
+                    <p class="text-text-muted text-sm">Before & After Examples</p>
+                    <p class="text-text-muted text-xs mt-1">[ADD BEFORE & AFTER EXAMPLES]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section: Reels & Short-Form Content -->
+<section class="py-20 md:py-28 bg-dark-card">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">Reels & Short-Form Content</h2>
+            <p class="text-text-secondary mt-2">One Podcast. Multiple Content Assets.</p>
+            <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-4"></div>
+        </div>
+        <p class="text-center text-text-muted max-w-2xl mx-auto mb-10">
+            We transform podcast conversations into engaging short-form content that helps guests build authority across social media platforms.
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10">
+            {% assign content_types = "Instagram Reels,YouTube Shorts,LinkedIn Clips,Promotional Teasers,BTS Highlights" | split: "," %}
+            {% for content in content_types %}
+            <div class="glass rounded-xl p-3 text-center border border-white/5 hover:border-brand/30 transition-all">
+                <span class="text-text-secondary text-sm">{{ content | strip }}</span>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="glass rounded-xl p-6 text-center border border-white/10 h-48 flex items-center justify-center">
+                <div>
+                    {% lucide_icon "film" size="48" class="text-brand mx-auto mb-2" %}
+                    <p class="text-text-muted text-sm">Reel Examples</p>
+                    <p class="text-text-muted text-xs mt-1">[ADD REEL EXAMPLES]</p>
+                </div>
+            </div>
+            <div class="glass rounded-xl p-6 text-center border border-white/10 h-48 flex items-center justify-center">
+                <div>
+                    {% lucide_icon "smartphone" size="48" class="text-brand mx-auto mb-2" %}
+                    <p class="text-text-muted text-sm">Shorts Examples</p>
+                    <p class="text-text-muted text-xs mt-1">[ADD SHORTS EXAMPLES]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section: Thumbnail Portfolio -->
+<section class="py-20 md:py-28 bg-dark-bg">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">Thumbnail Portfolio</h2>
+            <p class="text-text-secondary mt-2">Designed To Increase Clicks</p>
+            <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-4"></div>
+        </div>
+        <p class="text-center text-text-muted max-w-2xl mx-auto mb-10">
+            A strong thumbnail can dramatically improve podcast performance. Every thumbnail is created to grab attention while maintaining a professional and premium appearance.
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+            <div class="glass rounded-xl p-4 text-center h-32 flex items-center justify-center">
+                <div>
+                    {% lucide_icon "image" size="32" class="text-brand mx-auto mb-2" %}
+                    <p class="text-text-muted text-xs">Thumbnail Gallery</p>
+                </div>
+            </div>
+            <div class="glass rounded-xl p-4 text-center h-32 flex items-center justify-center">
+                <div>
+                    {% lucide_icon "image" size="32" class="text-brand mx-auto mb-2" %}
+                    <p class="text-text-muted text-xs">Thumbnail Gallery</p>
+                </div>
+            </div>
+            <div class="glass rounded-xl p-4 text-center h-32 flex items-center justify-center">
+                <div>
+                    {% lucide_icon "trending-up" size="32" class="text-brand mx-auto mb-2" %}
+                    <p class="text-text-muted text-xs">Top Performing</p>
+                </div>
+            </div>
+            <div class="glass rounded-xl p-4 text-center h-32 flex items-center justify-center">
+                <div>
+                    {% lucide_icon "image" size="32" class="text-brand mx-auto mb-2" %}
+                    <p class="text-text-muted text-xs">Thumbnail Gallery</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section: Behind The Scenes -->
+<section class="py-20 md:py-28 bg-dark-card">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">Behind The Scenes</h2>
+            <p class="text-text-secondary mt-2">A Look Behind The Camera</p>
+            <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-4"></div>
+        </div>
+        <p class="text-center text-text-muted max-w-2xl mx-auto mb-10">
+            Content creation is more than just recording. Explore behind-the-scenes moments from podcast shoots, content production sessions, guest interactions, and studio experiences.
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="glass rounded-xl p-6 text-center h-40 flex items-center justify-center">
+                <div>
+                    {% lucide_icon "camera" size="32" class="text-brand mx-auto mb-2" %}
+                    <p class="text-text-muted text-xs">BTS Photos</p>
+                </div>
+            </div>
+            <div class="glass rounded-xl p-6 text-center h-40 flex items-center justify-center">
+                <div>
+                    {% lucide_icon "video" size="32" class="text-brand mx-auto mb-2" %}
+                    <p class="text-text-muted text-xs">BTS Videos</p>
+                </div>
+            </div>
+            <div class="glass rounded-xl p-6 text-center h-40 flex items-center justify-center">
+                <div>
+                    {% lucide_icon "users" size="32" class="text-brand mx-auto mb-2" %}
+                    <p class="text-text-muted text-xs">Guest Interactions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section: What Clients Experience -->
+<section class="py-20 md:py-28 bg-dark-bg">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">What Clients Experience</h2>
+            <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-4"></div>
+        </div>
+        <p class="text-center text-text-secondary max-w-2xl mx-auto mb-10">
+            At Shubook Labs, every project is designed to create a premium and stress-free experience.
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            {% assign client_receives = "Professional Recording Environment,Complete Production Support,Premium Editing,Personal Branding Content,Social Media Assets,Multi-Platform Distribution,Professional Team Assistance" | split: "," %}
+            {% for item in client_receives %}
+            <div class="flex items-center gap-2 glass rounded-xl p-3">
+                <span class="text-brand">{% lucide_icon "check" size="14" %}</span>
+                <span class="text-text-secondary text-xs">{{ item | strip }}</span>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="glass rounded-2xl p-8 text-center border border-brand/20">
+            <p class="text-text-primary font-semibold text-lg">Our goal is simple:</p>
+            <p class="text-text-muted">Help every guest and client create content that reflects their expertise and professional image.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Section: Why Our Portfolio Matters -->
+<section class="py-20 md:py-28 bg-dark-card">
+    <div class="container mx-auto px-6 max-w-5xl text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Why Our Portfolio Matters</h2>
+        <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mb-8"></div>
+        <p class="text-text-secondary text-lg mb-6">Every image, video, podcast episode, reel, and project displayed here represents our commitment to quality.</p>
+        <div class="glass rounded-2xl p-8 border border-brand/20">
+            <p class="text-text-muted mb-4">When you work with Shubook Labs, you're not just recording content.</p>
+            <p class="text-text-primary font-semibold">You're creating professional digital assets that can strengthen your personal brand, increase visibility, and build trust.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Section: Results -->
+<section class="py-20 md:py-28 bg-dark-bg">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold">Results That Speak For Themselves</h2>
+            <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-4"></div>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+            <div class="glass rounded-xl p-6 text-center">
+                <div class="text-3xl font-bold text-brand">65+</div>
+                <p class="text-text-muted text-sm">Podcast Episodes</p>
+            </div>
+            <div class="glass rounded-xl p-6 text-center">
+                <div class="text-3xl font-bold text-brand">30+</div>
+                <p class="text-text-muted text-sm">Featured Guests</p>
+            </div>
+            <div class="glass rounded-xl p-6 text-center">
+                <div class="text-3xl font-bold text-brand">14K+</div>
+                <p class="text-text-muted text-sm">YouTube Subscribers</p>
+            </div>
+            <div class="glass rounded-xl p-6 text-center">
+                <div class="text-3xl font-bold text-brand">54K+</div>
+                <p class="text-text-muted text-sm">Instagram Community</p>
+            </div>
+            <div class="glass rounded-xl p-6 text-center">
+                <div class="text-3xl font-bold text-brand">7K+</div>
+                <p class="text-text-muted text-sm">LinkedIn Network</p>
+            </div>
+            <div class="glass rounded-xl p-6 text-center">
+                <div class="text-3xl font-bold text-brand">Multiple</div>
+                <p class="text-text-muted text-sm">Platforms</p>
+            </div>
+            <div class="glass rounded-xl p-6 text-center">
+                <div class="text-3xl font-bold text-brand">Hundreds</div>
+                <p class="text-text-muted text-sm">Content Assets</p>
+            </div>
+            <div class="glass rounded-xl p-6 text-center">
+                <div class="text-3xl font-bold text-brand">Growing</div>
+                <p class="text-text-muted text-sm">Community</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA Section -->
+<section class="py-20 md:py-28 bg-dark-card">
+    <div class="container mx-auto px-6 max-w-5xl text-center">
+        <div class="glass rounded-2xl p-8 md:p-12 border border-brand/20 bg-gradient-to-b from-brand/5 to-transparent">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Ready To Create Content That Stands Out?</h2>
+            <p class="text-text-secondary text-lg mb-8 max-w-2xl mx-auto">
+                Whether you're looking to record a podcast, build your personal brand, or create premium content for your business, Shubook Labs is ready to help.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                {% include components/button.html url="/podcast-jaipur" text="Book A Podcast" type="primary" icon="mic" %}
+                {% include components/button.html url="/studio-rent" text="Rent The Studio" type="ghost" icon="building" %}
+                {% include components/button.html url="/contact" text="Talk To Our Team" type="ghost" icon="phone" %}
+            </div>
+            <p class="text-text-muted text-sm mt-8">Shubook Labs • Premium Podcast Studio & Podcast Production Company In Jaipur</p>
+        </div>
+    </div>
+</section>
+
+<style>
+    @keyframes pulse-slow {
+        0%, 100% { opacity: 0.3; transform: scale(1); }
+        50% { opacity: 0.6; transform: scale(1.1); }
+    }
+    .animate-pulse-slow {
+        animation: pulse-slow 8s ease-in-out infinite;
+    }
+    .glass {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .bg-dark-card {
+        background-color: #111827;
+    }
+    .bg-dark-bg {
+        background-color: #0B1120;
+    }
+    .text-brand {
+        color: #3B82F6;
+    }
+    .bg-brand {
+        background-color: #3B82F6;
+    }
+    .bg-brand-gradient {
+        background-image: linear-gradient(135deg, #2563EB 0%, #3B82F6 50%, #60A5FA 100%);
+    }
+</style>

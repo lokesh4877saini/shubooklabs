@@ -1,30 +1,14 @@
 <!-- sections/faq.html -->
-<section class="relative py-24 md:py-32 overflow-hidden bg-dark-bg">
-
-  <!-- Premium Background Gradient using theme colors -->
-  <div class="absolute inset-0 bg-gradient-to-br from-dark-bg via-dark-card to-dark-bg"></div>
-
-  <!-- Animated gradient orbs using brand colors -->
-  <div class="absolute top-20 left-1/4 w-96 h-96 rounded-full bg-brand/20 blur-[120px] animate-pulse-slow"></div>
-  <div class="absolute bottom-20 right-1/4 w-80 h-80 rounded-full bg-brand-light/10 blur-[100px] animate-pulse-slow"
-    style="animation-delay: 3s"></div>
-  <div
-    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-brand-dark/5 blur-[140px]">
-  </div>
-
-  <!-- Subtle grid pattern -->
-  <div
-    class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]">
-  </div>
+<section class="relative py-6 lg:py-24 md:py-32 bg-dark-bg">
 
   <div class="relative z-10 max-w-4xl mx-auto px-6">
 
     <!-- Section Header -->
     <div class="text-center mb-12 md:mb-16">
-      <div class="inline-flex items-center gap-2 glass rounded-full px-5 py-2 mb-6">
-        <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+      <div class="inline-flex items-center gap-2 rounded-full px-5 py-2 mb-6 border border-white/20">
+        <span class="w-2 h-2 rounded-full bg-brand"></span>
         <span class="text-sm font-medium tracking-wide text-text-secondary">Got Questions?</span>
-        <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+        <span class="w-2 h-2 rounded-full bg-brand"></span>
       </div>
       <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold">
         {{ include.title | default: page.faq_title | default: "Frequently Asked Questions" }}
@@ -75,7 +59,7 @@
       <p class="text-text-muted">
         Still have questions?
         <a href="{{ include.contact_url | default: page.faq_contact_url | default: '/contact' }}"
-          class="text-brand hover:text-brand-light font-semibold transition-colors">
+          class="text-brand font-semibold">
           Contact us
         </a>
       </p>
@@ -87,16 +71,8 @@
 <style>
   .faq-item {
     background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
     border-radius: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: all 0.3s ease;
-  }
-
-  .faq-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(59, 130, 246, 0.3);
-    transform: translateY(-2px);
   }
 
   .faq-question-btn {
@@ -116,12 +92,7 @@
     font-weight: 600;
     font-size: 1.125rem;
     color: white;
-    transition: color 0.3s ease;
     flex: 1;
-  }
-
-  .faq-item:hover .faq-question-text {
-    color: #3B82F6;
   }
 
   .faq-icon {
@@ -152,27 +123,6 @@
     color: #94A3B8;
     line-height: 1.7;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-  }
-
-  @keyframes pulse-slow {
-    0%, 100% {
-      opacity: 0.3;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.6;
-      transform: scale(1.1);
-    }
-  }
-
-  .animate-pulse-slow {
-    animation: pulse-slow 8s ease-in-out infinite;
-  }
-
-  .glass {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   @media (max-width: 640px) {

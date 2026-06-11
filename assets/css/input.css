@@ -80,6 +80,11 @@
     animation: none !important;
   }
 
+  .premium-card,
+  .premium-price-card {
+    backdrop-filter: none;
+  }
+
   .glass {
     backdrop-filter: none !important;
   }

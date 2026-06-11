@@ -1,21 +1,12 @@
 <!-- sections/why-choose-us.html -->
-<section class="relative py-24 md:py-32 bg-gradient-to-b from-black to-dark-bg overflow-hidden">
-  
-  <!-- Background Decorations -->
-  <div class="absolute inset-0">
-    <div class="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-brand/5 blur-[120px]"></div>
-    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-brand/5 blur-[100px]"></div>
-  </div>
-
-  <!-- Subtle Grid Pattern -->
-  <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+<section class="relative py-6 lg:py-24 md:py-32 bg-gradient-to-b from-black to-dark-bg">
 
   <div class="relative z-10 container mx-auto px-4 max-w-7xl">
     
     <!-- Section Header -->
     <div class="text-center mb-16">
-      <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-6">
-        <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+      <div class="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6 border border-white/20">
+        <span class="w-2 h-2 rounded-full bg-brand"></span>
         <span class="text-sm font-medium tracking-wide text-white/80">Why Choose Us</span>
       </div>
       <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
@@ -36,100 +27,60 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
       
       <!-- Feature 1: Premium Studio Setup -->
-      <div class="group relative">
-        <div class="absolute -inset-0.5 bg-brand-gradient rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-500"></div>
-        <div class="relative glass-card p-6 md:p-8 rounded-2xl border border-white/10 hover:border-brand/30 transition-all duration-300 h-full">
-          <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-5 group-hover:bg-brand/20 transition-colors">
-            {% lucide_icon "building-2" size="28" class="text-brand" %}
-          </div>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-3">Premium Studio Setup</h3>
-          <p class="text-text-secondary leading-relaxed">
-            A clean and professional environment that reflects your brand.
-          </p>
+      <div class="bg-white/5 rounded-2xl p-6 md:p-8 border border-white/10">
+        <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-5">
+          {% lucide_icon "building-2" size="28" class="text-brand" %}
         </div>
+        <h3 class="text-xl md:text-2xl font-bold text-white mb-3">Premium Studio Setup</h3>
+        <p class="text-text-secondary leading-relaxed">
+          A clean and professional environment that reflects your brand.
+        </p>
       </div>
 
       <!-- Feature 2: High-Quality Audio -->
-      <div class="group relative">
-        <div class="absolute -inset-0.5 bg-brand-gradient rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-500"></div>
-        <div class="relative glass-card p-6 md:p-8 rounded-2xl border border-white/10 hover:border-brand/30 transition-all duration-300 h-full">
-          <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-5 group-hover:bg-brand/20 transition-colors">
-            {% lucide_icon "headphones" size="28" class="text-brand" %}
-          </div>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-3">High-Quality Audio</h3>
-          <p class="text-text-secondary leading-relaxed">
-            Crystal-clear sound for podcasts that feel polished and professional.
-          </p>
+      <div class="bg-white/5 rounded-2xl p-6 md:p-8 border border-white/10">
+        <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-5">
+          {% lucide_icon "headphones" size="28" class="text-brand" %}
         </div>
+        <h3 class="text-xl md:text-2xl font-bold text-white mb-3">High-Quality Audio</h3>
+        <p class="text-text-secondary leading-relaxed">
+          Crystal-clear sound for podcasts that feel polished and professional.
+        </p>
       </div>
 
       <!-- Feature 3: Cinematic Video Quality -->
-      <div class="group relative">
-        <div class="absolute -inset-0.5 bg-brand-gradient rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-500"></div>
-        <div class="relative glass-card p-6 md:p-8 rounded-2xl border border-white/10 hover:border-brand/30 transition-all duration-300 h-full">
-          <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-5 group-hover:bg-brand/20 transition-colors">
-            {% lucide_icon "camera" size="28" class="text-brand" %}
-          </div>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-3">Cinematic Video Quality</h3>
-          <p class="text-text-secondary leading-relaxed">
-            Perfect for YouTube, Instagram, LinkedIn, and brand content.
-          </p>
+      <div class="bg-white/5 rounded-2xl p-6 md:p-8 border border-white/10">
+        <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-5">
+          {% lucide_icon "camera" size="28" class="text-brand" %}
         </div>
+        <h3 class="text-xl md:text-2xl font-bold text-white mb-3">Cinematic Video Quality</h3>
+        <p class="text-text-secondary leading-relaxed">
+          Perfect for YouTube, Instagram, LinkedIn, and brand content.
+        </p>
       </div>
 
       <!-- Feature 4: Hourly Studio Rent -->
-      <div class="group relative">
-        <div class="absolute -inset-0.5 bg-brand-gradient rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-500"></div>
-        <div class="relative glass-card p-6 md:p-8 rounded-2xl border border-white/10 hover:border-brand/30 transition-all duration-300 h-full">
-          <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-5 group-hover:bg-brand/20 transition-colors">
-            {% lucide_icon "clock" size="28" class="text-brand" %}
-          </div>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-3">Hourly Studio Rent</h3>
-          <p class="text-text-secondary leading-relaxed">
-            Flexible podcast studio rent in Jaipur for creators and businesses.
-          </p>
+      <div class="bg-white/5 rounded-2xl p-6 md:p-8 border border-white/10">
+        <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-5">
+          {% lucide_icon "clock" size="28" class="text-brand" %}
         </div>
+        <h3 class="text-xl md:text-2xl font-bold text-white mb-3">Hourly Studio Rent</h3>
+        <p class="text-text-secondary leading-relaxed">
+          Flexible podcast studio rent in Jaipur for creators and businesses.
+        </p>
       </div>
 
       <!-- Feature 5: Content That Converts -->
-      <div class="group relative lg:col-span-1 md:col-span-2 lg:col-start-2">
-        <div class="absolute -inset-0.5 bg-brand-gradient rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-500"></div>
-        <div class="relative glass-card p-6 md:p-8 rounded-2xl border border-white/10 hover:border-brand/30 transition-all duration-300 h-full">
-          <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-5 group-hover:bg-brand/20 transition-colors">
-            {% lucide_icon "trending-up" size="28" class="text-brand" %}
-          </div>
-          <h3 class="text-xl md:text-2xl font-bold text-white mb-3">Content That Converts</h3>
-          <p class="text-text-secondary leading-relaxed">
-            We help you create content that attracts attention and leads.
-          </p>
+      <div class="bg-white/5 rounded-2xl p-6 md:p-8 border border-white/10 lg:col-span-1 md:col-span-2 lg:col-start-2">
+        <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center mb-5">
+          {% lucide_icon "trending-up" size="28" class="text-brand" %}
         </div>
+        <h3 class="text-xl md:text-2xl font-bold text-white mb-3">Content That Converts</h3>
+        <p class="text-text-secondary leading-relaxed">
+          We help you create content that attracts attention and leads.
+        </p>
       </div>
 
     </div>
   </div>
 </section>
-
-<style>
-  .glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-  }
-  
-  .glass-card:hover {
-    background: rgba(255, 255, 255, 0.06);
-    transform: translateY(-4px);
-  }
-  
-  .glass-premium {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-  }
-  
-  .glass-premium:hover {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
-    border-color: rgba(255, 255, 255, 0.2);
-  }
-</style>

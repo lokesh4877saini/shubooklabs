@@ -1,16 +1,5 @@
 <!-- sections/who-is-it-for.html -->
-<section class="relative py-18 md:py-32 bg-gradient-to-b from-dark-bg to-black/90 overflow-hidden">
-
-  <!-- Background decoration -->
-  <div class="absolute inset-0 opacity-30">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-brand/5 blur-[120px]">
-    </div>
-  </div>
-
-  <!-- Subtle grid pattern -->
-  <div
-    class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]">
-  </div>
+<section class="relative py-18 md:py-32 bg-gradient-to-b from-dark-bg to-black/90">
 
   <div class="relative z-10 container mx-auto px-4 max-w-7xl">
 
@@ -37,171 +26,100 @@
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mb-16">
 
       <!-- Founders -->
-      <div class="group relative">
-        <div
-          class="absolute inset-0 bg-brand-gradient rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500">
+      <div class="bg-white/5 p-5 sm:p-6 rounded-2xl text-center border border-white/10">
+        <div class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3">
+          {% lucide_icon "users" size="24" class="text-brand" %}
         </div>
-        <div
-          class="relative glass-card p-5 sm:p-6 rounded-2xl text-center border border-white/10 hover:border-brand/30 transition-all duration-300 hover:transform hover:-translate-y-1">
-          <div
-            class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-brand/20 transition-colors">
-            {% lucide_icon "users" size="24" class="text-brand" %}
-          </div>
-          <h3 class="font-bold text-lg">Founders</h3>
-          <p class="text-text-muted text-sm mt-1">Build authority</p>
-        </div>
+        <h3 class="font-bold text-lg">Founders</h3>
+        <p class="text-text-muted text-sm mt-1">Build authority</p>
       </div>
 
       <!-- Entrepreneurs -->
-      <div class="group relative">
-        <div
-          class="absolute inset-0 bg-brand-gradient rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500">
+      <div class="bg-white/5 p-5 sm:p-6 rounded-2xl text-center border border-white/10">
+        <div class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3">
+          {% lucide_icon "rocket" size="24" class="text-brand" %}
         </div>
-        <div
-          class="relative glass-card p-5 sm:p-6 rounded-2xl text-center border border-white/10 hover:border-brand/30 transition-all duration-300 hover:transform hover:-translate-y-1">
-          <div
-            class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-brand/20 transition-colors">
-            {% lucide_icon "rocket" size="24" class="text-brand" %}
-          </div>
-          <h3 class="font-bold text-lg">Entrepreneurs</h3>
-          <p class="text-text-muted text-sm mt-1">Scale your brand</p>
-        </div>
+        <h3 class="font-bold text-lg">Entrepreneurs</h3>
+        <p class="text-text-muted text-sm mt-1">Scale your brand</p>
       </div>
 
       <!-- Business Owners -->
-      <div class="group relative">
-        <div
-          class="absolute inset-0 bg-brand-gradient rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500">
+      <div class="bg-white/5 p-5 sm:p-6 rounded-2xl text-center border border-white/10">
+        <div class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3">
+          {% lucide_icon "briefcase" size="24" class="text-brand" %}
         </div>
-        <div
-          class="relative glass-card p-5 sm:p-6 rounded-2xl text-center border border-white/10 hover:border-brand/30 transition-all duration-300 hover:transform hover:-translate-y-1">
-          <div
-            class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-brand/20 transition-colors">
-            {% lucide_icon "briefcase" size="24" class="text-brand" %}
-          </div>
-          <h3 class="font-bold text-lg">Business Owners</h3>
-          <p class="text-text-muted text-sm mt-1">Grow your reach</p>
-        </div>
+        <h3 class="font-bold text-lg">Business Owners</h3>
+        <p class="text-text-muted text-sm mt-1">Grow your reach</p>
       </div>
 
       <!-- Doctors -->
-      <div class="group relative">
-        <div
-          class="absolute inset-0 bg-brand-gradient rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500">
+      <div class="bg-white/5 p-5 sm:p-6 rounded-2xl text-center border border-white/10">
+        <div class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3">
+          {% lucide_icon "heart-handshake" size="24" class="text-brand" %}
         </div>
-        <div
-          class="relative glass-card p-5 sm:p-6 rounded-2xl text-center border border-white/10 hover:border-brand/30 transition-all duration-300 hover:transform hover:-translate-y-1">
-          <div
-            class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-brand/20 transition-colors">
-            {% lucide_icon "heart-handshake" size="24" class="text-brand" %}
-          </div>
-          <h3 class="font-bold text-lg">Doctors</h3>
-          <p class="text-text-muted text-sm mt-1">Share expertise</p>
-        </div>
+        <h3 class="font-bold text-lg">Doctors</h3>
+        <p class="text-text-muted text-sm mt-1">Share expertise</p>
       </div>
 
       <!-- Coaches -->
-      <div class="group relative">
-        <div
-          class="absolute inset-0 bg-brand-gradient rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500">
+      <div class="bg-white/5 p-5 sm:p-6 rounded-2xl text-center border border-white/10">
+        <div class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3">
+          {% lucide_icon "target" size="24" class="text-brand" %}
         </div>
-        <div
-          class="relative glass-card p-5 sm:p-6 rounded-2xl text-center border border-white/10 hover:border-brand/30 transition-all duration-300 hover:transform hover:-translate-y-1">
-          <div
-            class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-brand/20 transition-colors">
-            {% lucide_icon "target" size="24" class="text-brand" %}
-          </div>
-          <h3 class="font-bold text-lg">Coaches</h3>
-          <p class="text-text-muted text-sm mt-1">Transform lives</p>
-        </div>
+        <h3 class="font-bold text-lg">Coaches</h3>
+        <p class="text-text-muted text-sm mt-1">Transform lives</p>
       </div>
 
       <!-- Consultants -->
-      <div class="group relative">
-        <div
-          class="absolute inset-0 bg-brand-gradient rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500">
+      <div class="bg-white/5 p-5 sm:p-6 rounded-2xl text-center border border-white/10">
+        <div class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3">
+          {% lucide_icon "chart-line" size="24" class="text-brand" %}
         </div>
-        <div
-          class="relative glass-card p-5 sm:p-6 rounded-2xl text-center border border-white/10 hover:border-brand/30 transition-all duration-300 hover:transform hover:-translate-y-1">
-          <div
-            class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-brand/20 transition-colors">
-            {% lucide_icon "chart-line" size="24" class="text-brand" %}
-          </div>
-          <h3 class="font-bold text-lg">Consultants</h3>
-          <p class="text-text-muted text-sm mt-1">Demonstrate value</p>
-        </div>
+        <h3 class="font-bold text-lg">Consultants</h3>
+        <p class="text-text-muted text-sm mt-1">Demonstrate value</p>
       </div>
 
       <!-- Real Estate Professionals -->
-      <div class="group relative">
-        <div
-          class="absolute inset-0 bg-brand-gradient rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500">
+      <div class="bg-white/5 p-5 sm:p-6 rounded-2xl text-center border border-white/10">
+        <div class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3">
+          {% lucide_icon "building" size="24" class="text-brand" %}
         </div>
-        <div
-          class="relative glass-card p-5 sm:p-6 rounded-2xl text-center border border-white/10 hover:border-brand/30 transition-all duration-300 hover:transform hover:-translate-y-1">
-          <div
-            class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-brand/20 transition-colors">
-            {% lucide_icon "building" size="24" class="text-brand" %}
-          </div>
-          <h3 class="font-bold text-lg">Real Estate</h3>
-          <p class="text-text-muted text-sm mt-1">Build credibility</p>
-        </div>
+        <h3 class="font-bold text-lg">Real Estate</h3>
+        <p class="text-text-muted text-sm mt-1">Build credibility</p>
       </div>
 
       <!-- Educators -->
-      <div class="group relative">
-        <div
-          class="absolute inset-0 bg-brand-gradient rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500">
+      <div class="bg-white/5 p-5 sm:p-6 rounded-2xl text-center border border-white/10">
+        <div class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3">
+          {% lucide_icon "graduation-cap" size="24" class="text-brand" %}
         </div>
-        <div
-          class="relative glass-card p-5 sm:p-6 rounded-2xl text-center border border-white/10 hover:border-brand/30 transition-all duration-300 hover:transform hover:-translate-y-1">
-          <div
-            class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-brand/20 transition-colors">
-            {% lucide_icon "graduation-cap" size="24" class="text-brand" %}
-          </div>
-          <h3 class="font-bold text-lg">Educators</h3>
-          <p class="text-text-muted text-sm mt-1">Inspire students</p>
-        </div>
+        <h3 class="font-bold text-lg">Educators</h3>
+        <p class="text-text-muted text-sm mt-1">Inspire students</p>
       </div>
 
       <!-- Creators -->
-      <div class="group relative">
-        <div
-          class="absolute inset-0 bg-brand-gradient rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500">
+      <div class="bg-white/5 p-5 sm:p-6 rounded-2xl text-center border border-white/10">
+        <div class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3">
+          {% lucide_icon "sparkles" size="24" class="text-brand" %}
         </div>
-        <div
-          class="relative glass-card p-5 sm:p-6 rounded-2xl text-center border border-white/10 hover:border-brand/30 transition-all duration-300 hover:transform hover:-translate-y-1">
-          <div
-            class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-brand/20 transition-colors">
-            {% lucide_icon "sparkles" size="24" class="text-brand" %}
-          </div>
-          <h3 class="font-bold text-lg">Creators</h3>
-          <p class="text-text-muted text-sm mt-1">Amplify impact</p>
-        </div>
+        <h3 class="font-bold text-lg">Creators</h3>
+        <p class="text-text-muted text-sm mt-1">Amplify impact</p>
       </div>
 
       <!-- Agencies -->
-      <div class="group relative">
-        <div
-          class="absolute inset-0 bg-brand-gradient rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500">
+      <div class="bg-white/5 p-5 sm:p-6 rounded-2xl text-center border border-white/10">
+        <div class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3">
+          {% lucide_icon "globe" size="24" class="text-brand" %}
         </div>
-        <div
-          class="relative glass-card p-5 sm:p-6 rounded-2xl text-center border border-white/10 hover:border-brand/30 transition-all duration-300 hover:transform hover:-translate-y-1">
-          <div
-            class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-brand/20 transition-colors">
-            {% lucide_icon "globe" size="24" class="text-brand" %}
-          </div>
-          <h3 class="font-bold text-lg">Agencies</h3>
-          <p class="text-text-muted text-sm mt-1">Client success</p>
-        </div>
+        <h3 class="font-bold text-lg">Agencies</h3>
+        <p class="text-text-muted text-sm mt-1">Client success</p>
       </div>
 
     </div>
 
     <!-- Trust Statement -->
     <div class="max-w-4xl mx-auto text-center">
-      <div
-        class="glass-premium rounded-2xl p-8 md:p-10 border border-brand/20 bg-gradient-to-r from-brand/5 to-transparent">
+      <div class="rounded-2xl p-8 md:p-10 border border-brand/20 bg-gradient-to-r from-brand/5 to-transparent">
         <div class="w-16 h-16 rounded-full bg-brand/10 flex items-center justify-center mx-auto mb-6">
           {% lucide_icon "mic" size="32" class="text-brand" %}
         </div>
@@ -222,20 +140,3 @@
     {% include components/button.html url="/book-podcast" text="Book Your Podcast" type="primary" icon="mic" %}
   </div>
 </section>
-
-<style>
-  .glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-  }
-
-  .glass-card:hover {
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  .glass-premium {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-    backdrop-filter: blur(12px);
-  }
-</style>

@@ -1,0 +1,50 @@
+<!-- _layouts/policy.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | ShuBook Labs</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body class="bg-dark-bg">
+    {% include header.html %}
+    
+    <main>
+        <section class="relative py-20 md:py-28 bg-dark-bg overflow-hidden">
+            <div style="height: 100px;"></div>
+            
+            <div class="absolute top-20 right-1/4 w-96 h-96 rounded-full bg-brand/20 blur-[120px]"></div>
+            <div class="absolute bottom-20 left-1/4 w-80 h-80 rounded-full bg-brand/10 blur-[100px]"></div>
+            
+            <div class="relative z-10 container mx-auto px-6 max-w-4xl">
+                <div class="text-center mb-12">
+                    <div class="inline-flex items-center gap-2 glass rounded-full px-5 py-2 mb-6">
+                        <span class="w-2 h-2 rounded-full bg-brand"></span>
+                        <span class="text-sm font-medium tracking-wide text-text-secondary">Legal</span>
+                        <span class="w-2 h-2 rounded-full bg-brand"></span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ page.policy_title }}</h1>
+                    <p class="text-text-muted text-sm">Last Updated: {{ page.last_updated }}</p>
+                    <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-6"></div>
+                </div>
+                
+                <div class="glass rounded-2xl p-6 md:p-8 border border-white/10">
+                    <div class="text-text-muted leading-relaxed space-y-6 policy-content">
+                        {{ content }}
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12 pt-8">
+                    <p class="text-text-muted text-sm">
+                        For any questions regarding this policy, please contact us at 
+                        <a href="mailto:hello@shubook.in" class="text-brand hover:underline">hello@shubook.in</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    {% include footer.html %}
+</body>
+</html>
