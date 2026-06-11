@@ -1,5 +1,5 @@
 <!-- sections/studio-rent.html -->
-<section class="relative py-6 lg:py-24  md:py-32 bg-dark-bg">
+<section class="relative py-6 lg:py-24 md:py-32 bg-dark-bg">
 
     <div class="relative z-10 container mx-auto px-4 max-w-7xl">
 
@@ -37,20 +37,22 @@
                 <!-- Main Image Container -->
                 <div class="relative">
                     <div class="relative overflow-hidden h-[400px] md:h-[500px] lg:h-[600px]">
-                        <img id="carouselImage" loading="lazy" src="" alt="Studio Image"
+                        <img id="carouselImage" src="{{ site.data.studio-images[0].url }}" width="1200" height="800"
+                            fetchpriority="high" alt="{{ site.data.studio-images[0].title }}"
+                            decoding="async"
                             class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
                     </div>
 
                     <!-- Left Arrow -->
-                    <button id="prevBtn"
-                        class="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 text-white rounded-full border border-white/20">
+                    <button id="prevBtn" aria-label="Previous studio image"
+                        class="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 text-white rounded-full border border-white/20 hover:bg-black/70">
                         {% lucide_icon "arrow-left" size="20" class="text-white" %}
                     </button>
 
                     <!-- Right Arrow -->
-                    <button id="nextBtn"
-                        class="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 text-white rounded-full border border-white/20">
+                    <button id="nextBtn" aria-label="Next studio image"
+                        class="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 text-white rounded-full border border-white/20 hover:bg-black/70">
                         {% lucide_icon "arrow-right" size="20" class="text-white" %}
                     </button>
 
@@ -85,23 +87,28 @@
         <div class="mb-12 mt-16">
             <h3 class="text-center text-lg font-semibold text-white/70 tracking-wide mb-8">PERFECT FOR</h3>
             <div class="grid grid-cols-2 text-center sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
-                <div class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10">
+                <div
+                    class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10">
                     {% lucide_icon "mic" size="16" class="text-brand" %}
                     <span class="text-sm font-medium text-white/80">Podcast shooting</span>
                 </div>
-                <div class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10">
+                <div
+                    class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10">
                     {% lucide_icon "users" size="16" class="text-brand" %}
                     <span class="text-sm font-medium text-white/80">Video interviews</span>
                 </div>
-                <div class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10">
+                <div
+                    class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10">
                     {% lucide_icon "smartphone" size="16" class="text-brand" %}
                     <span class="text-sm font-medium text-white/80">Reels & shorts</span>
                 </div>
-                <div class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10">
+                <div
+                    class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10">
                     {% lucide_icon "youtube" size="16" class="text-brand" %}
                     <span class="text-sm font-medium text-white/80">YouTube recordings</span>
                 </div>
-                <div class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10 sm:col-span-3 lg:col-span-1">
+                <div
+                    class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10 sm:col-span-3 lg:col-span-1">
                     {% lucide_icon "briefcase" size="16" class="text-brand" %}
                     <span class="text-sm font-medium text-white/80">Client brand content</span>
                 </div>
@@ -147,33 +154,15 @@
             return;
         }
 
-        // Function to update image
+        // Function to update image (removed opacity transition)
         function updateCarousel(index) {
-            if (!studioImages[index]) {
-                console.error('Image not found at index:', index);
-                return;
-            }
-
             const image = studioImages[index];
+            carouselImage.src = image.url;
+            carouselImage.alt = image.title;
 
-            carouselImage.style.opacity = '0';
-
-            setTimeout(() => {
-                carouselImage.src = image.url;
-                carouselImage.alt = image.title;
-                carouselImage.style.opacity = '1';
-            }, 300);
-
-            // Update active dot
-            const dots = document.querySelectorAll('.dot');
-            dots.forEach((dot, i) => {
-                if (i === index) {
-                    dot.classList.add('bg-brand');
-                    dot.classList.remove('bg-white/40');
-                } else {
-                    dot.classList.remove('bg-brand');
-                    dot.classList.add('bg-white/40');
-                }
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('bg-brand', i === index);
+                dot.classList.toggle('bg-white/40', i !== index);
             });
         }
 
@@ -216,35 +205,30 @@
             nextBtn.addEventListener('click', nextImage);
         }
 
-        // Auto-play (every 5 seconds)
-        let autoPlayInterval = setInterval(nextImage, 5000);
-
-        // Pause auto-play on hover
-        const carouselContainer = document.querySelector('.relative.bg-white\\/5');
-        if (carouselContainer) {
-            carouselContainer.addEventListener('mouseenter', () => {
-                clearInterval(autoPlayInterval);
-            });
-
-            carouselContainer.addEventListener('mouseleave', () => {
-                autoPlayInterval = setInterval(nextImage, 5000);
-            });
-        }
+        // REMOVED: Auto-play functionality
+        // REMOVED: Hover pause functionality
 
         // Initialize carousel
         createDots();
         updateCarousel(0);
+        
+        // Preload images for smoother manual navigation
+        studioImages.forEach(img => {
+            const preload = new Image();
+            preload.src = img.url;
+        });
     });
 </script>
 
 <style>
-    /* Image transition */
-    #carouselImage {
-        transition: opacity 0.3s ease;
+    /* REMOVED: Image transition effect */
+    /* Dot transitions - kept minimal for visual feedback only */
+    .dot {
+        transition: background-color 0.15s ease;
     }
     
-    /* Dot transitions */
-    .dot {
-        transition: all 0.2s ease;
+    /* Button hover effect - kept for usability */
+    button:hover {
+        transition: background-color 0.15s ease;
     }
 </style>

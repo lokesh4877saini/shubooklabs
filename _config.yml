@@ -27,6 +27,7 @@ pagination:
 exclude:
   - node_modules
   - vendor
+  - .well-known
   - package-lock.json
   - package.json
   - postcss.config.js
