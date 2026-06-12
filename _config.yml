@@ -9,6 +9,12 @@ timezone: Asia/Kolkata
 markdown: kramdown
 permalink: /blog/:title/
 
+# Production environment
+environment: production
+
+# Disable livereload in production
+livereload: false
+
 # Plugins
 plugins:
   - jekyll-seo-tag
@@ -32,3 +38,7 @@ exclude:
   - package.json
   - postcss.config.js
   - tailwind.config.js
+  - gulpfile.js
+  - "*.log"
+  - Gemfile
+  - Gemfile.lock

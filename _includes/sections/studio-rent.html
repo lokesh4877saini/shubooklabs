@@ -46,13 +46,13 @@
 
                     <!-- Left Arrow -->
                     <button id="prevBtn" aria-label="Previous studio image"
-                        class="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 text-white rounded-full border border-white/20 hover:bg-black/70">
+                        class="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 text-white rounded-full border border-white/20 hover:bg-black/70 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">
                         {% lucide_icon "arrow-left" size="20" class="text-white" %}
                     </button>
 
                     <!-- Right Arrow -->
                     <button id="nextBtn" aria-label="Next studio image"
-                        class="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 text-white rounded-full border border-white/20 hover:bg-black/70">
+                        class="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 text-white rounded-full border border-white/20 hover:bg-black/70 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">
                         {% lucide_icon "arrow-right" size="20" class="text-white" %}
                     </button>
 
@@ -154,32 +154,58 @@
             return;
         }
 
-        // Function to update image (removed opacity transition)
+        // Function to update image
         function updateCarousel(index) {
             const image = studioImages[index];
             carouselImage.src = image.url;
             carouselImage.alt = image.title;
 
-            document.querySelectorAll('.dot').forEach((dot, i) => {
-                dot.classList.toggle('bg-brand', i === index);
-                dot.classList.toggle('bg-white/40', i !== index);
+            // Update dots with proper ARIA states
+            const dots = dotsContainer.querySelectorAll('.carousel-dot-btn');
+            dots.forEach((dot, i) => {
+                const visualDot = dot.querySelector('.dot-visual');
+                if (i === index) {
+                    dot.setAttribute('aria-current', 'true');
+                    if (visualDot) {
+                        visualDot.classList.add('bg-brand', 'scale-110');
+                        visualDot.classList.remove('bg-white/40');
+                    }
+                } else {
+                    dot.setAttribute('aria-current', 'false');
+                    if (visualDot) {
+                        visualDot.classList.remove('bg-brand', 'scale-110');
+                        visualDot.classList.add('bg-white/40');
+                    }
+                }
             });
         }
 
-        // Create dots
+        // Create dots with proper touch targets (44x44 minimum)
         function createDots() {
             if (!dotsContainer) return;
 
             dotsContainer.innerHTML = '';
+            dotsContainer.className = 'absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex space-x-1 sm:space-x-2';
 
             studioImages.forEach((_, index) => {
+                // Create button with larger touch area
                 const dot = document.createElement('button');
-                dot.setAttribute('aria-label', `Go to image ${index + 1}`);
-                dot.className = `dot w-2.5 h-2.5 rounded-full ${index === 0 ? 'bg-brand' : 'bg-white/40'}`;
+                dot.className = 'carousel-dot-btn relative group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-black/50 rounded-full';
+                dot.setAttribute('aria-label', `Go to image ${index + 1} of ${studioImages.length}`);
+                dot.setAttribute('aria-current', index === 0 ? 'true' : 'false');
+                
+                // Inner structure: large touch area with small visual dot
+                dot.innerHTML = `
+                    <span class="block min-w-[44px] min-h-[44px] sm:min-w-[40px] sm:min-h-[40px] flex items-center justify-center">
+                        <span class="dot-visual block w-2.5 h-2.5 rounded-full transition-all duration-200 ${index === 0 ? 'bg-brand scale-110' : 'bg-white/40 group-hover:bg-white/60'}"></span>
+                    </span>
+                `;
+                
                 dot.addEventListener('click', () => {
                     currentIndex = index;
                     updateCarousel(currentIndex);
                 });
+                
                 dotsContainer.appendChild(dot);
             });
         }
@@ -205,9 +231,6 @@
             nextBtn.addEventListener('click', nextImage);
         }
 
-        // REMOVED: Auto-play functionality
-        // REMOVED: Hover pause functionality
-
         // Initialize carousel
         createDots();
         updateCarousel(0);
@@ -221,14 +244,82 @@
 </script>
 
 <style>
-    /* REMOVED: Image transition effect */
-    /* Dot transitions - kept minimal for visual feedback only */
-    .dot {
-        transition: background-color 0.15s ease;
+    /* Touch-optimized carousel styles */
+    
+    /* Dot button base styles */
+    .carousel-dot-btn {
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
     }
     
-    /* Button hover effect - kept for usability */
-    button:hover {
-        transition: background-color 0.15s ease;
+    /* Visual dot transition */
+    .dot-visual {
+        transition: all 0.2s ease;
+    }
+    
+    /* Button hover effect - only for non-touch devices */
+    @media (hover: hover) {
+        .carousel-dot-btn:hover .dot-visual {
+            transform: scale(1.15);
+        }
+    }
+    
+    /* Active/Tap feedback for touch devices */
+    .carousel-dot-btn:active .dot-visual {
+        transform: scale(0.95);
+    }
+    
+    /* Focus visible for keyboard navigation */
+    .carousel-dot-btn:focus-visible {
+        outline: none;
+    }
+    
+    .carousel-dot-btn:focus-visible .dot-visual {
+        ring: 2px solid #3B82F6;
+        ring-offset: 2px;
+    }
+    
+    /* Arrow buttons touch optimization */
+    #prevBtn, #nextBtn {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+        .dot-visual {
+            transition: none;
+        }
+        .carousel-dot-btn:hover .dot-visual {
+            transform: none;
+        }
+    }
+    
+    /* Mobile optimization for dots spacing */
+    @media (max-width: 640px) {
+        #dotsContainer {
+            gap: 0.25rem;
+        }
+        .carousel-dot-btn .block {
+            min-width: 40px;
+            min-height: 40px;
+        }
+    }
+    
+    /* Desktop spacing */
+    @media (min-width: 641px) {
+        #dotsContainer {
+            gap: 0.5rem;
+        }
+        .carousel-dot-btn .block {
+            min-width: 38px;
+            min-height: 38px;
+        }
     }
 </style>

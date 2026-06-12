@@ -8,8 +8,16 @@
 {% assign external = include.external %}
 {% assign custom_class = include.custom_class | default: "" %}
 {% assign hide_text_on_mobile = include.hide_text_on_mobile | default: false %}
+{% assign aria_label = include.aria_label | default: text %}
+{% assign aria_description = include.aria_description | default: text %}
+{% assign role = include.role | default: "button" %}
 
-<a href="{{ url | relative_url }}" {% if external %} target="_blank" rel="noopener noreferrer" {% endif %} class="
+<a href="{{ url | relative_url }}" 
+   {% if external %} target="_blank" rel="noopener noreferrer" {% endif %}
+   role="{{ role }}"
+   aria-label="{{ aria_label }}"
+   aria-description="{{ aria_description }}"
+   class="
     button-shine relative
     inline-flex items-center gap-2
     px-6 sm:px-8 py-3
@@ -32,38 +40,39 @@
     {% endif %}
   ">
 
-  <div class="scan-line"></div>
+  <div class="scan-line" aria-hidden="true"></div>
 
   <!-- Support for both icon and image_url -->
   {% if icon %}
-  {% lucide_icon icon class="w-5 h-5 shrink-0" %}
+    {% lucide_icon icon class="w-5 h-5 shrink-0" aria-hidden="true" %}
   {% elsif image_url %}
-  <img src="{{ image_url }}" alt="" loading="lazy" class="w-5 h-5 shrink-0 object-cover">
+    <img src="{{ image_url }}" alt="" aria-hidden="true" class="w-5 h-5 shrink-0 object-cover">
   {% endif %}
 
   <!-- Text with conditional responsive visibility -->
   {% if hide_text_on_mobile == true %}
-  <span class="hidden sm:inline">{{ text }}</span>
+    <span class="hidden sm:inline">{{ text }}</span>
   {% else %}
-  <span>{{ text }}</span>
+    <span>{{ text }}</span>
   {% endif %}
 
   {% if type == 'primary' or type == 'premium' %}
-  {% if hide_text_on_mobile == true %}
-  {% lucide_icon "arrow-right" class="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform hidden sm:block"
-  %}
-  {% else %}
-  {% lucide_icon "arrow-right" class="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" %}
-  {% endif %}
+    {% if hide_text_on_mobile == true %}
+      {% lucide_icon "arrow-right" class="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform hidden sm:block" aria-hidden="true" %}
+    {% else %}
+      {% lucide_icon "arrow-right" class="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" aria-hidden="true" %}
+    {% endif %}
   {% endif %}
 
 </a>
 
 <style>
-  /* Shining scan line effect */
+  /* Shining scan line effect - NO LAYOUT SHIFT */
   .button-shine {
     position: relative;
     overflow: hidden;
+    display: inline-flex;
+    min-height: 48px; /* Reserve minimum height */
   }
 
   .scan-line {
@@ -80,51 +89,43 @@
     pointer-events: none;
   }
 
-  /* Force desktop navigation to show on contact page */
-  header nav.hidden.lg\:flex {
-    display: flex !important;
+  @keyframes scan-shine {
+    0% {
+      left: -100%;
+    }
+    50% {
+      left: 100%;
+    }
+    100% {
+      left: 100%;
+    }
   }
 
-  /* Make sure nav links are visible */
-  .nav-link {
-    color: #CBD5E1 !important;
-    display: inline-block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+  /* Hover scale effect - transform doesn't cause layout shift */
+  .button-shine:hover {
+    transform: scale(1.05);
   }
 
-  /* Debug - add this temporarily to see if header is there */
-  header {
-    background: rgba(17, 24, 39, 0.95);
+  /* Secondary button hover fix */
+  .button-shine.border-brand:hover {
+    background: linear-gradient(135deg, #2563EB 0%, #3B82F6 50%, #60A5FA 100%);
+    border-color: transparent;
   }
-
-
-@keyframes scan-shine {
-0% {
-left: -100%;
-}
-50% {
-left: 100%;
-}
-100% {
-left: 100%;
-}
-}
-
-/* Hover scale effect */
-.button-shine:hover {
-transform: scale(1.05);
-}
-
-/* Secondary button hover fix */
-.button-shine.border-brand:hover {
-background: var(--brand-gradient, linear-gradient(135deg, #2563EB 0%, #3B82F6 50%, #60A5FA 100%));
-border-color: transparent;
-}
-
-/* Optional: Use your config shimmer animation instead */
-.button-shimmer {
-background-size: 200% auto;
-animation: shimmer 2s linear infinite;
-}
+  
+  /* Reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .scan-line {
+      animation: none;
+    }
+    .button-shine:hover {
+      transform: none;
+    }
+  }
+  
+  /* Mobile optimization */
+  @media (max-width: 640px) {
+    .button-shine {
+      min-height: 44px;
+    }
+  }
 </style>

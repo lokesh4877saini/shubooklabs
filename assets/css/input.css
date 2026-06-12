@@ -15,76 +15,91 @@
 
 @layer components {
   .container {
-    @apply max-w-7xl mx-auto;
+    @apply max-w-7xl mx-auto px-4;
+  }
+  
+  .nav-link {
+    @apply relative font-medium text-sm text-text-secondary transition-all duration-300 px-4 py-2 rounded-xl;
+  }
+  
+  .nav-link:hover {
+    @apply text-brand bg-brand/10;
+  }
+  
+  .mobile-link {
+    @apply px-5 py-3.5 rounded-xl text-text-secondary transition-all duration-300;
+  }
+  
+  .mobile-link:hover {
+    @apply bg-brand/10 text-brand;
+  }
+  
+  .whatsapp-btn {
+    @apply inline-flex items-center gap-2 bg-white/10 hover:bg-[#25D366] text-white rounded-xl transition-all duration-300;
   }
 }
 
 @layer utilities {
-
-  /* Fallback for group-hover if needed */
-  .group:hover .group-hover\:block {
-    display: block !important;
+  .glass-header {
+    background: rgba(17, 24, 39, 0.45);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(96, 165, 250, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, .35), 0 0 30px rgba(59, 130, 246, .15);
+    position: relative;
   }
-}
-
-.glass-header {
-  background: rgba(17, 24, 39, 0.45);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-
-  border: 1px solid rgba(96, 165, 250, 0.15);
-
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, .35),
-    0 0 30px rgba(59, 130, 246, .15);
-
-  position: relative;
-}
-
-.glass-header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-
-  background:
-    linear-gradient(135deg,
-      rgba(255, 255, 255, .12),
-      rgba(255, 255, 255, 0));
-
-  pointer-events: none;
-}
-
-.mobile-link {
-  @apply px-4 py-3 rounded-xl text-white transition-all duration-300;
-}
-
-.mobile-link:hover {
-  @apply bg-white/5;
-}
-
-@layer utilities {
-
+  
+  .glass-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, 0));
+    pointer-events: none;
+  }
+  
   .glass {
     @apply bg-white/5 backdrop-blur-xl border border-white/10;
   }
-
+  
+  /* Animation utilities */
+  .animate-spin-slow {
+    animation: spinSlow 20s linear infinite;
+  }
+  
+  .animate-spin-slow-reverse {
+    animation: spinSlowReverse 30s linear infinite;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  @keyframes spinSlowReverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
 }
 
-@media (max-width:768px) {
-
+/* Mobile optimizations */
+@media (max-width: 768px) {
   .animate-spin-slow,
   .animate-spin-slow-reverse,
   .animate-float,
   .animate-pulse {
     animation: none !important;
   }
-
-  .premium-card,
-  .premium-price-card {
-    backdrop-filter: none;
-  }
-
+  
   .glass {
     backdrop-filter: none !important;
   }

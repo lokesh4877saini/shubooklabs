@@ -1,19 +1,21 @@
 <header class="fixed top-0 left-0 right-0 z-50 bg-transparent px-4 py-3">
   <div class="max-w-7xl mx-auto">
     <div
-      class="flex items-center justify-between px-5 py-3 gap-4 bg-dark-card/80 backdrop-blur-xl border border-brand/20 rounded-2xl shadow-lg shadow-black/5">
+      class="flex items-center justify-between md:px-5 px-3 py-3 gap-4 bg-dark-card/80 backdrop-blur-xl border border-brand/20 rounded-2xl shadow-lg shadow-black/5">
 
       <!-- Logo -->
       <a href="/" aria-label="Shubook Labs Home" class="flex items-center gap-3 group shrink-0">
         <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-brand/20 to-transparent p-0.5">
-          <img src="/assets/images/logo/shubook-labs.jpeg" alt="Shubook Labs"
+          <img src="/assets/images/logo/shubook-labs.webp" alt="Shubook Labs" width="128" height="40" loading="eager"
             class="w-32 h-10 lg:w-32 lg:h-12 rounded-lg object-cover object-center">
         </div>
       </a>
 
-      <!-- Desktop Navigation - Visible only on desktop -->
+      <!-- Desktop Navigation -->
       <nav class="desktop-nav items-center gap-1 xl:gap-2">
         {% assign current_url = page.url %}
+        <a href="/" class="nav-link {% if current_url == '/' %}active{% endif %}"
+          aria-current="{% if current_url == '/' %}page{% endif %}">Home</a>
         <a href="/services" class="nav-link {% if current_url contains '/services' %}active{% endif %}"
           aria-current="{% if current_url contains '/services' %}page{% endif %}">Services</a>
         <a href="/studio-rent" class="nav-link {% if current_url contains '/studio-rent' %}active{% endif %}"
@@ -32,115 +34,179 @@
 
       <!-- Right Side Actions -->
       <div class="flex items-center gap-2 sm:gap-3">
-        {% include components/button.html
-        url="https://wa.me/919887247112?text=Hey%2C%20I%20am%20coming%20from%20your%20website.%20I%20want%20to%20record%20a%20podcast."
-        text="WhatsApp"
-        type="secondary"
-        image_url="/assets/images/logo/whatsapp.png"
-        hide_text_on_mobile=true
-        custom_class="px-[15px] py-[8px] text-sm"
-        %}
+        <!-- WhatsApp Button -->
+        <a href="https://wa.me/919887247112?text=Hey%2C%20I%20am%20coming%20from%20your%20website.%20I%20want%20to%20record%20a%20podcast."
+          target="_blank" rel="noopener noreferrer" role="button"
+          aria-label="Chat with us on WhatsApp to record your podcast"
+          class="whatsapp-btn inline-flex items-center gap-2 bg-white/10 hover:bg-[#25D366] text-white hover:text-white border border-white/20 hover:border-transparent transition-all duration-300 rounded-xl px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm lg:px-5 lg:py-2.5 lg:text-base">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
+            class="shrink-0" aria-hidden="true">
+            <path
+              d="M12.032 2.001c-5.516 0-10 4.484-10 10 0 1.852.507 3.657 1.459 5.248l-1.461 5.346 5.521-1.447c1.502.823 3.187 1.257 4.91 1.257 5.514 0 9.999-4.484 9.999-9.999s-4.485-10.405-10.029-10.405zm0 18.4c-1.543 0-3.058-.419-4.366-1.2l-.313-.186-3.276.857.876-3.189-.204-.324c-.846-1.335-1.293-2.875-1.293-4.455 0-4.602 3.744-8.347 8.346-8.347s8.345 3.745 8.345 8.347-3.744 8.497-8.345 8.497zm4.576-6.252c-.251-.125-1.484-.732-1.714-.816-.229-.083-.396-.125-.563.125-.167.25-.646.816-.792.983-.146.167-.292.188-.543.063-.251-.125-1.059-.391-2.017-1.245-.746-.666-1.249-1.487-1.395-1.739-.146-.251-.016-.387.11-.512.113-.114.251-.292.377-.438.125-.146.167-.25.25-.417.084-.167.042-.313-.021-.438-.062-.125-.562-1.354-.771-1.855-.203-.487-.409-.42-.563-.428-.146-.008-.313-.008-.479-.008-.167 0-.438.062-.667.313-.229.251-.875.855-.875 2.084 0 1.229.895 2.416 1.02 2.583.125.167 1.762 2.691 4.268 3.774.596.258 1.062.412 1.425.528.598.191 1.143.164 1.573.099.48-.073 1.479-.604 1.687-1.188.209-.584.209-1.084.146-1.188-.062-.104-.229-.167-.479-.292z" />
+          </svg>
+          <span class="hidden sm:inline">WhatsApp</span>
+        </a>
+
         <!-- Mobile Menu Button -->
-        <button id="menuBtn" aria-label="Menu" aria-expanded="false" class="lg:hidden
-                 h-10 w-10
-                 rounded-xl
-                 border border-white/10
-                 bg-white/5
-                 flex items-center justify-center
-                 hover:bg-white/10 
-                 hover:border-brand/40
-                 transition-all duration-300">
-
+        <label for="menuToggle"
+          class="lg:hidden h-10 w-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center hover:bg-white/10 hover:border-brand/40 transition-all duration-300 cursor-pointer"
+          aria-label="Menu">
           {% lucide_icon "menu" size="20" class="text-white" %}
-
-        </button>
+        </label>
       </div>
-
     </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="mobile-menu hidden mt-3">
+    <!-- Hidden Checkbox -->
+    <input type="checkbox" id="menuToggle" class="hidden">
+
+    <!-- Overlay -->
+    <label for="menuToggle"
+      class="menu-overlay fixed inset-0 bg-black/50 z-40 opacity-0 invisible transition-all duration-300 cursor-pointer"></label>
+
+    <!-- Mobile Menu (Now properly positioned as sibling) -->
+    <div id="mobileMenu" class="mobile-menu fixed top-[15px]  right-[20px] bottom-0 w-[90%] sm:w-80 md:w-96 z-50">
       <div
-        class="rounded-2xl bg-dark-card/95 backdrop-blur-xl border border-brand/20 overflow-hidden shadow-xl shadow-black/20">
-        <nav class="flex flex-col p-2">
-          <a href="/services" class="mobile-link {% if current_url contains '/services' %}active{% endif %}"
-            aria-current="{% if current_url contains '/services' %}page{% endif %}">
+        class="h-auto rounded-2xl  bg-dark-card/95 backdrop-blur-xl border border-brand/20 overflow-hidden shadow-xl shadow-black/20">
+        <!-- Close button inside menu - positioned at top right corner -->
+        <label for="menuToggle" class="absolute top-4 right-4 p-2 rounded-lg hover:bg-white/10 cursor-pointer z-10"
+          aria-label="Close menu">
+          {% lucide_icon "x" size="24" class="text-white" %}
+        </label>
+
+        <nav class="flex flex-col gap-3 p-2 mt-16 border-t border-brand/20" aria-label="Mobile navigation menu">
+          <a href="/" class="mobile-link {% if current_url == '/' %}active{% endif %}"
+            aria-current="{% if current_url == '/' %}page{% endif %}" aria-label="Go to home page">
+            <span class="flex items-center gap-3">
+              {% lucide_icon "home" size="16" class="text-brand/60" aria-hidden="true" %}
+              <span>Home</span>
+            </span>
+          </a>
+
+          <a href="/services/" class="mobile-link {% if current_url contains '/services' %}active{% endif %}"
+            aria-current="{% if current_url contains '/services' %}page{% endif %}"
+            aria-label="View our podcast production services">
             <span class="flex items-center gap-3">
               {% lucide_icon "mic" size="16" class="text-brand/60" aria-hidden="true" %}
-              Services
+              <span>Services</span>
             </span>
           </a>
-          <a href="/studio-rent" class="mobile-link {% if current_url contains '/studio-rent' %}active{% endif %}"
-            aria-current="{% if current_url contains '/studio-rent' %}page{% endif %}">
+
+          <a href="/studio-rent/" class="mobile-link {% if current_url contains '/studio-rent' %}active{% endif %}"
+            aria-current="{% if current_url contains '/studio-rent' %}page{% endif %}"
+            aria-label="Rent our podcast studio in Jaipur">
             <span class="flex items-center gap-3">
               {% lucide_icon "video" size="16" class="text-brand/60" aria-hidden="true" %}
-              Studio Rent
+              <span>Studio Rent</span>
             </span>
           </a>
-          <a href="/podcast" class="mobile-link {% if current_url contains '/podcast' %}active{% endif %}"
-            aria-current="{% if current_url contains '/podcast' %}page{% endif %}">
+
+          <a href="/podcast/" class="mobile-link {% if current_url contains '/podcast' %}active{% endif %}"
+            aria-current="{% if current_url contains '/podcast' %}page{% endif %}"
+            aria-label="Listen to The Shubook Show podcast">
             <span class="flex items-center gap-3">
               {% lucide_icon "headphones" size="16" class="text-brand/60" aria-hidden="true" %}
-              Podcast
+              <span>Podcast</span>
             </span>
           </a>
-          <a href="/portfolio" class="mobile-link {% if current_url contains '/portfolio' %}active{% endif %}"
-            aria-current="{% if current_url contains '/portfolio' %}page{% endif %}">
+
+          <a href="/portfolio/" class="mobile-link {% if current_url contains '/portfolio' %}active{% endif %}"
+            aria-current="{% if current_url contains '/portfolio' %}page{% endif %}"
+            aria-label="View our podcast production portfolio">
             <span class="flex items-center gap-3">
               {% lucide_icon "folder" size="16" class="text-brand/60" aria-hidden="true" %}
-              Portfolio
+              <span>Portfolio</span>
             </span>
           </a>
-          <a href="/about" class="mobile-link {% if current_url contains '/about' %}active{% endif %}"
-            aria-current="{% if current_url contains '/about' %}page{% endif %}">
+
+          <a href="/about/" class="mobile-link {% if current_url contains '/about' %}active{% endif %}"
+            aria-current="{% if current_url contains '/about' %}page{% endif %}"
+            aria-label="Learn about Shubook Labs and our team">
             <span class="flex items-center gap-3">
               {% lucide_icon "users" size="16" class="text-brand/60" aria-hidden="true" %}
-              About
+              <span>About</span>
             </span>
           </a>
-          <a href="/blog" class="mobile-link {% if current_url contains '/blog' %}active{% endif %}"
-            aria-current="{% if current_url contains '/blog' %}page{% endif %}">
+
+          <a href="/blog/" class="mobile-link {% if current_url contains '/blog' %}active{% endif %}"
+            aria-current="{% if current_url contains '/blog' %}page{% endif %}"
+            aria-label="Read our latest blog posts about podcasting">
             <span class="flex items-center gap-3">
               {% lucide_icon "book-open" size="16" class="text-brand/60" aria-hidden="true" %}
-              Blog
+              <span>Blog</span>
             </span>
           </a>
-          <a href="/contact"
+
+          <a href="/contact/"
             class="mobile-link border-t border-brand/10 mt-2 pt-3 {% if current_url contains '/contact' %}active{% endif %}"
-            aria-current="{% if current_url contains '/contact' %}page{% endif %}">
+            aria-current="{% if current_url contains '/contact' %}page{% endif %}"
+            aria-label="Book a podcast recording session">
             <span class="flex items-center gap-3 text-brand">
               {% lucide_icon "calendar" size="16" aria-hidden="true" %}
-              Book a Session
+              <span>Book a Session</span>
             </span>
           </a>
         </nav>
       </div>
     </div>
-
   </div>
 </header>
 
 <style>
   /* ============================================
-     RESPONSIVE BREAKPOINT - 1024px is the switch point
+     CSS-ONLY MOBILE MENU (Checkbox Hack)
   ============================================ */
 
-  /* DEFAULT: Mobile & Tablet (below 1024px) - Show mobile button, hide desktop nav */
+  /* Hide checkbox */
+  #menuToggle {
+    display: none;
+  }
+
+  /* Mobile Menu - Hidden by default */
+  .mobile-menu {
+    transform: translateX(calc(100% + 40px));
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Show menu when checkbox is checked */
+  #menuToggle:checked~.mobile-menu {
+    transform: translateX(0);
+  }
+
+  /* Show overlay when checkbox is checked */
+  #menuToggle:checked~.menu-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Fix overlay click - make it close menu */
+  .menu-overlay {
+    cursor: pointer;
+  }
+
+  /* Close menu when clicking overlay */
+  #menuToggle:checked~.menu-overlay {
+    pointer-events: auto;
+  }
+
+  /* ============================================
+     RESPONSIVE BREAKPOINT
+  ============================================ */
+
+  /* DEFAULT: Mobile & Tablet (below 1024px) */
   .desktop-nav {
     display: none !important;
   }
 
-  .menu-btn {
-    display: flex !important;
-  }
-
-  /* DESKTOP: 1024px and above - Hide mobile button, show desktop nav */
+  /* DESKTOP: 1024px and above */
   @media (min-width: 1024px) {
     .desktop-nav {
       display: flex !important;
     }
 
-    .menu-btn {
+    /* Hide mobile menu elements on desktop */
+    label[for="menuToggle"],
+    .mobile-menu,
+    .menu-overlay {
       display: none !important;
     }
   }
@@ -149,12 +215,6 @@
      NAVIGATION STYLES
   ============================================ */
 
-  *:focus {
-    outline: none;
-    box-shadow: none;
-  }
-
-  /* Desktop Navigation Links */
   .nav-link {
     position: relative;
     font-weight: 500;
@@ -183,20 +243,16 @@
     background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
     border-radius: 2px;
     transition: transform 0.3s ease;
-    transform-origin: center;
   }
 
-  .nav-link:hover::after {
+  .nav-link:hover::after,
+  .nav-link.active::after {
     transform: translateX(-50%) scaleX(1);
   }
 
   .nav-link.active {
     color: #60A5FA;
     background: rgba(96, 165, 250, 0.08);
-  }
-
-  .nav-link.active::after {
-    transform: translateX(-50%) scaleX(1);
   }
 
   /* Mobile Navigation Links */
@@ -208,7 +264,6 @@
     color: #CBD5E1;
     transition: all 0.3s ease;
     border-radius: 0.75rem;
-    letter-spacing: 0.3px;
     text-decoration: none;
   }
 
@@ -222,74 +277,18 @@
     color: #60A5FA;
   }
 
-  /* Mobile Menu Animation */
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  #mobileMenu:not(.hidden) {
-    animation: slideDown 0.3s ease-out;
-  }
-
-  button:focus,
-  button:focus-visible {
-    outline: none;
-    box-shadow: none;
-  }
-
-  /* ============================================
-     WHATSAPP BUTTON STYLES
-  ============================================ */
-
+  /* WhatsApp Button */
   .whatsapp-btn {
-    padding: 0.375rem 0.75rem !important;
-    font-size: 0.75rem !important;
-    border-radius: 0.75rem !important;
-    gap: 0.375rem !important;
+    transform: scale(1.09);
+    width: fit-content;
+    transition: all 0.3s ease;
   }
 
-  .whatsapp-btn img {
-    width: 0.875rem !important;
-    height: 0.875rem !important;
+  .whatsapp-btn:hover {
+    transform: scale(1.02);
   }
 
-  /* Tablet */
-  @media (min-width: 640px) {
-    .whatsapp-btn {
-      padding: 0.5rem 1rem !important;
-      font-size: 0.813rem !important;
-      border-radius: 1rem !important;
-    }
-
-    .whatsapp-btn img {
-      width: 1rem !important;
-      height: 1rem !important;
-    }
-  }
-
-  /* Desktop */
-  @media (min-width: 1024px) {
-    .whatsapp-btn {
-      padding: 0.5rem 1.25rem !important;
-      font-size: 0.875rem !important;
-      border-radius: 1.5rem !important;
-    }
-
-    .whatsapp-btn img {
-      width: 1.125rem !important;
-      height: 1.125rem !important;
-    }
-  }
-
-  /* Hide WhatsApp text on mobile (below 640px), show on tablet+ */
+  /* Hide WhatsApp text on mobile */
   @media (max-width: 639px) {
     .whatsapp-btn span {
       display: none !important;
@@ -299,14 +298,6 @@
   @media (min-width: 640px) {
     .whatsapp-btn span {
       display: inline-block !important;
-    }
-  }
-
-  /* Responsive header padding */
-  @media (max-width: 640px) {
-    header {
-      padding-left: 0.75rem;
-      padding-right: 0.75rem;
     }
   }
 </style>
