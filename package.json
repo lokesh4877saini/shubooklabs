@@ -3,17 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+
   "scripts": {
-    "css:build": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/style.css --minify",
-    "css:watch": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/style.css --watch",
-    "jekyll:build": "bundle exec jekyll build",
-    "jekyll:serve": "bundle exec jekyll serve",
-    "build": "npm run css:build && npm run jekyll:build",
-    "dev": "concurrently \"npm run css:watch\" \"npm run jekyll:serve\""
+    "dev": "concurrently \"bundle exec jekyll serve --livereload\" \"npx tailwindcss -i ./assets/css/input.css -o ./assets/css/style.css --watch\"",
+    
+    "build-css": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/style.css --minify",
+
+    "build": "npm run build-css && bundle exec jekyll build"
   },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
+
   "devDependencies": {
     "autoprefixer": "^10.4.19",
     "concurrently": "^9.2.1",

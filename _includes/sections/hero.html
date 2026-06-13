@@ -1,22 +1,20 @@
-<section class="py-0 md:py-8 bg-dark-bg text-white text-center">
-  <div>
-  </div>
+<section class="py-0 md:py-2 bg-dark-bg text-white text-center">
   <section
-    class="relative min-h-screen my-5 lg:mt-[-20px] bg-transparent lg:py-5 py-1 flex flex-col items-center justify-center overflow-hidden text-white">
+    class="relative md:min-h-screen my-5 lg:mt-[-20px] bg-transparent lg:py-5 py-1 flex flex-col items-center justify-center overflow-hidden text-white">
 
     <!-- CENTER GLOW (behind orbit circle) -->
     <div class="hidden md:block absolute w-[600px] h-[600px] rounded-full bg-brand/10 blur-[140px]"></div>
 
     <!-- ORBIT RINGS (outer circle boundary) -->
-    <div class="absolute w-[850px] h-[850px] rounded-full border-brand/10 border-[2px]"></div>
-    <div class="absolute w-[1100px] h-[1100px] rounded-full border-brand/10 border-[2px]"></div>
+    <div class="absolute hidden md:block w-[850px] h-[850px] rounded-full border-brand/10 border-[2px]"></div>
+    <div class="absolute hidden md:block w-[1100px] h-[1100px] rounded-full border-brand/10 border-[2px]"></div>
 
     <!-- ROTATING ARCS -->
-    <div class="absolute w-[850px] h-[850px] rounded-full animate-spin-slow">
+    <div class="absolute hidden md:block w-[850px] h-[850px] rounded-full animate-spin-slow">
       <div class="absolute inset-0 rounded-full border-[3px] border-transparent border-t-brand"></div>
     </div>
 
-    <div class="absolute w-[1100px] h-[1100px] rounded-full animate-spin-slow-reverse">
+    <div class="absolute hidden md:block w-[1100px] h-[1100px] rounded-full animate-spin-slow-reverse">
       <div class="absolute inset-0 rounded-full border-[3px] border-transparent border-t-brand-light"></div>
     </div>
 
@@ -27,24 +25,24 @@
     </div>
 
     <!-- Top Right -->
-    <div class="absolute top-20 md:top-44 right-[12%] glass rounded-3xl p-5 animate-float" style="animation-delay:1s">
+    <div class="absolute hidden md:block md:top-44 right-[12%] glass rounded-3xl p-5 animate-float" style="animation-delay:1s">
       {% lucide_icon "play" size="20" class="text-white" %}
     </div>
 
     <!-- Bottom Left -->
-    <div class="absolute bottom-4 left-[10%] glass rounded-3xl p-5 animate-float" style="animation-delay:2s">
+    <div class="absolute hidden md:block bottom-4 left-[10%] glass rounded-3xl p-5 animate-float" style="animation-delay:2s">
       {% lucide_icon "mic" size="20" class="text-white" %}
     </div>
 
     <!-- Bottom Right -->
-    <div class="absolute bottom-4 right-[8%] glass rounded-3xl p-5 animate-float" style="animation-delay:3s">
+    <div class="absolute hidden md:block bottom-4 right-[8%] glass rounded-3xl p-5 animate-float" style="animation-delay:3s">
       {% lucide_icon "flame" size="20" class="text-white" %}
     </div>
     <!-- MAIN ORBIT CONTENT WRAPPER (only platformstack, heading, buttons inside) -->
     <div class="relative z-20 w-[1100px] max-w-[90vw] h-auto flex flex-col items-center justify-center">
 
       <!-- Inner content container -->
-      <div class="text-center max-w-4xl px-6 lg:py-12 py-3">
+      <div class="text-center max-w-4xl md:px-6 px-1 lg:py-12 py-0">
 
         <!-- Platform Stack -->
         <div class="flex justify-center mb-12">
@@ -163,7 +161,7 @@
         </div>
 
         <!-- MAIN HEADING -->
-        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight">
+        <h1 class="text-2xl mt-5 sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight">
           Premium
           <span class="bg-brand-gradient bg-clip-text text-transparent">
             Podcast Studio
@@ -197,7 +195,7 @@
 
   </section>
   <section class="py-6 lg:py-20 bg-dark-bg text-white text-center">
-    <p class="mt-5 text-base md:text-lg text-text-muted max-w-3xl mx-auto leading-relaxed">
+    <p class="md:mt-5 px-2 text-base md:text-lg text-text-muted max-w-3xl mx-auto leading-relaxed">
       Shubook Labs is a trusted podcast studio in Jaipur for people who want to build authority, grow their personal
       brand, and create high-quality content that stands out.
     </p>
