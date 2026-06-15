@@ -1,8 +1,5 @@
 <!-- sections/featured-portfolio.html -->
 <section class="relative py-6 lg:py-24 md:py-32 overflow-hidden">
-    <div class="absolute inset-0 flex items-center justify-center">
-        <div class="w-[500px] md:w-[800px] h-[500px] md:h-[800px] rounded-full bg-brand/20 blur-[160px]"></div>
-    </div>
     <div class="relative z-10 container mx-auto px-4 max-w-7xl">
 
         <!-- Section Header -->
@@ -25,67 +22,78 @@
             </p>
         </div>
 
-        <!-- Carousel Container -->
-        <div class="max-w-4xl mx-auto mb-12">
-            <div class="glass-premium rounded-2xl md:p-8 p-2 border border-brand/20">
+        <!-- Desktop 3D Carousel (only on desktop, keeps your glass styling) -->
+        <div class="hidden md:block">
+            <div class="glass-premium rounded-2xl p-8">
+                <div class="desktop-carousel-container">
+                    <div class="carousel-3d-stage" id="carousel3dStage"></div>
+                    <button id="desktopPrevBtn" class="carousel-nav-btn carousel-nav-prev">
+                        {% lucide_icon "chevron-left" size="32" class="text-white" aria-hidden="true" %}
+                    </button>
+                    <button id="desktopNextBtn" class="carousel-nav-btn carousel-nav-next">
+                        {% lucide_icon "chevron-right" size="32" class="text-white" aria-hidden="true" %}
+                    </button>
+                    <div class="carousel-dots-container" id="carouselDots"></div>
+                </div>
+            </div>
+        </div>
 
-                <!-- Carousel Main Content -->
-                <div class="relative">
-                    <!-- YouTube Embed Container with Fixed Aspect Ratio -->
-                    <div class="relative w-full mb-6" id="videoContainer">
-                        <!-- Fixed aspect ratio wrapper to prevent CLS -->
-                        <div class="relative w-full" style="aspect-ratio: 16 / 9;">
+        <!-- Mobile Simple Card (keeps your original working layout) -->
+        <div class="md:hidden">
+            <div class="max-w-4xl mx-auto mb-12">
+                <div class="glass-premium rounded-2xl p-2 border border-brand/20">
+                    <div class="relative">
+                        <div class="relative w-full mb-6" id="videoContainerMobile">
+                            <div class="relative w-full" style="aspect-ratio: 16 / 9;">
+                                <img id="videoThumbnailMobile" src="" alt="Video thumbnail" width="1280" height="720"
+                                    loading="lazy"
+                                    style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 10;">
 
-                            <!-- Thumbnail Image - WITH EXPLICIT DIMENSIONS -->
-                            <img id="videoThumbnail" src="" alt="Video thumbnail" width="1280" height="720"
-                                style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 10;"
-                                class="transition-opacity duration-300">
+                                <div id="youtubePlayerMobile"
+                                    style="position: absolute; inset: 0; z-index: 5; display: none;"></div>
 
-                            <!-- YouTube Player Container - Pre-reserved space -->
-                            <div id="youtubePlayer" class="absolute inset-0" style="z-index: 5;"></div>
+                                <button id="playButtonMobile" aria-label="Play video"
+                                    class="absolute inset-0 z-20 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-all duration-300 opacity-100 group cursor-pointer">
+                                    <div
+                                        class="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-brand/90 hover:bg-brand flex items-center justify-center transition-all duration-300 hover:scale-110">
+                                        {% lucide_icon "play" size="20" class="text-white ml-1 sm:w-8 sm:h-8"
+                                        aria-hidden="true" %}
+                                    </div>
+                                </button>
 
-                            <!-- Play Button Overlay -->
-                            <button id="playButton" aria-label="Play video"
-                                class="absolute inset-0 z-20 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-all duration-300 opacity-100 group cursor-pointer">
-                                <div
-                                    class="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-brand/90 hover:bg-brand flex items-center justify-center transition-all duration-300 hover:scale-110">
-                                    {% lucide_icon "play" size="20" class="text-white ml-1 sm:w-8 sm:h-8"
-                                    aria-hidden="true" %}
+                                <div id="loadingIndicatorMobile"
+                                    class="absolute inset-0 flex items-center justify-center bg-black/70 z-30"
+                                    style="display: none;">
+                                    <div
+                                        class="w-8 h-8 border-4 border-brand border-t-transparent rounded-full animate-spin">
+                                    </div>
                                 </div>
-                            </button>
+                            </div>
                         </div>
+
+                        <div class="text-center">
+                            <div class="inline-flex items-center gap-2 mb-3">
+                                <span class="px-2 py-1 text-xs font-medium bg-brand/20 text-brand rounded-full">Featured
+                                    Episode</span>
+                            </div>
+                            <div class="min-h-[100px]">
+                                <h3 id="episodeTitleMobile" class="text-xl md:text-2xl font-bold text-white mb-2">
+                                    Loading Episode...</h3>
+                                <p id="episodeDescMobile" class="text-text-secondary text-sm md:text-base">Loading
+                                    episode description...</p>
+                            </div>
+                        </div>
+
+                        <button id="prevEpisodeMobile" aria-label="Previous episode"
+                            class="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 flex items-center justify-center bg-black/60 hover:bg-black/80 text-white rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20">
+                            {% lucide_icon "chevron-left" size="18" class="text-white" aria-hidden="true" %}
+                        </button>
+
+                        <button id="nextEpisodeMobile" aria-label="Next episode"
+                            class="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 flex items-center justify-center bg-black/60 hover:bg-black/80 text-white rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20">
+                            {% lucide_icon "chevron-right" size="18" class="text-white" aria-hidden="true" %}
+                        </button>
                     </div>
-
-                    <!-- Episode Info with Fixed Min-Height -->
-                    <div class="text-center">
-                        <div class="inline-flex items-center gap-2 mb-3">
-                            <span class="px-2 py-1 text-xs font-medium bg-brand/20 text-brand rounded-full">Featured
-                                Episode</span>
-                        </div>
-                        <!-- Fixed height container to prevent shifts while loading -->
-                        <div aria-live="polite" aria-atomic="true" class="min-h-[100px]">
-                            <h3 id="episodeTitle" class="text-xl md:text-2xl font-bold text-white mb-2">Loading
-                                Episode...</h3>
-                            <p id="episodeDesc" class="text-text-secondary text-sm md:text-base">Loading episode
-                                description...</p>
-                        </div>
-                    </div>
-
-                    <!-- Navigation Buttons - Positioned absolutely, no CLS impact -->
-                    <button id="prevEpisode" aria-label="Previous episode"
-                        class="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 flex items-center justify-center bg-black/60 hover:bg-black/80 text-white rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20">
-                        {% lucide_icon "chevron-left" size="18" class="text-white" aria-hidden="true" %}
-                    </button>
-
-                    <button id="nextEpisode" aria-label="Next episode"
-                        class="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 flex items-center justify-center bg-black/60 hover:bg-black/80 text-white rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20">
-                        {% lucide_icon "chevron-right" size="18" class="text-white" aria-hidden="true" %}
-                    </button>
-
-                    <!-- Dots Indicator -->
-                    <!-- <div class="flex justify-center gap-2 mt-6" id="dotsContainer" role="tablist"
-                        aria-label="Episode navigation">
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -93,374 +101,421 @@
 
     <!-- View All Button -->
     <div class="text-center mt-12">
-        {% include components/button.html url="/portfolio" text="View Full Portfolio" type="ghost"
-        icon="arrow-right" %}
-    </div>
-
+        {% include components/button.html url="/portfolio" text="View Full Portfolio" type="ghost" icon="arrow-right" %}
     </div>
 </section>
 
 <script>
-    //  Data is now generated by Jekyll at build time - NO fetch needed!
-    const episodes = {{ site.data.podcast-episodes | jsonify }};
+    (function () {
+        let isCarouselLoaded = false;
+        const isMobile = window.innerWidth < 768;
+        const episodes = {{ site.data.podcast-episodes | jsonify }};
 
-    let currentIndex = 0;
-    let player = null;
-    let isPlaying = false;
-    let hideTimeout = null;
+        function loadCarousel() {
+            if (isCarouselLoaded || !episodes || episodes.length === 0) return;
+            isCarouselLoaded = true;
 
-    // Get DOM elements
-    const episodeTitle = document.getElementById('episodeTitle');
-    const episodeDesc = document.getElementById('episodeDesc');
-    const prevBtn = document.getElementById('prevEpisode');
-    const nextBtn = document.getElementById('nextEpisode');
-    const dotsContainer = document.getElementById('dotsContainer');
-    const videoContainer = document.getElementById('videoContainer');
-    const videoThumbnail = document.getElementById('videoThumbnail');
-    const playButton = document.getElementById('playButton');
+            if (!isMobile) {
+                // DESKTOP 3D CAROUSEL
+                let currentIndex = 0;
+                let currentPlayer = null;
+                let currentPlayingId = null;
 
-    // Validate episodes exist
-    if (!episodes || episodes.length === 0) {
-        console.error('No episodes found');
-        if (episodeTitle) episodeTitle.textContent = 'No Episodes Available';
-        if (episodeDesc) episodeDesc.textContent = 'Please check back later for new content.';
-    }
+                function extractYouTubeId(url) {
+                    if (!url) return null;
+                    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([^?&]+)/);
+                    return match ? match[1] : null;
+                }
 
-    // Extract YouTube video ID from URL
-    function getYouTubeId(url) {
-        const patterns = [
-            /youtu\.be\/([^?]+)/,
-            /youtube\.com\/watch\?v=([^&]+)/,
-            /youtube\.com\/embed\/([^?]+)/
-        ];
+                function getThumbnailUrl(id) { return 'https://img.youtube.com/vi/' + id + '/maxresdefault.jpg'; }
+                function getEmbedUrl(id) { return 'https://www.youtube.com/embed/' + id + '?autoplay=1&modestbranding=1&rel=0&controls=1&playsinline=1'; }
 
-        for (const pattern of patterns) {
-            const match = url.match(pattern);
-            if (match) return match[1];
-        }
-        return null;
-    }
+                function createCard(episode, position, isClickable) {
+                    var videoId = extractYouTubeId(episode.url);
+                    if (!videoId) return null;
+                    var card = document.createElement('div');
+                    card.className = 'carousel-card ' + position;
+                    card.setAttribute('data-video-id', videoId);
+                    var thumbnail = document.createElement('div');
+                    thumbnail.className = 'carousel-card-thumbnail';
+                    var img = document.createElement('img');
+                    img.src = getThumbnailUrl(videoId);
+                    img.alt = episode.title;
+                    img.loading = 'lazy';
+                    thumbnail.appendChild(img);
+                    var iframe = document.createElement('iframe');
+                    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                    iframe.setAttribute('allowfullscreen', 'true');
+                    iframe.style.display = 'none';
+                    thumbnail.appendChild(iframe);
+                    var info = document.createElement('div');
+                    info.className = 'carousel-card-info';
+                    var title = document.createElement('div');
+                    title.className = 'carousel-card-title';
+                    title.textContent = episode.title;
+                    var desc = document.createElement('div');
+                    desc.className = 'carousel-card-desc';
+                    var descText = episode.description || '';
+                    desc.textContent = descText.length > 60 ? descText.substring(0, 60) + '...' : descText;
+                    info.appendChild(title);
+                    info.appendChild(desc);
+                    card.appendChild(thumbnail);
+                    card.appendChild(info);
+                    if (isClickable) {
+                        card.classList.add('clickable');
+                        card.addEventListener('click', function () {
+                            for (var i = 0; i < episodes.length; i++) {
+                                if (extractYouTubeId(episodes[i].url) === videoId && i !== currentIndex) {
+                                    updateCarousel(i);
+                                    break;
+                                }
+                            }
+                        });
+                    }
+                    return card;
+                }
 
-    // Get YouTube thumbnail URL
-    function getYouTubeThumbnail(videoId) {
-        return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-    }
+                function playVideoOnCard(card) {
+                    var thumbnail = card.querySelector('.carousel-card-thumbnail');
+                    var img = thumbnail.querySelector('img');
+                    var iframe = thumbnail.querySelector('iframe');
+                    var videoId = card.getAttribute('data-video-id');
+                    if (currentPlayingId === videoId) return;
+                    if (currentPlayer) {
+                        var prevIframe = currentPlayer.querySelector('iframe');
+                        var prevImg = currentPlayer.querySelector('img');
+                        if (prevIframe) { prevIframe.src = ''; prevIframe.style.display = 'none'; }
+                        if (prevImg) prevImg.style.display = 'block';
+                    }
+                    iframe.src = getEmbedUrl(videoId);
+                    iframe.style.display = 'block';
+                    img.style.display = 'none';
+                    currentPlayer = thumbnail;
+                    currentPlayingId = videoId;
+                }
 
-    // Load YouTube API
-    function loadYouTubeAPI() {
-        return new Promise((resolve) => {
-            if (window.YT && window.YT.Player) {
-                resolve();
-                return;
-            }
+                function stopCurrentVideo() {
+                    if (currentPlayer) {
+                        var img = currentPlayer.querySelector('img');
+                        var iframe = currentPlayer.querySelector('iframe');
+                        if (iframe) { iframe.src = ''; iframe.style.display = 'none'; }
+                        if (img) img.style.display = 'block';
+                        currentPlayer = null;
+                        currentPlayingId = null;
+                    }
+                }
 
-            const tag = document.createElement('script');
-            tag.src = 'https://www.youtube.com/iframe_api';
-            const firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                function updateCarousel(newIndex) {
+                    if (newIndex === currentIndex) return;
+                    stopCurrentVideo();
+                    currentIndex = newIndex;
+                    renderCarousel();
+                }
 
-            window.onYouTubeIframeAPIReady = () => {
-                resolve();
-            };
-        });
-    }
+                function renderCarousel() {
+                    var stage = document.getElementById('carousel3dStage');
+                    if (!stage) return;
+                    stage.innerHTML = '';
+                    var total = episodes.length;
+                    var indexes = [
+                        (currentIndex - 2 + total) % total,
+                        (currentIndex - 1 + total) % total,
+                        currentIndex,
+                        (currentIndex + 1) % total,
+                        (currentIndex + 2) % total
+                    ];
+                    var positions = ['left-2', 'left-1', 'center', 'right-1', 'right-2'];
+                    var isClickable = [false, true, false, true, false];
+                    for (var i = 0; i < 5; i++) {
+                        var card = createCard(episodes[indexes[i]], positions[i], isClickable[i]);
+                        if (card && positions[i] === 'center') {
+                            card.addEventListener('mouseenter', function () { playVideoOnCard(card); });
+                            card.addEventListener('mouseleave', stopCurrentVideo);
+                        }
+                        if (card) stage.appendChild(card);
+                    }
+                    updateDots();
+                }
 
-    // Initialize player
-    async function initPlayer(videoId) {
-        await loadYouTubeAPI();
+                function updateDots() {
+                    var dotsContainer = document.getElementById('carouselDots');
+                    if (!dotsContainer) return;
+                    dotsContainer.innerHTML = '';
+                    for (var i = 0; i < episodes.length; i++) {
+                        var dot = document.createElement('button');
+                        dot.className = 'carousel-dot';
+                        if (i === currentIndex) dot.classList.add('active');
+                        dot.addEventListener('click', (function(idx) { return function() { updateCarousel(idx); }; })(i));
+                        dotsContainer.appendChild(dot);
+                    }
+                }
 
-        if (player && player.destroy) {
-            player.destroy();
-            player = null;
-        }
+                function prevSlide() { updateCarousel((currentIndex - 1 + episodes.length) % episodes.length); }
+                function nextSlide() { updateCarousel((currentIndex + 1) % episodes.length); }
 
-        player = new YT.Player('youtubePlayer', {
-            height: '100%',
-            width: '100%',
-            videoId: videoId,
-            playerVars: {
-                autoplay: 0,
-                rel: 0,
-                modestbranding: 0,
-                controls: 0,
-                showinfo: 0,
-                origin: window.location.origin  // Adds security
-            },
-            events: {
-                'onStateChange': onPlayerStateChange
-            }
-        });
-    }
+                var prevBtn = document.getElementById('desktopPrevBtn');
+                var nextBtn = document.getElementById('desktopNextBtn');
+                if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+                if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+                renderCarousel();
 
-    function onPlayerStateChange(event) {
-        // Video playing
-        if (event.data === YT.PlayerState.PLAYING) {
-            isPlaying = true;
-            if (videoThumbnail) {
-                videoThumbnail.style.opacity = '0';
-                setTimeout(() => {
-                    if (videoThumbnail) videoThumbnail.style.display = 'none';
-                }, 300);
-            }
-            if (playButton) {
-                playButton.style.opacity = '0';
-                setTimeout(() => {
-                    if (playButton) playButton.style.display = 'none';
-                }, 300);
-            }
-        }
-
-        // Video paused or ended
-        if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-            isPlaying = false;
-            if (videoThumbnail && videoThumbnail.style.display === 'none') {
-                videoThumbnail.style.display = 'block';
-                setTimeout(() => {
-                    if (videoThumbnail) videoThumbnail.style.opacity = '1';
-                }, 10);
-            }
-            if (playButton && playButton.style.display === 'none') {
-                playButton.style.display = 'flex';
-                setTimeout(() => {
-                    if (playButton) playButton.style.opacity = '1';
-                }, 10);
-            }
-        }
-    }
-
-    // Play video
-    function playVideo() {
-        if (player && player.playVideo) {
-            player.playVideo();
-        }
-    }
-
-    // Pause video
-    function pauseVideo() {
-        if (player && player.pauseVideo) {
-            player.pauseVideo();
-        }
-    }
-
-    // Update carousel content
-    async function updateCarousel(index) {
-        if (!episodes || episodes.length === 0) return;
-
-        const episode = episodes[index];
-        if (!episode) return;
-
-        const videoId = getYouTubeId(episode.url);
-        if (videoId) {
-            if (videoThumbnail) {
-                videoThumbnail.src = getYouTubeThumbnail(videoId);
-                videoThumbnail.style.display = 'block';
-                videoThumbnail.style.opacity = '1';
-            }
-
-            if (playButton) {
-                playButton.style.display = 'flex';
-                playButton.style.opacity = '1';
-            }
-
-            if (player && player.loadVideoById) {
-                player.loadVideoById(videoId);
-                player.stopVideo();
             } else {
-                await initPlayer(videoId);
-            }
-        }
+                // MOBILE SIMPLE CARD
+                let currentIndex = 0;
+                let player = null;
+                let isYouTubeAPIReady = false;
 
-        episodeTitle.textContent = episode.title;
-        episodeDesc.textContent = episode.description || `Episode ${index + 1} - Click play to watch`;
+                var episodeTitle = document.getElementById('episodeTitleMobile');
+                var episodeDesc = document.getElementById('episodeDescMobile');
+                var prevBtn = document.getElementById('prevEpisodeMobile');
+                var nextBtn = document.getElementById('nextEpisodeMobile');
+                var videoThumbnail = document.getElementById('videoThumbnailMobile');
+                var playButton = document.getElementById('playButtonMobile');
+                var youtubePlayerDiv = document.getElementById('youtubePlayerMobile');
+                var loadingIndicator = document.getElementById('loadingIndicatorMobile');
 
-        // Update active dot
-        const dots = document.querySelectorAll('.dot');
-        dots.forEach((dot, i) => {
-            if (i === index) {
-                dot.classList.add('bg-brand', 'scale-125');
-                dot.classList.remove('bg-white/40');
-            } else {
-                dot.classList.remove('bg-brand', 'scale-125');
-                dot.classList.add('bg-white/40');
-            }
-        });
-    }
+                function getYouTubeId(url) {
+                    if (!url) return null;
+                    var match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([^?&]+)/);
+                    return match ? match[1] : null;
+                }
 
-    // Create navigation dots
-    function createDots() {
-        if (!dotsContainer || !episodes) return;
+                function getYouTubeThumbnail(id) { return 'https://img.youtube.com/vi/' + id + '/maxresdefault.jpg'; }
 
-        dotsContainer.innerHTML = '';
-        episodes.forEach((episode, index) => {
-            const dot = document.createElement('button');
-            dot.setAttribute('aria-label', `Go to ${episode.title}`);
-            dot.setAttribute('aria-current', index === 0 ? 'true' : 'false');
-            dot.setAttribute('role', 'tab');
-            dot.className = `dot w-2 h-2 rounded-full transition-all duration-300 ${index === 0 ? 'bg-brand scale-125' : 'bg-white/40'} hover:bg-white/70`;
-            dot.addEventListener('click', async () => {
-                if (index !== currentIndex) {
-                    currentIndex = index;
-                    await updateCarousel(currentIndex);
-                    // Update aria-current on all dots
-                    document.querySelectorAll('.dot').forEach((d, i) => {
-                        d.setAttribute('aria-current', i === currentIndex ? 'true' : 'false');
+                function loadYouTubeAPI() {
+                    return new Promise(function(resolve, reject) {
+                        if (window.YT && window.YT.Player) { isYouTubeAPIReady = true; resolve(); return; }
+                        if (document.getElementById('youtube-iframe-api')) {
+                            var check = setInterval(function() {
+                                if (window.YT && window.YT.Player) { clearInterval(check); isYouTubeAPIReady = true; resolve(); }
+                            }, 100);
+                            return;
+                        }
+                        var tag = document.createElement('script');
+                        tag.id = 'youtube-iframe-api';
+                        tag.src = 'https://www.youtube.com/iframe_api';
+                        tag.async = true;
+                        tag.defer = true;
+                        tag.onerror = function() { reject(new Error('Failed to load YouTube API')); };
+                        document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
+                        window.onYouTubeIframeAPIReady = function() { isYouTubeAPIReady = true; resolve(); };
+                        setTimeout(function() { if (!isYouTubeAPIReady) reject(new Error('YouTube API timeout')); }, 10000);
                     });
                 }
-            });
-            dotsContainer.appendChild(dot);
-        });
-    }
 
-    // Next episode
-    async function nextEpisode() {
-        if (!episodes || episodes.length === 0) return;
-        currentIndex = (currentIndex + 1) % episodes.length;
-        await updateCarousel(currentIndex);
-    }
-
-    // Previous episode
-    async function prevEpisode() {
-        if (!episodes || episodes.length === 0) return;
-        currentIndex = (currentIndex - 1 + episodes.length) % episodes.length;
-        await updateCarousel(currentIndex);
-    }
-
-    // Setup play button click
-    function setupPlayButton() {
-        if (playButton) {
-            playButton.addEventListener('click', (e) => {
-                e.stopPropagation();
-                playVideo();
-            });
-        }
-    }
-
-    // Setup hover play/pause
-    function setupHoverPlay() {
-        if (videoContainer) {
-            videoContainer.addEventListener('mouseenter', () => {
-                if (!isPlaying) {
-                    playVideo();
+                function initPlayer(videoId) {
+                    if (!videoId) return;
+                    if (loadingIndicator) loadingIndicator.style.display = 'flex';
+                    if (videoThumbnail) videoThumbnail.style.opacity = '0.5';
+                    loadYouTubeAPI().then(function() {
+                        if (youtubePlayerDiv) youtubePlayerDiv.style.display = 'block';
+                        if (player && player.destroy) player.destroy();
+                        player = new YT.Player('youtubePlayerMobile', {
+                            height: '100%', width: '100%', videoId: videoId,
+                            playerVars: { autoplay: 1, rel: 0, modestbranding: 1, controls: 1, playsinline: 1, origin: window.location.origin },
+                            events: {
+                                onReady: function(e) {
+                                    if (loadingIndicator) loadingIndicator.style.display = 'none';
+                                    if (videoThumbnail) videoThumbnail.style.display = 'none';
+                                    if (playButton) playButton.style.display = 'none';
+                                    e.target.playVideo();
+                                },
+                                onStateChange: function(e) {
+                                    if (e.data === YT.PlayerState.PLAYING) {
+                                        if (loadingIndicator) loadingIndicator.style.display = 'none';
+                                        if (videoThumbnail) videoThumbnail.style.display = 'none';
+                                        if (playButton) playButton.style.display = 'none';
+                                    }
+                                    if (e.data === YT.PlayerState.ENDED) {
+                                        if (videoThumbnail) { videoThumbnail.style.display = 'block'; videoThumbnail.style.opacity = '1'; }
+                                        if (playButton) playButton.style.display = 'flex';
+                                        if (youtubePlayerDiv) youtubePlayerDiv.style.display = 'none';
+                                    }
+                                },
+                                onError: function(e) {
+                                    if (loadingIndicator) loadingIndicator.style.display = 'none';
+                                    if (videoThumbnail) { videoThumbnail.style.display = 'block'; videoThumbnail.style.opacity = '1'; }
+                                    if (playButton) playButton.style.display = 'flex';
+                                    if (youtubePlayerDiv) youtubePlayerDiv.style.display = 'none';
+                                }
+                            }
+                        });
+                    }).catch(function() {
+                        if (loadingIndicator) loadingIndicator.style.display = 'none';
+                        if (videoThumbnail) { videoThumbnail.style.display = 'block'; videoThumbnail.style.opacity = '1'; }
+                        if (playButton) playButton.style.display = 'flex';
+                    });
                 }
-            });
 
-            videoContainer.addEventListener('mouseleave', () => {
-                if (isPlaying) {
-                    pauseVideo();
+                function playVideo() {
+                    var episode = episodes[currentIndex];
+                    if (!episode) return;
+                    var videoId = getYouTubeId(episode.url);
+                    if (videoId) initPlayer(videoId);
                 }
-            });
-        }
-    }
 
-    // Initialize everything
-    async function initialize() {
-        if (!episodes || episodes.length === 0) {
-            console.error('No episodes data available');
-            if (episodeTitle) episodeTitle.textContent = 'No Episodes Found';
-            if (episodeDesc) episodeDesc.textContent = 'Please check back later.';
-            return;
-        }
+                function updateContent(index) {
+                    var episode = episodes[index];
+                    if (!episode) return;
+                    if (episodeTitle) episodeTitle.textContent = episode.title;
+                    if (episodeDesc) episodeDesc.textContent = episode.description || '';
+                    var videoId = getYouTubeId(episode.url);
+                    if (videoId && videoThumbnail) {
+                        videoThumbnail.src = getYouTubeThumbnail(videoId);
+                        videoThumbnail.style.display = 'block';
+                        videoThumbnail.style.opacity = '1';
+                    }
+                    if (playButton) playButton.style.display = 'flex';
+                    if (youtubePlayerDiv) youtubePlayerDiv.style.display = 'none';
+                    if (loadingIndicator) loadingIndicator.style.display = 'none';
+                    if (player && player.destroy) { player.destroy(); player = null; }
+                }
 
-        createDots();
+                function nextEpisode() { currentIndex = (currentIndex + 1) % episodes.length; updateContent(currentIndex); }
+                function prevEpisode() { currentIndex = (currentIndex - 1 + episodes.length) % episodes.length; updateContent(currentIndex); }
 
-        const firstVideoId = getYouTubeId(episodes[0].url);
-        if (firstVideoId) {
-            if (videoThumbnail) {
-                videoThumbnail.src = getYouTubeThumbnail(firstVideoId);
+                if (playButton) playButton.addEventListener('click', function(e) { e.preventDefault(); playVideo(); });
+                if (prevBtn) prevBtn.addEventListener('click', function(e) { e.preventDefault(); prevEpisode(); });
+                if (nextBtn) nextBtn.addEventListener('click', function(e) { e.preventDefault(); nextEpisode(); });
+                updateContent(0);
             }
-            await initPlayer(firstVideoId);
         }
 
-        episodeTitle.textContent = episodes[0].title;
-        episodeDesc.textContent = episodes[0].description || `Episode 1 - Click play to watch`;
-
-        setupPlayButton();
-        setupHoverPlay();
-    }
-
-    // Event listeners for manual navigation
-    if (prevBtn) {
-        prevBtn.addEventListener('click', async (e) => {
-            e.preventDefault();
-            await prevEpisode();
-        });
-    }
-
-    if (nextBtn) {
-        nextBtn.addEventListener('click', async (e) => {
-            e.preventDefault();
-            await nextEpisode();
-        });
-    }
-
-    // Start everything
-    initialize();
+        // Lazy load on scroll
+        var section = document.querySelector('.relative.py-6.lg\\:py-24.md\\:py-32');
+        if (section) {
+            if (!isMobile) {
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', function() { setTimeout(loadCarousel, 100); });
+                } else { setTimeout(loadCarousel, 100); }
+            } else if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) {
+                        setTimeout(loadCarousel, 100);
+                        observer.disconnect();
+                    }
+                }, { threshold: 0.05 });
+                observer.observe(section);
+            } else {
+                window.addEventListener('scroll', function onScroll() {
+                    var rect = section.getBoundingClientRect();
+                    if (rect.top < window.innerHeight + 200) {
+                        loadCarousel();
+                        window.removeEventListener('scroll', onScroll);
+                    }
+                });
+            }
+        }
+    })();
 </script>
 
 <style>
-    .glass-card {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(10px);
-        transition: all 0.4s ease;
-    }
-
-    .glass-card:hover {
-        background: rgba(255, 255, 255, 0.06);
-        transform: translateY(-4px);
-    }
-
     .glass-premium {
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
         backdrop-filter: blur(12px);
     }
 
-    .portfolio-card {
-        cursor: pointer;
-    }
-
-    .shadow-glow {
-        box-shadow: 0 0 20px rgba(255, 77, 77, 0.4);
-    }
-
     @keyframes pulse-slow {
-
-        0%,
-        100% {
-            opacity: 0.4;
-            transform: scale(1);
-        }
-
-        50% {
-            opacity: 0.7;
-            transform: scale(1.1);
-        }
+        0%, 100% { opacity: 0.4; transform: scale(1); }
+        50% { opacity: 0.7; transform: scale(1.1); }
     }
+    .animate-pulse-slow { animation: pulse-slow 8s ease-in-out infinite; }
 
-    .animate-pulse-slow {
-        animation: pulse-slow 8s ease-in-out infinite;
+    /* Desktop 3D Carousel Styles */
+    .hidden.md\:block .glass-premium { overflow: visible; }
+    .desktop-carousel-container { position: relative; width: 100%; margin: 0 auto; }
+    .carousel-3d-stage { position: relative; display: flex; justify-content: center; align-items: center; min-height: 550px; perspective: 1200px; }
+    .carousel-card {
+        position: absolute; width: 330px; background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(17, 24, 39, 0.98));
+        border-radius: 20px; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(59, 130, 246, 0.2); cursor: pointer;
     }
-
-    #youtubePlayer {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: auto;
+    .carousel-card.center { z-index: 40; width: 680px; transform: scale(1) translateX(0) translateY(0); }
+    .carousel-card.left-1 { z-index: 30; transform: scale(0.85) translateX(0px) translateY(10px); filter: brightness(0.8); opacity: 0.9; }
+    .carousel-card.right-1 { z-index: 30; transform: scale(0.85) translateX(0px) translateY(10px); filter: brightness(0.8); opacity: 0.9; }
+    .carousel-card.left-2 { z-index: 20; transform: scale(0.7) translateX(-110px) translateY(25px); filter: brightness(0.6) blur(1px); opacity: 0.7; pointer-events: none; }
+    .carousel-card.right-2 { z-index: 20; transform: scale(0.7) translateX(110px) translateY(25px); filter: brightness(0.6) blur(1px); opacity: 0.7; pointer-events: none; }
+    .carousel-card-thumbnail { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; overflow: hidden; }
+    .carousel-card-thumbnail img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; display: block; }
+    .carousel-card:hover .carousel-card-thumbnail img { transform: scale(1.05); }
+    .carousel-card-thumbnail iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    .carousel-card-info { padding: 12px 16px 16px; background: linear-gradient(to top, #0f172a, #111827); }
+    .carousel-card-title { font-weight: 700; font-size: 0.9rem; color: #fff; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .carousel-card-desc { font-size: 0.7rem; color: #94a3b8; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .carousel-card.clickable .carousel-card-thumbnail::after {
+        content: "▶"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        width: 44px; height: 44px; background: rgba(0,0,0,0.7); border-radius: 50%;
+        display: flex; align-items: center; justify-content: center; color: white; font-size: 18px;
+        pointer-events: none; z-index: 10; transition: all 0.2s ease;
     }
+    .carousel-card.clickable:hover .carousel-card-thumbnail::after { background: #3b82f6; transform: translate(-50%, -50%) scale(1.1); }
+    .carousel-nav-btn {
+        position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px;
+        background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); border: 1px solid rgba(59,130,246,0.3);
+        border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;
+        transition: all 0.2s ease; z-index: 50;
+    }
+    .carousel-nav-btn:hover { background: #3b82f6; transform: translateY(-50%) scale(1.1); border-color: rgba(96,165,250,0.8); }
+    .carousel-nav-prev { left: -60px; }
+    .carousel-nav-next { right: -60px; }
 
-    #videoThumbnail {
-        transition: opacity 0.3s ease;
-        pointer-events: none;
+    /* Dot Indicators - Clean & Consistent */
+    .carousel-dots-container {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 30px;
+    }
+    .carousel-dot {
+        width: 8px;
+        height: 8px;
+        background: #4a5568 !important;
+        border-radius: 50%;
         cursor: pointer;
+        transition: all 0.2s ease;
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+    .carousel-dot.active {
+        width: 28px;
+        background: #3b82f6 !important;
+        border-radius: 10px;
+    }
+    .carousel-dot:hover {
+        background: #60a5fa !important;
     }
 
-    #playButton {
-        transition: opacity 0.3s ease;
-        cursor: pointer;
-    }
+    /* Mobile Styles */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .animate-spin { animation: spin 1s linear infinite; }
+    #youtubePlayerMobile { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: auto; }
+    #videoThumbnailMobile { transition: opacity 0.3s ease; pointer-events: none; cursor: pointer; }
+    #playButtonMobile { transition: opacity 0.3s ease; cursor: pointer; }
 
-    .relative.aspect-video {
-        position: relative;
+    /* Responsive adjustments */
+    @media (max-width: 1400px) {
+        .carousel-card { width: 260px; }
+        .carousel-card.center { width: 540px; }
+        .carousel-card.left-1 { transform: scale(0.85) translateX(-200px) translateY(10px); }
+        .carousel-card.right-1 { transform: scale(0.85) translateX(200px) translateY(10px); }
+        .carousel-card.left-2 { transform: scale(0.7) translateX(-380px) translateY(25px); display: none; }
+        .carousel-card.right-2 { transform: scale(0.7) translateX(380px) translateY(25px); display: none; }
+        .carousel-nav-prev { left: -40px; }
+        .carousel-nav-next { right: -40px; }
+    }
+    @media (max-width: 1200px) {
+        .carousel-card { width: 280px; }
+        .carousel-card.center { width: 460px; }
+        .carousel-card.left-1, .carousel-card.right-1 { transform: scale(0.85) translateX(0px) translateY(10px); }
+        .carousel-nav-prev { left: -30px; }
+        .carousel-nav-next { right: -30px; }
+    }
+    @media (max-width: 992px) {
+        .carousel-card { width: 260px; }
+        .carousel-card.center { width: 420px; }
+        .carousel-nav-btn { width: 40px; height: 40px; }
+        .carousel-nav-prev { left: -20px; }
+        .carousel-nav-next { right: -20px; }
     }
 </style>

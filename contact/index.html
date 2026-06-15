@@ -65,7 +65,7 @@ faq_subtitle: About Booking & Contact
                         <p class="text-text-muted text-sm">Sanganer, Jaipur, Rajasthan</p>
                     </div>
                     <div class="rounded-xl overflow-hidden border border-brand/20">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.751810287951!2d75.7954962!3d26.8160302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396dcb806f410f67%3A0xe2fb674c21f51e89!2sShubook%20Labs%20-%20Podcast%20Studio%20%7C%20AI%20%26%20Website%20Development!5e0!3m2!1sen!2sin!4v1781085690142!5m2!1sen!2sin" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.751810287951!2d75.7954962!3d26.8160302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396dcb806f410f67%3A0xe2fb674c21f51e89!2sShubook%20Labs%20-%20Podcast%20Studio%20%7C%20AI%20%26%20Website%20Development!5e0!3m2!1sen!2sin!4v1781085690142!5m2!1sen!2sin" width="100%" height="250" style="border:0;" allowfullscreen="" title="Shubook Labs" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                     <p class="text-text-muted text-xs mt-4">Conveniently located for entrepreneurs, creators, professionals, founders, coaches, doctors, consultants, and businesses across Jaipur.</p>
                 </div>
@@ -120,7 +120,7 @@ faq_subtitle: About Booking & Contact
     </div>
 </section>
 
-<!-- Section: Toggleable Forms - ENHANCED DARK THEME WITH BRIGHTER ELEMENTS -->
+<!-- Section: Toggleable Forms -->
 <section class="py-20 md:py-28 bg-dark-card">
     <div class="container mx-auto px-6 max-w-5xl">
         <div class="flex justify-center mb-12">
@@ -130,7 +130,7 @@ faq_subtitle: About Booking & Contact
             </div>
         </div>
 
-        <!-- Podcast Booking Form - ENHANCED -->
+        <!-- Podcast Booking Form -->
         <div id="podcastForm" class="form-container">
             <div class="glass-premium rounded-2xl p-6 md:p-8 border border-brand/30 bg-gradient-to-br from-dark-card/90 to-dark-bg/90">
                 <div class="text-center mb-8">
@@ -155,17 +155,19 @@ faq_subtitle: About Booking & Contact
                     </div>
                 </div>
 
-                <form action="#" method="POST" class="space-y-5">
+                <form id="podcastBookingForm">
+                    <input type="hidden" name="formType" value="podcast">
+                    
                     <div class="grid md:grid-cols-2 gap-5">
-                        <div><input type="text" placeholder="Full Name" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
-                        <div><input type="tel" placeholder="Phone Number" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+                        <div><input type="text" name="fullname" placeholder="Full Name" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+                        <div><input type="tel" name="phone" placeholder="Phone Number" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
                     </div>
-                    <div class="grid md:grid-cols-2 gap-5">
-                        <div><input type="email" placeholder="Email Address" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
-                        <div><input type="text" placeholder="Company / Business Name" class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+                    <div class="grid md:grid-cols-2 gap-5 mt-4">
+                        <div><input type="email" name="email" placeholder="Email Address" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+                        <div><input type="text" name="company" placeholder="Company / Business Name" class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
                     </div>
-                    <div>
-                        <select required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
+                    <div class="mt-4">
+                        <select name="profession" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
                             <option value="" disabled selected>Your Professional Background</option>
                             <option>Entrepreneur / Business Owner</option>
                             <option>Startup Founder</option>
@@ -178,43 +180,39 @@ faq_subtitle: About Booking & Contact
                             <option>Other</option>
                         </select>
                     </div>
-                    <div><textarea rows="3" placeholder="What do you do currently? (Please share your business, profession, expertise, achievements...)" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></textarea></div>
-                    <div><textarea rows="3" placeholder="Your Most Inspiring Story" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></textarea></div>
+                    <div class="mt-4"><textarea name="whatDoYouDo" rows="3" placeholder="What do you do currently? (Please share your business, profession, expertise, achievements...)" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></textarea></div>
+                    <div class="mt-4"><textarea name="inspiringStory" rows="3" placeholder="Your Most Inspiring Story" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></textarea></div>
                     
-                    <div>
+                    <div class="mt-4">
                         <p class="text-text-secondary text-sm mb-3">Primary Topic <span class="text-brand">*</span></p>
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                        <select name="primaryTopic" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
+                            <option value="" disabled selected>Select Primary Topic</option>
                             {% assign topics = "Business Growth,Startups,Real Estate,Health & Wellness,Marketing & Branding,Personal Branding,Finance & Investment,Leadership,Productivity,Spirituality,Career Growth,Success Stories" | split: "," %}
                             {% for topic in topics %}
-                            <label class="flex items-center gap-2 bg-dark-surface/30 rounded-lg px-3 py-2 cursor-pointer border border-white/10 hover:border-brand/40 transition-all">
-                                <input type="radio" name="primary_topic" class="accent-brand w-4 h-4">
-                                <span class="text-text-secondary text-sm">{{ topic | strip }}</span>
-                            </label>
+                            <option>{{ topic | strip }}</option>
                             {% endfor %}
-                        </div>
+                        </select>
                     </div>
 
-                    <div>
+                    <div class="mt-4">
                         <label class="block text-text-secondary text-sm mb-2">Life-Changing Lesson <span class="text-brand">*</span></label>
-                        <textarea rows="2" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all" placeholder="What is one lesson or insight that has significantly changed your life or career?"></textarea>
+                        <textarea name="lifeLesson" rows="2" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all" placeholder="What is one lesson or insight that has significantly changed your life or career?"></textarea>
                     </div>
 
-                    <div>
+                    <div class="mt-4">
                         <p class="text-text-secondary text-sm mb-3">Primary Goal <span class="text-brand">*</span></p>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <select name="primaryGoal" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
+                            <option value="" disabled selected>Select Primary Goal</option>
                             {% assign outcomes = "Personal Branding,Business Promotion,Lead Generation,Brand Awareness,Thought Leadership,Sharing My Story,Networking,Audience Growth" | split: "," %}
                             {% for outcome in outcomes %}
-                            <label class="flex items-center gap-2 bg-dark-surface/30 rounded-lg px-3 py-2 cursor-pointer border border-white/10 hover:border-brand/40 transition-all">
-                                <input type="radio" name="primary_outcome" class="accent-brand w-4 h-4">
-                                <span class="text-text-secondary text-sm">{{ outcome | strip }}</span>
-                            </label>
+                            <option>{{ outcome | strip }}</option>
                             {% endfor %}
-                        </div>
+                        </select>
                     </div>
 
                     <div class="mt-6 pt-4 border-t border-white/10">
                         <label class="flex items-start gap-3 cursor-pointer">
-                            <input type="radio" name="policy_agreement" required class="accent-brand mt-0.5 w-4 h-4">
+                            <input type="checkbox" name="agreement" value="Agreed" required class="accent-brand mt-0.5 w-4 h-4">
                             <span class="text-text-muted text-sm">I agree to the <a href="/podcast-guest-agreement/" class="text-brand hover:underline">Guest Agreement</a>, <a href="/terms-conditions/" class="text-brand hover:underline">Terms</a>, <a href="/refund-policy/" class="text-brand hover:underline">Refund Policy</a>, and <a href="/cancellation-policy/" class="text-brand hover:underline">Cancellation Policy</a>.</span>
                         </label>
                     </div>
@@ -222,11 +220,12 @@ faq_subtitle: About Booking & Contact
                     <button type="submit" class="w-full bg-brand hover:bg-brand-dark text-white font-semibold py-3 rounded-xl transition-all flex items-center justify-center gap-2 mt-6 shadow-glow">
                         {% lucide_icon "send" size="18" %} Submit Booking
                     </button>
+                    <p id="podcastFeedback" class="text-center mt-4 text-sm"></p>
                 </form>
             </div>
         </div>
 
-        <!-- Studio Rental Form - ENHANCED -->
+        <!-- Studio Rental Form -->
         <div id="studioForm" class="form-container hidden">
             <div class="glass-premium rounded-2xl p-6 md:p-8 border border-brand/30 bg-gradient-to-br from-dark-card/90 to-dark-bg/90">
                 <div class="text-center mb-8">
@@ -252,17 +251,19 @@ faq_subtitle: About Booking & Contact
                     </div>
                 </div>
 
-                <form action="#" method="POST" class="space-y-5">
+                <form id="studioRentalForm">
+                    <input type="hidden" name="formType" value="studio">
+                    
                     <div class="grid md:grid-cols-2 gap-5">
-                        <div><input type="text" placeholder="Full Name" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
-                        <div><input type="tel" placeholder="Phone Number" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+                        <div><input type="text" name="fullname" placeholder="Full Name" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+                        <div><input type="tel" name="phone" placeholder="Phone Number" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
                     </div>
-                    <div class="grid md:grid-cols-2 gap-5">
-                        <div><input type="email" placeholder="Email" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
-                        <div><input type="text" placeholder="Company Name" class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+                    <div class="grid md:grid-cols-2 gap-5 mt-4">
+                        <div><input type="email" name="email" placeholder="Email" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+                        <div><input type="text" name="company" placeholder="Company Name" class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
                     </div>
-                    <div>
-                        <select required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
+                    <div class="mt-4">
+                        <select name="profession" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
                             <option value="" disabled selected>Professional Background</option>
                             <option>Entrepreneur / Business Owner</option>
                             <option>Startup Founder</option>
@@ -272,43 +273,44 @@ faq_subtitle: About Booking & Contact
                             <option>Other</option>
                         </select>
                     </div>
-                    <div class="grid md:grid-cols-2 gap-5">
-                        <div><input type="date" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
-                        <div><input type="time" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+                    <div class="grid md:grid-cols-2 gap-5 mt-4">
+                        <div><input type="date" name="bookingDate" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+                        <div><input type="time" name="bookingTime" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
                     </div>
-                    <div class="grid md:grid-cols-2 gap-5">
+                    <div class="grid md:grid-cols-2 gap-5 mt-4">
                         <div>
-                            <select required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
+                            <select name="duration" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
                                 <option value="" disabled selected>Duration</option>
                                 <option>1 Hour</option><option>2 Hours</option><option>3 Hours</option><option>4 Hours</option><option>5+ Hours</option>
                             </select>
                         </div>
                         <div>
-                            <select required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
+                            <select name="serviceType" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
                                 <option value="" disabled selected>Service Type</option>
                                 <option>Podcast Recording</option><option>Video Shoot</option><option>Interview</option><option>Other</option>
                             </select>
                         </div>
                     </div>
-                    <div><textarea rows="3" placeholder="Purpose of recording..." required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></textarea></div>
+                    <div class="mt-4"><textarea name="purpose" rows="3" placeholder="Purpose of recording..." required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></textarea></div>
                     
                     <div class="mt-6 pt-4 border-t border-white/10">
                         <label class="flex items-start gap-3 cursor-pointer">
-                            <input type="radio" name="studio_policy" required class="accent-brand mt-0.5 w-4 h-4">
+                            <input type="checkbox" name="agreement" value="Agreed" required class="accent-brand mt-0.5 w-4 h-4">
                             <span class="text-text-muted text-sm">I agree to the <a href="/terms-conditions/" class="text-brand hover:underline">Terms</a> and <a href="/cancellation-policy/" class="text-brand hover:underline">Cancellation Policy</a>.</span>
                         </label>
                     </div>
 
-                    <button type="submit" class="w-full bg-brand hover:bg-brand-dark text-white font-semibold py-3 rounded-xl transition-all flex items-center justify-center gap-2 shadow-glow">
+                    <button type="submit" class="w-full bg-brand hover:bg-brand-dark text-white font-semibold py-3 rounded-xl transition-all flex items-center justify-center gap-2 mt-6 shadow-glow">
                         {% lucide_icon "calendar" size="18" %} Book Studio
                     </button>
+                    <p id="studioFeedback" class="text-center mt-4 text-sm"></p>
                 </form>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Simple Message Form - ENHANCED -->
+<!-- Simple Message Form -->
 <section class="py-20 md:py-28 bg-dark-bg">
     <div class="container mx-auto px-6 max-w-4xl">
         <div class="text-center mb-12">
@@ -319,33 +321,36 @@ faq_subtitle: About Booking & Contact
             <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-4"></div>
         </div>
         <div class="glass-premium rounded-2xl p-6 md:p-8 border border-brand/30">
-            <form action="#" method="POST" class="space-y-5">
+            <form id="simpleMessageForm">
+                <input type="hidden" name="formType" value="message">
+                
                 <div class="grid md:grid-cols-2 gap-5">
-                    <div><input type="text" placeholder="Full Name" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
-                    <div><input type="tel" placeholder="Phone" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+                    <div><input type="text" name="fullname" placeholder="Full Name" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+                    <div><input type="tel" name="phone" placeholder="Phone" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
                 </div>
-                <div class="grid md:grid-cols-2 gap-5">
-                    <div><input type="email" placeholder="Email" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
-                    <div><input type="text" placeholder="Company" class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+                <div class="grid md:grid-cols-2 gap-5 mt-4">
+                    <div><input type="email" name="email" placeholder="Email" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+                    <div><input type="text" name="company" placeholder="Company" class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
                 </div>
-                <div>
-                    <select class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
+                <div class="mt-4">
+                    <select name="interest" class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
                         <option value="" disabled selected>I'm interested in...</option>
                         <option>Podcast Recording</option><option>Studio Rental</option><option>Guest Booking</option><option>Other</option>
                     </select>
                 </div>
-                <div><textarea rows="4" placeholder="Your Message" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></textarea></div>
+                <div class="mt-4"><textarea name="message" rows="4" placeholder="Your Message" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></textarea></div>
                 
                 <div class="mt-4">
                     <label class="flex items-start gap-3 cursor-pointer">
-                        <input type="radio" name="simple_policy" required class="accent-brand mt-0.5 w-4 h-4">
+                        <input type="checkbox" name="agreement" value="Agreed" required class="accent-brand mt-0.5 w-4 h-4">
                         <span class="text-text-muted text-xs">I agree to the <a href="/terms-conditions/" class="text-brand hover:underline">Terms</a> and <a href="/privacy-policy/" class="text-brand hover:underline">Privacy Policy</a>.</span>
                     </label>
                 </div>
                 
-                <button type="submit" class="w-full bg-brand hover:bg-brand-dark text-white font-semibold py-3 rounded-xl transition-all flex items-center justify-center gap-2 shadow-glow">
+                <button type="submit" class="w-full bg-brand hover:bg-brand-dark text-white font-semibold py-3 rounded-xl transition-all flex items-center justify-center gap-2 mt-6 shadow-glow">
                     {% lucide_icon "send" size="18" %} Send Message
                 </button>
+                <p id="messageFeedback" class="text-center mt-4 text-sm"></p>
             </form>
         </div>
     </div>
@@ -370,8 +375,12 @@ faq_subtitle: About Booking & Contact
     </div>
 </section>
 
-<!-- Fixed Toggle Script -->
+<!-- Toggle + Form Submission Scripts -->
 <script>
+// Google Apps Script URL
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxaWpm6yie4vR5S34JWg9D25agaF-KLO8b5Vq6CVTblFjXdPa_0NwaIs8nQaU34t0Ew/exec';
+
+// Toggle between forms
 document.addEventListener('DOMContentLoaded', function() {
     const btnPodcast = document.getElementById('btnPodcast');
     const btnStudio = document.getElementById('btnStudio');
@@ -394,6 +403,108 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Podcast Form Submission
+const podcastFormElement = document.getElementById('podcastBookingForm');
+const podcastFeedback = document.getElementById('podcastFeedback');
+
+if (podcastFormElement) {
+    podcastFormElement.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span class="animate-spin mr-2">⏳</span> Submitting...';
+        submitBtn.disabled = true;
+        
+        fetch(SCRIPT_URL, { 
+            method: 'POST', 
+            body: new FormData(this)
+        })
+        .then(response => response.json())
+        .then(data => {
+            podcastFeedback.innerHTML = `<span style="color: #10b981;">✓ ${data.message}</span>`;
+            podcastFormElement.reset();
+            setTimeout(() => { podcastFeedback.innerHTML = ''; }, 5000);
+        })
+        .catch(error => {
+            podcastFeedback.innerHTML = '<span style="color: #ef4444;"> Submission failed. Please call us directly.</span>';
+            console.error('Error:', error);
+        })
+        .finally(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
+    });
+}
+
+// Studio Form Submission
+const studioFormElement = document.getElementById('studioRentalForm');
+const studioFeedback = document.getElementById('studioFeedback');
+
+if (studioFormElement) {
+    studioFormElement.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span class="animate-spin mr-2">⏳</span> Submitting...';
+        submitBtn.disabled = true;
+        
+        fetch(SCRIPT_URL, { 
+            method: 'POST', 
+            body: new FormData(this)
+        })
+        .then(response => response.json())
+        .then(data => {
+            studioFeedback.innerHTML = `<span style="color: #10b981;">✓ ${data.message}</span>`;
+            studioFormElement.reset();
+            setTimeout(() => { studioFeedback.innerHTML = ''; }, 5000);
+        })
+        .catch(error => {
+            studioFeedback.innerHTML = '<span style="color: #ef4444;"> Submission failed. Please call us directly.</span>';
+            console.error('Error:', error);
+        })
+        .finally(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
+    });
+}
+
+// Simple Message Form Submission
+const messageFormElement = document.getElementById('simpleMessageForm');
+const messageFeedback = document.getElementById('messageFeedback');
+
+if (messageFormElement) {
+    messageFormElement.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span class="animate-spin mr-2">⏳</span> Sending...';
+        submitBtn.disabled = true;
+        
+        fetch(SCRIPT_URL, { 
+            method: 'POST', 
+            body: new FormData(this)
+        })
+        .then(response => response.json())
+        .then(data => {
+            messageFeedback.innerHTML = `<span style="color: #10b981;">✓ ${data.message}</span>`;
+            messageFormElement.reset();
+            setTimeout(() => { messageFeedback.innerHTML = ''; }, 5000);
+        })
+        .catch(error => {
+            messageFeedback.innerHTML = '<span style="color: #ef4444;"> Failed to send. Please call us directly.</span>';
+            console.error('Error:', error);
+        })
+        .finally(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
+    });
+}
 </script>
 
 <style>
@@ -412,10 +523,10 @@ document.addEventListener('DOMContentLoaded', function() {
 .hidden {
     display: none;
 }
-input[type="radio"] {
+input[type="checkbox"], input[type="radio"] {
     cursor: pointer;
 }
-label:has(input[type="radio"]) {
+label:has(input) {
     cursor: pointer;
 }
 .glass-premium {
@@ -427,5 +538,13 @@ label:has(input[type="radio"]) {
 }
 .shadow-glow:hover {
     box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+}
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.animate-spin {
+    display: inline-block;
+    animation: spin 1s linear infinite;
 }
 </style>

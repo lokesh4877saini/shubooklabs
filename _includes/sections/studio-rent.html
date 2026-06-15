@@ -1,42 +1,42 @@
 <!-- sections/studio-rent.html -->
-<section class="relative py-6 lg:py-24 md:py-32 bg-dark-bg">
+<section class="relative py-12 md:py-20 lg:py-32 bg-dark-bg">
 
     <div class="relative z-10 container mx-auto px-4 max-w-7xl">
 
         <!-- Price Badge -->
-        <div class="flex justify-center mb-8">
-            <div class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/5">
+        <div class="flex justify-center mb-6 md:mb-8">
+            <div class="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-full border border-white/20 bg-white/5">
                 <span class="relative flex h-2 w-2">
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
                 </span>
-                <span class="font-bold tracking-wide text-sm">BEST PRICE IN JAIPUR</span>
+                <span class="font-bold tracking-wide text-xs md:text-sm">BEST PRICE IN JAIPUR</span>
             </div>
         </div>
 
         <!-- Heading -->
-        <div class="text-center mb-6">
-            <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
+        <div class="text-center mb-4 md:mb-6">
+            <h2 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-3 md:mb-4">
                 Podcast Studio
                 <span class="text-brand">on Rent</span>
             </h2>
-            <p class="text-2xl md:text-3xl text-white/60 tracking-wide">in Jaipur</p>
-            <div class="w-20 h-1 bg-brand rounded-full mx-auto mt-6"></div>
+            <p class="text-xl md:text-3xl text-white/60 tracking-wide">in Jaipur</p>
+            <div class="w-16 md:w-20 h-1 bg-brand rounded-full mx-auto mt-4 md:mt-6"></div>
         </div>
 
         <!-- Question -->
-        <div class="text-center mb-10">
-            <p class="text-xl md:text-2xl text-white font-light tracking-wide">
+        <div class="text-center mb-8 md:mb-10">
+            <p class="text-lg md:text-2xl text-white font-light tracking-wide">
                 Looking for a premium podcast studio for rent in Jaipur?
             </p>
         </div>
 
         <!-- Full Width Image Carousel -->
-        <div class="mb-12 mt-8">
+        <div class="mb-10 md:mb-12 mt-6 md:mt-8">
             <div class="relative bg-white/5 rounded-2xl overflow-hidden border border-white/10">
 
                 <!-- Main Image Container -->
                 <div class="relative">
-                    <div class="relative overflow-hidden h-[400px] md:h-[500px] lg:h-[600px]">
+                    <div class="relative overflow-hidden h-[300px] md:h-[500px] lg:h-[600px]">
                         <img id="carouselImage" src="{{ site.data.studio-images[0].url }}" width="1200" height="800"
                             fetchpriority="high" alt="{{ site.data.studio-images[0].title }}"
                             decoding="async"
@@ -46,77 +46,72 @@
 
                     <!-- Left Arrow -->
                     <button id="prevBtn" aria-label="Previous studio image"
-                        class="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 text-white rounded-full border border-white/20 hover:bg-black/70 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">
-                        {% lucide_icon "arrow-left" size="20" class="text-white" %}
+                        class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 p-2 md:p-3 bg-black/50 text-white rounded-full border border-white/20 hover:bg-black/70 transition-all duration-200">
+                        {% lucide_icon "arrow-left" size="18" class="text-white md:w-5 md:h-5" %}
                     </button>
 
                     <!-- Right Arrow -->
                     <button id="nextBtn" aria-label="Next studio image"
-                        class="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 text-white rounded-full border border-white/20 hover:bg-black/70 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">
-                        {% lucide_icon "arrow-right" size="20" class="text-white" %}
+                        class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 p-2 md:p-3 bg-black/50 text-white rounded-full border border-white/20 hover:bg-black/70 transition-all duration-200">
+                        {% lucide_icon "arrow-right" size="18" class="text-white md:w-5 md:h-5" %}
                     </button>
 
                     <!-- Dots Indicator -->
-                    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex space-x-3" id="dotsContainer">
+                    <div class="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-1 md:gap-3" id="dotsContainer">
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Studio Stats -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-            <div class="text-center p-4 rounded-xl bg-white/5 border border-white/10">
-                <div class="text-brand text-2xl font-bold">100+</div>
-                <div class="text-text-secondary text-sm">Podcasts Recorded</div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-10 md:mb-12">
+            <div class="text-center p-3 md:p-4 rounded-xl bg-white/5 border border-white/10">
+                <div class="text-brand text-xl md:text-2xl font-bold">100+</div>
+                <div class="text-text-secondary text-xs md:text-sm">Podcasts Recorded</div>
             </div>
-            <div class="text-center p-4 rounded-xl bg-white/5 border border-white/10">
-                <div class="text-brand text-2xl font-bold">50+</div>
-                <div class="text-text-secondary text-sm">Happy Clients</div>
+            <div class="text-center p-3 md:p-4 rounded-xl bg-white/5 border border-white/10">
+                <div class="text-brand text-xl md:text-2xl font-bold">50+</div>
+                <div class="text-text-secondary text-xs md:text-sm">Happy Clients</div>
             </div>
-            <div class="text-center p-4 rounded-xl bg-white/5 border border-white/10">
-                <div class="text-brand text-2xl font-bold">24/7</div>
-                <div class="text-text-secondary text-sm">Support Available</div>
+            <div class="text-center p-3 md:p-4 rounded-xl bg-white/5 border border-white/10">
+                <div class="text-brand text-xl md:text-2xl font-bold">24/7</div>
+                <div class="text-text-secondary text-xs md:text-sm">Support Available</div>
             </div>
-            <div class="text-center p-4 rounded-xl bg-white/5 border border-white/10">
-                <div class="text-brand text-2xl font-bold">4.9</div>
-                <div class="text-text-secondary text-sm">Rating on Google</div>
+            <div class="text-center p-3 md:p-4 rounded-xl bg-white/5 border border-white/10">
+                <div class="text-brand text-xl md:text-2xl font-bold">4.9</div>
+                <div class="text-text-secondary text-xs md:text-sm">Rating on Google</div>
             </div>
         </div>
 
         <!-- Perfect For Grid -->
-        <div class="mb-12 mt-16">
-            <h3 class="text-center text-lg font-semibold text-white/70 tracking-wide mb-8">PERFECT FOR</h3>
-            <div class="grid grid-cols-2 text-center sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
-                <div
-                    class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10">
-                    {% lucide_icon "mic" size="16" class="text-brand" %}
-                    <span class="text-sm font-medium text-white/80">Podcast shooting</span>
+        <div class="mb-10 md:mb-12 mt-10 md:mt-16">
+            <h3 class="text-center text-base md:text-lg font-semibold text-white/70 tracking-wide mb-6 md:mb-8">PERFECT FOR</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-4">
+                <div class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
+                    {% lucide_icon "mic" size="14" class="text-brand md:w-4 md:h-4" %}
+                    <span class="text-xs md:text-sm font-medium text-white/80">Podcast shooting</span>
                 </div>
-                <div
-                    class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10">
-                    {% lucide_icon "users" size="16" class="text-brand" %}
-                    <span class="text-sm font-medium text-white/80">Video interviews</span>
+                <div class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
+                    {% lucide_icon "users" size="14" class="text-brand md:w-4 md:h-4" %}
+                    <span class="text-xs md:text-sm font-medium text-white/80">Video interviews</span>
                 </div>
-                <div
-                    class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10">
-                    {% lucide_icon "smartphone" size="16" class="text-brand" %}
-                    <span class="text-sm font-medium text-white/80">Reels & shorts</span>
+                <div class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
+                    {% lucide_icon "smartphone" size="14" class="text-brand md:w-4 md:h-4" %}
+                    <span class="text-xs md:text-sm font-medium text-white/80">Reels & shorts</span>
                 </div>
-                <div
-                    class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10">
-                    {% lucide_icon "youtube" size="16" class="text-brand" %}
-                    <span class="text-sm font-medium text-white/80">YouTube recordings</span>
+                <div class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
+                    {% lucide_icon "youtube" size="14" class="text-brand md:w-4 md:h-4" %}
+                    <span class="text-xs md:text-sm font-medium text-white/80">YouTube recordings</span>
                 </div>
-                <div
-                    class="flex items-center flex-wrap justify-center gap-2 px-3 py-2 rounded-full bg-white/5 border border-white/10 sm:col-span-3 lg:col-span-1">
-                    {% lucide_icon "briefcase" size="16" class="text-brand" %}
-                    <span class="text-sm font-medium text-white/80">Client brand content</span>
+                <div class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10 sm:col-span-3 lg:col-span-1">
+                    {% lucide_icon "briefcase" size="14" class="text-brand md:w-4 md:h-4" %}
+                    <span class="text-xs md:text-sm font-medium text-white/80">Client brand content</span>
                 </div>
             </div>
         </div>
 
         <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row justify-center gap-5 md:gap-6">
+        <div class="flex flex-col sm:flex-row justify-center gap-4 md:gap-6">
             {% include components/button.html url="/book-studio" text="Book Studio Now" type="primary" icon="mic" %}
         </div>
     </div>
@@ -160,46 +155,28 @@
             carouselImage.src = image.url;
             carouselImage.alt = image.title;
 
-            // Update dots with proper ARIA states
-            const dots = dotsContainer.querySelectorAll('.carousel-dot-btn');
+            // Update dots
+            const dots = dotsContainer.querySelectorAll('.dot');
             dots.forEach((dot, i) => {
-                const visualDot = dot.querySelector('.dot-visual');
                 if (i === index) {
-                    dot.setAttribute('aria-current', 'true');
-                    if (visualDot) {
-                        visualDot.classList.add('bg-brand', 'scale-110');
-                        visualDot.classList.remove('bg-white/40');
-                    }
+                    dot.classList.add('active');
                 } else {
-                    dot.setAttribute('aria-current', 'false');
-                    if (visualDot) {
-                        visualDot.classList.remove('bg-brand', 'scale-110');
-                        visualDot.classList.add('bg-white/40');
-                    }
+                    dot.classList.remove('active');
                 }
             });
         }
 
-        // Create dots with proper touch targets (44x44 minimum)
+        // Create dots
         function createDots() {
             if (!dotsContainer) return;
 
             dotsContainer.innerHTML = '';
-            dotsContainer.className = 'absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex space-x-1 sm:space-x-2';
 
             studioImages.forEach((_, index) => {
-                // Create button with larger touch area
                 const dot = document.createElement('button');
-                dot.className = 'carousel-dot-btn relative group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-black/50 rounded-full';
-                dot.setAttribute('aria-label', `Go to image ${index + 1} of ${studioImages.length}`);
-                dot.setAttribute('aria-current', index === 0 ? 'true' : 'false');
-                
-                // Inner structure: large touch area with small visual dot
-                dot.innerHTML = `
-                    <span class="block min-w-[44px] min-h-[44px] sm:min-w-[40px] sm:min-h-[40px] flex items-center justify-center">
-                        <span class="dot-visual block w-2.5 h-2.5 rounded-full transition-all duration-200 ${index === 0 ? 'bg-brand scale-110' : 'bg-white/40 group-hover:bg-white/60'}"></span>
-                    </span>
-                `;
+                dot.className = 'dot';
+                if (index === 0) dot.classList.add('active');
+                dot.setAttribute('aria-label', `Go to image ${index + 1}`);
                 
                 dot.addEventListener('click', () => {
                     currentIndex = index;
@@ -231,95 +208,145 @@
             nextBtn.addEventListener('click', nextImage);
         }
 
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                prevImage();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            }
+        });
+
         // Initialize carousel
         createDots();
         updateCarousel(0);
         
-        // Preload images for smoother manual navigation
+        // Preload images
         studioImages.forEach(img => {
             const preload = new Image();
             preload.src = img.url;
         });
     });
 </script>
-
 <style>
-    /* Touch-optimized carousel styles */
-    
-    /* Dot button base styles */
-    .carousel-dot-btn {
+    /* Dot Indicators - Clean & Modern */
+    .dot {
+        width: 8px;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
         cursor: pointer;
-        background: transparent;
+        transition: all 0.3s ease;
         border: none;
         padding: 0;
         margin: 0;
+        flex-shrink: 0;
     }
     
-    /* Visual dot transition */
-    .dot-visual {
-        transition: all 0.2s ease;
+    .dot.active {
+        width: 24px;
+        background: #3B82F6;
+        border-radius: 12px;
     }
     
-    /* Button hover effect - only for non-touch devices */
-    @media (hover: hover) {
-        .carousel-dot-btn:hover .dot-visual {
-            transform: scale(1.15);
-        }
+    /* Touch-friendly tap area */
+    .dot {
+        min-width: 32px;
+        min-height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 -6px;
+        background: transparent;
+        position: relative;
     }
     
-    /* Active/Tap feedback for touch devices */
-    .carousel-dot-btn:active .dot-visual {
-        transform: scale(0.95);
+    /* Visual dot using pseudo-element for better touch area */
+    .dot::before {
+        content: '';
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        transition: all 0.3s ease;
     }
     
-    /* Focus visible for keyboard navigation */
-    .carousel-dot-btn:focus-visible {
-        outline: none;
+    .dot.active::before {
+        width: 24px;
+        background: #3B82F6;
+        border-radius: 12px;
     }
     
-    .carousel-dot-btn:focus-visible .dot-visual {
-        ring: 2px solid #3B82F6;
-        ring-offset: 2px;
+    .dot:hover::before {
+        background: rgba(59, 130, 246, 0.7);
+        transform: scale(1.1);
     }
     
-    /* Arrow buttons touch optimization */
+    /* Arrow buttons */
     #prevBtn, #nextBtn {
-        min-width: 44px;
-        min-height: 44px;
+        min-width: 36px;
+        min-height: 36px;
         display: flex;
         align-items: center;
         justify-content: center;
     }
     
-    /* Reduced motion preference */
-    @media (prefers-reduced-motion: reduce) {
-        .dot-visual {
-            transition: none;
-        }
-        .carousel-dot-btn:hover .dot-visual {
-            transform: none;
-        }
+    /* Loading animation */
+    @keyframes spin {
+        to { transform: rotate(360deg); }
     }
     
-    /* Mobile optimization for dots spacing */
-    @media (max-width: 640px) {
-        #dotsContainer {
-            gap: 0.25rem;
+    .animate-spin {
+        animation: spin 1s linear infinite;
+    }
+    
+    /* Mobile optimizations - FIXED */
+    @media (max-width: 768px) {
+        .dot {
+            min-width: 28px;
+            min-height: 28px;
+            margin: 0 -4px;
         }
-        .carousel-dot-btn .block {
-            min-width: 40px;
-            min-height: 40px;
+        .dot::before {
+            width: 6px;
+            height: 6px;
+        }
+        .dot.active::before {
+            width: 18px;
+        }
+        #dotsContainer {
+            gap: 0;
+            bottom: 8px;
         }
     }
     
     /* Desktop spacing */
-    @media (min-width: 641px) {
+    @media (min-width: 769px) {
         #dotsContainer {
             gap: 0.5rem;
         }
-        .carousel-dot-btn .block {
-            min-width: 38px;
-            min-height: 38px;
+        .dot {
+            min-width: 44px;
+            min-height: 44px;
+            margin: 0 -8px;
+        }
+        .dot::before {
+            width: 10px;
+            height: 10px;
+        }
+        .dot.active::before {
+            width: 28px;
+        }
+    }
+    
+    /* Reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+        .dot, .dot::before {
+            transition: none;
+        }
+        .dot:hover::before {
+            transform: none;
         }
     }
 </style>
