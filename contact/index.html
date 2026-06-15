@@ -378,9 +378,8 @@ faq_subtitle: About Booking & Contact
                         </select>
                     </div>
                     <div class="grid md:grid-cols-2 gap-4 md:gap-5 mt-3 md:mt-4">
-                        <div><input type="date" name="bookingDate" required
-                                class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
-                        </div>
+                        <input type="date" id="bookingDate" name="bookingDate" required
+                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
                         <div><input type="time" name="bookingTime" required
                                 class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
                         </div>
@@ -434,71 +433,6 @@ faq_subtitle: About Booking & Contact
     </div>
 </section>
 
-<!-- Simple Message Form -->
-<section class="py-16 md:py-28 bg-dark-bg">
-    <div class="container mx-auto px-4 max-w-4xl">
-        <div class="text-center mb-8 md:mb-12">
-            <div
-                class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-brand/20 flex items-center justify-center mx-auto mb-3 md:mb-4">
-                {% lucide_icon "message-circle" size="22" class="text-brand md:w-7 md:h-7" %}
-            </div>
-            <h2 class="text-2xl md:text-4xl font-bold">Send A Message</h2>
-            <div class="w-16 md:w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-3 md:mt-4"></div>
-        </div>
-        <div class="glass-premium rounded-2xl p-5 md:p-8 border border-brand/30">
-            <form id="simpleMessageForm">
-                <input type="hidden" name="formType" value="message">
-
-                <div class="grid md:grid-cols-2 gap-4 md:gap-5">
-                    <div><input type="text" name="fullname" placeholder="Full Name" required
-                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
-                    </div>
-                    <div><input type="tel" name="phone" placeholder="Phone" required
-                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
-                    </div>
-                </div>
-                <div class="grid md:grid-cols-2 gap-4 md:gap-5 mt-3 md:mt-4">
-                    <div><input type="email" name="email" placeholder="Email" required
-                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
-                    </div>
-                    <div><input type="text" name="company" placeholder="Company"
-                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
-                    </div>
-                </div>
-                <div class="mt-3 md:mt-4">
-                    <select name="interest"
-                        class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary text-sm md:text-base transition-all">
-                        <option value="" disabled selected>I'm interested in...</option>
-                        <option>Podcast Recording</option>
-                        <option>Studio Rental</option>
-                        <option>Guest Booking</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-                <div class="mt-3 md:mt-4"><textarea name="message" rows="4" placeholder="Your Message" required
-                        class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all"></textarea>
-                </div>
-
-                <div class="mt-4 md:mt-5">
-                    <label class="flex items-start gap-2 md:gap-3 cursor-pointer">
-                        <input type="checkbox" name="agreement" value="Agreed" required
-                            class="accent-brand mt-0.5 w-3.5 h-3.5 md:w-4 md:h-4">
-                        <span class="text-text-muted text-xs">I agree to the <a href="/terms-conditions/"
-                                class="text-brand hover:underline">Terms</a> and <a href="/privacy-policy/"
-                                class="text-brand hover:underline">Privacy Policy</a>.</span>
-                    </label>
-                </div>
-
-                <button type="submit"
-                    class="w-full bg-brand hover:bg-brand-dark text-white font-semibold py-2.5 md:py-3 rounded-xl transition-all flex items-center justify-center gap-2 mt-5 md:mt-6 shadow-glow">
-                    {% lucide_icon "send" size="14" class="md:w-4 md:h-4" %} Send Message
-                </button>
-                <p id="messageFeedback" class="text-center mt-3 md:mt-4 text-xs md:text-sm"></p>
-            </form>
-        </div>
-    </div>
-</section>
-
 <!-- FAQ Section -->
 {% include sections/faq.html %}
 
@@ -538,7 +472,16 @@ faq_subtitle: About Booking & Contact
 <script>
     // Google Apps Script URL
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzWR249VlmUFLR3q1MqfRElPYD6typTsqN-Gl1rQqq_PMszz0yo4PNg1hoJd0k5BLg/exec';
+    document.addEventListener('DOMContentLoaded', () => {
+        const dateInput = document.getElementById('bookingDate');
 
+        if (dateInput) {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+
+            dateInput.min = tomorrow.toISOString().split('T')[0];
+        }
+    });
     // Toggle between forms
     document.addEventListener('DOMContentLoaded', function () {
         const btnPodcast = document.getElementById('btnPodcast');
