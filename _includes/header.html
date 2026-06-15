@@ -50,99 +50,97 @@
         <!-- Mobile Menu Button -->
         <label for="menuToggle"
           class="lg:hidden h-10 w-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center hover:bg-white/10 hover:border-brand/40 transition-all duration-300 cursor-pointer"
-          aria-label="Menu">
+          aria-label="Open menu">
           {% lucide_icon "menu" size="20" class="text-white" %}
         </label>
       </div>
     </div>
 
     <!-- Hidden Checkbox -->
-    <input type="checkbox" id="menuToggle" class="hidden">
+    <input type="checkbox" id="menuToggle" class="hidden peer">
 
     <!-- Overlay -->
-    <label for="menuToggle"
-      class="menu-overlay fixed inset-0 bg-black/50 z-40 opacity-0 invisible transition-all duration-300 cursor-pointer"></label>
+    <div class="menu-overlay fixed inset-0 bg-black/60 z-40 opacity-0 invisible transition-all duration-300"></div>
 
-    <!-- Mobile Menu (Now properly positioned as sibling) -->
-    <div id="mobileMenu" class="mobile-menu fixed top-[15px]  right-[20px] bottom-0 w-[90%] sm:w-80 md:w-96 z-50">
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed top-0 right-0 bottom-0 w-[85%] sm:w-80 z-50">
       <div
-        class="h-auto rounded-2xl  bg-dark-card/95 backdrop-blur-xl border border-brand/20 overflow-hidden shadow-xl shadow-black/20">
-        <!-- Close button inside menu - positioned at top right corner -->
+        class="h-full rounded-l-2xl bg-dark-card/98 backdrop-blur-xl border-l border-t border-b border-brand/20 overflow-y-auto shadow-xl shadow-black/30">
+        
+        <!-- Close button inside menu -->
         <label for="menuToggle" class="absolute top-4 right-4 p-2 rounded-lg hover:bg-white/10 cursor-pointer z-10"
           aria-label="Close menu">
           {% lucide_icon "x" size="24" class="text-white" %}
         </label>
 
-        <nav class="flex flex-col gap-3 p-2 mt-16 border-t border-brand/20" aria-label="Mobile navigation menu">
+        <!-- Logo inside mobile menu -->
+        <div class="px-5 pt-16 pb-4 border-b border-white/10">
+          <img src="/assets/images/logo/shubook-labs.webp" alt="Shubook Labs" width="120" height="35"
+            class="w-32 h-auto">
+        </div>
+
+        <nav class="flex flex-col gap-2 p-4" aria-label="Mobile navigation menu">
           <a href="/" class="mobile-link {% if current_url == '/' %}active{% endif %}"
-            aria-current="{% if current_url == '/' %}page{% endif %}" aria-label="Go to home page">
+            aria-current="{% if current_url == '/' %}page{% endif %}">
             <span class="flex items-center gap-3">
-              {% lucide_icon "home" size="16" class="text-brand/60" aria-hidden="true" %}
+              {% lucide_icon "home" size="18" class="text-brand/60" %}
               <span>Home</span>
             </span>
           </a>
 
           <a href="/services/" class="mobile-link {% if current_url contains '/services' %}active{% endif %}"
-            aria-current="{% if current_url contains '/services' %}page{% endif %}"
-            aria-label="View our podcast production services">
+            aria-current="{% if current_url contains '/services' %}page{% endif %}">
             <span class="flex items-center gap-3">
-              {% lucide_icon "mic" size="16" class="text-brand/60" aria-hidden="true" %}
+              {% lucide_icon "mic" size="18" class="text-brand/60" %}
               <span>Services</span>
             </span>
           </a>
 
           <a href="/studio-rent/" class="mobile-link {% if current_url contains '/studio-rent' %}active{% endif %}"
-            aria-current="{% if current_url contains '/studio-rent' %}page{% endif %}"
-            aria-label="Rent our podcast studio in Jaipur">
+            aria-current="{% if current_url contains '/studio-rent' %}page{% endif %}">
             <span class="flex items-center gap-3">
-              {% lucide_icon "video" size="16" class="text-brand/60" aria-hidden="true" %}
+              {% lucide_icon "video" size="18" class="text-brand/60" %}
               <span>Studio Rent</span>
             </span>
           </a>
 
           <a href="/podcast/" class="mobile-link {% if current_url contains '/podcast' %}active{% endif %}"
-            aria-current="{% if current_url contains '/podcast' %}page{% endif %}"
-            aria-label="Listen to The Shubook Show podcast">
+            aria-current="{% if current_url contains '/podcast' %}page{% endif %}">
             <span class="flex items-center gap-3">
-              {% lucide_icon "headphones" size="16" class="text-brand/60" aria-hidden="true" %}
+              {% lucide_icon "headphones" size="18" class="text-brand/60" %}
               <span>Podcast</span>
             </span>
           </a>
 
           <a href="/portfolio/" class="mobile-link {% if current_url contains '/portfolio' %}active{% endif %}"
-            aria-current="{% if current_url contains '/portfolio' %}page{% endif %}"
-            aria-label="View our podcast production portfolio">
+            aria-current="{% if current_url contains '/portfolio' %}page{% endif %}">
             <span class="flex items-center gap-3">
-              {% lucide_icon "folder" size="16" class="text-brand/60" aria-hidden="true" %}
+              {% lucide_icon "folder" size="18" class="text-brand/60" %}
               <span>Portfolio</span>
             </span>
           </a>
 
           <a href="/about/" class="mobile-link {% if current_url contains '/about' %}active{% endif %}"
-            aria-current="{% if current_url contains '/about' %}page{% endif %}"
-            aria-label="Learn about Shubook Labs and our team">
+            aria-current="{% if current_url contains '/about' %}page{% endif %}">
             <span class="flex items-center gap-3">
-              {% lucide_icon "users" size="16" class="text-brand/60" aria-hidden="true" %}
+              {% lucide_icon "users" size="18" class="text-brand/60" %}
               <span>About</span>
             </span>
           </a>
 
           <a href="/blog/" class="mobile-link {% if current_url contains '/blog' %}active{% endif %}"
-            aria-current="{% if current_url contains '/blog' %}page{% endif %}"
-            aria-label="Read our latest blog posts about podcasting">
+            aria-current="{% if current_url contains '/blog' %}page{% endif %}">
             <span class="flex items-center gap-3">
-              {% lucide_icon "book-open" size="16" class="text-brand/60" aria-hidden="true" %}
+              {% lucide_icon "book-open" size="18" class="text-brand/60" %}
               <span>Blog</span>
             </span>
           </a>
 
-          <a href="/contact/"
-            class="mobile-link border-t border-brand/10 mt-2 pt-3 {% if current_url contains '/contact' %}active{% endif %}"
-            aria-current="{% if current_url contains '/contact' %}page{% endif %}"
-            aria-label="Book a podcast recording session">
+          <a href="/contact/" class="mobile-link mt-4 border-t border-white/10 pt-4 {% if current_url contains '/contact' %}active{% endif %}"
+            aria-current="{% if current_url contains '/contact' %}page{% endif %}">
             <span class="flex items-center gap-3 text-brand">
-              {% lucide_icon "calendar" size="16" aria-hidden="true" %}
-              <span>Book a Session</span>
+              {% lucide_icon "calendar" size="18" %}
+              <span class="font-semibold">Book a Session</span>
             </span>
           </a>
         </nav>
@@ -153,7 +151,7 @@
 
 <style>
   /* ============================================
-     CSS-ONLY MOBILE MENU (Checkbox Hack)
+     CSS-ONLY MOBILE MENU (Checkbox Hack) - FIXED
   ============================================ */
 
   /* Hide checkbox */
@@ -161,31 +159,39 @@
     display: none;
   }
 
-  /* Mobile Menu - Hidden by default */
+  /* Overlay - Hidden by default */
+  .menu-overlay {
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  /* Mobile Menu - Hidden by default (off-screen right) */
   .mobile-menu {
-    transform: translateX(calc(100% + 40px));
+    transform: translateX(100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* Show menu when checkbox is checked */
-  #menuToggle:checked~.mobile-menu {
+  #menuToggle:checked ~ .mobile-menu {
     transform: translateX(0);
   }
 
   /* Show overlay when checkbox is checked */
-  #menuToggle:checked~.menu-overlay {
+  #menuToggle:checked ~ .menu-overlay {
     opacity: 1;
     visibility: visible;
-  }
-
-  /* Fix overlay click - make it close menu */
-  .menu-overlay {
-    cursor: pointer;
-  }
-
-  /* Close menu when clicking overlay */
-  #menuToggle:checked~.menu-overlay {
     pointer-events: auto;
+  }
+
+  /* Fix: Ensure overlay covers everything below header */
+  .menu-overlay {
+    top: 80px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Fix: Prevent body scroll when menu is open */
+  body:has(#menuToggle:checked) {
+    overflow: hidden;
   }
 
   /* ============================================
@@ -258,7 +264,7 @@
   /* Mobile Navigation Links */
   .mobile-link {
     display: block;
-    padding: 0.875rem 1.25rem;
+    padding: 0.875rem 1rem;
     font-weight: 500;
     font-size: 0.9375rem;
     color: #CBD5E1;
@@ -279,8 +285,6 @@
 
   /* WhatsApp Button */
   .whatsapp-btn {
-    transform: scale(1.09);
-    width: fit-content;
     transition: all 0.3s ease;
   }
 
