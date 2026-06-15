@@ -109,304 +109,323 @@
     (function () {
         let isCarouselLoaded = false;
         const isMobile = window.innerWidth < 768;
-        const episodes = {{ site.data.podcast-episodes | jsonify }};
+        const episodes = {{ site.data.podcast-episodes | jsonify
+    }};
 
-        function loadCarousel() {
-            if (isCarouselLoaded || !episodes || episodes.length === 0) return;
-            isCarouselLoaded = true;
+    function loadCarousel() {
+        if (isCarouselLoaded || !episodes || episodes.length === 0) return;
+        isCarouselLoaded = true;
 
-            if (!isMobile) {
-                // DESKTOP 3D CAROUSEL
-                let currentIndex = 0;
-                let currentPlayer = null;
-                let currentPlayingId = null;
+        if (!isMobile) {
+            // DESKTOP 3D CAROUSEL
+            let currentIndex = 0;
+            let currentPlayer = null;
+            let currentPlayingId = null;
 
-                function extractYouTubeId(url) {
-                    if (!url) return null;
-                    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([^?&]+)/);
-                    return match ? match[1] : null;
-                }
+            function extractYouTubeId(url) {
+                if (!url) return null;
+                const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([^?&]+)/);
+                return match ? match[1] : null;
+            }
 
-                function getThumbnailUrl(id) { return 'https://img.youtube.com/vi/' + id + '/maxresdefault.jpg'; }
-                function getEmbedUrl(id) { return 'https://www.youtube.com/embed/' + id + '?autoplay=1&modestbranding=1&rel=0&controls=1&playsinline=1'; }
+            function getThumbnailUrl(id) { return 'https://img.youtube.com/vi/' + id + '/maxresdefault.jpg'; }
+            function getEmbedUrl(id) { return 'https://www.youtube.com/embed/' + id + '?autoplay=1&modestbranding=1&rel=0&controls=1&playsinline=1'; }
 
-                function createCard(episode, position, isClickable) {
-                    var videoId = extractYouTubeId(episode.url);
-                    if (!videoId) return null;
-                    var card = document.createElement('div');
-                    card.className = 'carousel-card ' + position;
-                    card.setAttribute('data-video-id', videoId);
-                    var thumbnail = document.createElement('div');
-                    thumbnail.className = 'carousel-card-thumbnail';
-                    var img = document.createElement('img');
-                    img.src = getThumbnailUrl(videoId);
-                    img.alt = episode.title;
-                    img.loading = 'lazy';
-                    thumbnail.appendChild(img);
-                    var iframe = document.createElement('iframe');
-                    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-                    iframe.setAttribute('allowfullscreen', 'true');
-                    iframe.style.display = 'none';
-                    thumbnail.appendChild(iframe);
-                    var info = document.createElement('div');
-                    info.className = 'carousel-card-info';
-                    var title = document.createElement('div');
-                    title.className = 'carousel-card-title';
-                    title.textContent = episode.title;
-                    var desc = document.createElement('div');
-                    desc.className = 'carousel-card-desc';
-                    var descText = episode.description || '';
-                    desc.textContent = descText.length > 60 ? descText.substring(0, 60) + '...' : descText;
-                    info.appendChild(title);
-                    info.appendChild(desc);
-                    card.appendChild(thumbnail);
-                    card.appendChild(info);
-                    if (isClickable) {
-                        card.classList.add('clickable');
-                        card.addEventListener('click', function () {
-                            for (var i = 0; i < episodes.length; i++) {
-                                if (extractYouTubeId(episodes[i].url) === videoId && i !== currentIndex) {
-                                    updateCarousel(i);
-                                    break;
-                                }
+            function createCard(episode, position, isClickable) {
+                var videoId = extractYouTubeId(episode.url);
+                if (!videoId) return null;
+                var card = document.createElement('div');
+                card.className = 'carousel-card ' + position;
+                card.setAttribute('data-video-id', videoId);
+                card.setAttribute('data-position', position);
+                var thumbnail = document.createElement('div');
+                thumbnail.className = 'carousel-card-thumbnail';
+                var img = document.createElement('img');
+                img.src = getThumbnailUrl(videoId);
+                img.alt = episode.title;
+                img.loading = 'lazy';
+                thumbnail.appendChild(img);
+                var iframe = document.createElement('iframe');
+                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                iframe.setAttribute('allowfullscreen', 'true');
+                iframe.style.display = 'none';
+                thumbnail.appendChild(iframe);
+                var info = document.createElement('div');
+                info.className = 'carousel-card-info';
+                var title = document.createElement('div');
+                title.className = 'carousel-card-title';
+                title.textContent = episode.title;
+                var desc = document.createElement('div');
+                desc.className = 'carousel-card-desc';
+                var descText = episode.description || '';
+                desc.textContent = descText.length > 60 ? descText.substring(0, 60) + '...' : descText;
+                info.appendChild(title);
+                info.appendChild(desc);
+                card.appendChild(thumbnail);
+                card.appendChild(info);
+                if (isClickable) {
+                    card.classList.add('clickable');
+                    card.addEventListener('click', function () {
+                        for (var i = 0; i < episodes.length; i++) {
+                            if (extractYouTubeId(episodes[i].url) === videoId && i !== currentIndex) {
+                                updateCarousel(i);
+                                break;
                             }
-                        });
-                    }
-                    return card;
-                }
-
-                function playVideoOnCard(card) {
-                    var thumbnail = card.querySelector('.carousel-card-thumbnail');
-                    var img = thumbnail.querySelector('img');
-                    var iframe = thumbnail.querySelector('iframe');
-                    var videoId = card.getAttribute('data-video-id');
-                    if (currentPlayingId === videoId) return;
-                    if (currentPlayer) {
-                        var prevIframe = currentPlayer.querySelector('iframe');
-                        var prevImg = currentPlayer.querySelector('img');
-                        if (prevIframe) { prevIframe.src = ''; prevIframe.style.display = 'none'; }
-                        if (prevImg) prevImg.style.display = 'block';
-                    }
-                    iframe.src = getEmbedUrl(videoId);
-                    iframe.style.display = 'block';
-                    img.style.display = 'none';
-                    currentPlayer = thumbnail;
-                    currentPlayingId = videoId;
-                }
-
-                function stopCurrentVideo() {
-                    if (currentPlayer) {
-                        var img = currentPlayer.querySelector('img');
-                        var iframe = currentPlayer.querySelector('iframe');
-                        if (iframe) { iframe.src = ''; iframe.style.display = 'none'; }
-                        if (img) img.style.display = 'block';
-                        currentPlayer = null;
-                        currentPlayingId = null;
-                    }
-                }
-
-                function updateCarousel(newIndex) {
-                    if (newIndex === currentIndex) return;
-                    stopCurrentVideo();
-                    currentIndex = newIndex;
-                    renderCarousel();
-                }
-
-                function renderCarousel() {
-                    var stage = document.getElementById('carousel3dStage');
-                    if (!stage) return;
-                    stage.innerHTML = '';
-                    var total = episodes.length;
-                    var indexes = [
-                        (currentIndex - 2 + total) % total,
-                        (currentIndex - 1 + total) % total,
-                        currentIndex,
-                        (currentIndex + 1) % total,
-                        (currentIndex + 2) % total
-                    ];
-                    var positions = ['left-2', 'left-1', 'center', 'right-1', 'right-2'];
-                    var isClickable = [false, true, false, true, false];
-                    for (var i = 0; i < 5; i++) {
-                        var card = createCard(episodes[indexes[i]], positions[i], isClickable[i]);
-                        if (card && positions[i] === 'center') {
-                            card.addEventListener('mouseenter', function () { playVideoOnCard(card); });
-                            card.addEventListener('mouseleave', stopCurrentVideo);
                         }
-                        if (card) stage.appendChild(card);
-                    }
-                    updateDots();
-                }
-
-                function updateDots() {
-                    var dotsContainer = document.getElementById('carouselDots');
-                    if (!dotsContainer) return;
-                    dotsContainer.innerHTML = '';
-                    for (var i = 0; i < episodes.length; i++) {
-                        var dot = document.createElement('button');
-                        dot.className = 'carousel-dot';
-                        if (i === currentIndex) dot.classList.add('active');
-                        dot.addEventListener('click', (function(idx) { return function() { updateCarousel(idx); }; })(i));
-                        dotsContainer.appendChild(dot);
-                    }
-                }
-
-                function prevSlide() { updateCarousel((currentIndex - 1 + episodes.length) % episodes.length); }
-                function nextSlide() { updateCarousel((currentIndex + 1) % episodes.length); }
-
-                var prevBtn = document.getElementById('desktopPrevBtn');
-                var nextBtn = document.getElementById('desktopNextBtn');
-                if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-                if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-                renderCarousel();
-
-            } else {
-                // MOBILE SIMPLE CARD
-                let currentIndex = 0;
-                let player = null;
-                let isYouTubeAPIReady = false;
-
-                var episodeTitle = document.getElementById('episodeTitleMobile');
-                var episodeDesc = document.getElementById('episodeDescMobile');
-                var prevBtn = document.getElementById('prevEpisodeMobile');
-                var nextBtn = document.getElementById('nextEpisodeMobile');
-                var videoThumbnail = document.getElementById('videoThumbnailMobile');
-                var playButton = document.getElementById('playButtonMobile');
-                var youtubePlayerDiv = document.getElementById('youtubePlayerMobile');
-                var loadingIndicator = document.getElementById('loadingIndicatorMobile');
-
-                function getYouTubeId(url) {
-                    if (!url) return null;
-                    var match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([^?&]+)/);
-                    return match ? match[1] : null;
-                }
-
-                function getYouTubeThumbnail(id) { return 'https://img.youtube.com/vi/' + id + '/maxresdefault.jpg'; }
-
-                function loadYouTubeAPI() {
-                    return new Promise(function(resolve, reject) {
-                        if (window.YT && window.YT.Player) { isYouTubeAPIReady = true; resolve(); return; }
-                        if (document.getElementById('youtube-iframe-api')) {
-                            var check = setInterval(function() {
-                                if (window.YT && window.YT.Player) { clearInterval(check); isYouTubeAPIReady = true; resolve(); }
-                            }, 100);
-                            return;
-                        }
-                        var tag = document.createElement('script');
-                        tag.id = 'youtube-iframe-api';
-                        tag.src = 'https://www.youtube.com/iframe_api';
-                        tag.async = true;
-                        tag.defer = true;
-                        tag.onerror = function() { reject(new Error('Failed to load YouTube API')); };
-                        document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
-                        window.onYouTubeIframeAPIReady = function() { isYouTubeAPIReady = true; resolve(); };
-                        setTimeout(function() { if (!isYouTubeAPIReady) reject(new Error('YouTube API timeout')); }, 10000);
                     });
                 }
+                return card;
+            }
 
-                function initPlayer(videoId) {
-                    if (!videoId) return;
-                    if (loadingIndicator) loadingIndicator.style.display = 'flex';
-                    if (videoThumbnail) videoThumbnail.style.opacity = '0.5';
-                    loadYouTubeAPI().then(function() {
-                        if (youtubePlayerDiv) youtubePlayerDiv.style.display = 'block';
-                        if (player && player.destroy) player.destroy();
-                        player = new YT.Player('youtubePlayerMobile', {
-                            height: '100%', width: '100%', videoId: videoId,
-                            playerVars: { autoplay: 1, rel: 0, modestbranding: 1, controls: 1, playsinline: 1, origin: window.location.origin },
-                            events: {
-                                onReady: function(e) {
+            function playVideoOnCard(card) {
+                // ONLY play video if this is the center card
+                var position = card.getAttribute('data-position');
+                if (position !== 'center') return;
+
+                var thumbnail = card.querySelector('.carousel-card-thumbnail');
+                var img = thumbnail.querySelector('img');
+                var iframe = thumbnail.querySelector('iframe');
+                var videoId = card.getAttribute('data-video-id');
+                if (currentPlayingId === videoId) return;
+
+                // Stop current video if playing
+                if (currentPlayer) {
+                    var prevIframe = currentPlayer.querySelector('iframe');
+                    var prevImg = currentPlayer.querySelector('img');
+                    if (prevIframe) { prevIframe.src = ''; prevIframe.style.display = 'none'; }
+                    if (prevImg) prevImg.style.display = 'block';
+                }
+
+                iframe.src = getEmbedUrl(videoId);
+                iframe.style.display = 'block';
+                img.style.display = 'none';
+                currentPlayer = thumbnail;
+                currentPlayingId = videoId;
+            }
+
+            function stopCurrentVideo() {
+                if (currentPlayer) {
+                    var img = currentPlayer.querySelector('img');
+                    var iframe = currentPlayer.querySelector('iframe');
+                    if (iframe) { iframe.src = ''; iframe.style.display = 'none'; }
+                    if (img) img.style.display = 'block';
+                    currentPlayer = null;
+                    currentPlayingId = null;
+                }
+            }
+
+            function updateCarousel(newIndex) {
+                if (newIndex === currentIndex) return;
+                stopCurrentVideo();
+                currentIndex = newIndex;
+                renderCarousel();
+            }
+
+            function renderCarousel() {
+                var stage = document.getElementById('carousel3dStage');
+                if (!stage) return;
+                stage.innerHTML = '';
+                var total = episodes.length;
+                var indexes = [
+                    (currentIndex - 2 + total) % total,
+                    (currentIndex - 1 + total) % total,
+                    currentIndex,
+                    (currentIndex + 1) % total,
+                    (currentIndex + 2) % total
+                ];
+                var positions = ['left-2', 'left-1', 'center', 'right-1', 'right-2'];
+                var isClickable = [false, true, false, true, false];
+                var centerCard = null;
+
+                for (var i = 0; i < 5; i++) {
+                    var card = createCard(episodes[indexes[i]], positions[i], isClickable[i]);
+                    if (card && positions[i] === 'center') {
+                        centerCard = card;
+                    }
+                    if (card) stage.appendChild(card);
+                }
+
+                // Attach hover events ONLY to the center card
+                if (centerCard) {
+                    centerCard.addEventListener('mouseenter', function () {
+                        playVideoOnCard(centerCard);
+                    });
+                    centerCard.addEventListener('mouseleave', stopCurrentVideo);
+                }
+
+                updateDots();
+            }
+
+            function updateDots() {
+                var dotsContainer = document.getElementById('carouselDots');
+                if (!dotsContainer) return;
+                dotsContainer.innerHTML = '';
+                for (var i = 0; i < episodes.length; i++) {
+                    var dot = document.createElement('button');
+                    dot.className = 'carousel-dot';
+                    if (i === currentIndex) dot.classList.add('active');
+                    dot.addEventListener('click', (function (idx) { return function () { updateCarousel(idx); }; })(i));
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            function prevSlide() { updateCarousel((currentIndex - 1 + episodes.length) % episodes.length); }
+            function nextSlide() { updateCarousel((currentIndex + 1) % episodes.length); }
+
+            var prevBtn = document.getElementById('desktopPrevBtn');
+            var nextBtn = document.getElementById('desktopNextBtn');
+            if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+            if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+            renderCarousel();
+
+        } else {
+            // MOBILE SIMPLE CARD (unchanged)
+            let currentIndex = 0;
+            let player = null;
+            let isYouTubeAPIReady = false;
+
+            var episodeTitle = document.getElementById('episodeTitleMobile');
+            var episodeDesc = document.getElementById('episodeDescMobile');
+            var prevBtn = document.getElementById('prevEpisodeMobile');
+            var nextBtn = document.getElementById('nextEpisodeMobile');
+            var videoThumbnail = document.getElementById('videoThumbnailMobile');
+            var playButton = document.getElementById('playButtonMobile');
+            var youtubePlayerDiv = document.getElementById('youtubePlayerMobile');
+            var loadingIndicator = document.getElementById('loadingIndicatorMobile');
+
+            function getYouTubeId(url) {
+                if (!url) return null;
+                var match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([^?&]+)/);
+                return match ? match[1] : null;
+            }
+
+            function getYouTubeThumbnail(id) { return 'https://img.youtube.com/vi/' + id + '/maxresdefault.jpg'; }
+
+            function loadYouTubeAPI() {
+                return new Promise(function (resolve, reject) {
+                    if (window.YT && window.YT.Player) { isYouTubeAPIReady = true; resolve(); return; }
+                    if (document.getElementById('youtube-iframe-api')) {
+                        var check = setInterval(function () {
+                            if (window.YT && window.YT.Player) { clearInterval(check); isYouTubeAPIReady = true; resolve(); }
+                        }, 100);
+                        return;
+                    }
+                    var tag = document.createElement('script');
+                    tag.id = 'youtube-iframe-api';
+                    tag.src = 'https://www.youtube.com/iframe_api';
+                    tag.async = true;
+                    tag.defer = true;
+                    tag.onerror = function () { reject(new Error('Failed to load YouTube API')); };
+                    document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
+                    window.onYouTubeIframeAPIReady = function () { isYouTubeAPIReady = true; resolve(); };
+                    setTimeout(function () { if (!isYouTubeAPIReady) reject(new Error('YouTube API timeout')); }, 10000);
+                });
+            }
+
+            function initPlayer(videoId) {
+                if (!videoId) return;
+                if (loadingIndicator) loadingIndicator.style.display = 'flex';
+                if (videoThumbnail) videoThumbnail.style.opacity = '0.5';
+                loadYouTubeAPI().then(function () {
+                    if (youtubePlayerDiv) youtubePlayerDiv.style.display = 'block';
+                    if (player && player.destroy) player.destroy();
+                    player = new YT.Player('youtubePlayerMobile', {
+                        height: '100%', width: '100%', videoId: videoId,
+                        playerVars: { autoplay: 1, rel: 0, modestbranding: 1, controls: 1, playsinline: 1, origin: window.location.origin },
+                        events: {
+                            onReady: function (e) {
+                                if (loadingIndicator) loadingIndicator.style.display = 'none';
+                                if (videoThumbnail) videoThumbnail.style.display = 'none';
+                                if (playButton) playButton.style.display = 'none';
+                                e.target.playVideo();
+                            },
+                            onStateChange: function (e) {
+                                if (e.data === YT.PlayerState.PLAYING) {
                                     if (loadingIndicator) loadingIndicator.style.display = 'none';
                                     if (videoThumbnail) videoThumbnail.style.display = 'none';
                                     if (playButton) playButton.style.display = 'none';
-                                    e.target.playVideo();
-                                },
-                                onStateChange: function(e) {
-                                    if (e.data === YT.PlayerState.PLAYING) {
-                                        if (loadingIndicator) loadingIndicator.style.display = 'none';
-                                        if (videoThumbnail) videoThumbnail.style.display = 'none';
-                                        if (playButton) playButton.style.display = 'none';
-                                    }
-                                    if (e.data === YT.PlayerState.ENDED) {
-                                        if (videoThumbnail) { videoThumbnail.style.display = 'block'; videoThumbnail.style.opacity = '1'; }
-                                        if (playButton) playButton.style.display = 'flex';
-                                        if (youtubePlayerDiv) youtubePlayerDiv.style.display = 'none';
-                                    }
-                                },
-                                onError: function(e) {
-                                    if (loadingIndicator) loadingIndicator.style.display = 'none';
+                                }
+                                if (e.data === YT.PlayerState.ENDED) {
                                     if (videoThumbnail) { videoThumbnail.style.display = 'block'; videoThumbnail.style.opacity = '1'; }
                                     if (playButton) playButton.style.display = 'flex';
                                     if (youtubePlayerDiv) youtubePlayerDiv.style.display = 'none';
                                 }
+                            },
+                            onError: function (e) {
+                                if (loadingIndicator) loadingIndicator.style.display = 'none';
+                                if (videoThumbnail) { videoThumbnail.style.display = 'block'; videoThumbnail.style.opacity = '1'; }
+                                if (playButton) playButton.style.display = 'flex';
+                                if (youtubePlayerDiv) youtubePlayerDiv.style.display = 'none';
                             }
-                        });
-                    }).catch(function() {
-                        if (loadingIndicator) loadingIndicator.style.display = 'none';
-                        if (videoThumbnail) { videoThumbnail.style.display = 'block'; videoThumbnail.style.opacity = '1'; }
-                        if (playButton) playButton.style.display = 'flex';
+                        }
                     });
-                }
-
-                function playVideo() {
-                    var episode = episodes[currentIndex];
-                    if (!episode) return;
-                    var videoId = getYouTubeId(episode.url);
-                    if (videoId) initPlayer(videoId);
-                }
-
-                function updateContent(index) {
-                    var episode = episodes[index];
-                    if (!episode) return;
-                    if (episodeTitle) episodeTitle.textContent = episode.title;
-                    if (episodeDesc) episodeDesc.textContent = episode.description || '';
-                    var videoId = getYouTubeId(episode.url);
-                    if (videoId && videoThumbnail) {
-                        videoThumbnail.src = getYouTubeThumbnail(videoId);
-                        videoThumbnail.style.display = 'block';
-                        videoThumbnail.style.opacity = '1';
-                    }
-                    if (playButton) playButton.style.display = 'flex';
-                    if (youtubePlayerDiv) youtubePlayerDiv.style.display = 'none';
+                }).catch(function () {
                     if (loadingIndicator) loadingIndicator.style.display = 'none';
-                    if (player && player.destroy) { player.destroy(); player = null; }
-                }
-
-                function nextEpisode() { currentIndex = (currentIndex + 1) % episodes.length; updateContent(currentIndex); }
-                function prevEpisode() { currentIndex = (currentIndex - 1 + episodes.length) % episodes.length; updateContent(currentIndex); }
-
-                if (playButton) playButton.addEventListener('click', function(e) { e.preventDefault(); playVideo(); });
-                if (prevBtn) prevBtn.addEventListener('click', function(e) { e.preventDefault(); prevEpisode(); });
-                if (nextBtn) nextBtn.addEventListener('click', function(e) { e.preventDefault(); nextEpisode(); });
-                updateContent(0);
-            }
-        }
-
-        // Lazy load on scroll
-        var section = document.querySelector('.relative.py-6.lg\\:py-24.md\\:py-32');
-        if (section) {
-            if (!isMobile) {
-                if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', function() { setTimeout(loadCarousel, 100); });
-                } else { setTimeout(loadCarousel, 100); }
-            } else if ('IntersectionObserver' in window) {
-                var observer = new IntersectionObserver(function(entries) {
-                    if (entries[0].isIntersecting) {
-                        setTimeout(loadCarousel, 100);
-                        observer.disconnect();
-                    }
-                }, { threshold: 0.05 });
-                observer.observe(section);
-            } else {
-                window.addEventListener('scroll', function onScroll() {
-                    var rect = section.getBoundingClientRect();
-                    if (rect.top < window.innerHeight + 200) {
-                        loadCarousel();
-                        window.removeEventListener('scroll', onScroll);
-                    }
+                    if (videoThumbnail) { videoThumbnail.style.display = 'block'; videoThumbnail.style.opacity = '1'; }
+                    if (playButton) playButton.style.display = 'flex';
                 });
             }
+
+            function playVideo() {
+                var episode = episodes[currentIndex];
+                if (!episode) return;
+                var videoId = getYouTubeId(episode.url);
+                if (videoId) initPlayer(videoId);
+            }
+
+            function updateContent(index) {
+                var episode = episodes[index];
+                if (!episode) return;
+                if (episodeTitle) episodeTitle.textContent = episode.title;
+                if (episodeDesc) episodeDesc.textContent = episode.description || '';
+                var videoId = getYouTubeId(episode.url);
+                if (videoId && videoThumbnail) {
+                    videoThumbnail.src = getYouTubeThumbnail(videoId);
+                    videoThumbnail.style.display = 'block';
+                    videoThumbnail.style.opacity = '1';
+                }
+                if (playButton) playButton.style.display = 'flex';
+                if (youtubePlayerDiv) youtubePlayerDiv.style.display = 'none';
+                if (loadingIndicator) loadingIndicator.style.display = 'none';
+                if (player && player.destroy) { player.destroy(); player = null; }
+            }
+
+            function nextEpisode() { currentIndex = (currentIndex + 1) % episodes.length; updateContent(currentIndex); }
+            function prevEpisode() { currentIndex = (currentIndex - 1 + episodes.length) % episodes.length; updateContent(currentIndex); }
+
+            if (playButton) playButton.addEventListener('click', function (e) { e.preventDefault(); playVideo(); });
+            if (prevBtn) prevBtn.addEventListener('click', function (e) { e.preventDefault(); prevEpisode(); });
+            if (nextBtn) nextBtn.addEventListener('click', function (e) { e.preventDefault(); nextEpisode(); });
+            updateContent(0);
         }
-    })();
+    }
+
+    // Lazy load on scroll
+    var section = document.querySelector('.relative.py-6.lg\\:py-24.md\\:py-32');
+    if (section) {
+        if (!isMobile) {
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function () { setTimeout(loadCarousel, 100); });
+            } else { setTimeout(loadCarousel, 100); }
+        } else if ('IntersectionObserver' in window) {
+            var observer = new IntersectionObserver(function (entries) {
+                if (entries[0].isIntersecting) {
+                    setTimeout(loadCarousel, 100);
+                    observer.disconnect();
+                }
+            }, { threshold: 0.05 });
+            observer.observe(section);
+        } else {
+            window.addEventListener('scroll', function onScroll() {
+                var rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight + 200) {
+                    loadCarousel();
+                    window.removeEventListener('scroll', onScroll);
+                }
+            });
+        }
+    }
+}) ();
 </script>
 
 <style>
@@ -416,48 +435,200 @@
     }
 
     @keyframes pulse-slow {
-        0%, 100% { opacity: 0.4; transform: scale(1); }
-        50% { opacity: 0.7; transform: scale(1.1); }
+
+        0%,
+        100% {
+            opacity: 0.4;
+            transform: scale(1);
+        }
+
+        50% {
+            opacity: 0.7;
+            transform: scale(1.1);
+        }
     }
-    .animate-pulse-slow { animation: pulse-slow 8s ease-in-out infinite; }
+
+    .animate-pulse-slow {
+        animation: pulse-slow 8s ease-in-out infinite;
+    }
 
     /* Desktop 3D Carousel Styles */
-    .hidden.md\:block .glass-premium { overflow: visible; }
-    .desktop-carousel-container { position: relative; width: 100%; margin: 0 auto; }
-    .carousel-3d-stage { position: relative; display: flex; justify-content: center; align-items: center; min-height: 550px; perspective: 1200px; }
+    .hidden.md\:block .glass-premium {
+        overflow: visible;
+    }
+
+    .desktop-carousel-container {
+        position: relative;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .carousel-3d-stage {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 550px;
+        perspective: 1200px;
+    }
+
     .carousel-card {
-        position: absolute; width: 330px; background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(17, 24, 39, 0.98));
-        border-radius: 20px; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        border: 1px solid rgba(59, 130, 246, 0.2); cursor: pointer;
+        position: absolute;
+        width: 330px;
+        background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(17, 24, 39, 0.98));
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        cursor: pointer;
     }
-    .carousel-card.center { z-index: 40; width: 680px; transform: scale(1) translateX(0) translateY(0); }
-    .carousel-card.left-1 { z-index: 30; transform: scale(0.85) translateX(0px) translateY(10px); filter: brightness(0.8); opacity: 0.9; }
-    .carousel-card.right-1 { z-index: 30; transform: scale(0.85) translateX(0px) translateY(10px); filter: brightness(0.8); opacity: 0.9; }
-    .carousel-card.left-2 { z-index: 20; transform: scale(0.7) translateX(-110px) translateY(25px); filter: brightness(0.6) blur(1px); opacity: 0.7; pointer-events: none; }
-    .carousel-card.right-2 { z-index: 20; transform: scale(0.7) translateX(110px) translateY(25px); filter: brightness(0.6) blur(1px); opacity: 0.7; pointer-events: none; }
-    .carousel-card-thumbnail { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; overflow: hidden; }
-    .carousel-card-thumbnail img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; display: block; }
-    .carousel-card:hover .carousel-card-thumbnail img { transform: scale(1.05); }
-    .carousel-card-thumbnail iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-    .carousel-card-info { padding: 12px 16px 16px; background: linear-gradient(to top, #0f172a, #111827); }
-    .carousel-card-title { font-weight: 700; font-size: 0.9rem; color: #fff; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .carousel-card-desc { font-size: 0.7rem; color: #94a3b8; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+    .carousel-card.center {
+        z-index: 40;
+        width: 680px;
+        transform: scale(1) translateX(0) translateY(0);
+    }
+
+    .carousel-card.left-1 {
+        z-index: 30;
+        transform: scale(0.85) translateX(0px) translateY(10px);
+        filter: brightness(0.8);
+        opacity: 0.9;
+    }
+
+    .carousel-card.right-1 {
+        z-index: 30;
+        transform: scale(0.85) translateX(0px) translateY(10px);
+        filter: brightness(0.8);
+        opacity: 0.9;
+    }
+
+    .carousel-card.left-2 {
+        z-index: 20;
+        transform: scale(0.7) translateX(-110px) translateY(25px);
+        filter: brightness(0.6) blur(1px);
+        opacity: 0.7;
+        pointer-events: none;
+    }
+
+    .carousel-card.right-2 {
+        z-index: 20;
+        transform: scale(0.7) translateX(110px) translateY(25px);
+        filter: brightness(0.6) blur(1px);
+        opacity: 0.7;
+        pointer-events: none;
+    }
+
+    .carousel-card-thumbnail {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: #000;
+        overflow: hidden;
+    }
+
+    .carousel-card-thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        display: block;
+    }
+
+    .carousel-card:hover .carousel-card-thumbnail img {
+        transform: scale(1.05);
+    }
+
+    .carousel-card-thumbnail iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .carousel-card-info {
+        padding: 12px 16px 16px;
+        background: linear-gradient(to top, #0f172a, #111827);
+    }
+
+    .carousel-card-title {
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: #fff;
+        margin-bottom: 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .carousel-card-desc {
+        font-size: 0.7rem;
+        color: #94a3b8;
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
     .carousel-card.clickable .carousel-card-thumbnail::after {
-        content: "▶"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-        width: 44px; height: 44px; background: rgba(0,0,0,0.7); border-radius: 50%;
-        display: flex; align-items: center; justify-content: center; color: white; font-size: 18px;
-        pointer-events: none; z-index: 10; transition: all 0.2s ease;
+        content: "▶";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 44px;
+        height: 44px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 18px;
+        pointer-events: none;
+        z-index: 10;
+        transition: all 0.2s ease;
     }
-    .carousel-card.clickable:hover .carousel-card-thumbnail::after { background: #3b82f6; transform: translate(-50%, -50%) scale(1.1); }
+
+    .carousel-card.clickable:hover .carousel-card-thumbnail::after {
+        background: #3b82f6;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
     .carousel-nav-btn {
-        position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px;
-        background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); border: 1px solid rgba(59,130,246,0.3);
-        border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;
-        transition: all 0.2s ease; z-index: 50;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 48px;
+        height: 48px;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        z-index: 50;
     }
-    .carousel-nav-btn:hover { background: #3b82f6; transform: translateY(-50%) scale(1.1); border-color: rgba(96,165,250,0.8); }
-    .carousel-nav-prev { left: -60px; }
-    .carousel-nav-next { right: -60px; }
+
+    .carousel-nav-btn:hover {
+        background: #3b82f6;
+        transform: translateY(-50%) scale(1.1);
+        border-color: rgba(96, 165, 250, 0.8);
+    }
+
+    .carousel-nav-prev {
+        left: -60px;
+    }
+
+    .carousel-nav-next {
+        right: -60px;
+    }
 
     /* Dot Indicators - Clean & Consistent */
     .carousel-dots-container {
@@ -466,6 +637,7 @@
         gap: 12px;
         margin-top: 30px;
     }
+
     .carousel-dot {
         width: 8px;
         height: 8px;
@@ -477,45 +649,128 @@
         padding: 0;
         margin: 0;
     }
+
     .carousel-dot.active {
         width: 28px;
         background: #3b82f6 !important;
         border-radius: 10px;
     }
+
     .carousel-dot:hover {
         background: #60a5fa !important;
     }
 
     /* Mobile Styles */
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .animate-spin { animation: spin 1s linear infinite; }
-    #youtubePlayerMobile { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: auto; }
-    #videoThumbnailMobile { transition: opacity 0.3s ease; pointer-events: none; cursor: pointer; }
-    #playButtonMobile { transition: opacity 0.3s ease; cursor: pointer; }
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .animate-spin {
+        animation: spin 1s linear infinite;
+    }
+
+    #youtubePlayerMobile {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: auto;
+    }
+
+    #videoThumbnailMobile {
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        cursor: pointer;
+    }
+
+    #playButtonMobile {
+        transition: opacity 0.3s ease;
+        cursor: pointer;
+    }
 
     /* Responsive adjustments */
     @media (max-width: 1400px) {
-        .carousel-card { width: 260px; }
-        .carousel-card.center { width: 540px; }
-        .carousel-card.left-1 { transform: scale(0.85) translateX(-200px) translateY(10px); }
-        .carousel-card.right-1 { transform: scale(0.85) translateX(200px) translateY(10px); }
-        .carousel-card.left-2 { transform: scale(0.7) translateX(-380px) translateY(25px); display: none; }
-        .carousel-card.right-2 { transform: scale(0.7) translateX(380px) translateY(25px); display: none; }
-        .carousel-nav-prev { left: -40px; }
-        .carousel-nav-next { right: -40px; }
+        .carousel-card {
+            width: 260px;
+        }
+
+        .carousel-card.center {
+            width: 540px;
+        }
+
+        .carousel-card.left-1 {
+            transform: scale(0.85) translateX(-200px) translateY(10px);
+        }
+
+        .carousel-card.right-1 {
+            transform: scale(0.85) translateX(200px) translateY(10px);
+        }
+
+        .carousel-card.left-2 {
+            transform: scale(0.7) translateX(-380px) translateY(25px);
+            display: none;
+        }
+
+        .carousel-card.right-2 {
+            transform: scale(0.7) translateX(380px) translateY(25px);
+            display: none;
+        }
+
+        .carousel-nav-prev {
+            left: -40px;
+        }
+
+        .carousel-nav-next {
+            right: -40px;
+        }
     }
+
     @media (max-width: 1200px) {
-        .carousel-card { width: 280px; }
-        .carousel-card.center { width: 460px; }
-        .carousel-card.left-1, .carousel-card.right-1 { transform: scale(0.85) translateX(0px) translateY(10px); }
-        .carousel-nav-prev { left: -30px; }
-        .carousel-nav-next { right: -30px; }
+        .carousel-card {
+            width: 280px;
+        }
+
+        .carousel-card.center {
+            width: 460px;
+        }
+
+        .carousel-card.left-1,
+        .carousel-card.right-1 {
+            transform: scale(0.85) translateX(0px) translateY(10px);
+        }
+
+        .carousel-nav-prev {
+            left: -30px;
+        }
+
+        .carousel-nav-next {
+            right: -30px;
+        }
     }
+
     @media (max-width: 992px) {
-        .carousel-card { width: 260px; }
-        .carousel-card.center { width: 420px; }
-        .carousel-nav-btn { width: 40px; height: 40px; }
-        .carousel-nav-prev { left: -20px; }
-        .carousel-nav-next { right: -20px; }
+        .carousel-card {
+            width: 260px;
+        }
+
+        .carousel-card.center {
+            width: 420px;
+        }
+
+        .carousel-nav-btn {
+            width: 40px;
+            height: 40px;
+        }
+
+        .carousel-nav-prev {
+            left: -20px;
+        }
+
+        .carousel-nav-next {
+            right: -20px;
+        }
     }
 </style>

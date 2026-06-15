@@ -9,65 +9,68 @@ faq_subtitle: About Booking & Contact
 ---
 
 <!-- Hero Section -->
-<section class="relative overflow-hidden bg-dark-bg">
-    <div style="height: 130px;"></div>
+<section class="relative bg-dark-bg">
+    <div style="height: 90px;"></div>
 
-    <div class="absolute top-20 right-1/4 w-96 h-96 rounded-full bg-brand/20 blur-[120px]"></div>
-    <div class="absolute bottom-20 left-1/4 w-80 h-80 rounded-full bg-brand/10 blur-[100px]"></div>
-    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]">
-    </div>
-
-    <div class="relative z-10 container mx-auto px-6 max-w-6xl text-center pb-20 md:pb-28">
-        <div class="inline-flex items-center gap-2 glass rounded-full px-5 py-2 mb-6">
-            <span class="w-2 h-2 rounded-full bg-brand"></span>
-            <span class="text-sm font-medium tracking-wide text-text-secondary">Get In Touch</span>
-            <span class="w-2 h-2 rounded-full bg-brand"></span>
+    <div class="relative z-10 container mx-auto px-4 max-w-6xl text-center pb-16 md:pb-28">
+        <div class="inline-flex items-center gap-2 glass rounded-full px-4 md:px-5 py-1.5 md:py-2 mb-5 md:mb-6">
+            <span class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-brand"></span>
+            <span class="text-xs md:text-sm font-medium tracking-wide text-text-secondary">Get In Touch</span>
+            <span class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-brand"></span>
         </div>
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+        <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6">
             Contact
             <span class="bg-brand-gradient bg-clip-text text-transparent block mt-2">
                 Shubook Labs
             </span>
         </h1>
-        <p class="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto mb-6">
+        <p class="text-lg md:text-2xl text-text-secondary max-w-3xl mx-auto mb-4 md:mb-6">
             Ready to record your podcast, build your personal brand, or rent a professional podcast studio in Jaipur?
         </p>
-        <p class="text-base text-text-muted max-w-2xl mx-auto">
-            Whether you're looking for podcast production services, studio rental, or want to get featured on The Shubook Show, we'd love to hear from you.
+        <p class="text-sm md:text-base text-text-muted max-w-2xl mx-auto">
+            Whether you're looking for podcast production services, studio rental, or want to get featured on The
+            Shubook Show, we'd love to hear from you.
         </p>
     </div>
 </section>
 
 <!-- Section: Get In Touch & Location -->
-<section class="py-20 md:py-28 bg-dark-card">
-    <div class="container mx-auto px-6 max-w-6xl">
-        <div class="grid md:grid-cols-2 gap-12">
+<section class="py-16 md:py-28 bg-dark-card">
+    <div class="container mx-auto px-4 max-w-6xl">
+        <div class="grid md:grid-cols-2 gap-8 md:gap-12">
             <div>
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">Get In Touch</h2>
-                <p class="text-text-muted mb-6">Speak with our team to discuss:</p>
-                <div class="grid grid-cols-2 gap-3">
-                    {% assign discuss = "Podcast Recording,Podcast Production Services,Podcast Studio Rental,Guest Podcast Booking,Personal Branding Content,Business Podcast Collaborations,Corporate Podcast Projects,Content Creation Services" | split: "," %}
+                <h2 class="text-2xl md:text-4xl font-bold mb-4 md:mb-6">Get In Touch</h2>
+                <p class="text-text-muted text-sm md:text-base mb-4 md:mb-6">Speak with our team to discuss:</p>
+                <div class="grid grid-cols-2 gap-2 md:gap-3">
+                    {% assign discuss = "Podcast Recording,Podcast Production Services,Podcast Studio Rental,Guest
+                    Podcast Booking,Personal Branding Content,Business Podcast Collaborations,Corporate Podcast
+                    Projects,Content Creation Services" | split: "," %}
                     {% for item in discuss %}
-                    <div class="flex items-center gap-2">
-                        <span class="text-brand">{% lucide_icon "check" size="14" %}</span>
-                        <span class="text-text-secondary text-sm">{{ item | strip }}</span>
+                    <div class="flex items-center gap-1 md:gap-2">
+                        <span class="text-brand shrink-0">{% lucide_icon "check" size="12" class="md:w-3.5 md:h-3.5"
+                            %}</span>
+                        <span class="text-text-secondary text-xs md:text-sm">{{ item | strip }}</span>
                     </div>
                     {% endfor %}
                 </div>
             </div>
             <div>
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">Studio Location</h2>
-                <div class="glass rounded-2xl p-6 border border-white/10">
-                    <p class="text-text-primary font-semibold mb-2">Shubook Labs</p>
-                    <p class="text-text-muted text-sm mb-4">Premium Podcast Studio In Jaipur</p>
+                <h2 class="text-2xl md:text-4xl font-bold mb-4 md:mb-6">Studio Location</h2>
+                <div class="glass rounded-2xl p-5 md:p-6 border border-white/10">
+                    <p class="text-text-primary font-semibold text-sm md:text-base mb-2">Shubook Labs</p>
+                    <p class="text-text-muted text-xs md:text-sm mb-4">Premium Podcast Studio In Jaipur</p>
                     <div class="flex items-start gap-2 mb-4">
-                        {% lucide_icon "map-pin" size="16" class="text-brand mt-0.5" %}
-                        <p class="text-text-muted text-sm">Sanganer, Jaipur, Rajasthan</p>
+                        {% lucide_icon "map-pin" size="14" class="text-brand mt-0.5 md:w-4 md:h-4" %}
+                        <p class="text-text-muted text-xs md:text-sm">Sanganer, Jaipur, Rajasthan</p>
                     </div>
                     <div class="rounded-xl overflow-hidden border border-brand/20">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.751810287951!2d75.7954962!3d26.8160302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396dcb806f410f67%3A0xe2fb674c21f51e89!2sShubook%20Labs%20-%20Podcast%20Studio%20%7C%20AI%20%26%20Website%20Development!5e0!3m2!1sen!2sin!4v1781085690142!5m2!1sen!2sin" width="100%" height="250" style="border:0;" allowfullscreen="" title="Shubook Labs" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.751810287951!2d75.7954962!3d26.8160302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396dcb806f410f67%3A0xe2fb674c21f51e89!2sShubook%20Labs%20-%20Podcast%20Studio%20%7C%20AI%20%26%20Website%20Development!5e0!3m2!1sen!2sin!4v1781085690142!5m2!1sen!2sin"
+                            width="100%" height="200" style="border:0;" allowfullscreen="" title="Shubook Labs"
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
-                    <p class="text-text-muted text-xs mt-4">Conveniently located for entrepreneurs, creators, professionals, founders, coaches, doctors, consultants, and businesses across Jaipur.</p>
+                    <p class="text-text-muted text-xs mt-3 md:mt-4">Conveniently located for entrepreneurs, creators,
+                        professionals, founders, coaches, doctors, consultants, and businesses across Jaipur.</p>
                 </div>
             </div>
         </div>
@@ -75,44 +78,82 @@ faq_subtitle: About Booking & Contact
 </section>
 
 <!-- Section: Contact Information -->
-<section class="py-20 md:py-28 bg-dark-bg">
-    <div class="container mx-auto px-6 max-w-6xl">
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="glass rounded-2xl p-8 border border-white/10">
-                <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
-                <div class="space-y-4">
+<section class="py-16 md:py-28 bg-dark-bg">
+    <div class="container mx-auto px-4 max-w-6xl">
+        <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+            <div class="glass rounded-2xl p-5 md:p-8 border border-white/10">
+                <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6">Contact Information</h3>
+                <div class="space-y-3 md:space-y-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-brand/20 flex items-center justify-center">{% lucide_icon "phone" size="18" class="text-brand" %}</div>
-                        <div><p class="text-text-muted text-sm">Phone</p><p class="text-text-primary font-semibold">+91 98294 42870</p></div>
+                        <div
+                            class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-brand/20 flex items-center justify-center shrink-0">
+                            {% lucide_icon "phone" size="14" class="text-brand md:w-4.5 md:h-4.5" %}</div>
+                        <div>
+                            <p class="text-text-muted text-xs md:text-sm">Phone</p>
+                            <p class="text-text-primary font-semibold text-sm md:text-base">+91 98294 42870</p>
+                        </div>
                     </div>
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-brand/20 flex items-center justify-center">{% lucide_icon "mail" size="18" class="text-brand" %}</div>
-                        <div><p class="text-text-muted text-sm">Email</p><p class="text-text-primary font-semibold">hello@shubook.in</p></div>
+                        <div
+                            class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-brand/20 flex items-center justify-center shrink-0">
+                            {% lucide_icon "mail" size="14" class="text-brand md:w-4.5 md:h-4.5" %}</div>
+                        <div>
+                            <p class="text-text-muted text-xs md:text-sm">Email</p>
+                            <p class="text-text-primary font-semibold text-sm md:text-base">shubham@shubook.in</p>
+                        </div>
                     </div>
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-brand/20 flex items-center justify-center">{% lucide_icon "globe" size="18" class="text-brand" %}</div>
-                        <div><p class="text-text-muted text-sm">Website</p><p class="text-text-primary font-semibold">www.shubook.in</p></div>
+                        <div
+                            class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-brand/20 flex items-center justify-center shrink-0">
+                            {% lucide_icon "globe" size="14" class="text-brand md:w-4.5 md:h-4.5" %}</div>
+                        <div>
+                            <p class="text-text-muted text-xs md:text-sm">Website</p>
+                            <p class="text-text-primary font-semibold text-sm md:text-base">www.shubook.in</p>
+                        </div>
                     </div>
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-brand/20 flex items-center justify-center">{% lucide_icon "clock" size="18" class="text-brand" %}</div>
-                        <div><p class="text-text-muted text-sm">Working Hours</p><p class="text-text-primary font-semibold">Monday - Saturday: 10:00 AM - 8:00 PM<br>Sunday: By Appointment Only</p></div>
+                        <div
+                            class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-brand/20 flex items-center justify-center shrink-0">
+                            {% lucide_icon "clock" size="14" class="text-brand md:w-4.5 md:h-4.5" %}</div>
+                        <div>
+                            <p class="text-text-muted text-xs md:text-sm">Working Hours</p>
+                            <p class="text-text-primary font-semibold text-sm md:text-base">Mon-Sat: 10AM -
+                                8PM<br>Sunday: By Appointment</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="glass rounded-2xl p-8 border border-white/10">
-                <h3 class="text-2xl font-bold mb-6">Follow Shubook Labs</h3>
-                <div class="space-y-4">
+            <div class="glass rounded-2xl p-5 md:p-8 border border-white/10">
+                <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6">Follow Shubook Labs</h3>
+                <div class="space-y-3 md:space-y-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-brand/20 flex items-center justify-center">{% lucide_icon "youtube" size="18" class="text-brand" %}</div>
-                        <div><p class="text-text-muted text-sm">YouTube</p><p class="text-text-primary font-semibold">The Shubook Show (14,000+ Subscribers)</p></div>
+                        <div
+                            class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-brand/20 flex items-center justify-center shrink-0">
+                            {% lucide_icon "youtube" size="14" class="text-brand md:w-4.5 md:h-4.5" %}</div>
+                        <div>
+                            <p class="text-text-muted text-xs md:text-sm">YouTube</p>
+                            <p class="text-text-primary font-semibold text-sm md:text-base">The Shubook Show (14K+ Subs)
+                            </p>
+                        </div>
                     </div>
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-brand/20 flex items-center justify-center">{% lucide_icon "instagram" size="18" class="text-brand" %}</div>
-                        <div><p class="text-text-muted text-sm">Instagram</p><p class="text-text-primary font-semibold">@theshubookshow | @shubook.in</p></div>
+                        <div
+                            class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-brand/20 flex items-center justify-center shrink-0">
+                            {% lucide_icon "instagram" size="14" class="text-brand md:w-4.5 md:h-4.5" %}</div>
+                        <div>
+                            <p class="text-text-muted text-xs md:text-sm">Instagram</p>
+                            <p class="text-text-primary font-semibold text-sm md:text-base">@theshubookshow |
+                                @shubook.in</p>
+                        </div>
                     </div>
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-brand/20 flex items-center justify-center">{% lucide_icon "linkedin" size="18" class="text-brand" %}</div>
-                        <div><p class="text-text-muted text-sm">LinkedIn</p><p class="text-text-primary font-semibold">Shubham Saini</p></div>
+                        <div
+                            class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-brand/20 flex items-center justify-center shrink-0">
+                            {% lucide_icon "linkedin" size="14" class="text-brand md:w-4.5 md:h-4.5" %}</div>
+                        <div>
+                            <p class="text-text-muted text-xs md:text-sm">LinkedIn</p>
+                            <p class="text-text-primary font-semibold text-sm md:text-base">Shubham Saini</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -121,53 +162,75 @@ faq_subtitle: About Booking & Contact
 </section>
 
 <!-- Section: Toggleable Forms -->
-<section class="py-20 md:py-28 bg-dark-card">
-    <div class="container mx-auto px-6 max-w-5xl">
-        <div class="flex justify-center mb-12">
+<section class="py-16 md:py-28 bg-dark-card">
+    <div class="container mx-auto px-4 max-w-5xl">
+        <div class="flex justify-center mb-10 md:mb-12">
             <div class="glass rounded-full p-1 border border-brand/20 inline-flex gap-1">
-                <button id="btnPodcast" class="toggle-btn active px-8 py-2.5 rounded-full text-sm font-medium transition-all">Book Podcast</button>
-                <button id="btnStudio" class="toggle-btn px-8 py-2.5 rounded-full text-sm font-medium transition-all">Rent Studio</button>
+                <button id="btnPodcast"
+                    class="toggle-btn active px-6 md:px-8 py-2 rounded-full text-xs md:text-sm font-medium transition-all">Book
+                    Podcast</button>
+                <button id="btnStudio"
+                    class="toggle-btn px-6 md:px-8 py-2 rounded-full text-xs md:text-sm font-medium transition-all">Rent
+                    Studio</button>
             </div>
         </div>
 
         <!-- Podcast Booking Form -->
         <div id="podcastForm" class="form-container">
-            <div class="glass-premium rounded-2xl p-6 md:p-8 border border-brand/30 bg-gradient-to-br from-dark-card/90 to-dark-bg/90">
-                <div class="text-center mb-8">
-                    <div class="w-16 h-16 rounded-full bg-brand/20 flex items-center justify-center mx-auto mb-4">
-                        {% lucide_icon "mic" size="28" class="text-brand" %}
+            <div class="glass-premium rounded-2xl p-5 md:p-8 border border-brand/30">
+                <div class="text-center mb-6 md:mb-8">
+                    <div
+                        class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-brand/20 flex items-center justify-center mx-auto mb-3 md:mb-4">
+                        {% lucide_icon "mic" size="22" class="text-brand md:w-7 md:h-7" %}
                     </div>
-                    <h2 class="text-3xl font-bold mb-2">Book A Podcast Session</h2>
-                    <p class="text-text-muted">Get featured on The Shubook Show</p>
+                    <h2 class="text-2xl md:text-3xl font-bold mb-2">Book A Podcast Session</h2>
+                    <p class="text-text-muted text-sm md:text-base">Get featured on The Shubook Show</p>
                 </div>
 
-                <div class="bg-gradient-to-r from-brand/15 to-brand/5 rounded-xl p-5 mb-8 border border-brand/30">
-                    <h3 class="font-semibold text-text-primary mb-3 flex items-center gap-2">{% lucide_icon "package" size="18" class="text-brand" %} Podcast + Personal Branding Package</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                        {% assign includes = "1 Long-Form Podcast (60-90 Minutes),10 Professionally Edited Reels,5 Mid-Length Videos,Custom Thumbnail Design,Publishing On YouTube, Instagram & LinkedIn,Distribution On Spotify, Apple Podcasts & Amazon Music" | split: "," %}
+                <div
+                    class="bg-gradient-to-r from-brand/15 to-brand/5 rounded-xl p-4 md:p-5 mb-6 md:mb-8 border border-brand/30">
+                    <h3
+                        class="font-semibold text-text-primary text-sm md:text-base mb-2 md:mb-3 flex items-center gap-2">
+                        {% lucide_icon "package" size="14" class="text-brand md:w-4 md:h-4" %} Podcast + Personal
+                        Branding Package</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-2">
+                        {% assign includes = "1 Long-Form Podcast (60-90 Minutes),10 Professionally Edited Reels,5
+                        Mid-Length Videos,Custom Thumbnail Design,Publishing On YouTube, Instagram &
+                        LinkedIn,Distribution On Spotify, Apple Podcasts & Amazon Music" | split: "," %}
                         {% for item in includes %}
-                        <div class="flex items-center gap-2"><span class="text-brand">{% lucide_icon "check" size="14" %}</span><span class="text-text-secondary text-sm">{{ item | strip }}</span></div>
+                        <div class="flex items-center gap-1 md:gap-2"><span class="text-brand shrink-0">{% lucide_icon
+                                "check" size="10" class="md:w-3.5 md:h-3.5" %}</span><span
+                                class="text-text-secondary text-xs md:text-sm">{{ item | strip }}</span></div>
                         {% endfor %}
                     </div>
-                    <div class="text-center mt-4">
-                        <p class="text-3xl font-bold text-brand">₹12,000</p>
+                    <div class="text-center mt-3 md:mt-4">
+                        <p class="text-2xl md:text-3xl font-bold text-brand">₹20,000</p>
                         <p class="text-text-muted text-xs">One-time investment</p>
                     </div>
                 </div>
 
                 <form id="podcastBookingForm">
                     <input type="hidden" name="formType" value="podcast">
-                    
-                    <div class="grid md:grid-cols-2 gap-5">
-                        <div><input type="text" name="fullname" placeholder="Full Name" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
-                        <div><input type="tel" name="phone" placeholder="Phone Number" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+                        <div><input type="text" name="fullname" placeholder="Full Name" required
+                                class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
+                        </div>
+                        <div><input type="tel" name="phone" placeholder="Phone Number" required
+                                class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
+                        </div>
                     </div>
-                    <div class="grid md:grid-cols-2 gap-5 mt-4">
-                        <div><input type="email" name="email" placeholder="Email Address" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
-                        <div><input type="text" name="company" placeholder="Company / Business Name" class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-5 mt-3 md:mt-4">
+                        <div><input type="email" name="email" placeholder="Email Address" required
+                                class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
+                        </div>
+                        <div><input type="text" name="company" placeholder="Company / Business Name"
+                                class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
+                        </div>
                     </div>
-                    <div class="mt-4">
-                        <select name="profession" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
+                    <div class="mt-3 md:mt-4">
+                        <select name="profession" required
+                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary text-sm md:text-base transition-all">
                             <option value="" disabled selected>Your Professional Background</option>
                             <option>Entrepreneur / Business Owner</option>
                             <option>Startup Founder</option>
@@ -180,90 +243,131 @@ faq_subtitle: About Booking & Contact
                             <option>Other</option>
                         </select>
                     </div>
-                    <div class="mt-4"><textarea name="whatDoYouDo" rows="3" placeholder="What do you do currently? (Please share your business, profession, expertise, achievements...)" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></textarea></div>
-                    <div class="mt-4"><textarea name="inspiringStory" rows="3" placeholder="Your Most Inspiring Story" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></textarea></div>
-                    
-                    <div class="mt-4">
-                        <p class="text-text-secondary text-sm mb-3">Primary Topic <span class="text-brand">*</span></p>
-                        <select name="primaryTopic" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
+                    <div class="mt-3 md:mt-4"><textarea name="whatDoYouDo" rows="3"
+                            placeholder="What do you do currently? (Please share your business, profession, expertise, achievements...)"
+                            required
+                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all"></textarea>
+                    </div>
+                    <div class="mt-3 md:mt-4"><textarea name="inspiringStory" rows="3"
+                            placeholder="Your Most Inspiring Story" required
+                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all"></textarea>
+                    </div>
+
+                    <div class="mt-3 md:mt-4">
+                        <p class="text-text-secondary text-xs md:text-sm mb-2 md:mb-3">Primary Topic <span
+                                class="text-brand">*</span></p>
+                        <select name="primaryTopic" required
+                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary text-sm md:text-base transition-all">
                             <option value="" disabled selected>Select Primary Topic</option>
-                            {% assign topics = "Business Growth,Startups,Real Estate,Health & Wellness,Marketing & Branding,Personal Branding,Finance & Investment,Leadership,Productivity,Spirituality,Career Growth,Success Stories" | split: "," %}
+                            {% assign topics = "Business Growth,Startups,Real Estate,Health & Wellness,Marketing &
+                            Branding,Personal Branding,Finance & Investment,Leadership,Productivity,Spirituality,Career
+                            Growth,Success Stories" | split: "," %}
                             {% for topic in topics %}
                             <option>{{ topic | strip }}</option>
                             {% endfor %}
                         </select>
                     </div>
 
-                    <div class="mt-4">
-                        <label class="block text-text-secondary text-sm mb-2">Life-Changing Lesson <span class="text-brand">*</span></label>
-                        <textarea name="lifeLesson" rows="2" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all" placeholder="What is one lesson or insight that has significantly changed your life or career?"></textarea>
+                    <div class="mt-3 md:mt-4">
+                        <label class="block text-text-secondary text-xs md:text-sm mb-1 md:mb-2">Life-Changing Lesson
+                            <span class="text-brand">*</span></label>
+                        <textarea name="lifeLesson" rows="2" required
+                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all"
+                            placeholder="What is one lesson or insight that has significantly changed your life or career?"></textarea>
                     </div>
 
-                    <div class="mt-4">
-                        <p class="text-text-secondary text-sm mb-3">Primary Goal <span class="text-brand">*</span></p>
-                        <select name="primaryGoal" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
+                    <div class="mt-3 md:mt-4">
+                        <p class="text-text-secondary text-xs md:text-sm mb-2 md:mb-3">Primary Goal <span
+                                class="text-brand">*</span></p>
+                        <select name="primaryGoal" required
+                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary text-sm md:text-base transition-all">
                             <option value="" disabled selected>Select Primary Goal</option>
-                            {% assign outcomes = "Personal Branding,Business Promotion,Lead Generation,Brand Awareness,Thought Leadership,Sharing My Story,Networking,Audience Growth" | split: "," %}
+                            {% assign outcomes = "Personal Branding,Business Promotion,Lead Generation,Brand
+                            Awareness,Thought Leadership,Sharing My Story,Networking,Audience Growth" | split: "," %}
                             {% for outcome in outcomes %}
                             <option>{{ outcome | strip }}</option>
                             {% endfor %}
                         </select>
                     </div>
 
-                    <div class="mt-6 pt-4 border-t border-white/10">
-                        <label class="flex items-start gap-3 cursor-pointer">
-                            <input type="checkbox" name="agreement" value="Agreed" required class="accent-brand mt-0.5 w-4 h-4">
-                            <span class="text-text-muted text-sm">I agree to the <a href="/podcast-guest-agreement/" class="text-brand hover:underline">Guest Agreement</a>, <a href="/terms-conditions/" class="text-brand hover:underline">Terms</a>, <a href="/refund-policy/" class="text-brand hover:underline">Refund Policy</a>, and <a href="/cancellation-policy/" class="text-brand hover:underline">Cancellation Policy</a>.</span>
+                    <div class="mt-5 md:mt-6 pt-3 md:pt-4 border-t border-white/10">
+                        <label class="flex items-start gap-2 md:gap-3 cursor-pointer">
+                            <input type="checkbox" name="agreement" value="Agreed" required
+                                class="accent-brand mt-0.5 w-3.5 h-3.5 md:w-4 md:h-4">
+                            <span class="text-text-muted text-xs">I agree to the <a href="/podcast-guest-agreement/"
+                                    class="text-brand hover:underline">Guest Agreement</a>, <a href="/terms-conditions/"
+                                    class="text-brand hover:underline">Terms</a>, <a href="/refund-policy/"
+                                    class="text-brand hover:underline">Refund Policy</a>, and <a
+                                    href="/cancellation-policy/" class="text-brand hover:underline">Cancellation
+                                    Policy</a>.</span>
                         </label>
                     </div>
 
-                    <button type="submit" class="w-full bg-brand hover:bg-brand-dark text-white font-semibold py-3 rounded-xl transition-all flex items-center justify-center gap-2 mt-6 shadow-glow">
-                        {% lucide_icon "send" size="18" %} Submit Booking
+                    <button type="submit"
+                        class="w-full bg-brand hover:bg-brand-dark text-white font-semibold py-2.5 md:py-3 rounded-xl transition-all flex items-center justify-center gap-2 mt-5 md:mt-6 shadow-glow">
+                        {% lucide_icon "send" size="14" class="md:w-4 md:h-4" %} Submit Booking
                     </button>
-                    <p id="podcastFeedback" class="text-center mt-4 text-sm"></p>
+                    <p id="podcastFeedback" class="text-center mt-3 md:mt-4 text-xs md:text-sm"></p>
                 </form>
             </div>
         </div>
 
         <!-- Studio Rental Form -->
         <div id="studioForm" class="form-container hidden">
-            <div class="glass-premium rounded-2xl p-6 md:p-8 border border-brand/30 bg-gradient-to-br from-dark-card/90 to-dark-bg/90">
-                <div class="text-center mb-8">
-                    <div class="w-16 h-16 rounded-full bg-brand/20 flex items-center justify-center mx-auto mb-4">
-                        {% lucide_icon "building" size="28" class="text-brand" %}
+            <div class="glass-premium rounded-2xl p-5 md:p-8 border border-brand/30">
+                <div class="text-center mb-6 md:mb-8">
+                    <div
+                        class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-brand/20 flex items-center justify-center mx-auto mb-3 md:mb-4">
+                        {% lucide_icon "building" size="22" class="text-brand md:w-7 md:h-7" %}
                     </div>
-                    <h2 class="text-3xl font-bold mb-2">Studio Rental</h2>
-                    <p class="text-text-muted">Professional recording space in Jaipur</p>
+                    <h2 class="text-2xl md:text-3xl font-bold mb-2">Studio Rental</h2>
+                    <p class="text-text-muted text-sm md:text-base">Professional recording space in Jaipur</p>
                 </div>
 
-                <div class="bg-gradient-to-r from-brand/15 to-brand/5 rounded-xl p-5 mb-8 border border-brand/30">
-                    <h3 class="font-semibold text-text-primary mb-3 flex items-center gap-2">{% lucide_icon "check-circle" size="18" class="text-brand" %} Studio Includes</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                        {% assign studio_includes = "Canon 750D Camera,Sony Alpha II,Professional Microphones,Lighting Setup,Studio Operator,Raw Footage,BTS Content,Tea & Coffee,Parking" | split: "," %}
+                <div
+                    class="bg-gradient-to-r from-brand/15 to-brand/5 rounded-xl p-4 md:p-5 mb-6 md:mb-8 border border-brand/30">
+                    <h3
+                        class="font-semibold text-text-primary text-sm md:text-base mb-2 md:mb-3 flex items-center gap-2">
+                        {% lucide_icon "check-circle" size="14" class="text-brand md:w-4 md:h-4" %} Studio Includes</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-2">
+                        {% assign studio_includes = "Canon 750D Camera,Sony Alpha II,Professional Microphones,Lighting
+                        Setup,Studio Operator,Raw Footage,BTS Content,Tea & Coffee,Parking" | split: "," %}
                         {% for item in studio_includes %}
-                        <div class="flex items-center gap-2"><span class="text-brand">{% lucide_icon "check" size="14" %}</span><span class="text-text-secondary text-sm">{{ item | strip }}</span></div>
+                        <div class="flex items-center gap-1 md:gap-2"><span class="text-brand shrink-0">{% lucide_icon
+                                "check" size="10" class="md:w-3.5 md:h-3.5" %}</span><span
+                                class="text-text-secondary text-xs md:text-sm">{{ item | strip }}</span></div>
                         {% endfor %}
                     </div>
-                    <div class="text-center mt-4">
-                        <p class="text-text-muted line-through text-sm">Regular: ₹2,000/hour</p>
-                        <p class="text-3xl font-bold text-brand">₹1,000 <span class="text-sm">/hour</span></p>
+                    <div class="text-center mt-3 md:mt-4">
+                        <p class="text-text-muted line-through text-xs md:text-sm">Regular: ₹2,000/hour</p>
+                        <p class="text-2xl md:text-3xl font-bold text-brand">₹1,000 <span
+                                class="text-xs md:text-sm">/hour</span></p>
                         <p class="text-text-muted text-xs">Introductory offer</p>
                     </div>
                 </div>
 
                 <form id="studioRentalForm">
                     <input type="hidden" name="formType" value="studio">
-                    
-                    <div class="grid md:grid-cols-2 gap-5">
-                        <div><input type="text" name="fullname" placeholder="Full Name" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
-                        <div><input type="tel" name="phone" placeholder="Phone Number" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+                        <div><input type="text" name="fullname" placeholder="Full Name" required
+                                class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
+                        </div>
+                        <div><input type="tel" name="phone" placeholder="Phone Number" required
+                                class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
+                        </div>
                     </div>
-                    <div class="grid md:grid-cols-2 gap-5 mt-4">
-                        <div><input type="email" name="email" placeholder="Email" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
-                        <div><input type="text" name="company" placeholder="Company Name" class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-5 mt-3 md:mt-4">
+                        <div><input type="email" name="email" placeholder="Email" required
+                                class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
+                        </div>
+                        <div><input type="text" name="company" placeholder="Company Name"
+                                class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
+                        </div>
                     </div>
-                    <div class="mt-4">
-                        <select name="profession" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
+                    <div class="mt-3 md:mt-4">
+                        <select name="profession" required
+                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary text-sm md:text-base transition-all">
                             <option value="" disabled selected>Professional Background</option>
                             <option>Entrepreneur / Business Owner</option>
                             <option>Startup Founder</option>
@@ -273,37 +377,57 @@ faq_subtitle: About Booking & Contact
                             <option>Other</option>
                         </select>
                     </div>
-                    <div class="grid md:grid-cols-2 gap-5 mt-4">
-                        <div><input type="date" name="bookingDate" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
-                        <div><input type="time" name="bookingTime" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-5 mt-3 md:mt-4">
+                        <div><input type="date" name="bookingDate" required
+                                class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
+                        </div>
+                        <div><input type="time" name="bookingTime" required
+                                class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
+                        </div>
                     </div>
-                    <div class="grid md:grid-cols-2 gap-5 mt-4">
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-5 mt-3 md:mt-4">
                         <div>
-                            <select name="duration" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
+                            <select name="duration" required
+                                class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary text-sm md:text-base transition-all">
                                 <option value="" disabled selected>Duration</option>
-                                <option>1 Hour</option><option>2 Hours</option><option>3 Hours</option><option>4 Hours</option><option>5+ Hours</option>
+                                <option>1 Hour</option>
+                                <option>2 Hours</option>
+                                <option>3 Hours</option>
+                                <option>4 Hours</option>
+                                <option>5+ Hours</option>
                             </select>
                         </div>
                         <div>
-                            <select name="serviceType" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
+                            <select name="serviceType" required
+                                class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary text-sm md:text-base transition-all">
                                 <option value="" disabled selected>Service Type</option>
-                                <option>Podcast Recording</option><option>Video Shoot</option><option>Interview</option><option>Other</option>
+                                <option>Podcast Recording</option>
+                                <option>Video Shoot</option>
+                                <option>Interview</option>
+                                <option>Other</option>
                             </select>
                         </div>
                     </div>
-                    <div class="mt-4"><textarea name="purpose" rows="3" placeholder="Purpose of recording..." required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></textarea></div>
-                    
-                    <div class="mt-6 pt-4 border-t border-white/10">
-                        <label class="flex items-start gap-3 cursor-pointer">
-                            <input type="checkbox" name="agreement" value="Agreed" required class="accent-brand mt-0.5 w-4 h-4">
-                            <span class="text-text-muted text-sm">I agree to the <a href="/terms-conditions/" class="text-brand hover:underline">Terms</a> and <a href="/cancellation-policy/" class="text-brand hover:underline">Cancellation Policy</a>.</span>
+                    <div class="mt-3 md:mt-4"><textarea name="purpose" rows="3" placeholder="Purpose of recording..."
+                            required
+                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all"></textarea>
+                    </div>
+
+                    <div class="mt-5 md:mt-6 pt-3 md:pt-4 border-t border-white/10">
+                        <label class="flex items-start gap-2 md:gap-3 cursor-pointer">
+                            <input type="checkbox" name="agreement" value="Agreed" required
+                                class="accent-brand mt-0.5 w-3.5 h-3.5 md:w-4 md:h-4">
+                            <span class="text-text-muted text-xs">I agree to the <a href="/terms-conditions/"
+                                    class="text-brand hover:underline">Terms</a> and <a href="/cancellation-policy/"
+                                    class="text-brand hover:underline">Cancellation Policy</a>.</span>
                         </label>
                     </div>
 
-                    <button type="submit" class="w-full bg-brand hover:bg-brand-dark text-white font-semibold py-3 rounded-xl transition-all flex items-center justify-center gap-2 mt-6 shadow-glow">
-                        {% lucide_icon "calendar" size="18" %} Book Studio
+                    <button type="submit"
+                        class="w-full bg-brand hover:bg-brand-dark text-white font-semibold py-2.5 md:py-3 rounded-xl transition-all flex items-center justify-center gap-2 mt-5 md:mt-6 shadow-glow">
+                        {% lucide_icon "calendar" size="14" class="md:w-4 md:h-4" %} Book Studio
                     </button>
-                    <p id="studioFeedback" class="text-center mt-4 text-sm"></p>
+                    <p id="studioFeedback" class="text-center mt-3 md:mt-4 text-xs md:text-sm"></p>
                 </form>
             </div>
         </div>
@@ -311,46 +435,65 @@ faq_subtitle: About Booking & Contact
 </section>
 
 <!-- Simple Message Form -->
-<section class="py-20 md:py-28 bg-dark-bg">
-    <div class="container mx-auto px-6 max-w-4xl">
-        <div class="text-center mb-12">
-            <div class="w-16 h-16 rounded-full bg-brand/20 flex items-center justify-center mx-auto mb-4">
-                {% lucide_icon "message-circle" size="28" class="text-brand" %}
+<section class="py-16 md:py-28 bg-dark-bg">
+    <div class="container mx-auto px-4 max-w-4xl">
+        <div class="text-center mb-8 md:mb-12">
+            <div
+                class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-brand/20 flex items-center justify-center mx-auto mb-3 md:mb-4">
+                {% lucide_icon "message-circle" size="22" class="text-brand md:w-7 md:h-7" %}
             </div>
-            <h2 class="text-3xl md:text-4xl font-bold">Send A Message</h2>
-            <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-4"></div>
+            <h2 class="text-2xl md:text-4xl font-bold">Send A Message</h2>
+            <div class="w-16 md:w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-3 md:mt-4"></div>
         </div>
-        <div class="glass-premium rounded-2xl p-6 md:p-8 border border-brand/30">
+        <div class="glass-premium rounded-2xl p-5 md:p-8 border border-brand/30">
             <form id="simpleMessageForm">
                 <input type="hidden" name="formType" value="message">
-                
-                <div class="grid md:grid-cols-2 gap-5">
-                    <div><input type="text" name="fullname" placeholder="Full Name" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
-                    <div><input type="tel" name="phone" placeholder="Phone" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+
+                <div class="grid md:grid-cols-2 gap-4 md:gap-5">
+                    <div><input type="text" name="fullname" placeholder="Full Name" required
+                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
+                    </div>
+                    <div><input type="tel" name="phone" placeholder="Phone" required
+                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
+                    </div>
                 </div>
-                <div class="grid md:grid-cols-2 gap-5 mt-4">
-                    <div><input type="email" name="email" placeholder="Email" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
-                    <div><input type="text" name="company" placeholder="Company" class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></div>
+                <div class="grid md:grid-cols-2 gap-4 md:gap-5 mt-3 md:mt-4">
+                    <div><input type="email" name="email" placeholder="Email" required
+                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
+                    </div>
+                    <div><input type="text" name="company" placeholder="Company"
+                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
+                    </div>
                 </div>
-                <div class="mt-4">
-                    <select name="interest" class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary transition-all">
+                <div class="mt-3 md:mt-4">
+                    <select name="interest"
+                        class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary text-sm md:text-base transition-all">
                         <option value="" disabled selected>I'm interested in...</option>
-                        <option>Podcast Recording</option><option>Studio Rental</option><option>Guest Booking</option><option>Other</option>
+                        <option>Podcast Recording</option>
+                        <option>Studio Rental</option>
+                        <option>Guest Booking</option>
+                        <option>Other</option>
                     </select>
                 </div>
-                <div class="mt-4"><textarea name="message" rows="4" placeholder="Your Message" required class="w-full bg-dark-surface/50 rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary transition-all"></textarea></div>
-                
-                <div class="mt-4">
-                    <label class="flex items-start gap-3 cursor-pointer">
-                        <input type="checkbox" name="agreement" value="Agreed" required class="accent-brand mt-0.5 w-4 h-4">
-                        <span class="text-text-muted text-xs">I agree to the <a href="/terms-conditions/" class="text-brand hover:underline">Terms</a> and <a href="/privacy-policy/" class="text-brand hover:underline">Privacy Policy</a>.</span>
+                <div class="mt-3 md:mt-4"><textarea name="message" rows="4" placeholder="Your Message" required
+                        class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all"></textarea>
+                </div>
+
+                <div class="mt-4 md:mt-5">
+                    <label class="flex items-start gap-2 md:gap-3 cursor-pointer">
+                        <input type="checkbox" name="agreement" value="Agreed" required
+                            class="accent-brand mt-0.5 w-3.5 h-3.5 md:w-4 md:h-4">
+                        <span class="text-text-muted text-xs">I agree to the <a href="/terms-conditions/"
+                                class="text-brand hover:underline">Terms</a> and <a href="/privacy-policy/"
+                                class="text-brand hover:underline">Privacy Policy</a>.</span>
                     </label>
                 </div>
-                
-                <button type="submit" class="w-full bg-brand hover:bg-brand-dark text-white font-semibold py-3 rounded-xl transition-all flex items-center justify-center gap-2 mt-6 shadow-glow">
-                    {% lucide_icon "send" size="18" %} Send Message
+
+                <button type="submit"
+                    class="w-full bg-brand hover:bg-brand-dark text-white font-semibold py-2.5 md:py-3 rounded-xl transition-all flex items-center justify-center gap-2 mt-5 md:mt-6 shadow-glow">
+                    {% lucide_icon "send" size="14" class="md:w-4 md:h-4" %} Send Message
                 </button>
-                <p id="messageFeedback" class="text-center mt-4 text-sm"></p>
+                <p id="messageFeedback" class="text-center mt-3 md:mt-4 text-xs md:text-sm"></p>
             </form>
         </div>
     </div>
@@ -360,191 +503,222 @@ faq_subtitle: About Booking & Contact
 {% include sections/faq.html %}
 
 <!-- Final CTA -->
-<section class="py-20 md:py-28 bg-dark-card">
-    <div class="container mx-auto px-6 max-w-5xl text-center">
-        <div class="glass rounded-2xl p-8 md:p-12 border border-brand/20 bg-gradient-to-b from-brand/5 to-transparent">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Let's Create Your Next Podcast.</h2>
-            <p class="text-text-secondary text-lg mb-8 max-w-2xl mx-auto">Whether you're looking to record a podcast, rent a studio, or build your personal brand, Shubook Labs is ready to help.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="tel:+919829442870" class="glass hover:bg-brand/20 border border-white/10 rounded-xl px-6 py-3 font-medium text-text-secondary hover:text-brand transition-all flex items-center gap-2">{% lucide_icon "phone" size="18" %} Call Now</a>
-                <a href="https://wa.me/919829442870" class="glass hover:bg-brand/20 border border-white/10 rounded-xl px-6 py-3 font-medium text-text-secondary hover:text-brand transition-all flex items-center gap-2">{% lucide_icon "message-circle" size="18" %} WhatsApp</a>
-                <a href="#podcastForm" class="bg-brand hover:bg-brand-dark text-white font-semibold px-6 py-3 rounded-xl transition-all flex items-center gap-2">{% lucide_icon "calendar" size="18" %} Book Session</a>
+<section class="py-16 md:py-28 bg-dark-card">
+    <div class="container mx-auto px-4 max-w-5xl text-center">
+        <div class="glass rounded-2xl p-6 md:p-12 border border-brand/20 bg-gradient-to-b from-brand/5 to-transparent">
+            <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">Let's Create Your Next Podcast.</h2>
+            <p class="text-text-secondary text-sm md:text-lg mb-6 md:mb-8 max-w-2xl mx-auto">Whether you're looking to
+                record a podcast, rent a studio, or build your personal brand, Shubook Labs is ready to help.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
+                <a href="tel:+919829442870"
+                    class="glass hover:bg-brand/20 border border-white/10 rounded-xl px-5 md:px-6 py-2.5 md:py-3 font-medium text-text-secondary hover:text-brand transition-all flex items-center gap-2 text-sm md:text-base">{%
+                    lucide_icon "phone" size="14" class="md:w-4 md:h-4" %} Call Now</a>
+                <a href="https://wa.me/919887247112?text=Hey%2C%20I%20am%20coming%20from%20your%20website.%20I%20want%20to%20record%20a%20podcast."
+                    target="_blank" rel="noopener noreferrer" role="button"
+                    aria-label="Chat with us on WhatsApp to record your podcast"
+                    class="whatsapp-btn inline-flex items-center gap-2 bg-white/10 hover:bg-[#60A5FA] text-white hover:text-white border border-white/20 hover:border-transparent transition-all duration-300 rounded-xl px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm lg:px-5 lg:py-2.5 lg:text-base">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="currentColor" class="shrink-0" aria-hidden="true">
+                        <path
+                            d="M12.032 2.001c-5.516 0-10 4.484-10 10 0 1.852.507 3.657 1.459 5.248l-1.461 5.346 5.521-1.447c1.502.823 3.187 1.257 4.91 1.257 5.514 0 9.999-4.484 9.999-9.999s-4.485-10.405-10.029-10.405zm0 18.4c-1.543 0-3.058-.419-4.366-1.2l-.313-.186-3.276.857.876-3.189-.204-.324c-.846-1.335-1.293-2.875-1.293-4.455 0-4.602 3.744-8.347 8.346-8.347s8.345 3.745 8.345 8.347-3.744 8.497-8.345 8.497zm4.576-6.252c-.251-.125-1.484-.732-1.714-.816-.229-.083-.396-.125-.563.125-.167.25-.646.816-.792.983-.146.167-.292.188-.543.063-.251-.125-1.059-.391-2.017-1.245-.746-.666-1.249-1.487-1.395-1.739-.146-.251-.016-.387.11-.512.113-.114.251-.292.377-.438.125-.146.167-.25.25-.417.084-.167.042-.313-.021-.438-.062-.125-.562-1.354-.771-1.855-.203-.487-.409-.42-.563-.428-.146-.008-.313-.008-.479-.008-.167 0-.438.062-.667.313-.229.251-.875.855-.875 2.084 0 1.229.895 2.416 1.02 2.583.125.167 1.762 2.691 4.268 3.774.596.258 1.062.412 1.425.528.598.191 1.143.164 1.573.099.48-.073 1.479-.604 1.687-1.188.209-.584.209-1.084.146-1.188-.062-.104-.229-.167-.479-.292z" />
+                    </svg>
+                    <span class="">WhatsApp</span>
+                </a>
+                <a href="#podcastForm"
+                    class="bg-brand hover:bg-brand-dark text-white font-semibold px-5 md:px-6 py-2.5 md:py-3 rounded-xl transition-all flex items-center gap-2 text-sm md:text-base">{%
+                    lucide_icon "calendar" size="14" class="md:w-4 md:h-4" %} Book Session</a>
             </div>
-            <p class="text-text-muted text-sm mt-8">Shubook Labs • Premium Podcast Studio in Jaipur</p>
+            <p class="text-text-muted text-xs md:text-sm mt-6 md:mt-8">Shubook Labs • Premium Podcast Studio in Jaipur
+            </p>
         </div>
     </div>
 </section>
 
 <!-- Toggle + Form Submission Scripts -->
 <script>
-// Google Apps Script URL
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxaWpm6yie4vR5S34JWg9D25agaF-KLO8b5Vq6CVTblFjXdPa_0NwaIs8nQaU34t0Ew/exec';
+    // Google Apps Script URL
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxaWpm6yie4vR5S34JWg9D25agaF-KLO8b5Vq6CVTblFjXdPa_0NwaIs8nQaU34t0Ew/exec';
 
-// Toggle between forms
-document.addEventListener('DOMContentLoaded', function() {
-    const btnPodcast = document.getElementById('btnPodcast');
-    const btnStudio = document.getElementById('btnStudio');
-    const podcastForm = document.getElementById('podcastForm');
-    const studioForm = document.getElementById('studioForm');
-    
-    if (btnPodcast && btnStudio && podcastForm && studioForm) {
-        btnPodcast.addEventListener('click', function() {
-            btnPodcast.classList.add('active');
-            btnStudio.classList.remove('active');
-            podcastForm.classList.remove('hidden');
-            studioForm.classList.add('hidden');
-        });
-        
-        btnStudio.addEventListener('click', function() {
-            btnStudio.classList.add('active');
-            btnPodcast.classList.remove('active');
-            studioForm.classList.remove('hidden');
-            podcastForm.classList.add('hidden');
+    // Toggle between forms
+    document.addEventListener('DOMContentLoaded', function () {
+        const btnPodcast = document.getElementById('btnPodcast');
+        const btnStudio = document.getElementById('btnStudio');
+        const podcastForm = document.getElementById('podcastForm');
+        const studioForm = document.getElementById('studioForm');
+
+        if (btnPodcast && btnStudio && podcastForm && studioForm) {
+            btnPodcast.addEventListener('click', function () {
+                btnPodcast.classList.add('active');
+                btnStudio.classList.remove('active');
+                podcastForm.classList.remove('hidden');
+                studioForm.classList.add('hidden');
+            });
+
+            btnStudio.addEventListener('click', function () {
+                btnStudio.classList.add('active');
+                btnPodcast.classList.remove('active');
+                studioForm.classList.remove('hidden');
+                podcastForm.classList.add('hidden');
+            });
+        }
+    });
+
+    // Podcast Form Submission
+    const podcastFormElement = document.getElementById('podcastBookingForm');
+    const podcastFeedback = document.getElementById('podcastFeedback');
+
+    if (podcastFormElement) {
+        podcastFormElement.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="animate-spin mr-2">⏳</span> Submitting...';
+            submitBtn.disabled = true;
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: new FormData(this)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    podcastFeedback.innerHTML = `<span style="color: #10b981;">✓ ${data.message}</span>`;
+                    podcastFormElement.reset();
+                    setTimeout(() => { podcastFeedback.innerHTML = ''; }, 5000);
+                })
+                .catch(error => {
+                    podcastFeedback.innerHTML = '<span style="color: #ef4444;"> Submission failed. Please call us directly.</span>';
+                    console.error('Error:', error);
+                })
+                .finally(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                });
         });
     }
-});
 
-// Podcast Form Submission
-const podcastFormElement = document.getElementById('podcastBookingForm');
-const podcastFeedback = document.getElementById('podcastFeedback');
+    // Studio Form Submission
+    const studioFormElement = document.getElementById('studioRentalForm');
+    const studioFeedback = document.getElementById('studioFeedback');
 
-if (podcastFormElement) {
-    podcastFormElement.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<span class="animate-spin mr-2">⏳</span> Submitting...';
-        submitBtn.disabled = true;
-        
-        fetch(SCRIPT_URL, { 
-            method: 'POST', 
-            body: new FormData(this)
-        })
-        .then(response => response.json())
-        .then(data => {
-            podcastFeedback.innerHTML = `<span style="color: #10b981;">✓ ${data.message}</span>`;
-            podcastFormElement.reset();
-            setTimeout(() => { podcastFeedback.innerHTML = ''; }, 5000);
-        })
-        .catch(error => {
-            podcastFeedback.innerHTML = '<span style="color: #ef4444;"> Submission failed. Please call us directly.</span>';
-            console.error('Error:', error);
-        })
-        .finally(() => {
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
+    if (studioFormElement) {
+        studioFormElement.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="animate-spin mr-2">⏳</span> Submitting...';
+            submitBtn.disabled = true;
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: new FormData(this)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    studioFeedback.innerHTML = `<span style="color: #10b981;">✓ ${data.message}</span>`;
+                    studioFormElement.reset();
+                    setTimeout(() => { studioFeedback.innerHTML = ''; }, 5000);
+                })
+                .catch(error => {
+                    studioFeedback.innerHTML = '<span style="color: #ef4444;"> Submission failed. Please call us directly.</span>';
+                    console.error('Error:', error);
+                })
+                .finally(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                });
         });
-    });
-}
+    }
 
-// Studio Form Submission
-const studioFormElement = document.getElementById('studioRentalForm');
-const studioFeedback = document.getElementById('studioFeedback');
+    // Simple Message Form Submission
+    const messageFormElement = document.getElementById('simpleMessageForm');
+    const messageFeedback = document.getElementById('messageFeedback');
 
-if (studioFormElement) {
-    studioFormElement.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<span class="animate-spin mr-2">⏳</span> Submitting...';
-        submitBtn.disabled = true;
-        
-        fetch(SCRIPT_URL, { 
-            method: 'POST', 
-            body: new FormData(this)
-        })
-        .then(response => response.json())
-        .then(data => {
-            studioFeedback.innerHTML = `<span style="color: #10b981;">✓ ${data.message}</span>`;
-            studioFormElement.reset();
-            setTimeout(() => { studioFeedback.innerHTML = ''; }, 5000);
-        })
-        .catch(error => {
-            studioFeedback.innerHTML = '<span style="color: #ef4444;"> Submission failed. Please call us directly.</span>';
-            console.error('Error:', error);
-        })
-        .finally(() => {
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
+    if (messageFormElement) {
+        messageFormElement.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="animate-spin mr-2">⏳</span> Sending...';
+            submitBtn.disabled = true;
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: new FormData(this)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    messageFeedback.innerHTML = `<span style="color: #10b981;">✓ ${data.message}</span>`;
+                    messageFormElement.reset();
+                    setTimeout(() => { messageFeedback.innerHTML = ''; }, 5000);
+                })
+                .catch(error => {
+                    messageFeedback.innerHTML = '<span style="color: #ef4444;"> Failed to send. Please call us directly.</span>';
+                    console.error('Error:', error);
+                })
+                .finally(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                });
         });
-    });
-}
-
-// Simple Message Form Submission
-const messageFormElement = document.getElementById('simpleMessageForm');
-const messageFeedback = document.getElementById('messageFeedback');
-
-if (messageFormElement) {
-    messageFormElement.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<span class="animate-spin mr-2">⏳</span> Sending...';
-        submitBtn.disabled = true;
-        
-        fetch(SCRIPT_URL, { 
-            method: 'POST', 
-            body: new FormData(this)
-        })
-        .then(response => response.json())
-        .then(data => {
-            messageFeedback.innerHTML = `<span style="color: #10b981;">✓ ${data.message}</span>`;
-            messageFormElement.reset();
-            setTimeout(() => { messageFeedback.innerHTML = ''; }, 5000);
-        })
-        .catch(error => {
-            messageFeedback.innerHTML = '<span style="color: #ef4444;"> Failed to send. Please call us directly.</span>';
-            console.error('Error:', error);
-        })
-        .finally(() => {
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-        });
-    });
-}
+    }
 </script>
 
 <style>
-.toggle-btn {
-    color: #94A3B8;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.toggle-btn.active {
-    background: #3B82F6;
-    color: white;
-}
-.form-container {
-    transition: all 0.3s ease;
-}
-.hidden {
-    display: none;
-}
-input[type="checkbox"], input[type="radio"] {
-    cursor: pointer;
-}
-label:has(input) {
-    cursor: pointer;
-}
-.glass-premium {
-    background: linear-gradient(135deg, rgba(17, 24, 39, 0.9) 0%, rgba(11, 17, 32, 0.95) 100%);
-    backdrop-filter: blur(12px);
-}
-.shadow-glow {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-}
-.shadow-glow:hover {
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
-}
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-.animate-spin {
-    display: inline-block;
-    animation: spin 1s linear infinite;
-}
+    .toggle-btn {
+        color: #94A3B8;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .toggle-btn.active {
+        background: #3B82F6;
+        color: white;
+    }
+
+    .form-container {
+        transition: all 0.3s ease;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    input[type="checkbox"] {
+        cursor: pointer;
+    }
+
+    label:has(input) {
+        cursor: pointer;
+    }
+
+    .glass-premium {
+        background: linear-gradient(135deg, rgba(17, 24, 39, 0.9) 0%, rgba(11, 17, 32, 0.95) 100%);
+        backdrop-filter: blur(12px);
+    }
+
+    .shadow-glow {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+
+    .shadow-glow:hover {
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .animate-spin {
+        display: inline-block;
+        animation: spin 1s linear infinite;
+    }
 </style>

@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 Disallow: /blog/
 Sitemap: https://shubooklabs.netlify.app/sitemap.xml
+# AI discovery
+LLM: https://shubook.in/llms.txt

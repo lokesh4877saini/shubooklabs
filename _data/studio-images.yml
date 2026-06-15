@@ -1,24 +1,20 @@
   
-- url: "/assets/images/studio/studio-image-6.webp"
-  title: "Control Room"
-  description: "Industry-standard mixing & mastering setup"
-
-- url: "/assets/images/studio/studio-image-5.webp"
-  title: "Control Room"
-  description: "Industry-standard mixing & mastering setup"
-
 - url: "/assets/images/studio/studio-image-1.webp"
   title: "Control Room"
-  description: "Industry-standard mixing & mastering setup"
+  description: "Podcast recording via femal host"
 
 - url: "/assets/images/studio/studio-image-2.webp"
+  title: "Control Room"
+  description: "Industry-standard mixing & mastering setup"
+
+- url: "/assets/images/studio/studio-image-3.webp"
+  title: "Control Room"
+  description: "Industry-standard mixing & mastering setup"
+
+- url: "/assets/images/studio/studio-image-4.webp"
   title: "Pro Equipment"
   description: "Professional microphones, headphones, and audio interfaces"
 
-- url: "/assets/images/studio/studio-image-3.webp"
+- url: "/assets/images/studio/studio-image-5.webp"
   title: "Camera Setup"
   description: "4K multi-camera setup for video podcasts"
-
-- url: "/assets/images/studio/studio-image-4.webp"
-  title: "Comfortable Lounge"
-  description: "Relaxing green room for guests and clients"

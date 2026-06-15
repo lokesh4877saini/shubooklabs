@@ -197,7 +197,7 @@
 
   <!-- SYNCHRONOUS CSS - NO MORE ASYNC TRICKS! -->
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-  
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-851J5E07F3">
   </script>
@@ -208,6 +208,22 @@
 
     gtag('config', 'G-851J5E07F3');
   </script>
+  <script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"Service",
+ "name":"Shubook",
+ "url":"https://shubook.in",
+ "telephone":"+919887247112",
+ "address":{
+   "@type":"PostalAddress",
+   "addressLocality":"Jaipur",
+   "addressRegion":"Rajasthan",
+   "addressCountry":"IN"
+ },
+ "areaServed":"Jaipur"
+}
+</script>
 </head>
 <body class="bg-dark-bg">
   {% include header.html %}
