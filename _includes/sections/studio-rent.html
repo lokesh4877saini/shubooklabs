@@ -1,4 +1,5 @@
 <!-- sections/studio-rent.html -->
+
 <section class="relative py-12 md:py-20 lg:py-32 bg-dark-bg">
 
     <div class="relative z-10 container mx-auto px-4 max-w-7xl">
@@ -46,18 +47,18 @@
 
                     <!-- Left Arrow -->
                     <button id="prevBtn" aria-label="Previous studio image"
-                        class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 p-2 md:p-3 bg-black/50 text-white rounded-full border border-white/20 hover:bg-black/70 transition-all duration-200">
-                        {% lucide_icon "arrow-left" size="18" class="text-white md:w-5 md:h-5" %}
+                        class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white rounded-full border border-white/20 hover:bg-black/70 transition-all duration-200 flex items-center justify-center touch-target">
+                        {% lucide_icon "arrow-left" size="20" class="text-white" %}
                     </button>
 
                     <!-- Right Arrow -->
                     <button id="nextBtn" aria-label="Next studio image"
-                        class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 p-2 md:p-3 bg-black/50 text-white rounded-full border border-white/20 hover:bg-black/70 transition-all duration-200">
-                        {% lucide_icon "arrow-right" size="18" class="text-white md:w-5 md:h-5" %}
+                        class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white rounded-full border border-white/20 hover:bg-black/70 transition-all duration-200 flex items-center justify-center touch-target">
+                        {% lucide_icon "arrow-right" size="20" class="text-white" %}
                     </button>
 
                     <!-- Dots Indicator -->
-                    <div class="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-1 md:gap-3" id="dotsContainer">
+                    <div class="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center" id="dotsContainer">
                     </div>
                 </div>
             </div>
@@ -228,8 +229,15 @@
         });
     });
 </script>
+
 <style>
-    /* Dot Indicators - Clean & Modern */
+    /* Touch target base styles - minimum 48px on mobile, 44px on desktop */
+    .touch-target {
+        min-width: 48px;
+        min-height: 48px;
+    }
+    
+    /* Dot Indicators - Clean & Modern with proper touch targets */
     .dot {
         width: 8px;
         height: 8px;
@@ -241,6 +249,14 @@
         padding: 0;
         margin: 0;
         flex-shrink: 0;
+        /* Touch target size - 48px on mobile */
+        min-width: 48px;
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        position: relative;
     }
     
     .dot.active {
@@ -249,19 +265,7 @@
         border-radius: 12px;
     }
     
-    /* Touch-friendly tap area */
-    .dot {
-        min-width: 32px;
-        min-height: 32px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 -6px;
-        background: transparent;
-        position: relative;
-    }
-    
-    /* Visual dot using pseudo-element for better touch area */
+    /* Visual dot using pseudo-element */
     .dot::before {
         content: '';
         position: absolute;
@@ -283,10 +287,10 @@
         transform: scale(1.1);
     }
     
-    /* Arrow buttons */
+    /* Arrow buttons - proper touch targets */
     #prevBtn, #nextBtn {
-        min-width: 36px;
-        min-height: 36px;
+        min-width: 48px;
+        min-height: 48px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -301,12 +305,11 @@
         animation: spin 1s linear infinite;
     }
     
-    /* Mobile optimizations - FIXED */
+    /* Mobile optimizations (max-width: 768px) */
     @media (max-width: 768px) {
         .dot {
-            min-width: 28px;
-            min-height: 28px;
-            margin: 0 -4px;
+            min-width: 48px;
+            min-height: 48px;
         }
         .dot::before {
             width: 6px;
@@ -317,11 +320,18 @@
         }
         #dotsContainer {
             gap: 0;
-            bottom: 8px;
+        }
+        #prevBtn, #nextBtn {
+            min-width: 48px;
+            min-height: 48px;
+        }
+        #prevBtn svg, #nextBtn svg {
+            width: 20px;
+            height: 20px;
         }
     }
     
-    /* Desktop spacing */
+    /* Desktop optimizations (min-width: 769px) */
     @media (min-width: 769px) {
         #dotsContainer {
             gap: 0.5rem;
@@ -329,7 +339,6 @@
         .dot {
             min-width: 44px;
             min-height: 44px;
-            margin: 0 -8px;
         }
         .dot::before {
             width: 10px;
@@ -337,6 +346,10 @@
         }
         .dot.active::before {
             width: 28px;
+        }
+        #prevBtn, #nextBtn {
+            min-width: 44px;
+            min-height: 44px;
         }
     }
     

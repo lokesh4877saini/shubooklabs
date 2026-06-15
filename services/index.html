@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Podcast Production Services Jaipur | Premium Podcast Editing & Content Packages | Shubook Labs
-meta_description: "Shubook Labs offers premium podcast production services in Jaipur including recording, editing, trailer creation, YouTube thumbnails, reels, and personal branding content for founders and creators."
+meta_description: "Shubook Labs offers premium podcast production services in Jaipur including recording, editing,
+trailer creation, YouTube thumbnails, reels, and personal branding content for founders and creators."
 permalink: /services/
 faq_key: services
 faq_title: Frequently Asked Questions
@@ -12,9 +13,10 @@ faq_subtitle: About Podcast Production in Jaipur
 <section class="relative overflow-hidden bg-dark-bg">
     <!-- Spacer for fixed header -->
     <div style="height: 90px;"></div>
-    
+
     <!-- Background orbs -->
-    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]">
+    <div
+        class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]">
     </div>
 
     <div class="relative z-10 container mx-auto px-4 max-w-6xl text-center pb-16 md:pb-28">
@@ -47,20 +49,30 @@ faq_subtitle: About Podcast Production in Jaipur
             <div class="w-16 md:w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-3 md:mt-4"></div>
         </div>
         <p class="text-center text-text-secondary text-base md:text-lg max-w-3xl mx-auto mb-10 md:mb-12">
-            If you are looking for a podcast production company in Jaipur, Shubook Labs gives you everything under one roof.
+            If you are looking for a podcast production company in Jaipur, Shubook Labs gives you everything under one
+            roof.
         </p>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
-            {% assign services = "Podcast recording,Video podcast production,Podcast editing,Trailer creation,YouTube thumbnail design,Reels and short-form content,Audio cleanup,Content repurposing,Personal branding support" | split: "," %}
+            {% assign services = "Podcast recording,Video podcast production,Podcast editing,Trailer creation,YouTube
+            thumbnail design,Reels and short-form content,Audio cleanup,Content repurposing,Personal branding support" |
+            split: "," %}
             {% for service in services %}
-            <div class="flex items-center gap-2 md:gap-3 glass rounded-xl p-3 md:p-4 border border-white/5 hover:border-brand/30 transition-all">
+            <div
+                class="flex items-center gap-2 md:gap-3 glass rounded-xl p-3 md:p-4 border border-white/5 hover:border-brand/30 transition-all">
                 {% lucide_icon "check-circle" size="16" class="text-brand shrink-0 md:w-5 md:h-5" %}
                 <span class="text-text-secondary text-sm md:text-base">{{ service | strip }}</span>
             </div>
             {% endfor %}
         </div>
         <p class="text-center text-text-muted mt-8 md:mt-10 text-base md:text-lg">
-            Our goal is simple: create content that looks premium, sounds professional, and performs well on social media and search engines.
+            Our goal is simple: create content that looks premium, sounds professional, and performs well on social
+            media and search engines.
         </p>
+        <div class="flex items-center justify-center mt-10 md:mt-16">
+            {% include components/button.html url="/contact/#podcastForm" text="Book Your Podcast" type="primary"
+            icon="mic"
+            %}
+        </div>
     </div>
 </section>
 
@@ -80,13 +92,16 @@ faq_subtitle: About Podcast Production in Jaipur
 
         <div class="grid md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
             <!-- Package 1 -->
-            <div class="glass rounded-2xl border border-white/10 p-5 md:p-8 hover:border-brand/40 transition-all hover:-translate-y-1">
+            <div
+                class="glass rounded-2xl border border-white/10 p-5 md:p-8 hover:border-brand/40 transition-all hover:-translate-y-1">
                 <h3 class="text-xl md:text-2xl font-bold mb-2">2-Frame Podcast Package</h3>
                 <div class="text-3xl md:text-4xl font-bold text-brand mb-4 md:mb-6">₹7,000</div>
-                <p class="text-text-muted text-sm md:text-base mb-5 md:mb-6">Perfect for creators and professionals who want a clean, premium, and affordable podcast production experience.</p>
+                <p class="text-text-muted text-sm md:text-base mb-5 md:mb-6">Perfect for creators and professionals who
+                    want a clean, premium, and affordable podcast production experience.</p>
 
                 <ul class="space-y-2 md:space-y-3 mb-6 md:mb-8">
-                    {% assign features1 = "2-frame podcast recording,1 podcast trailer,1 YouTube thumbnail,4 premium reels,Basic podcast editing,Audio cleanup,1 revision round" | split: "," %}
+                    {% assign features1 = "2-frame podcast recording,1 podcast trailer,1 YouTube thumbnail,4 premium
+                    reels,Basic podcast editing,Audio cleanup,1 revision round" | split: "," %}
                     {% for feature in features1 %}
                     <li class="flex items-start gap-2">
                         <span class="text-brand mt-0.5">{% lucide_icon "check" size="14" class="md:w-4 md:h-4" %}</span>
@@ -95,20 +110,27 @@ faq_subtitle: About Podcast Production in Jaipur
                     {% endfor %}
                 </ul>
 
-                <p class="text-text-muted text-xs md:text-sm italic">This package is ideal for first-time guests, small business owners, and professionals who want to create strong content without overcomplicating the process.</p>
+                <p class="text-text-muted text-xs md:text-sm italic">This package is ideal for first-time guests, small
+                    business owners, and professionals who want to create strong content without overcomplicating the
+                    process.</p>
             </div>
 
             <!-- Package 2 -->
-            <div class="glass rounded-2xl border border-brand/30 bg-gradient-to-b from-brand/5 to-transparent p-5 md:p-8 hover:-translate-y-1 transition-all relative">
-                <div class="absolute top-[-10px] md:top-[-12px] left-1/2 -translate-x-1/2 bg-brand text-white text-xs font-bold px-2 md:px-3 py-0.5 md:py-1 rounded-full whitespace-nowrap">
+            <div
+                class="glass rounded-2xl border border-brand/30 bg-gradient-to-b from-brand/5 to-transparent p-5 md:p-8 hover:-translate-y-1 transition-all relative">
+                <div
+                    class="absolute top-[-10px] md:top-[-12px] left-1/2 -translate-x-1/2 bg-brand text-white text-xs font-bold px-2 md:px-3 py-0.5 md:py-1 rounded-full whitespace-nowrap">
                     Most Popular
                 </div>
                 <h3 class="text-xl md:text-2xl font-bold mb-2 mt-2 md:mt-2">3-Frame Podcast Package</h3>
                 <div class="text-3xl md:text-4xl font-bold text-brand mb-4 md:mb-6">₹9,000</div>
-                <p class="text-text-muted text-sm md:text-base mb-5 md:mb-6">Best for clients who want a more advanced and high-end production look.</p>
+                <p class="text-text-muted text-sm md:text-base mb-5 md:mb-6">Best for clients who want a more advanced
+                    and high-end production look.</p>
 
                 <ul class="space-y-2 md:space-y-3 mb-6 md:mb-8">
-                    {% assign features2 = "3-frame podcast recording,1 podcast trailer,1 YouTube thumbnail,4 premium reels,Full podcast editing,Audio cleanup,Color correction,Subtitle styling,1 revision round" | split: "," %}
+                    {% assign features2 = "3-frame podcast recording,1 podcast trailer,1 YouTube thumbnail,4 premium
+                    reels,Full podcast editing,Audio cleanup,Color correction,Subtitle styling,1 revision round" |
+                    split: "," %}
                     {% for feature in features2 %}
                     <li class="flex items-start gap-2">
                         <span class="text-brand mt-0.5">{% lucide_icon "check" size="14" class="md:w-4 md:h-4" %}</span>
@@ -117,7 +139,8 @@ faq_subtitle: About Podcast Production in Jaipur
                     {% endfor %}
                 </ul>
 
-                <p class="text-text-muted text-xs md:text-sm italic">This is our most balanced premium offer for clients who want better visual quality and a more polished brand presence.</p>
+                <p class="text-text-muted text-xs md:text-sm italic">This is our most balanced premium offer for clients
+                    who want better visual quality and a more polished brand presence.</p>
             </div>
         </div>
     </div>
@@ -127,14 +150,22 @@ faq_subtitle: About Podcast Production in Jaipur
 <section class="py-16 md:py-28 bg-dark-card relative">
     <div class="container mx-auto px-4 max-w-5xl text-center">
         <h2 class="text-2xl md:text-4xl font-bold mb-3 md:mb-4">Podcast Editing That Adds Real Value</h2>
-        <p class="text-text-secondary text-sm md:text-lg mb-8 md:mb-10 max-w-2xl mx-auto">A great podcast is not just recorded well. It must also be edited with strategy.</p>
+        <p class="text-text-secondary text-sm md:text-lg mb-8 md:mb-10 max-w-2xl mx-auto">A great podcast is not just
+            recorded well. It must also be edited with strategy.</p>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
-            {% assign edits = "Clean audio enhancement,Noise reduction,Voice balancing,Visual color correction,Stylish subtitles,Hook-based reel editing,Engaging trailer creation,Export-ready delivery" | split: "," %}
+            {% assign edits = "Clean audio enhancement,Noise reduction,Voice balancing,Visual color correction,Stylish
+            subtitles,Hook-based reel editing,Engaging trailer creation,Export-ready delivery" | split: "," %}
             {% for edit in edits %}
-            <div class="glass rounded-lg p-2 md:p-3 text-center text-text-secondary text-xs md:text-base">{{ edit | strip }}</div>
+            <div class="glass rounded-lg p-2 md:p-3 text-center text-text-secondary text-xs md:text-base">{{ edit |
+                strip }}</div>
             {% endfor %}
         </div>
-        <p class="text-text-muted text-sm md:text-base mt-6 md:mt-10">We do not just cut clips. We shape content that feels premium and performs better online.</p>
+        <p class="text-text-muted text-sm md:text-base mt-6 md:mt-10">We do not just cut clips. We shape content that
+            feels premium and performs better online.</p>
+    </div>
+    <div class="flex items-center justify-center mt-10 md:mt-16">
+        {% include components/button.html url="/contact/#podcastForm" text="Book Your Podcast" type="primary" icon="mic"
+        %}
     </div>
 </section>
 
@@ -144,12 +175,16 @@ faq_subtitle: About Podcast Production in Jaipur
         <h2 class="text-2xl md:text-4xl font-bold mb-4 md:mb-6">Who Our Podcast Production Services Are For</h2>
         <div class="w-16 md:w-20 h-1 bg-brand-gradient rounded-full mx-auto mb-8 md:mb-10"></div>
         <div class="flex flex-wrap justify-center gap-2 md:gap-3 max-w-3xl mx-auto">
-            {% assign audiences = "Founders,Entrepreneurs,Business owners,Coaches,Doctors,Consultants,Real estate professionals,Educators,Agency owners,Influencers,Content creators,Thought leaders" | split: "," %}
+            {% assign audiences = "Founders,Entrepreneurs,Business owners,Coaches,Doctors,Consultants,Real estate
+            professionals,Educators,Agency owners,Influencers,Content creators,Thought leaders" | split: "," %}
             {% for person in audiences %}
-            <span class="glass rounded-full px-3 md:px-5 py-1.5 md:py-2 text-text-secondary text-xs md:text-base border border-white/5">{{ person | strip }}</span>
+            <span
+                class="glass rounded-full px-3 md:px-5 py-1.5 md:py-2 text-text-secondary text-xs md:text-base border border-white/5">{{
+                person | strip }}</span>
             {% endfor %}
         </div>
-        <p class="text-text-muted text-sm md:text-lg mt-6 md:mt-8">If your voice, story, or expertise can create value, a podcast can help you grow faster.</p>
+        <p class="text-text-muted text-sm md:text-lg mt-6 md:mt-8">If your voice, story, or expertise can create value,
+            a podcast can help you grow faster.</p>
     </div>
 </section>
 
@@ -158,22 +193,32 @@ faq_subtitle: About Podcast Production in Jaipur
     <div class="container mx-auto px-4 max-w-5xl">
         <div class="text-center mb-10 md:mb-12">
             <h2 class="text-2xl md:text-4xl font-bold">Premium Podcast Production in Jaipur</h2>
-            <p class="text-text-secondary text-sm md:text-base mt-3 md:mt-4">People choose Shubook Labs because we focus on quality, presentation, and business impact.</p>
+            <p class="text-text-secondary text-sm md:text-base mt-3 md:mt-4">People choose Shubook Labs because we focus
+                on quality, presentation, and business impact.</p>
         </div>
         <div class="grid md:grid-cols-2 gap-4 md:gap-8">
-            {% assign reasons = "Professional Studio Environment,High-Quality Video and Audio,Content That Can Be Repurposed,Designed for Personal Branding,Fast and Reliable Delivery,Built for Premium Clients" | split: "," %}
+            {% assign reasons = "Professional Studio Environment,High-Quality Video and Audio,Content That Can Be
+            Repurposed,Designed for Personal Branding,Fast and Reliable Delivery,Built for Premium Clients" | split: ","
+            %}
             {% for reason in reasons %}
             <div class="flex items-start gap-3 md:gap-4 glass rounded-xl p-4 md:p-5">
-                <div class="bg-brand/20 p-1.5 md:p-2 rounded-lg shrink-0">{% lucide_icon "star" size="16" class="text-brand md:w-5 md:h-5" %}</div>
+                <div class="bg-brand/20 p-1.5 md:p-2 rounded-lg shrink-0">{% lucide_icon "star" size="16"
+                    class="text-brand md:w-5 md:h-5" %}</div>
                 <div>
                     <h3 class="font-semibold text-base md:text-lg">{{ reason | strip }}</h3>
                     <p class="text-text-muted text-xs md:text-sm mt-1">
-                        {% if reason == "Professional Studio Environment" %}A premium setup designed for polished podcast production.
-                        {% elsif reason == "High-Quality Video and Audio" %}Your podcast looks sharp and sounds clear across all platforms.
-                        {% elsif reason == "Content That Can Be Repurposed" %}One recording session can become multiple reels, clips, and short-form videos.
-                        {% elsif reason == "Designed for Personal Branding" %}We help you build authority, not just content.
-                        {% elsif reason == "Fast and Reliable Delivery" %}We respect deadlines and keep the workflow smooth.
-                        {% else %}Our process is ideal for people who want their content to reflect their standard.{% endif %}
+                        {% if reason == "Professional Studio Environment" %}A premium setup designed for polished
+                        podcast production.
+                        {% elsif reason == "High-Quality Video and Audio" %}Your podcast looks sharp and sounds clear
+                        across all platforms.
+                        {% elsif reason == "Content That Can Be Repurposed" %}One recording session can become multiple
+                        reels, clips, and short-form videos.
+                        {% elsif reason == "Designed for Personal Branding" %}We help you build authority, not just
+                        content.
+                        {% elsif reason == "Fast and Reliable Delivery" %}We respect deadlines and keep the workflow
+                        smooth.
+                        {% else %}Our process is ideal for people who want their content to reflect their standard.{%
+                        endif %}
                     </p>
                 </div>
             </div>
@@ -187,14 +232,23 @@ faq_subtitle: About Podcast Production in Jaipur
     <div class="container mx-auto px-4 max-w-4xl text-center">
         <h2 class="text-2xl md:text-4xl font-bold mb-4 md:mb-6">A Smarter Podcast Package for Serious Brands</h2>
         <div class="glass rounded-2xl p-5 md:p-8 border border-brand/20">
-            <p class="text-text-secondary text-sm md:text-lg mb-5 md:mb-6">Most studios only offer recording. We offer a complete content experience.</p>
+            <p class="text-text-secondary text-sm md:text-lg mb-5 md:mb-6">Most studios only offer recording. We offer a
+                complete content experience.</p>
             <div class="flex flex-wrap justify-center gap-2 md:gap-3 mb-5 md:mb-6">
-                {% assign benefits = "Recording,Editing,Trailer,Thumbnail,Reels,Premium presentation,Branding support" | split: "," %}
+                {% assign benefits = "Recording,Editing,Trailer,Thumbnail,Reels,Premium presentation,Branding support" |
+                split: "," %}
                 {% for benefit in benefits %}
-                <span class="bg-brand/10 rounded-full px-3 md:px-4 py-1 md:py-1.5 text-brand text-xs md:text-sm">{{ benefit | strip }}</span>
+                <span class="bg-brand/10 rounded-full px-3 md:px-4 py-1 md:py-1.5 text-brand text-xs md:text-sm">{{
+                    benefit | strip }}</span>
                 {% endfor %}
             </div>
-            <p class="text-text-muted text-sm md:text-base">That means you do not need to coordinate with multiple vendors. Everything is managed in one place with a premium finish.</p>
+            <p class="text-text-muted text-sm md:text-base">That means you do not need to coordinate with multiple
+                vendors. Everything is managed in one place with a premium finish.</p>
+        </div>
+        <div class="flex items-center justify-center mt-10 md:mt-16">
+            {% include components/button.html url="/contact/#podcastForm" text="Book Your Podcast" type="primary"
+            icon="mic"
+            %}
         </div>
     </div>
 </section>
@@ -207,10 +261,12 @@ faq_subtitle: About Podcast Production in Jaipur
             <div class="w-16 md:w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-3 md:mt-4"></div>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6 text-center">
-            {% assign steps = "Book Your Session,Record in Studio,Editing and Enhancement,Content Repurposing,Delivery" | split: "," %}
+            {% assign steps = "Book Your Session,Record in Studio,Editing and Enhancement,Content Repurposing,Delivery"
+            | split: "," %}
             {% for step in steps %}
             <div>
-                <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-brand/20 flex items-center justify-center mx-auto mb-2 md:mb-3 border border-brand/30">
+                <div
+                    class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-brand/20 flex items-center justify-center mx-auto mb-2 md:mb-3 border border-brand/30">
                     {% lucide_icon "check" size="16" class="text-brand md:w-5 md:h-5" %}
                 </div>
                 <p class="font-semibold text-xs md:text-sm">{{ step | strip }}</p>
@@ -232,12 +288,16 @@ faq_subtitle: About Podcast Production in Jaipur
     <div class="container mx-auto px-4 max-w-5xl text-center">
         <h2 class="text-2xl md:text-4xl font-bold mb-5 md:mb-6">Optional Upgrades</h2>
         <div class="flex flex-wrap justify-center gap-2 md:gap-3">
-            {% assign addons = "Extra reels,Additional thumbnail designs,Fast delivery,Extra revision rounds,Short-form content bundles,Podcast publishing support,Social media caption support" | split: "," %}
+            {% assign addons = "Extra reels,Additional thumbnail designs,Fast delivery,Extra revision rounds,Short-form
+            content bundles,Podcast publishing support,Social media caption support" | split: "," %}
             {% for addon in addons %}
-            <span class="glass rounded-full px-3 md:px-5 py-1.5 md:py-2 text-text-secondary text-xs md:text-sm border border-white/5">{{ addon | strip }}</span>
+            <span
+                class="glass rounded-full px-3 md:px-5 py-1.5 md:py-2 text-text-secondary text-xs md:text-sm border border-white/5">{{
+                addon | strip }}</span>
             {% endfor %}
         </div>
-        <p class="text-text-muted text-sm md:text-base mt-5 md:mt-6">These add-ons help increase the value of the final package and give clients more content from one shoot.</p>
+        <p class="text-text-muted text-sm md:text-base mt-5 md:mt-6">These add-ons help increase the value of the final
+            package and give clients more content from one shoot.</p>
     </div>
 </section>
 
@@ -249,10 +309,13 @@ faq_subtitle: About Podcast Production in Jaipur
 
 <style>
     @keyframes pulse-slow {
-        0%, 100% {
+
+        0%,
+        100% {
             opacity: 0.3;
             transform: scale(1);
         }
+
         50% {
             opacity: 0.6;
             transform: scale(1.1);
