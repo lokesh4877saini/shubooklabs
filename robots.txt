@@ -1,6 +1,26 @@
+# robots.txt for Shubook Labs
+# For AI/Large Language Model instructions, see: https://shubook.in/llms.txt
+
 User-agent: *
 Allow: /
-Disallow: /blog/
-Sitemap: https://shubooklabs.netlify.app/sitemap.xml
-# AI discovery
-LLM: https://shubook.in/llms.txt
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /assets/private/
+
+# Sitemap
+Sitemap: https://shubook.in/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
+
+# AI/Large Language Model crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /

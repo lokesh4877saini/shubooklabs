@@ -1,7 +1,6 @@
 <header class="fixed top-0 left-0 right-0 z-50 bg-transparent px-4 py-3">
   <div class="max-w-7xl mx-auto">
-    <div
-      class="flex items-center justify-between md:px-5 px-3 py-3 gap-4 bg-dark-card/80 backdrop-blur-xl border border-brand/20 rounded-2xl shadow-lg shadow-black/5">
+    <div class="flex items-center justify-between md:px-5 px-3 py-3 gap-4 bg-dark-card/80 border border-brand/20 rounded-2xl">
 
       <!-- Logo -->
       <a href="/" aria-label="Shubook Labs Home" class="flex items-center gap-3 group shrink-0">
@@ -18,10 +17,17 @@
           aria-current="{% if current_url == '/' %}page{% endif %}">Home</a>
         <a href="/services" class="nav-link {% if current_url contains '/services' %}active{% endif %}"
           aria-current="{% if current_url contains '/services' %}page{% endif %}">Services</a>
-        <a href="/studio-rent" class="nav-link {% if current_url contains '/studio-rent' %}active{% endif %}"
-          aria-current="{% if current_url contains '/studio-rent' %}page{% endif %}">Studio Rent</a>
-        <a href="/podcast" class="nav-link {% if current_url contains '/podcast' %}active{% endif %}"
-          aria-current="{% if current_url contains '/podcast' %}page{% endif %}">Podcast</a>
+        <a href="/podcast-studio-on-rent"
+          class="nav-link {% if current_url == '/podcast-studio-on-rent' or current_url contains '/podcast-studio-on-rent/' %}active{% endif %}"
+          aria-current="{% if current_url == '/podcast-studio-on-rent' or current_url contains '/podcast-studio-on-rent/' %}page{% endif %}">
+          Podcast Studio Rent
+        </a>
+
+        <a href="/podcast"
+          class="nav-link {% if current_url == '/podcast' or current_url contains '/podcast/' and current_url != '/podcast-studio-on-rent' and current_url != '/podcast-studio-on-rent/' %}active{% endif %}"
+          aria-current="{% if current_url == '/podcast' or current_url contains '/podcast/' and current_url != '/podcast-studio-on-rent' %}page{% endif %}">
+          Podcast
+        </a>
         <a href="/portfolio" class="nav-link {% if current_url contains '/portfolio' %}active{% endif %}"
           aria-current="{% if current_url contains '/portfolio' %}page{% endif %}">Portfolio</a>
         <a href="/about" class="nav-link {% if current_url contains '/about' %}active{% endif %}"
@@ -49,7 +55,7 @@
 
         <!-- Mobile Menu Button -->
         <label for="menuToggle"
-          class="lg:hidden h-10 w-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center hover:bg-white/10 hover:border-brand/40 transition-all duration-300 cursor-pointer"
+          class="lg:hidden h-10 w-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center cursor-pointer"
           aria-label="Open menu">
           {% lucide_icon "menu" size="20" class="text-white" %}
         </label>
@@ -60,15 +66,14 @@
     <input type="checkbox" id="menuToggle" class="hidden peer">
 
     <!-- Overlay -->
-    <div class="menu-overlay fixed inset-0 bg-black/60 z-40 opacity-0 invisible transition-all duration-300"></div>
+    <div class="menu-overlay fixed inset-0 bg-black/60 z-40"></div>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu fixed top-0 right-0 bottom-0 w-[85%] sm:w-80 z-50">
-      <div
-        class="h-full rounded-l-2xl bg-dark-card/98 backdrop-blur-xl border-l border-t border-b border-brand/20 overflow-y-auto shadow-xl shadow-black/30">
-        
+      <div class="h-full rounded-l-2xl bg-dark-card/98 border-l border-t border-b border-brand/20 overflow-y-auto">
+
         <!-- Close button inside menu -->
-        <label for="menuToggle" class="absolute top-4 right-4 p-2 rounded-lg hover:bg-white/10 cursor-pointer z-10"
+        <label for="menuToggle" class="absolute top-4 right-4 p-2 rounded-lg cursor-pointer z-10"
           aria-label="Close menu">
           {% lucide_icon "x" size="24" class="text-white" %}
         </label>
@@ -96,11 +101,12 @@
             </span>
           </a>
 
-          <a href="/studio-rent/" class="mobile-link {% if current_url contains '/studio-rent' %}active{% endif %}"
-            aria-current="{% if current_url contains '/studio-rent' %}page{% endif %}">
+          <a href="/podcast-studio-on-rent/"
+            class="mobile-link {% if current_url contains '/podcast-studio-on-rent' %}active{% endif %}"
+            aria-current="{% if current_url contains '/podcast-studio-on-rent' %}page{% endif %}">
             <span class="flex items-center gap-3">
               {% lucide_icon "video" size="18" class="text-brand/60" %}
-              <span>Studio Rent</span>
+              <span>Podcast Studio Rent</span>
             </span>
           </a>
 
@@ -136,7 +142,8 @@
             </span>
           </a>
 
-          <a href="/contact/" class="mobile-link mt-4 border-t border-white/10 pt-4 {% if current_url contains '/contact' %}active{% endif %}"
+          <a href="/contact/"
+            class="mobile-link mt-4 border-t border-white/10 pt-4 {% if current_url contains '/contact' %}active{% endif %}"
             aria-current="{% if current_url contains '/contact' %}page{% endif %}">
             <span class="flex items-center gap-3 text-brand">
               {% lucide_icon "calendar" size="18" %}
@@ -151,157 +158,84 @@
 
 <style>
   /* ============================================
-     CSS-ONLY MOBILE MENU (Checkbox Hack) - FIXED
+     SUPER FAST - ABSOLUTE MINIMUM
   ============================================ */
 
-  /* Hide checkbox */
-  #menuToggle {
-    display: none;
-  }
+  #menuToggle { display: none; }
 
-  /* Overlay - Hidden by default */
-  .menu-overlay {
-    pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-  }
-
-  /* Mobile Menu - Hidden by default (off-screen right) */
-  .mobile-menu {
+  /* Menu hidden by default */
+  .mobile-menu { 
     transform: translateX(100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: black;
+    transition: transform 0.2s ease;
   }
 
-  /* Show menu when checkbox is checked */
-  #menuToggle:checked ~ .mobile-menu {
-    transform: translateX(0);
-  }
+  .menu-overlay { display: none; }
 
-  /* Show overlay when checkbox is checked */
-  #menuToggle:checked ~ .menu-overlay {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
+  /* Show menu when checked */
+  #menuToggle:checked ~ .mobile-menu { transform: translateX(0); }
+  #menuToggle:checked ~ .menu-overlay { display: block; }
 
-  /* Fix: Ensure overlay covers everything below header */
-  .menu-overlay {
-    top: 80px;
-    backdrop-filter: blur(4px);
-  }
+  /* Prevent scroll */
+  body:has(#menuToggle:checked) { overflow: hidden; }
 
-  /* Fix: Prevent body scroll when menu is open */
-  body:has(#menuToggle:checked) {
-    overflow: hidden;
-  }
-
-  /* ============================================
-     RESPONSIVE BREAKPOINT
-  ============================================ */
-
-  /* DEFAULT: Mobile & Tablet (below 1024px) */
-  .desktop-nav {
-    display: none !important;
-  }
-
-  /* DESKTOP: 1024px and above */
+  /* Desktop */
+  .desktop-nav { display: none; }
+  
   @media (min-width: 1024px) {
-    .desktop-nav {
-      display: flex !important;
-    }
-
-    /* Hide mobile menu elements on desktop */
-    label[for="menuToggle"],
-    .mobile-menu,
-    .menu-overlay {
-      display: none !important;
-    }
+    .desktop-nav { display: flex; }
+    label[for="menuToggle"] { display: none; }
+    .mobile-menu { display: none; }
+    .menu-overlay { display: none !important; }
   }
 
-  /* ============================================
-     NAVIGATION STYLES
-  ============================================ */
-
+  /* Simple nav links - NO HOVER ON MOBILE */
   .nav-link {
-    position: relative;
-    font-weight: 500;
-    font-size: 0.875rem;
     color: #CBD5E1;
-    transition: all 0.3s ease;
-    letter-spacing: 0.3px;
-    text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 0.75rem;
-  }
-
-  .nav-link:hover {
-    color: #60A5FA;
-    background: rgba(96, 165, 250, 0.08);
-  }
-
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%) scaleX(0);
-    width: calc(100% - 2rem);
-    height: 2px;
-    background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
-    border-radius: 2px;
-    transition: transform 0.3s ease;
-  }
-
-  .nav-link:hover::after,
-  .nav-link.active::after {
-    transform: translateX(-50%) scaleX(1);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
   }
 
   .nav-link.active {
     color: #60A5FA;
-    background: rgba(96, 165, 250, 0.08);
+    background: rgba(96,165,250,0.08);
   }
 
-  /* Mobile Navigation Links */
+  /* Only hover on desktop */
+  @media (min-width: 1024px) {
+    .nav-link:hover {
+      color: #60A5FA;
+      background: rgba(96,165,250,0.08);
+    }
+  }
+
+  /* Mobile links - NO HOVER */
   .mobile-link {
     display: block;
     padding: 0.875rem 1rem;
-    font-weight: 500;
-    font-size: 0.9375rem;
     color: #CBD5E1;
-    transition: all 0.3s ease;
     border-radius: 0.75rem;
     text-decoration: none;
-  }
-
-  .mobile-link:hover {
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(96, 165, 250, 0.05) 100%);
-    color: #60A5FA;
+    font-weight: 500;
+    font-size: 0.9375rem;
   }
 
   .mobile-link.active {
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(96, 165, 250, 0.08) 100%);
     color: #60A5FA;
+    background: rgba(96,165,250,0.1);
   }
 
-  /* WhatsApp Button */
-  .whatsapp-btn {
-    transition: all 0.3s ease;
+  /* WhatsApp - NO HOVER on mobile */
+  .whatsapp-btn { background: rgba(255,255,255,0.1); }
+  
+  @media (min-width: 1024px) {
+    .whatsapp-btn:hover { background: #60A5FA; }
   }
 
-  .whatsapp-btn:hover {
-    transform: scale(1.02);
-  }
-
-  /* Hide WhatsApp text on mobile */
   @media (max-width: 639px) {
-    .whatsapp-btn span {
-      display: none !important;
-    }
-  }
-
-  @media (min-width: 640px) {
-    .whatsapp-btn span {
-      display: inline-block !important;
-    }
+    .whatsapp-btn span { display: none; }
   }
 </style>

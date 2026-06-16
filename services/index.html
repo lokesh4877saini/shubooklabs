@@ -8,7 +8,7 @@ faq_key: services
 faq_title: Frequently Asked Questions
 faq_subtitle: About Podcast Production in Jaipur
 ---
-
+{% assign c = site.data.constants %}
 <!-- Hero Section -->
 <section class="relative overflow-hidden bg-dark-bg">
     <!-- Spacer for fixed header -->
@@ -95,7 +95,7 @@ faq_subtitle: About Podcast Production in Jaipur
             <div
                 class="glass rounded-2xl border border-white/10 p-5 md:p-8 hover:border-brand/40 transition-all hover:-translate-y-1">
                 <h3 class="text-xl md:text-2xl font-bold mb-2">2-Frame Podcast Package</h3>
-                <div class="text-3xl md:text-4xl font-bold text-brand mb-4 md:mb-6">₹7,000</div>
+                <div class="text-3xl md:text-4xl font-bold text-brand mb-4 md:mb-6">{{ c.two_frame_podcast_price }}</div>
                 <p class="text-text-muted text-sm md:text-base mb-5 md:mb-6">Perfect for creators and professionals who
                     want a clean, premium, and affordable podcast production experience.</p>
 
@@ -123,7 +123,7 @@ faq_subtitle: About Podcast Production in Jaipur
                     Most Popular
                 </div>
                 <h3 class="text-xl md:text-2xl font-bold mb-2 mt-2 md:mt-2">3-Frame Podcast Package</h3>
-                <div class="text-3xl md:text-4xl font-bold text-brand mb-4 md:mb-6">₹9,000</div>
+                <div class="text-3xl md:text-4xl font-bold text-brand mb-4 md:mb-6">{{ c.three_frame_podcast_price }}</div>
                 <p class="text-text-muted text-sm md:text-base mb-5 md:mb-6">Best for clients who want a more advanced
                     and high-end production look.</p>
 

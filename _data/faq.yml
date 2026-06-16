@@ -24,7 +24,7 @@ services:
 
 studio:
   - question: "What is the cost of podcast studio rent in Jaipur?"
-    answer: "Our current introductory pricing is ₹1,000 per hour. The standard rental rate is ₹2,000 per hour."
+    answer: "Our current introductory pricing is ₹1,000 per hour. The standard rental rate is 2,000 ₹ per hour."
   - question: "Do you provide cameras and microphones?"
     answer: "Yes. Professional cameras, microphones, lighting, and operator support are included."
   - question: "Is raw footage included?"
@@ -62,13 +62,13 @@ about:
   - question: "What is The Shubook Show?"
     answer: "The Shubook Show is the flagship podcast produced by Shubook Labs, featuring conversations with entrepreneurs, founders, business leaders, professionals, creators, and industry experts."
   - question: "How many podcast episodes has The Shubook Show published?"
-    answer: "The Shubook Show has published 65+ podcast episodes featuring 30+ guests across YouTube, Spotify, Apple Podcasts, and Amazon Music."
+    answer: "The Shubook Show has published 100+ podcast episodes featuring 30+ guests across YouTube, Spotify, Apple Podcasts, and Amazon Music."
 
 portfolio:
   - question: "What type of content is in your portfolio?"
     answer: "Our portfolio features podcast studio setups, podcast episodes, reels, thumbnails, BTS content, and premium podcast production projects produced by ShuBook Labs."
   - question: "Can I see examples of your podcast episodes?"
-    answer: "Yes. The Shubook Show has 65+ published episodes featuring 30+ guests available on YouTube, Spotify, Apple Podcasts, and Amazon Music."
+    answer: "Yes. The Shubook Show has 100+ published episodes featuring 30+ guests available on YouTube, Spotify, Apple Podcasts, and Amazon Music."
   - question: "Do you share behind-the-scenes content?"
     answer: "Yes. Our portfolio includes BTS photos and videos from podcast shoots, content production sessions, guest interactions, and studio experiences."
   - question: "What equipment do you use in your studio?"

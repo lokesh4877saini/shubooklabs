@@ -4,12 +4,12 @@ title: Podcast Studio on Rent in Jaipur | Premium Podcast Recording Studio | Shu
 meta_description: "Looking for a podcast studio on rent in Jaipur? Shubook Labs offers a premium podcast recording
 studio in Sanganer, Jaipur with professional cameras, audio equipment, operator support, raw footage, BTS content, and
 flexible hourly rental."
-permalink: /studio-rent/
+permalink: /podcast-studio-on-rent/
 faq_key: studio
 faq_title: Frequently Asked Questions
 faq_subtitle: About Podcast Studio Rental in Jaipur
 ---
-
+{% assign c = site.data.constants %}
 <!-- Hero Section -->
 <section class="relative overflow-hidden bg-dark-bg">
     <!-- Spacer for fixed header -->
@@ -39,7 +39,7 @@ faq_subtitle: About Podcast Studio Rental in Jaipur
             your personal brand, Shubook Labs provides everything you need under one roof.
         </p>
         <div class="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
-            {% include components/button.html url="/book-studio" text="Book Studio Now" type="primary" icon="calendar"
+            {% include components/button.html url="/book-studio" text="Podcast Studio Now" type="primary" icon="calendar"
             %}
             {% include components/button.html url="/check-availability" text="Check Availability" type="ghost"
             icon="clock" %}
@@ -144,7 +144,7 @@ faq_subtitle: About Podcast Studio Rental in Jaipur
             </div>
         </div>
         <div class="flex items-center justify-center mt-10 md:mt-16">
-            {% include components/button.html url="/contact/#podcastForm" text="Book Your Podcast" type="primary"
+            {% include components/button.html url="/contact/#podcastForm" text="Book Podcast Studio Now" type="primary"
             icon="mic"
             %}
         </div>
@@ -195,8 +195,8 @@ faq_subtitle: About Podcast Studio Rental in Jaipur
                 class="absolute -top-2 md:-top-3 left-1/2 -translate-x-1/2 bg-brand text-white text-xs font-bold px-2 md:px-3 py-0.5 md:py-1 rounded-full whitespace-nowrap">
                 Limited Time Offer</div>
             <div class="text-center">
-                <p class="text-text-muted line-through text-sm md:text-lg mb-2">Regular Price: ₹2,000 Per Hour</p>
-                <div class="text-3xl md:text-6xl font-bold text-brand mb-3 md:mb-4">₹1,000 <span
+                <p class="text-text-muted line-through text-sm md:text-lg mb-2">Regular Price: 2,000 ₹ Per Hour</p>
+                <div class="text-3xl md:text-6xl font-bold text-brand mb-3 md:mb-4">{{ c.podcast_studio_rent_price }} <span
                         class="text-base md:text-xl text-text-muted">Per Hour</span></div>
                 <p class="text-text-secondary text-sm md:text-base mb-4 md:mb-6">Special Introductory Offer •
                     Limited-Time Launch Pricing</p>
@@ -214,7 +214,7 @@ faq_subtitle: About Podcast Studio Rental in Jaipur
                     </div>
                 </div>
                 <p class="text-text-muted text-xs md:text-sm mb-4 md:mb-6">One Simple Price. ₹1,000 Per Hour.</p>
-                {% include components/button.html url="/book-slot" text="Book Your Slot" type="primary" icon="calendar"
+                {% include components/button.html url="/book-slot" text="Rent Podcast Studio" type="primary" icon="calendar"
                 %}
             </div>
         </div>
@@ -277,7 +277,7 @@ faq_subtitle: About Podcast Studio Rental in Jaipur
             hundredth, our studio is designed to help you create professional content with confidence.</p>
     </div>
     <div class="flex items-center justify-center mt-10 md:mt-16">
-        {% include components/button.html url="/contact/#podcastForm" text="Book Your Podcast" type="primary" icon="mic"
+        {% include components/button.html url="/contact/#podcastForm" text="Book Podcast Studio Now" type="primary" icon="mic"
         %}
     </div>
 </section>
@@ -355,7 +355,7 @@ faq_subtitle: About Podcast Studio Rental in Jaipur
             <p class="text-text-secondary text-sm md:text-lg mb-6 md:mb-8 max-w-2xl mx-auto">Book your session today and
                 create professional content that builds authority, trust, and visibility.</p>
             <div class="mb-4 md:mb-6">
-                <p class="text-text-muted line-through text-sm md:text-lg">Regular Price: ₹2,000/Hour</p>
+                <p class="text-text-muted line-through text-sm md:text-lg">Regular Price: 2,000 ₹/Hour</p>
                 <p class="text-2xl md:text-4xl font-bold text-brand">Launch Offer: ₹1,000/Hour</p>
                 <p class="text-text-muted text-xs md:text-sm mt-2">Limited Slots Available</p>
             </div>

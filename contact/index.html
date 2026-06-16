@@ -7,7 +7,7 @@ faq_key: contact
 faq_title: Frequently Asked Questions
 faq_subtitle: About Booking & Contact
 ---
-
+{% assign c = site.data.constants %}
 <!-- Hero Section -->
 <section class="relative bg-dark-bg">
     <div style="height: 90px;"></div>
@@ -105,20 +105,11 @@ faq_subtitle: About Booking & Contact
                     <div class="flex items-center gap-3">
                         <div
                             class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-brand/20 flex items-center justify-center shrink-0">
-                            {% lucide_icon "globe" size="14" class="text-brand md:w-4.5 md:h-4.5" %}</div>
-                        <div>
-                            <p class="text-text-muted text-xs md:text-sm">Website</p>
-                            <p class="text-text-primary font-semibold text-sm md:text-base">www.shubook.in</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div
-                            class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-brand/20 flex items-center justify-center shrink-0">
                             {% lucide_icon "clock" size="14" class="text-brand md:w-4.5 md:h-4.5" %}</div>
                         <div>
                             <p class="text-text-muted text-xs md:text-sm">Working Hours</p>
                             <p class="text-text-primary font-semibold text-sm md:text-base">Mon-Sat: 10AM -
-                                8PM<br>Sunday: By Appointment</p>
+                                7PM<br>Sunday: By Appointment</p>
                         </div>
                     </div>
                 </div>
@@ -132,7 +123,7 @@ faq_subtitle: About Booking & Contact
                             {% lucide_icon "youtube" size="14" class="text-brand md:w-4.5 md:h-4.5" %}</div>
                         <div>
                             <p class="text-text-muted text-xs md:text-sm">YouTube</p>
-                            <p class="text-text-primary font-semibold text-sm md:text-base">The Shubook Show (14K+ Subs)
+                            <p class="text-text-primary font-semibold text-sm md:text-base">The Shubook Show (15K+ Subs)
                             </p>
                         </div>
                     </div>
@@ -187,28 +178,6 @@ faq_subtitle: About Booking & Contact
                     <p class="text-text-muted text-sm md:text-base">Get featured on The Shubook Show</p>
                 </div>
 
-                <div
-                    class="bg-gradient-to-r from-brand/15 to-brand/5 rounded-xl p-4 md:p-5 mb-6 md:mb-8 border border-brand/30">
-                    <h3
-                        class="font-semibold text-text-primary text-sm md:text-base mb-2 md:mb-3 flex items-center gap-2">
-                        {% lucide_icon "package" size="14" class="text-brand md:w-4 md:h-4" %} Podcast + Personal
-                        Branding Package</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-2">
-                        {% assign includes = "1 Long-Form Podcast (60-90 Minutes),10 Professionally Edited Reels,5
-                        Mid-Length Videos,Custom Thumbnail Design,Publishing On YouTube, Instagram &
-                        LinkedIn,Distribution On Spotify, Apple Podcasts & Amazon Music" | split: "," %}
-                        {% for item in includes %}
-                        <div class="flex items-center gap-1 md:gap-2"><span class="text-brand shrink-0">{% lucide_icon
-                                "check" size="10" class="md:w-3.5 md:h-3.5" %}</span><span
-                                class="text-text-secondary text-xs md:text-sm">{{ item | strip }}</span></div>
-                        {% endfor %}
-                    </div>
-                    <div class="text-center mt-3 md:mt-4">
-                        <p class="text-2xl md:text-3xl font-bold text-brand">₹20,000</p>
-                        <p class="text-text-muted text-xs">One-time investment</p>
-                    </div>
-                </div>
-
                 <form id="podcastBookingForm">
                     <input type="hidden" name="formType" value="podcast">
 
@@ -221,17 +190,17 @@ faq_subtitle: About Booking & Contact
                         </div>
                     </div>
                     <div class="grid md:grid-cols-2 gap-4 md:gap-5 mt-3 md:mt-4">
-                        <div><input type="email" name="email" placeholder="Email Address" required
+                        <div><input type="text" name="company" placeholder="Company / Business Name" required
                                 class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
                         </div>
-                        <div><input type="text" name="company" placeholder="Company / Business Name"
+                        <div><input type="text" name="city" placeholder="City" required
                                 class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
                         </div>
                     </div>
                     <div class="mt-3 md:mt-4">
                         <select name="profession" required
                             class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary text-sm md:text-base transition-all">
-                            <option value="" disabled selected>Your Professional Background</option>
+                            <option value="" disabled selected>Professional Background</option>
                             <option>Entrepreneur / Business Owner</option>
                             <option>Startup Founder</option>
                             <option>Doctor / Healthcare Professional</option>
@@ -241,52 +210,6 @@ faq_subtitle: About Booking & Contact
                             <option>Corporate Professional</option>
                             <option>Educator / Teacher</option>
                             <option>Other</option>
-                        </select>
-                    </div>
-                    <div class="mt-3 md:mt-4"><textarea name="whatDoYouDo" rows="3"
-                            placeholder="What do you do currently? (Please share your business, profession, expertise, achievements...)"
-                            required
-                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all"></textarea>
-                    </div>
-                    <div class="mt-3 md:mt-4"><textarea name="inspiringStory" rows="3"
-                            placeholder="Your Most Inspiring Story" required
-                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all"></textarea>
-                    </div>
-
-                    <div class="mt-3 md:mt-4">
-                        <p class="text-text-secondary text-xs md:text-sm mb-2 md:mb-3">Primary Topic <span
-                                class="text-brand">*</span></p>
-                        <select name="primaryTopic" required
-                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary text-sm md:text-base transition-all">
-                            <option value="" disabled selected>Select Primary Topic</option>
-                            {% assign topics = "Business Growth,Startups,Real Estate,Health & Wellness,Marketing &
-                            Branding,Personal Branding,Finance & Investment,Leadership,Productivity,Spirituality,Career
-                            Growth,Success Stories" | split: "," %}
-                            {% for topic in topics %}
-                            <option>{{ topic | strip }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class="mt-3 md:mt-4">
-                        <label class="block text-text-secondary text-xs md:text-sm mb-1 md:mb-2">Life-Changing Lesson
-                            <span class="text-brand">*</span></label>
-                        <textarea name="lifeLesson" rows="2" required
-                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all"
-                            placeholder="What is one lesson or insight that has significantly changed your life or career?"></textarea>
-                    </div>
-
-                    <div class="mt-3 md:mt-4">
-                        <p class="text-text-secondary text-xs md:text-sm mb-2 md:mb-3">Primary Goal <span
-                                class="text-brand">*</span></p>
-                        <select name="primaryGoal" required
-                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary text-sm md:text-base transition-all">
-                            <option value="" disabled selected>Select Primary Goal</option>
-                            {% assign outcomes = "Personal Branding,Business Promotion,Lead Generation,Brand
-                            Awareness,Thought Leadership,Sharing My Story,Networking,Audience Growth" | split: "," %}
-                            {% for outcome in outcomes %}
-                            <option>{{ outcome | strip }}</option>
-                            {% endfor %}
                         </select>
                     </div>
 
@@ -324,28 +247,6 @@ faq_subtitle: About Booking & Contact
                     <p class="text-text-muted text-sm md:text-base">Professional recording space in Jaipur</p>
                 </div>
 
-                <div
-                    class="bg-gradient-to-r from-brand/15 to-brand/5 rounded-xl p-4 md:p-5 mb-6 md:mb-8 border border-brand/30">
-                    <h3
-                        class="font-semibold text-text-primary text-sm md:text-base mb-2 md:mb-3 flex items-center gap-2">
-                        {% lucide_icon "check-circle" size="14" class="text-brand md:w-4 md:h-4" %} Studio Includes</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-2">
-                        {% assign studio_includes = "Canon 750D Camera,Sony Alpha II,Professional Microphones,Lighting
-                        Setup,Studio Operator,Raw Footage,BTS Content,Tea & Coffee,Parking" | split: "," %}
-                        {% for item in studio_includes %}
-                        <div class="flex items-center gap-1 md:gap-2"><span class="text-brand shrink-0">{% lucide_icon
-                                "check" size="10" class="md:w-3.5 md:h-3.5" %}</span><span
-                                class="text-text-secondary text-xs md:text-sm">{{ item | strip }}</span></div>
-                        {% endfor %}
-                    </div>
-                    <div class="text-center mt-3 md:mt-4">
-                        <p class="text-text-muted line-through text-xs md:text-sm">Regular: ₹2,000/hour</p>
-                        <p class="text-2xl md:text-3xl font-bold text-brand">₹1,000 <span
-                                class="text-xs md:text-sm">/hour</span></p>
-                        <p class="text-text-muted text-xs">Introductory offer</p>
-                    </div>
-                </div>
-
                 <form id="studioRentalForm">
                     <input type="hidden" name="formType" value="studio">
 
@@ -358,10 +259,10 @@ faq_subtitle: About Booking & Contact
                         </div>
                     </div>
                     <div class="grid md:grid-cols-2 gap-4 md:gap-5 mt-3 md:mt-4">
-                        <div><input type="email" name="email" placeholder="Email" required
+                        <div><input type="text" name="company" placeholder="Company Name" required
                                 class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
                         </div>
-                        <div><input type="text" name="company" placeholder="Company Name"
+                        <div><input type="text" name="city" placeholder="City" required
                                 class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
                         </div>
                     </div>
@@ -378,8 +279,9 @@ faq_subtitle: About Booking & Contact
                         </select>
                     </div>
                     <div class="grid md:grid-cols-2 gap-4 md:gap-5 mt-3 md:mt-4">
-                        <input type="date" id="bookingDate" name="bookingDate" required
-                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
+                        <div><input type="date" id="bookingDate" name="bookingDate" required
+                                class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
+                        </div>
                         <div><input type="time" name="bookingTime" required
                                 class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all">
                         </div>
@@ -406,10 +308,6 @@ faq_subtitle: About Booking & Contact
                                 <option>Other</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="mt-3 md:mt-4"><textarea name="purpose" rows="3" placeholder="Purpose of recording..."
-                            required
-                            class="w-full bg-dark-surface/50 rounded-xl px-3 md:px-4 py-2.5 md:py-3 border border-white/10 focus:border-brand/50 focus:bg-dark-surface outline-none text-text-primary text-sm md:text-base transition-all"></textarea>
                     </div>
 
                     <div class="mt-5 md:mt-6 pt-3 md:pt-4 border-t border-white/10">
@@ -516,7 +414,7 @@ faq_subtitle: About Booking & Contact
 
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="animate-spin mr-2">⏳</span> Submitting...';
+            submitBtn.innerHTML = 'Submitting...';
             submitBtn.disabled = true;
 
             fetch(SCRIPT_URL, {
@@ -550,7 +448,7 @@ faq_subtitle: About Booking & Contact
 
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="animate-spin mr-2">⏳</span> Submitting...';
+            submitBtn.innerHTML = 'Submitting...';
             submitBtn.disabled = true;
 
             fetch(SCRIPT_URL, {
@@ -565,40 +463,6 @@ faq_subtitle: About Booking & Contact
                 })
                 .catch(error => {
                     studioFeedback.innerHTML = '<span style="color: #ef4444;"> Submission failed. Please call us directly.</span>';
-                    console.error('Error:', error);
-                })
-                .finally(() => {
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                });
-        });
-    }
-
-    // Simple Message Form Submission
-    const messageFormElement = document.getElementById('simpleMessageForm');
-    const messageFeedback = document.getElementById('messageFeedback');
-
-    if (messageFormElement) {
-        messageFormElement.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="animate-spin mr-2">⏳</span> Sending...';
-            submitBtn.disabled = true;
-
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                body: new FormData(this)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    messageFeedback.innerHTML = `<span style="color: #10b981;">✓ ${data.message}</span>`;
-                    messageFormElement.reset();
-                    setTimeout(() => { messageFeedback.innerHTML = ''; }, 5000);
-                })
-                .catch(error => {
-                    messageFeedback.innerHTML = '<span style="color: #ef4444;"> Failed to send. Please call us directly.</span>';
                     console.error('Error:', error);
                 })
                 .finally(() => {
@@ -648,20 +512,5 @@ faq_subtitle: About Booking & Contact
 
     .shadow-glow:hover {
         box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
-    }
-
-    @keyframes spin {
-        from {
-            transform: rotate(0deg);
-        }
-
-        to {
-            transform: rotate(360deg);
-        }
-    }
-
-    .animate-spin {
-        display: inline-block;
-        animation: spin 1s linear infinite;
     }
 </style>

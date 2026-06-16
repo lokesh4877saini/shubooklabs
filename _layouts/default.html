@@ -12,35 +12,45 @@
 
   <meta name="description" content="{{ page.description | default: 'Premium podcast and content creation studio' }}">
 
-  <!-- CRITICAL INLINE CSS -->
+  <!-- CRITICAL MINIMAL CSS -->
   <style>
-    /* RESET & BASE */
+    /* RESET */
     * {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+      box-sizing: border-box
     }
 
     body {
-      background-color: #0B1120;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0B1120;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif
     }
 
-    /* ===== HEADER RESERVATION ===== */
+    main {
+      display: block;
+      margin-top: 80px;
+      min-height: calc(100vh - 80px)
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block
+    }
+
+    /* HEADER - MINIMAL */
     .site-header-fixed {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 50;
-      padding: 0.75rem 1rem;
-      background: transparent;
+      padding: .75rem 1rem
     }
 
     .header-container {
       max-width: 80rem;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto
     }
 
     .header-glass-card {
@@ -48,24 +58,24 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      padding: 0.75rem;
-      background-color: rgba(17, 24, 39, 0.8);
-      border: 1px solid rgba(59, 130, 246, 0.2);
+      padding: .75rem;
+      background: rgba(17, 24, 39, .8);
+      border: 1px solid rgba(59, 130, 246, .2);
       border-radius: 1rem;
-      min-height: 72px;
+      min-height: 72px
     }
 
-    @media (min-width: 768px) {
+    @media(min-width:768px) {
       .header-glass-card {
-        padding: 0.75rem 1.25rem;
+        padding: .75rem 1.25rem
       }
     }
 
     .logo-link {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      flex-shrink: 0;
+      gap: .75rem;
+      flex-shrink: 0
     }
 
     .logo-image {
@@ -73,71 +83,71 @@
       width: 8rem;
       height: 2.5rem;
       object-fit: cover;
-      border-radius: 0.5rem;
+      border-radius: .5rem
     }
 
-    @media (min-width: 1024px) {
+    @media(min-width:1024px) {
       .logo-image {
-        height: 3rem;
+        height: 3rem
       }
     }
 
     .desktop-nav {
       display: none;
       align-items: center;
-      gap: 0.25rem;
+      gap: .25rem
     }
 
-    @media (min-width: 1024px) {
+    @media(min-width:1024px) {
       .desktop-nav {
-        display: flex;
+        display: flex
       }
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: .5rem
     }
 
-    @media (min-width: 640px) {
+    @media(min-width:640px) {
       .header-actions {
-        gap: 0.75rem;
+        gap: .75rem
       }
     }
 
     .whatsapp-btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      background-color: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 0.75rem;
-      padding: 0.375rem 0.75rem;
-      font-size: 0.75rem;
-      color: white;
+      gap: .5rem;
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: .75rem;
+      padding: .375rem .75rem;
+      font-size: .75rem;
+      color: #fff;
       text-decoration: none;
-      white-space: nowrap;
+      white-space: nowrap
     }
 
-    @media (min-width: 640px) {
+    @media(min-width:640px) {
       .whatsapp-btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.875rem;
+        padding: .5rem 1rem;
+        font-size: .875rem
       }
     }
 
-    @media (min-width: 1024px) {
+    @media(min-width:1024px) {
       .whatsapp-btn {
-        padding: 0.625rem 1.25rem;
-        font-size: 1rem;
+        padding: .625rem 1.25rem;
+        font-size: 1rem
       }
     }
 
     .whatsapp-btn svg {
       width: 1.25rem;
       height: 1.25rem;
-      flex-shrink: 0;
+      flex-shrink: 0
     }
 
     .mobile-menu-btn {
@@ -146,24 +156,20 @@
       width: 2.5rem;
       align-items: center;
       justify-content: center;
-      border-radius: 0.75rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background-color: rgba(255, 255, 255, 0.05);
-      cursor: pointer;
+      border-radius: .75rem;
+      border: 1px solid rgba(255, 255, 255, .1);
+      background: rgba(255, 255, 255, .05);
+      cursor: pointer
     }
 
-    @media (min-width: 1024px) {
+    @media(min-width:1024px) {
       .mobile-menu-btn {
-        display: none;
+        display: none
       }
     }
 
-    /* ========================================
-       PERFECT CIRCLE GLOW CURSOR - SYNCED VERSION
-    ======================================== */
-
-    /* Hide default cursor on desktop only */
-    @media (min-width: 1024px) {
+    /* CURSOR - OPTIMIZED & SMOOTH */
+    @media(min-width:1024px) {
 
       body,
       a,
@@ -172,14 +178,12 @@
       textarea,
       select,
       [role="button"],
-      .interactive,
       .btn,
       .link {
-        cursor: none !important;
+        cursor: none !important
       }
     }
 
-    /* Main cursor circle - perfectly synced */
     .cursor-circle {
       position: fixed;
       width: 32px;
@@ -188,13 +192,9 @@
       pointer-events: none;
       z-index: 999999;
       transform: translate(-50%, -50%);
-      transition: width 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1), 
-                  height 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1),
-                  background 0.2s ease,
-                  border-color 0.2s ease;
+      transition: width .15s ease, height .15s ease
     }
 
-    /* Outer ring */
     .cursor-circle::before {
       content: '';
       position: absolute;
@@ -205,11 +205,10 @@
       height: 100%;
       border-radius: 50%;
       border: 2px solid #3B82F6;
-      opacity: 0.8;
-      transition: all 0.2s ease;
+      opacity: .8;
+      transition: all .15s ease
     }
 
-    /* Inner glow dot */
     .cursor-circle::after {
       content: '';
       position: absolute;
@@ -220,47 +219,27 @@
       height: 4px;
       background: #60A5FA;
       border-radius: 50%;
-      box-shadow: 0 0 8px #3B82F6, 0 0 16px #60A5FA;
-      transition: all 0.15s ease;
+      box-shadow: 0 0 8px #3B82F6
     }
 
-    /* Hover state - expands circle */
     .cursor-circle.hover-mode {
       width: 48px;
-      height: 48px;
+      height: 48px
     }
 
     .cursor-circle.hover-mode::before {
       border-color: #60A5FA;
       border-width: 2.5px;
-      opacity: 1;
+      opacity: 1
     }
 
     .cursor-circle.hover-mode::after {
       width: 6px;
       height: 6px;
       background: #93C5FD;
-      box-shadow: 0 0 12px #3B82F6, 0 0 24px #60A5FA;
+      box-shadow: 0 0 12px #3B82F6
     }
 
-    /* Click effect animation */
-    .cursor-circle.click-effect {
-      animation: cursorClick 0.3s ease-out forwards;
-    }
-
-    @keyframes cursorClick {
-      0% {
-        transform: translate(-50%, -50%) scale(1);
-      }
-      50% {
-        transform: translate(-50%, -50%) scale(0.8);
-      }
-      100% {
-        transform: translate(-50%, -50%) scale(1);
-      }
-    }
-
-    /* Ripple effect container */
     .ripple-container {
       position: fixed;
       top: 0;
@@ -269,30 +248,30 @@
       height: 100%;
       pointer-events: none;
       z-index: 999998;
-      overflow: hidden;
+      overflow: hidden
     }
 
     .ripple {
       position: absolute;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(59, 130, 246, 0.4), rgba(96, 165, 250, 0.1));
+      background: radial-gradient(circle, rgba(59, 130, 246, .4), rgba(96, 165, 250, .1));
       transform: translate(-50%, -50%) scale(0);
       pointer-events: none;
-      animation: rippleExpand 0.6s ease-out forwards;
+      animation: rippleExpand .6s ease-out forwards
     }
 
     @keyframes rippleExpand {
       0% {
         transform: translate(-50%, -50%) scale(0);
-        opacity: 0.6;
+        opacity: .6
       }
+
       100% {
         transform: translate(-50%, -50%) scale(4);
-        opacity: 0;
+        opacity: 0
       }
     }
 
-    /* Particle sparkles (tiny dots that follow) */
     .particle {
       position: absolute;
       width: 3px;
@@ -300,46 +279,18 @@
       background: #60A5FA;
       border-radius: 50%;
       pointer-events: none;
-      filter: blur(0.5px);
-      animation: particleFloat 0.5s ease-out forwards;
+      animation: particleFloat .5s ease-out forwards
     }
 
     @keyframes particleFloat {
       0% {
         transform: scale(1);
-        opacity: 0.8;
+        opacity: .8
       }
+
       100% {
         transform: scale(0);
-        opacity: 0;
-      }
-    }
-
-    /* ===== MAIN CONTENT RESERVATION ===== */
-    main {
-      display: block;
-      margin-top: 80px;
-      min-height: calc(100vh - 80px);
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    img[width],
-    img[height] {
-      aspect-ratio: attr(width) / attr(height);
-    }
-
-    .button-shine {
-      min-height: 48px;
-    }
-
-    @media (max-width: 640px) {
-      .button-shine {
-        min-height: 44px;
+        opacity: 0
       }
     }
   </style>
@@ -355,22 +306,23 @@
     gtag('js', new Date());
     gtag('config', 'G-851J5E07F3');
   </script>
+
   <script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Service",
-  "name":"Shubook",
-  "url":"https://shubook.in",
-  "telephone":"+919887247112",
-  "address":{
-    "@type":"PostalAddress",
-    "addressLocality":"Jaipur",
-    "addressRegion":"Rajasthan",
-    "addressCountry":"IN"
-  },
-  "areaServed":"Jaipur"
-}
-</script>
+    {
+      "@context":"https://schema.org",
+      "@type":"Service",
+      "name":"Shubook",
+      "url":"https://shubook.in",
+      "telephone":"+919887247112",
+      "address":{
+        "@type":"PostalAddress",
+        "addressLocality":"Jaipur",
+        "addressRegion":"Rajasthan",
+        "addressCountry":"IN"
+      },
+      "areaServed":"Jaipur"
+    }
+  </script>
 </head>
 
 <body class="bg-dark-bg">
@@ -379,266 +331,23 @@
   <div class="ripple-container" id="rippleContainer"></div>
 
   {% include header.html %}
-  
+
   <main>
     {{ content }}
   </main>
-  
+
   {% include footer.html %}
 
-  <!-- PERFECT SYNC CIRCLE CURSOR SCRIPT -->
-  <script>
-    (function() {
-      // Only run on desktop
-      if (window.innerWidth < 1024) return;
+  <!-- JavaScript (Browser cached) -->
+  <script src="{{ '/assets/js/cursor.js' | relative_url }}" defer></script>
 
-      // Get cursor element
-      const cursor = document.getElementById('cursorCircle');
-      const rippleContainer = document.getElementById('rippleContainer');
-      
-      // Position tracking - PERFECT SYNC
-      let mouseX = 0, mouseY = 0;
-      let cursorX = 0, cursorY = 0;
-      
-      // No easing - instant sync with optional subtle smoothing
-      let useSmoothing = false; // Set to false for perfect 1:1 sync
-      let smoothness = 0.95; // Higher = more sync (0.95 = 95% instant)
-      
-      // Track last position for particle generation
-      let lastX = 0, lastY = 0;
-      let lastTime = 0;
-      
-      // Particle system
-      let particles = [];
-      
-      // Create a particle (tiny dot)
-      function createParticle(x, y) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = x + 'px';
-        particle.style.top = y + 'px';
-        
-        // Random color variation
-        const colors = ['#60A5FA', '#3B82F6', '#93C5FD', '#818CF8'];
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        particle.style.background = randomColor;
-        particle.style.boxShadow = `0 0 6px ${randomColor}`;
-        
-        rippleContainer.appendChild(particle);
-        
-        // Remove after animation
-        setTimeout(() => {
-          if (particle && particle.parentNode) {
-            particle.remove();
-          }
-        }, 500);
-      }
-      
-      // Create ripple effect
-      function createRipple(x, y, size = 40) {
-        const ripple = document.createElement('div');
-        ripple.className = 'ripple';
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-        ripple.style.width = size + 'px';
-        ripple.style.height = size + 'px';
-        
-        rippleContainer.appendChild(ripple);
-        
-        setTimeout(() => {
-          if (ripple && ripple.parentNode) {
-            ripple.remove();
-          }
-        }, 600);
-      }
-      
-      // Update cursor position - PERFECT SYNC
-      function updateCursorPosition() {
-        if (useSmoothing) {
-          // Smooth follow (still very responsive)
-          cursorX += (mouseX - cursorX) * smoothness;
-          cursorY += (mouseY - cursorY) * smoothness;
-        } else {
-          // PERFECT 1:1 SYNC - no lag
-          cursorX = mouseX;
-          cursorY = mouseY;
-        }
-        
-        cursor.style.left = cursorX + 'px';
-        cursor.style.top = cursorY + 'px';
-        
-        requestAnimationFrame(updateCursorPosition);
-      }
-      
-      // Generate particles based on mouse movement
-      function generateTrail(x, y, velocity) {
-        const speed = Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
-        
-        // Number of particles based on speed
-        let particleCount = Math.floor(speed / 2) + 1;
-        particleCount = Math.min(particleCount, 5);
-        
-        for (let i = 0; i < particleCount; i++) {
-          setTimeout(() => {
-            // Add slight random offset for organic feel
-            const offsetX = (Math.random() - 0.5) * 8;
-            const offsetY = (Math.random() - 0.5) * 8;
-            createParticle(x + offsetX, y + offsetY);
-          }, i * 15);
-        }
-        
-        // Create ripple on fast movement
-        if (speed > 15) {
-          createRipple(x, y, 30);
-        }
-      }
-      
-      // Mouse move handler
-      let lastMouseX = 0, lastMouseY = 0;
-      let lastMoveTime = 0;
-      let moveThrottle = false;
-      
-      function onMouseMove(e) {
-        const now = performance.now();
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        
-        // Calculate velocity for particle generation
-        if (lastMouseX !== 0 && lastMouseY !== 0 && lastMoveTime !== 0) {
-          const dt = Math.max(1, now - lastMoveTime);
-          const velocityX = (mouseX - lastMouseX) / dt * 16;
-          const velocityY = (mouseY - lastMouseY) / dt * 16;
-          const speed = Math.sqrt(velocityX * velocityX + velocityY * velocityY);
-          
-          // Generate trail particles on movement
-          if (speed > 3 && !moveThrottle) {
-            generateTrail(mouseX, mouseY, { x: velocityX, y: velocityY });
-            moveThrottle = true;
-            setTimeout(() => {
-              moveThrottle = false;
-            }, 25);
-          }
-        }
-        
-        lastMouseX = mouseX;
-        lastMouseY = mouseY;
-        lastMoveTime = now;
-      }
-      
-      // Handle click effects
-      function onMouseDown(e) {
-        cursor.classList.add('click-effect');
-        // Create larger ripple on click
-        createRipple(e.clientX, e.clientY, 50);
-        
-        // Remove effect after animation
-        setTimeout(() => {
-          cursor.classList.remove('click-effect');
-        }, 300);
-      }
-      
-      // Setup hover effects for interactive elements
-      function setupHoverEffects() {
-        const interactiveElements = document.querySelectorAll(
-          'a, button, input, textarea, select, [role="button"], .btn, .interactive, .whatsapp-btn, .mobile-menu-btn'
-        );
-        
-        interactiveElements.forEach(el => {
-          el.addEventListener('mouseenter', () => {
-            cursor.classList.add('hover-mode');
-          });
-          
-          el.addEventListener('mouseleave', () => {
-            cursor.classList.remove('hover-mode');
-          });
-        });
-      }
-      
-      // Create ambient particles when mouse is idle
-      let idleTimeout;
-      let isIdle = false;
-      
-      function resetIdleTimer() {
-        if (idleTimeout) clearTimeout(idleTimeout);
-        isIdle = false;
-        
-        idleTimeout = setTimeout(() => {
-          isIdle = true;
-          startAmbientParticles();
-        }, 2000);
-      }
-      
-      function startAmbientParticles() {
-        if (!isIdle) return;
-        
-        // Create subtle ambient particles around cursor when idle
-        if (mouseX > 0 && mouseY > 0) {
-          createParticle(
-            mouseX + (Math.random() - 0.5) * 30,
-            mouseY + (Math.random() - 0.5) * 30
-          );
-        }
-        
-        // Continue ambient effect
-        setTimeout(() => {
-          if (isIdle) startAmbientParticles();
-        }, 800);
-      }
-      
-      // Initialize cursor
-      function init() {
-        // Set initial position
-        mouseX = window.innerWidth / 2;
-        mouseY = window.innerHeight / 2;
-        cursorX = mouseX;
-        cursorY = mouseY;
-        
-        cursor.style.left = mouseX + 'px';
-        cursor.style.top = mouseY + 'px';
-        
-        // Add event listeners
-        document.addEventListener('mousemove', onMouseMove);
-        document.addEventListener('mousedown', onMouseDown);
-        document.addEventListener('mouseup', () => {
-          // Optional: add effect on mouse up
-        });
-        
-        // Reset idle timer on mouse move
-        document.addEventListener('mousemove', resetIdleTimer);
-        
-        // Start position update loop
-        updateCursorPosition();
-        
-        // Setup hover effects after DOM ready
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', () => {
-            setupHoverEffects();
-            resetIdleTimer();
-          });
-        } else {
-          setupHoverEffects();
-          resetIdleTimer();
-        }
-        
-        // Watch for dynamically added interactive elements
-        const observer = new MutationObserver(() => {
-          setupHoverEffects();
-        });
-        observer.observe(document.body, { childList: true, subtree: true });
-      }
-      
-      // Start everything
-      init();
-    })();
-  </script>
-
-  <!-- CLS MONITORING (Debug only) -->
+  <!-- CLS MONITORING -->
   <script>
     if (PerformanceObserver && location.hostname !== 'localhost') {
       new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
           if (!entry.hadRecentInput && entry.value > 0.01) {
-            console.warn(`⚠️ Layout shift detected: ${entry.value.toFixed(4)}`);
+            console.warn(`⚠️ Layout shift: ${entry.value.toFixed(4)}`);
           }
         }
       }).observe({ entryTypes: ['layout-shift'] });

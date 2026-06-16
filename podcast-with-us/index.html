@@ -8,7 +8,7 @@ faq_key: podcast_with_us
 faq_title: Frequently Asked Questions
 faq_subtitle: About Getting Featured on The Shubook Show
 ---
-
+{% assign c = site.data.constants %}
 <!-- Hero Section -->
 <section class="relative overflow-hidden bg-dark-bg">
     <!-- Spacer for fixed header -->
@@ -101,7 +101,7 @@ faq_subtitle: About Getting Featured on The Shubook Show
                 class="absolute -top-2 md:-top-3 left-1/2 -translate-x-1/2 bg-brand text-white text-xs font-bold px-2 md:px-3 py-0.5 md:py-1 rounded-full whitespace-nowrap">
                 Best Value Package</div>
             <div class="text-center mb-6 md:mb-8">
-                <div class="text-3xl md:text-6xl font-bold text-brand mb-2 md:mb-4">₹20,000</div>
+                <div class="text-3xl md:text-6xl font-bold text-brand mb-2 md:mb-4">{{ c.podcast_and_personal_branding_price }}</div>
                 <p class="text-text-muted text-xs md:text-sm">One-time investment for complete personal branding package
                 </p>
             </div>
@@ -347,7 +347,7 @@ faq_subtitle: About Getting Featured on The Shubook Show
                 and create meaningful content.
             </p>
             <div class="mb-4 md:mb-6">
-                <p class="text-2xl md:text-4xl font-bold text-brand">₹20,000</p>
+                <p class="text-2xl md:text-4xl font-bold text-brand">{{ c.podcast_and_personal_branding_price }}</p>
                 <p class="text-text-muted text-xs md:text-sm mt-2">Limited Recording Slots Available</p>
             </div>
             <div class="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
