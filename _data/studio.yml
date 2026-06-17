@@ -1,0 +1,58 @@
+# _data/studio.yml
+studio:
+  - url: "/assets/images/studio/studio-image-1.webp"
+    title: "Control Room"
+    description: "Podcast recording via female host"
+    alt: "Podcast recording studio with female host in control room"
+
+  - url: "/assets/images/studio/studio-image-2.webp"
+    title: "Control Room"
+    description: "Industry-standard mixing & mastering setup"
+    alt: "Professional mixing and mastering equipment in studio"
+
+  - url: "/assets/images/studio/studio-image-3.webp"
+    title: "Control Room"
+    description: "Industry-standard mixing & mastering setup"
+    alt: "Advanced audio production setup in control room"
+
+  - url: "/assets/images/studio/studio-image-4.webp"
+    title: "Pro Equipment"
+    description: "Professional microphones, headphones, and audio interfaces"
+    alt: "Professional audio equipment including microphones and headphones"
+
+  - url: "/assets/images/studio/studio-image-5.webp"
+    title: "Camera Setup"
+    description: "4K multi-camera setup for video podcasts"
+    alt: "4K multi-camera production setup for video podcasting"
+
+thumbnail:
+  - url: "/assets/images/studio/thumbnail-1.webp"
+    title: "Studio Setup"
+    description: "Complete studio setup overview"
+    alt: "Overview of complete podcast studio setup"
+
+  - url: "/assets/images/studio/thumbnail-2.webp"
+    title: "Recording Session"
+    description: "Live recording in progress"
+    alt: "Active recording session in studio"
+
+  - url: "/assets/images/studio/thumbnail-3.webp"
+    title: "Equipment Closeup"
+    description: "Professional audio equipment"
+    alt: "Closeup of professional audio recording equipment"
+
+featured_guests:
+  - url: "/assets/images/studio/gallery-1.webp"
+    title: "Studio Tour"
+    description: "Complete studio walkthrough"
+    alt: "Full studio tour showing all areas"
+
+  - url: "/assets/images/studio/gallery-2.webp"
+    title: "Recording Session"
+    description: "Professional recording in progress"
+    alt: "Professional recording session with host"
+
+  - url: "/assets/images/studio/gallery-3.webp"
+    title: "Equipment Showcase"
+    description: "High-end podcast equipment"
+    alt: "High-end podcast recording equipment showcase"

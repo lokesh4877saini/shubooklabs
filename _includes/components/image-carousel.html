@@ -1,0 +1,455 @@
+<!-- components/image-carousel.html -->
+{% assign images = include.images | default: "" %}
+{% assign carousel_id = include.id | default: "imageCarousel" %}
+{% assign container_class = include.container_class | default: "h-[300px] md:h-[500px] lg:h-[600px]" %}
+{% assign show_dots = include.show_dots | default: true %}
+{% assign show_arrows = include.show_arrows | default: true %}
+{% assign autoplay = include.autoplay | default: false %}
+{% assign autoplay_interval = include.autoplay_interval | default: 5000 %}
+
+<div class="relative bg-white/5 rounded-2xl overflow-hidden border border-white/10">
+    <div class="relative">
+        <!-- Main Image Container -->
+        <div class="relative overflow-hidden {{ container_class }}">
+            <img id="{{ carousel_id }}Image" 
+                 src="{{ images[0].url }}" 
+                 width="1200" 
+                 height="800"
+                 fetchpriority="high" 
+                 alt="{{ images[0].alt | default: images[0].title }}" 
+                 decoding="async"
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
+        </div>
+
+        <!-- Left Arrow -->
+        {% if show_arrows %}
+        <button id="{{ carousel_id }}PrevBtn" 
+                aria-label="Previous image"
+                class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white rounded-full border border-white/20 hover:bg-black/70 transition-all duration-200 flex items-center justify-center touch-target">
+            {% lucide_icon "chevron-left" size="20" class="text-white" %}
+        </button>
+
+        <!-- Right Arrow -->
+        <button id="{{ carousel_id }}NextBtn" 
+                aria-label="Next image"
+                class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white rounded-full border border-white/20 hover:bg-black/70 transition-all duration-200 flex items-center justify-center touch-target">
+            {% lucide_icon "chevron-right" size="20" class="text-white" %}
+        </button>
+        {% endif %}
+
+        <!-- Dots Indicator -->
+        {% if show_dots %}
+        <div id="{{ carousel_id }}Dots" 
+             class="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-1 md:gap-2">
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    (function() {
+        // Get images data
+        const images = {{ images | jsonify }};
+        const carouselId = '{{ carousel_id }}';
+        const autoplay = {{ autoplay }};
+        const autoplayInterval = {{ autoplay_interval }};
+
+        // Validate images exist
+        if (!images || images.length === 0) {
+            console.error('No images found for carousel:', carouselId);
+            const imgElement = document.getElementById(carouselId + 'Image');
+            if (imgElement) {
+                imgElement.src = 'https://via.placeholder.com/1200x800?text=No+Images+Available';
+                imgElement.alt = 'No images available';
+            }
+            return;
+        }
+
+        let currentIndex = 0;
+        let autoplayTimer = null;
+
+        // Get DOM elements
+        const carouselImage = document.getElementById(carouselId + 'Image');
+        const prevBtn = document.getElementById(carouselId + 'PrevBtn');
+        const nextBtn = document.getElementById(carouselId + 'NextBtn');
+        const dotsContainer = document.getElementById(carouselId + 'Dots');
+
+        if (!carouselImage) {
+            console.error('Carousel image element not found:', carouselId);
+            return;
+        }
+
+        // Function to update image
+        function updateCarousel(index) {
+            const image = images[index];
+            if (!image) return;
+            
+            carouselImage.src = image.url;
+            carouselImage.alt = image.alt || image.title || 'Carousel image';
+
+            // Update dots
+            if (dotsContainer) {
+                const dots = dotsContainer.querySelectorAll('.dot');
+                dots.forEach((dot, i) => {
+                    if (i === index) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        // Create dots
+        function createDots() {
+            if (!dotsContainer) return;
+
+            dotsContainer.innerHTML = '';
+
+            images.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.className = 'dot';
+                if (index === 0) dot.classList.add('active');
+                dot.setAttribute('aria-label', `Go to image ${index + 1}`);
+                dot.setAttribute('type', 'button');
+
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel(currentIndex);
+                    resetAutoplay();
+                });
+
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        // Next image
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateCarousel(currentIndex);
+        }
+
+        // Previous image
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateCarousel(currentIndex);
+        }
+
+        // Autoplay functions
+        function startAutoplay() {
+            if (!autoplay || images.length <= 1) return;
+            stopAutoplay();
+            autoplayTimer = setInterval(nextImage, autoplayInterval);
+        }
+
+        function stopAutoplay() {
+            if (autoplayTimer) {
+                clearInterval(autoplayTimer);
+                autoplayTimer = null;
+            }
+        }
+
+        function resetAutoplay() {
+            if (autoplay) {
+                startAutoplay();
+            }
+        }
+
+        // Event listeners
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                prevImage();
+                resetAutoplay();
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                nextImage();
+                resetAutoplay();
+            });
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            // Only if the carousel is visible in viewport
+            const carousel = document.querySelector(`#${carouselId}Image`)?.closest('.relative');
+            if (!carousel) return;
+            
+            const rect = carousel.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+            
+            if (!isVisible) return;
+
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevImage();
+                resetAutoplay();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                nextImage();
+                resetAutoplay();
+            }
+        });
+
+        // Pause autoplay on hover
+        if (autoplay) {
+            const carousel = document.querySelector(`#${carouselId}Image`)?.closest('.relative');
+            if (carousel) {
+                carousel.addEventListener('mouseenter', stopAutoplay);
+                carousel.addEventListener('mouseleave', startAutoplay);
+                
+                // Touch events for mobile
+                carousel.addEventListener('touchstart', stopAutoplay);
+                carousel.addEventListener('touchend', startAutoplay);
+            }
+        }
+
+        // Initialize carousel
+        createDots();
+        updateCarousel(0);
+
+        // Preload images lazily
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => {
+                images.forEach(img => {
+                    const preload = new Image();
+                    preload.src = img.url;
+                });
+            });
+        } else {
+            setTimeout(() => {
+                images.forEach(img => {
+                    const preload = new Image();
+                    preload.src = img.url;
+                });
+            }, 200);
+        }
+
+        // Start autoplay if enabled
+        if (autoplay) {
+            startAutoplay();
+        }
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+            stopAutoplay();
+        });
+
+    })();
+</script>
+
+<style>
+    /* ============================================
+       TOUCH TARGETS - WCAG Compliant (44px minimum)
+    ============================================ */
+    .touch-target {
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    /* ============================================
+       DOT INDICATORS - Clean & Accessible
+    ============================================ */
+    .dot {
+        border: none;
+        padding: 0;
+        margin: 0 4px;
+        background: transparent;
+        cursor: pointer;
+        position: relative;
+        min-width: 44px;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+
+    .dot::after {
+        content: '';
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 50%;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform, width, background;
+    }
+
+    .dot.active::after {
+        width: 24px;
+        background: #3B82F6;
+        border-radius: 12px;
+    }
+
+    @media (hover: hover) {
+        .dot:hover::after {
+            background: rgba(59, 130, 246, 0.6);
+            transform: scale(1.15);
+        }
+
+        .dot.active:hover::after {
+            background: #3B82F6;
+            transform: scale(1);
+        }
+    }
+
+    .dot:focus-visible {
+        outline: 2px solid #3B82F6;
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+
+    /* ============================================
+       ARROW BUTTONS - Touch Optimized
+    ============================================ */
+    [id$="PrevBtn"],
+    [id$="NextBtn"] {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        padding: 0 4px;
+    }
+
+    [id$="PrevBtn"]:focus-visible,
+    [id$="NextBtn"]:focus-visible {
+        outline: 2px solid #3B82F6;
+        outline-offset: 2px;
+        border-radius: 50%;
+    }
+
+    /* ============================================
+       MOBILE OPTIMIZATIONS
+    ============================================ */
+    @media (max-width: 768px) {
+        #dotsContainer,
+        [id$="Dots"] {
+            gap: 0;
+            padding: 4px 0;
+        }
+
+        .dot {
+            min-width: 40px;
+            min-height: 40px;
+            margin: 0 2px;
+        }
+
+        .dot::after {
+            width: 6px;
+            height: 6px;
+        }
+
+        .dot.active::after {
+            width: 18px;
+            border-radius: 9px;
+        }
+
+        [id$="PrevBtn"],
+        [id$="NextBtn"] {
+            min-width: 40px;
+            min-height: 40px;
+        }
+
+        [id$="PrevBtn"] svg,
+        [id$="NextBtn"] svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .dot::after {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .dot.active::after {
+            background: #3B82F6;
+        }
+    }
+
+    /* ============================================
+       VERY SMALL SCREENS
+    ============================================ */
+    @media (max-width: 360px) {
+        .dot {
+            min-width: 36px;
+            min-height: 36px;
+            margin: 0 1px;
+        }
+
+        .dot::after {
+            width: 5px;
+            height: 5px;
+        }
+
+        .dot.active::after {
+            width: 14px;
+            border-radius: 7px;
+        }
+
+        [id$="PrevBtn"],
+        [id$="NextBtn"] {
+            min-width: 36px;
+            min-height: 36px;
+        }
+
+        [id$="PrevBtn"] svg,
+        [id$="NextBtn"] svg {
+            width: 14px;
+            height: 14px;
+        }
+    }
+
+    /* ============================================
+       REDUCED MOTION PREFERENCE
+    ============================================ */
+    @media (prefers-reduced-motion: reduce) {
+        .dot::after {
+            transition: none !important;
+        }
+
+        .dot:hover::after {
+            transform: none !important;
+        }
+
+        [id$="PrevBtn"],
+        [id$="NextBtn"] {
+            transition: none !important;
+        }
+    }
+
+    /* ============================================
+       HIGH CONTRAST
+    ============================================ */
+    @media (prefers-contrast: high) {
+        .dot::after {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .dot.active::after {
+            background: #60A5FA;
+        }
+    }
+
+    /* ============================================
+       PRINT STYLES
+    ============================================ */
+    @media print {
+        .dot {
+            display: none !important;
+        }
+
+        [id$="PrevBtn"],
+        [id$="NextBtn"] {
+            display: none !important;
+        }
+    }
+</style>

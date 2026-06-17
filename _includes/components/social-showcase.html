@@ -1,0 +1,428 @@
+<!-- sections/social-showcase.html -->
+{% assign raw = site.data.short-video-showcase %}
+{% assign youtube_items = raw.youtube | default: "" %}
+{% assign instagram_items = raw.instagram | default: "" %}
+{% assign bts_items = raw.bts | default: "" %}
+
+<section class="relative py-2 md:py-4 lg:py-4 overflow-hidden">
+    <div class="relative z-10 container mx-auto px-4 max-w-7xl">
+
+        <!-- Grid with 3 columns -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center">
+
+            <!-- YouTube Card -->
+            {% if youtube_items and youtube_items.size > 0 %}
+            <div class="youtube-carousel-wrapper flex justify-center w-full">
+                <div
+                    class="card group relative w-[350px] bg-dark-card/70 backdrop-blur-[18px] border border-dark-border/50 rounded-[28px] overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-red-500/20 hover:border-red-500/30">
+                    <!-- Glow Effect -->
+                    <div
+                        class="glow youtube-glow absolute w-[280px] h-[280px] rounded-full blur-[100px] opacity-30 bg-red-600 -top-20 -right-20 group-hover:opacity-50 transition-opacity duration-500">
+                    </div>
+                    <div
+                        class="glow youtube-glow-2 absolute w-[200px] h-[200px] rounded-full blur-[80px] opacity-20 bg-red-400 -bottom-20 -left-20 group-hover:opacity-40 transition-opacity duration-500">
+                    </div>
+
+                    <!-- Border Gradient Effect -->
+                    <div class="absolute inset-0 p-[1px] rounded-[28px] bg-gradient-to-br from-white/20 via-transparent to-white/10 pointer-events-none group-hover:from-red-500/30 group-hover:to-red-500/10 transition-all duration-500"
+                        style="-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor;">
+                    </div>
+
+                    <!-- Card Header -->
+                    <div class="card-header flex justify-between items-center px-6 py-6 border-b border-dark-border/30">
+                        <div class="platform flex items-center gap-4">
+                            <div
+                                class="icon youtube w-[60px] h-[60px] rounded-[18px] flex items-center justify-center text-white text-2xl font-bold bg-gradient-to-br from-red-600 to-red-400 shadow-lg shadow-red-500/30">
+                                {% lucide_icon "youtube" size="28" class="text-white" %}
+                            </div>
+                            <div>
+                                <h3 id="youtubeTitle" class="text-xl font-semibold text-text-primary">{{
+                                    youtube_items[0].title }}</h3>
+                                <span id="youtubeSubtitle" class="text-sm text-text-muted">{{ youtube_items[0].subtitle
+                                    }}</span>
+                            </div>
+                        </div>
+                        <div id="youtubeBadge"
+                            class="badge px-3 py-2 rounded-full bg-red-500/20 text-red-400 text-sm font-medium border border-red-500/20">
+                            {{ youtube_items[0].badge }}</div>
+                    </div>
+
+                    <!-- Media Frame -->
+                    <div
+                        class="media-frame relative w-[290px] h-[520px] mx-auto my-6 rounded-[22px] overflow-hidden border border-dark-border/30 bg-gradient-to-br from-white/5 to-white/0 shadow-inner shadow-black/50">
+                        <iframe id="youtubeFrame" class="absolute inset-0 w-full h-full border-0"
+                            src="https://www.youtube.com/embed/{{ youtube_items[0].id }}?rel=0&modestbranding=1&autoplay=0"
+                            allowfullscreen loading="lazy"></iframe>
+                        <div
+                            class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/20 via-transparent to-transparent">
+                        </div>
+                    </div>
+
+                    <!-- Footer with Navigation -->
+                    <div class="footer px-6 pb-6">
+                        <div class="flex items-center justify-between">
+                            <span id="youtubeCounter" class="text-sm text-text-muted font-medium">1 / {{
+                                youtube_items.size }}</span>
+                            <div id="youtubeDots" class="flex justify-center gap-2 mt-4">
+                                {% for video in youtube_items %}
+                                <button
+                                    class="youtube-dot w-2 h-2 rounded-full transition-all duration-300 {% if forloop.first %}bg-red-500 w-8 shadow-lg shadow-red-500/50{% else %}bg-white/20 hover:bg-white/40{% endif %}"
+                                    data-index="{{ forloop.index0 }}"></button>
+                                {% endfor %}
+                            </div>
+                            <div class="flex gap-2">
+                                <button id="youtubePrevBtn"
+                                    class="w-10 h-10 rounded-full bg-white/5 hover:bg-red-500/20 border border-dark-border/30 hover:border-red-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-red-500/20">
+                                    {% lucide_icon "chevron-left" size="20" class="text-white" %}
+                                </button>
+                                <button id="youtubeNextBtn"
+                                    class="w-10 h-10 rounded-full bg-white/5 hover:bg-red-500/20 border border-dark-border/30 hover:border-red-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-red-500/20">
+                                    {% lucide_icon "chevron-right" size="20" class="text-white" %}
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Dots -->
+
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Instagram Card -->
+            {% if instagram_items and instagram_items.size > 0 %}
+            <div class="instagram-carousel-wrapper flex justify-center w-full">
+                <div
+                    class="card group relative w-[350px] bg-dark-card/70 backdrop-blur-[18px] border border-dark-border/50 rounded-[28px] overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-pink-500/20 hover:border-pink-500/30">
+                    <!-- Glow Effect -->
+                    <div
+                        class="glow instagram-glow absolute w-[280px] h-[280px] rounded-full blur-[100px] opacity-30 bg-pink-500 -top-20 -right-20 group-hover:opacity-50 transition-opacity duration-500">
+                    </div>
+                    <div
+                        class="glow instagram-glow-2 absolute w-[200px] h-[200px] rounded-full blur-[80px] opacity-20 bg-purple-500 -bottom-20 -left-20 group-hover:opacity-40 transition-opacity duration-500">
+                    </div>
+
+                    <!-- Border Gradient Effect -->
+                    <div class="absolute inset-0 p-[1px] rounded-[28px] bg-gradient-to-br from-white/20 via-transparent to-white/10 pointer-events-none group-hover:from-pink-500/30 group-hover:to-purple-500/10 transition-all duration-500"
+                        style="-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor;">
+                    </div>
+
+                    <!-- Card Header -->
+                    <div class="card-header flex justify-between items-center px-6 py-6 border-b border-dark-border/30">
+                        <div class="platform flex items-center gap-4">
+                            <div
+                                class="icon instagram w-[60px] h-[60px] rounded-[18px] flex items-center justify-center text-white text-2xl font-bold bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 shadow-lg shadow-pink-500/30">
+                                {% lucide_icon "instagram" size="28" class="text-white" %}
+                            </div>
+                            <div>
+                                <h3 id="instagramTitle" class="text-xl font-semibold text-text-primary">{{
+                                    instagram_items[0].title }}</h3>
+                                <span id="instagramSubtitle" class="text-sm text-text-muted">{{
+                                    instagram_items[0].subtitle }}</span>
+                            </div>
+                        </div>
+                        <div id="instagramBadge"
+                            class="badge px-3 py-2 rounded-full bg-pink-500/20 text-pink-400 text-sm font-medium border border-pink-500/20">
+                            {{ instagram_items[0].badge }}</div>
+                    </div>
+
+                    <!-- Media Frame -->
+                    <div
+                        class="media-frame relative w-[290px] h-[520px] mx-auto my-6 rounded-[22px] overflow-hidden border border-dark-border/30 bg-gradient-to-br from-white/5 to-white/0 shadow-inner shadow-black/50">
+                        <div id="instagramFrame"
+                            class="absolute inset-0 flex items-center justify-center w-full h-full">
+                            {{ instagram_items[0].embed }}
+                        </div>
+                        <div
+                            class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/20 via-transparent to-transparent">
+                        </div>
+                    </div>
+
+                    <!-- Footer with Navigation -->
+                    <div class="footer px-6 pb-6">
+                        <div class="flex items-center justify-between">
+                            <span id="instagramCounter" class="text-sm text-text-muted font-medium">1 / {{
+                                instagram_items.size }}</span>
+                            <!-- Dots -->
+                            <div id="instagramDots" class="flex justify-center gap-2 mt-4">
+                                {% for post in instagram_items %}
+                                <button
+                                    class="instagram-dot w-2 h-2 rounded-full transition-all duration-300 {% if forloop.first %}bg-pink-500 w-8 shadow-lg shadow-pink-500/50{% else %}bg-white/20 hover:bg-white/40{% endif %}"
+                                    data-index="{{ forloop.index0 }}"></button>
+                                {% endfor %}
+                            </div>
+                            <div class="flex gap-2">
+                                <button id="instagramPrevBtn"
+                                    class="w-10 h-10 rounded-full bg-white/5 hover:bg-pink-500/20 border border-dark-border/30 hover:border-pink-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-pink-500/20">
+                                    {% lucide_icon "chevron-left" size="20" class="text-white" %}
+                                </button>
+                                <button id="instagramNextBtn"
+                                    class="w-10 h-10 rounded-full bg-white/5 hover:bg-pink-500/20 border border-dark-border/30 hover:border-pink-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-pink-500/20">
+                                    {% lucide_icon "chevron-right" size="20" class="text-white" %}
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- BTS Card -->
+            {% if bts_items and bts_items.size > 0 %}
+            <div class="bts-carousel-wrapper flex justify-center w-full">
+                <div
+                    class="card group relative w-[350px] bg-dark-card/70 backdrop-blur-[18px] border border-dark-border/50 rounded-[28px] overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/20 hover:border-blue-500/30">
+                    <!-- Glow Effect -->
+                    <div
+                        class="glow bts-glow absolute w-[280px] h-[280px] rounded-full blur-[100px] opacity-30 bg-blue-500 -top-20 -right-20 group-hover:opacity-50 transition-opacity duration-500">
+                    </div>
+                    <div
+                        class="glow bts-glow-2 absolute w-[200px] h-[200px] rounded-full blur-[80px] opacity-20 bg-cyan-400 -bottom-20 -left-20 group-hover:opacity-40 transition-opacity duration-500">
+                    </div>
+
+                    <!-- Border Gradient Effect -->
+                    <div class="absolute inset-0 p-[1px] rounded-[28px] bg-gradient-to-br from-white/20 via-transparent to-white/10 pointer-events-none group-hover:from-blue-500/30 group-hover:to-cyan-500/10 transition-all duration-500"
+                        style="-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor;">
+                    </div>
+
+                    <!-- Card Header -->
+                    <div class="card-header flex justify-between items-center px-6 py-6 border-b border-dark-border/30">
+                        <div class="platform flex items-center gap-4">
+                            <div
+                                class="icon bts w-[60px] h-[60px] rounded-[18px] flex items-center justify-center text-white text-2xl font-bold bg-gradient-to-br from-blue-600 to-cyan-400 shadow-lg shadow-blue-500/30">
+                                {% lucide_icon "camera" size="28" class="text-white" %}
+                            </div>
+                            <div>
+                                <h3 id="btsTitle" class="text-xl font-semibold text-text-primary">{{ bts_items[0].title
+                                    }}</h3>
+                                <span id="btsSubtitle" class="text-sm text-text-muted">Behind The Scenes</span>
+                            </div>
+                        </div>
+                        <div id="btsBadge"
+                            class="badge px-3 py-2 rounded-full bg-blue-500/20 text-blue-400 text-sm font-medium border border-blue-500/20">
+                            BTS</div>
+                    </div>
+
+                    <!-- Media Frame -->
+                    <div
+                        class="media-frame relative w-[290px] h-[520px] mx-auto my-6 rounded-[22px] overflow-hidden border border-dark-border/30 bg-gradient-to-br from-white/5 to-white/0 shadow-inner shadow-black/50">
+                        <img id="btsImage" src="{{ bts_items[0].url }}"
+                            alt="{{ bts_items[0].alt | default: bts_items[0].title }}"
+                            class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+                        <div
+                            class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/60 via-transparent to-transparent">
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                            <p id="btsDescription" class="text-white text-sm font-medium">{{ bts_items[0].description }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Footer with Navigation -->
+                    <div class="footer px-6 pb-6">
+                        <div class="flex items-center justify-between">
+                            <span id="btsCounter" class="text-sm text-text-muted font-medium">1 / {{ bts_items.size
+                                }}</span>
+                            <!-- Dots -->
+                            <div id="btsDots" class="flex justify-center gap-2 mt-4">
+                                {% for bts in bts_items %}
+                                <button
+                                    class="bts-dot w-2 h-2 rounded-full transition-all duration-300 {% if forloop.first %}bg-blue-500 w-8 shadow-lg shadow-blue-500/50{% else %}bg-white/20 hover:bg-white/40{% endif %}"
+                                    data-index="{{ forloop.index0 }}"></button>
+                                {% endfor %}
+                            </div>
+                            <div class="flex gap-2">
+                                <button id="btsPrevBtn"
+                                    class="w-10 h-10 rounded-full bg-white/5 hover:bg-blue-500/20 border border-dark-border/30 hover:border-blue-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20">
+                                    {% lucide_icon "chevron-left" size="20" class="text-white" %}
+                                </button>
+                                <button id="btsNextBtn"
+                                    class="w-10 h-10 rounded-full bg-white/5 hover:bg-blue-500/20 border border-dark-border/30 hover:border-blue-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20">
+                                    {% lucide_icon "chevron-right" size="20" class="text-white" %}
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+</section>
+
+<script>
+    (function () {
+        // YouTube Carousel Data
+        const youtubeData = {{ youtube_items | jsonify
+    }};
+    let youtubeCurrentIndex = 0;
+    const youtubeTotal = youtubeData.length;
+
+    // Instagram Carousel Data
+    const instagramData = {{ instagram_items | jsonify }};
+    let instagramCurrentIndex = 0;
+    const instagramTotal = instagramData.length;
+
+    // BTS Carousel Data
+    const btsData = {{ bts_items | jsonify }};
+    let btsCurrentIndex = 0;
+    const btsTotal = btsData.length;
+
+    // YouTube Functions
+    function updateYouTube(index) {
+        if (index < 0) index = youtubeTotal - 1;
+        if (index >= youtubeTotal) index = 0;
+        youtubeCurrentIndex = index;
+
+        const item = youtubeData[index];
+
+        // Update iframe
+        const frame = document.getElementById('youtubeFrame');
+        frame.src = `https://www.youtube.com/embed/${item.id}?rel=0&modestbranding=1&autoplay=0`;
+
+        // Update header
+        document.getElementById('youtubeTitle').textContent = item.title;
+        document.getElementById('youtubeSubtitle').textContent = item.subtitle;
+        document.getElementById('youtubeBadge').textContent = item.badge;
+
+        // Update counter
+        document.getElementById('youtubeCounter').textContent = `${index + 1} / ${youtubeTotal}`;
+
+        // Update dots
+        document.querySelectorAll('.youtube-dot').forEach((dot, i) => {
+            if (i === index) {
+                dot.classList.add('bg-red-500', 'w-8', 'shadow-lg', 'shadow-red-500/50');
+                dot.classList.remove('bg-white/20', 'hover:bg-white/40');
+            } else {
+                dot.classList.remove('bg-red-500', 'w-8', 'shadow-lg', 'shadow-red-500/50');
+                dot.classList.add('bg-white/20', 'hover:bg-white/40');
+            }
+        });
+    }
+
+    // Instagram Functions
+    function updateInstagram(index) {
+        if (index < 0) index = instagramTotal - 1;
+        if (index >= instagramTotal) index = 0;
+        instagramCurrentIndex = index;
+
+        const item = instagramData[index];
+
+        // Update embed
+        document.getElementById('instagramFrame').innerHTML = item.embed;
+
+        // Update header
+        document.getElementById('instagramTitle').textContent = item.title;
+        document.getElementById('instagramSubtitle').textContent = item.subtitle;
+        document.getElementById('instagramBadge').textContent = item.badge;
+
+        // Update counter
+        document.getElementById('instagramCounter').textContent = `${index + 1} / ${instagramTotal}`;
+
+        // Update dots
+        document.querySelectorAll('.instagram-dot').forEach((dot, i) => {
+            if (i === index) {
+                dot.classList.add('bg-pink-500', 'w-8', 'shadow-lg', 'shadow-pink-500/50');
+                dot.classList.remove('bg-white/20', 'hover:bg-white/40');
+            } else {
+                dot.classList.remove('bg-pink-500', 'w-8', 'shadow-lg', 'shadow-pink-500/50');
+                dot.classList.add('bg-white/20', 'hover:bg-white/40');
+            }
+        });
+    }
+
+    // BTS Functions
+    function updateBTS(index) {
+        if (index < 0) index = btsTotal - 1;
+        if (index >= btsTotal) index = 0;
+        btsCurrentIndex = index;
+
+        const item = btsData[index];
+
+        // Update image
+        const image = document.getElementById('btsImage');
+        image.src = item.url;
+        image.alt = item.alt || item.title;
+
+        // Update title and description
+        document.getElementById('btsTitle').textContent = item.title;
+        document.getElementById('btsSubtitle').textContent = 'Behind The Scenes';
+        document.getElementById('btsDescription').textContent = item.description;
+
+        // Update counter
+        document.getElementById('btsCounter').textContent = `${index + 1} / ${btsTotal}`;
+
+        // Update dots
+        document.querySelectorAll('.bts-dot').forEach((dot, i) => {
+            if (i === index) {
+                dot.classList.add('bg-blue-500', 'w-8', 'shadow-lg', 'shadow-blue-500/50');
+                dot.classList.remove('bg-white/20', 'hover:bg-white/40');
+            } else {
+                dot.classList.remove('bg-blue-500', 'w-8', 'shadow-lg', 'shadow-blue-500/50');
+                dot.classList.add('bg-white/20', 'hover:bg-white/40');
+            }
+        });
+    }
+
+    // YouTube Event Listeners
+    if (document.getElementById('youtubePrevBtn')) {
+        document.getElementById('youtubePrevBtn').addEventListener('click', () => {
+            updateYouTube(youtubeCurrentIndex - 1);
+        });
+    }
+
+    if (document.getElementById('youtubeNextBtn')) {
+        document.getElementById('youtubeNextBtn').addEventListener('click', () => {
+            updateYouTube(youtubeCurrentIndex + 1);
+        });
+    }
+
+    document.querySelectorAll('.youtube-dot').forEach((dot) => {
+        dot.addEventListener('click', function () {
+            updateYouTube(parseInt(this.dataset.index));
+        });
+    });
+
+    // Instagram Event Listeners
+    if (document.getElementById('instagramPrevBtn')) {
+        document.getElementById('instagramPrevBtn').addEventListener('click', () => {
+            updateInstagram(instagramCurrentIndex - 1);
+        });
+    }
+
+    if (document.getElementById('instagramNextBtn')) {
+        document.getElementById('instagramNextBtn').addEventListener('click', () => {
+            updateInstagram(instagramCurrentIndex + 1);
+        });
+    }
+
+    document.querySelectorAll('.instagram-dot').forEach((dot) => {
+        dot.addEventListener('click', function () {
+            updateInstagram(parseInt(this.dataset.index));
+        });
+    });
+
+    // BTS Event Listeners
+    if (document.getElementById('btsPrevBtn')) {
+        document.getElementById('btsPrevBtn').addEventListener('click', () => {
+            updateBTS(btsCurrentIndex - 1);
+        });
+    }
+
+    if (document.getElementById('btsNextBtn')) {
+        document.getElementById('btsNextBtn').addEventListener('click', () => {
+            updateBTS(btsCurrentIndex + 1);
+        });
+    }
+
+    document.querySelectorAll('.bts-dot').forEach((dot) => {
+        dot.addEventListener('click', function () {
+            updateBTS(parseInt(this.dataset.index));
+        });
+    });
+
+    }) ();
+</script>
