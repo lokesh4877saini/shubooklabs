@@ -27,10 +27,12 @@
             <div class="glass-premium rounded-2xl p-8">
                 <div class="desktop-carousel-container">
                     <div class="carousel-3d-stage" id="carousel3dStage"></div>
-                    <button id="desktopPrevBtn" class="carousel-nav-btn carousel-nav-prev">
+                    <button id="desktopPrevBtn" class="carousel-nav-btn carousel-nav-prev" aria-label="Previous slide"
+                        title="Previous slide">
                         {% lucide_icon "chevron-left" size="32" class="text-white" aria-hidden="true" %}
                     </button>
-                    <button id="desktopNextBtn" class="carousel-nav-btn carousel-nav-next">
+                    <button id="desktopNextBtn" class="carousel-nav-btn carousel-nav-next" aria-label="Next slide"
+                        title="Next slide">
                         {% lucide_icon "chevron-right" size="32" class="text-white" aria-hidden="true" %}
                     </button>
                     <div class="carousel-dots-container" id="carouselDots"></div>
@@ -52,7 +54,7 @@
                                 <div id="youtubePlayerMobile"
                                     style="position: absolute; inset: 0; z-index: 5; display: none;"></div>
 
-                                <button id="playButtonMobile" aria-label="Play video"
+                                <button id="playButtonMobile" aria-label="Play video" title="Play video"
                                     class="absolute inset-0 z-20 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-all duration-300 opacity-100 group cursor-pointer">
                                     <div
                                         class="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-brand/90 hover:bg-brand flex items-center justify-center transition-all duration-300 hover:scale-110">
@@ -84,12 +86,12 @@
                             </div>
                         </div>
 
-                        <button id="prevEpisodeMobile" aria-label="Previous episode"
+                        <button id="prevEpisodeMobile" aria-label="Previous episode" title="Previous episode"
                             class="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 flex items-center justify-center bg-black/60 hover:bg-black/80 text-white rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20">
                             {% lucide_icon "chevron-left" size="18" class="text-white" aria-hidden="true" %}
                         </button>
 
-                        <button id="nextEpisodeMobile" aria-label="Next episode"
+                        <button id="nextEpisodeMobile" aria-label="Next episode" title="Next episode"
                             class="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 flex items-center justify-center bg-black/60 hover:bg-black/80 text-white rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20">
                             {% lucide_icon "chevron-right" size="18" class="text-white" aria-hidden="true" %}
                         </button>
@@ -264,6 +266,8 @@
                     var dot = document.createElement('button');
                     dot.className = 'carousel-dot';
                     if (i === currentIndex) dot.classList.add('active');
+                    dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+                    dot.setAttribute('title', 'Go to slide ' + (i + 1));
                     dot.addEventListener('click', (function (idx) { return function () { updateCarousel(idx); }; })(i));
                     dotsContainer.appendChild(dot);
                 }

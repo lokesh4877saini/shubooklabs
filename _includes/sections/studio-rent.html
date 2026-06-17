@@ -6,7 +6,8 @@
 
         <!-- Price Badge -->
         <div class="flex justify-center mb-6 md:mb-8">
-            <div class="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-full border border-white/20 bg-white/5">
+            <div
+                class="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-full border border-white/20 bg-white/5">
                 <span class="relative flex h-2 w-2">
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
                 </span>
@@ -39,8 +40,7 @@
                 <div class="relative">
                     <div class="relative overflow-hidden h-[300px] md:h-[500px] lg:h-[600px]">
                         <img id="carouselImage" src="{{ site.data.studio-images[0].url }}" width="1200" height="800"
-                            fetchpriority="high" alt="{{ site.data.studio-images[0].title }}"
-                            decoding="async"
+                            fetchpriority="high" alt="{{ site.data.studio-images[0].title }}" decoding="async"
                             class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
                     </div>
@@ -58,7 +58,8 @@
                     </button>
 
                     <!-- Dots Indicator -->
-                    <div class="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-1 md:gap-2" id="dotsContainer">
+                    <div class="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-1 md:gap-2"
+                        id="dotsContainer">
                     </div>
                 </div>
             </div>
@@ -86,25 +87,31 @@
 
         <!-- Perfect For Grid -->
         <div class="mb-10 md:mb-12 mt-10 md:mt-16">
-            <h3 class="text-center text-base md:text-lg font-semibold text-white/70 tracking-wide mb-6 md:mb-8">PERFECT FOR</h3>
+            <h3 class="text-center text-base md:text-lg font-semibold text-white/70 tracking-wide mb-6 md:mb-8">PERFECT
+                FOR</h3>
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-4">
-                <div class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
+                <div
+                    class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
                     {% lucide_icon "mic" size="14" class="text-brand md:w-4 md:h-4" %}
                     <span class="text-xs md:text-sm font-medium text-white/80">Podcast shooting</span>
                 </div>
-                <div class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
+                <div
+                    class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
                     {% lucide_icon "users" size="14" class="text-brand md:w-4 md:h-4" %}
                     <span class="text-xs md:text-sm font-medium text-white/80">Video interviews</span>
                 </div>
-                <div class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
+                <div
+                    class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
                     {% lucide_icon "smartphone" size="14" class="text-brand md:w-4 md:h-4" %}
                     <span class="text-xs md:text-sm font-medium text-white/80">Reels & shorts</span>
                 </div>
-                <div class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
+                <div
+                    class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
                     {% lucide_icon "youtube" size="14" class="text-brand md:w-4 md:h-4" %}
                     <span class="text-xs md:text-sm font-medium text-white/80">YouTube recordings</span>
                 </div>
-                <div class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10 sm:col-span-3 lg:col-span-1">
+                <div
+                    class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10 sm:col-span-3 lg:col-span-1">
                     {% lucide_icon "briefcase" size="14" class="text-brand md:w-4 md:h-4" %}
                     <span class="text-xs md:text-sm font-medium text-white/80">Client brand content</span>
                 </div>
@@ -179,12 +186,12 @@
                 if (index === 0) dot.classList.add('active');
                 dot.setAttribute('aria-label', `Go to image ${index + 1}`);
                 dot.setAttribute('type', 'button');
-                
+
                 dot.addEventListener('click', () => {
                     currentIndex = index;
                     updateCarousel(currentIndex);
                 });
-                
+
                 dotsContainer.appendChild(dot);
             });
         }
@@ -211,7 +218,7 @@
         }
 
         // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'ArrowLeft') {
                 prevImage();
             } else if (e.key === 'ArrowRight') {
@@ -222,7 +229,7 @@
         // Initialize carousel
         createDots();
         updateCarousel(0);
-        
+
         // Preload images lazily
         if ('requestIdleCallback' in window) {
             requestIdleCallback(() => {
@@ -241,24 +248,31 @@
         }
     });
 </script>
-
 <style>
-    /* Touch target base styles - minimum 44px */
+    /* ============================================
+       TOUCH TARGETS - WCAG Compliant (44px minimum)
+    ============================================ */
+
+    /* Touch target base styles */
     .touch-target {
         min-width: 44px;
         min-height: 44px;
     }
-    
-    /* Dot Indicators - Clean & Modern with proper touch targets */
+
+    /* ============================================
+       DOT INDICATORS - Clean & Accessible
+    ============================================ */
+
     .dot {
         /* Reset button styles */
         border: none;
         padding: 0;
-        margin: 0;
+        margin: 0 4px;
+        /* Add spacing between dots */
         background: transparent;
         cursor: pointer;
         position: relative;
-        /* Touch target */
+        /* Touch target - minimum 44px */
         min-width: 44px;
         min-height: 44px;
         display: inline-flex;
@@ -269,106 +283,272 @@
         -webkit-user-select: none;
         user-select: none;
         -webkit-tap-highlight-color: transparent;
+        /* Ensure touch target is clickable */
+        touch-action: manipulation;
     }
-    
+
     /* Visual dot - the actual visible indicator */
     .dot::after {
         content: '';
         position: absolute;
         width: 8px;
         height: 8px;
-        background: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.25);
         border-radius: 50%;
         transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         will-change: transform, width, background;
     }
-    
-    /* Active dot - subtle but visible */
+
+    /* Active dot - pill shape for better visibility */
     .dot.active::after {
-        width: 20px;
+        width: 24px;
         background: #3B82F6;
-        border-radius: 4px;
+        border-radius: 12px;
     }
-    
+
     /* Hover state - only on devices that support hover */
     @media (hover: hover) {
         .dot:hover::after {
             background: rgba(59, 130, 246, 0.6);
             transform: scale(1.15);
         }
-        
+
         .dot.active:hover::after {
             background: #3B82F6;
             transform: scale(1);
         }
     }
-    
-    /* Arrow buttons - proper touch targets */
-    #prevBtn, #nextBtn {
+
+    /* Focus state for accessibility */
+    .dot:focus-visible {
+        outline: 2px solid #3B82F6;
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+
+    /* ============================================
+       ARROW BUTTONS - Touch Optimized
+    ============================================ */
+
+    #prevBtn,
+    #nextBtn {
         min-width: 44px;
         min-height: 44px;
         display: flex;
         align-items: center;
         justify-content: center;
         -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        /* Add some padding for better touch */
+        padding: 0 4px;
     }
-    
-    /* Mobile optimizations */
+
+    /* Focus state for arrows */
+    #prevBtn:focus-visible,
+    #nextBtn:focus-visible {
+        outline: 2px solid #3B82F6;
+        outline-offset: 2px;
+        border-radius: 50%;
+    }
+
+    /* ============================================
+       MOBILE OPTIMIZATIONS (max-width: 768px)
+    ============================================ */
+
     @media (max-width: 768px) {
         #dotsContainer {
             gap: 0;
+            padding: 4px 0;
         }
-        
+
         .dot {
-            min-width: 16px;
-            min-height: 30px;
+            min-width: 40px;
+            min-height: 40px;
+            margin: 0 2px;
         }
-        
+
         .dot::after {
             width: 6px;
             height: 6px;
         }
-        
+
         .dot.active::after {
-            width: 16px;
+            width: 18px;
+            border-radius: 9px;
         }
-        
-        #prevBtn, #nextBtn {
-            min-width: 30px;
-            min-height: 30px;
+
+        #prevBtn,
+        #nextBtn {
+            min-width: 40px;
+            min-height: 40px;
         }
-        
-        #prevBtn svg, #nextBtn svg {
+
+        #prevBtn svg,
+        #nextBtn svg {
             width: 18px;
             height: 18px;
         }
+
+        /* Better visibility on mobile */
+        .dot::after {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .dot.active::after {
+            background: #3B82F6;
+        }
     }
-    
-    /* Desktop optimizations */
-    @media (min-width: 769px) {
+
+    /* ============================================
+       TABLET OPTIMIZATIONS (769px - 1023px)
+    ============================================ */
+
+    @media (min-width: 769px) and (max-width: 1023px) {
         #dotsContainer {
-            gap: 2px;
+            gap: 0;
+            padding: 4px 0;
         }
-        
+
         .dot {
-            min-width: 24px;
-            min-height: 44px;
+            min-width: 42px;
+            min-height: 42px;
+            margin: 0 4px;
         }
-        
+
+        .dot::after {
+            width: 7px;
+            height: 7px;
+        }
+
+        .dot.active::after {
+            width: 22px;
+            border-radius: 11px;
+        }
+
+        #prevBtn,
+        #nextBtn {
+            min-width: 42px;
+            min-height: 42px;
+        }
+    }
+
+    /* ============================================
+       DESKTOP OPTIMIZATIONS (1024px+)
+    ============================================ */
+
+    @media (min-width: 1024px) {
+        #dotsContainer {
+            gap: 0;
+            padding: 4px 0;
+        }
+
+        .dot {
+            min-width: 44px;
+            min-height: 44px;
+            margin: 0 6px;
+        }
+
         .dot::after {
             width: 8px;
             height: 8px;
         }
-        
+
         .dot.active::after {
-            width: 20px;
+            width: 28px;
+            border-radius: 14px;
+        }
+
+        #prevBtn,
+        #nextBtn {
+            min-width: 44px;
+            min-height: 44px;
+        }
+
+        #prevBtn:hover,
+        #nextBtn:hover {
+            transform: scale(1.05);
         }
     }
-    
-    /* Reduce motion preference */
+
+    /* ============================================
+       VERY SMALL SCREENS (max-width: 360px)
+    ============================================ */
+
+    @media (max-width: 360px) {
+        .dot {
+            min-width: 36px;
+            min-height: 36px;
+            margin: 0 1px;
+        }
+
+        .dot::after {
+            width: 5px;
+            height: 5px;
+        }
+
+        .dot.active::after {
+            width: 14px;
+            border-radius: 7px;
+        }
+
+        #prevBtn,
+        #nextBtn {
+            min-width: 36px;
+            min-height: 36px;
+        }
+
+        #prevBtn svg,
+        #nextBtn svg {
+            width: 14px;
+            height: 14px;
+        }
+    }
+
+    /* ============================================
+       REDUCED MOTION PREFERENCE
+    ============================================ */
+
     @media (prefers-reduced-motion: reduce) {
         .dot::after {
-            transition: none;
+            transition: none !important;
+        }
+
+        .dot:hover::after {
+            transform: none !important;
+        }
+
+        #prevBtn,
+        #nextBtn {
+            transition: none !important;
+        }
+    }
+
+    /* ============================================
+       HIGH CONTRAST - Dark Mode Support
+    ============================================ */
+
+    @media (prefers-contrast: high) {
+        .dot::after {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .dot.active::after {
+            background: #60A5FA;
+        }
+    }
+
+    /* ============================================
+       PRINT STYLES
+    ============================================ */
+
+    @media print {
+        .dot {
+            display: none !important;
+        }
+
+        #prevBtn,
+        #nextBtn {
+            display: none !important;
         }
     }
 </style>
