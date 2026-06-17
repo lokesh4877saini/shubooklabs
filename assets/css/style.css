@@ -2270,6 +2270,11 @@ body {
   color: rgb(255 255 255 / 0.8);
 }
 
+.text-slate-900 {
+  --tw-text-opacity: 1;
+  color: rgb(15 23 42 / var(--tw-text-opacity, 1));
+}
+
 .line-through {
   text-decoration-line: line-through;
 }
