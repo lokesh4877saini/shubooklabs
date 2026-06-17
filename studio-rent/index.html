@@ -15,9 +15,8 @@ faq_subtitle: About Podcast Studio Rental in Jaipur
     <!-- Spacer for fixed header -->
     <div style="height: 90px;"></div>
     <div
-        class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]">
+        class="hidden md:block absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]">
     </div>
-
     <div class="relative z-10 container mx-auto px-4 max-w-6xl text-center pb-16 md:pb-28">
         <div class="inline-flex items-center gap-2 glass rounded-full px-4 md:px-5 py-1.5 md:py-2 mb-5 md:mb-6">
             <span class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-brand animate-pulse"></span>
@@ -39,7 +38,8 @@ faq_subtitle: About Podcast Studio Rental in Jaipur
             your personal brand, Shubook Labs provides everything you need under one roof.
         </p>
         <div class="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
-            {% include components/button.html url="/book-studio" text="Podcast Studio Now" type="primary" icon="calendar"
+            {% include components/button.html url="/book-studio" text="Podcast Studio Now" type="primary"
+            icon="calendar"
             %}
             {% include components/button.html url="/check-availability" text="Check Availability" type="ghost"
             icon="clock" %}
@@ -196,8 +196,8 @@ faq_subtitle: About Podcast Studio Rental in Jaipur
                 Limited Time Offer</div>
             <div class="text-center">
                 <p class="text-text-muted line-through text-sm md:text-lg mb-2">Regular Price: 2,000 ₹ Per Hour</p>
-                <div class="text-3xl md:text-6xl font-bold text-brand mb-3 md:mb-4">{{ c.podcast_studio_rent_price }} <span
-                        class="text-base md:text-xl text-text-muted">Per Hour</span></div>
+                <div class="text-3xl md:text-6xl font-bold text-brand mb-3 md:mb-4">{{ c.podcast_studio_rent_price }}
+                    <span class="text-base md:text-xl text-text-muted">Per Hour</span></div>
                 <p class="text-text-secondary text-sm md:text-base mb-4 md:mb-6">Special Introductory Offer •
                     Limited-Time Launch Pricing</p>
                 <div class="bg-white/5 rounded-xl p-4 md:p-6 mb-6 md:mb-8">
@@ -214,7 +214,8 @@ faq_subtitle: About Podcast Studio Rental in Jaipur
                     </div>
                 </div>
                 <p class="text-text-muted text-xs md:text-sm mb-4 md:mb-6">One Simple Price. ₹1,000 Per Hour.</p>
-                {% include components/button.html url="/book-slot" text="Rent Podcast Studio" type="primary" icon="calendar"
+                {% include components/button.html url="/book-slot" text="Rent Podcast Studio" type="primary"
+                icon="calendar"
                 %}
             </div>
         </div>
@@ -277,7 +278,8 @@ faq_subtitle: About Podcast Studio Rental in Jaipur
             hundredth, our studio is designed to help you create professional content with confidence.</p>
     </div>
     <div class="flex items-center justify-center mt-10 md:mt-16">
-        {% include components/button.html url="/contact/#podcastForm" text="Book Podcast Studio Now" type="primary" icon="mic"
+        {% include components/button.html url="/contact/#podcastForm" text="Book Podcast Studio Now" type="primary"
+        icon="mic"
         %}
     </div>
 </section>

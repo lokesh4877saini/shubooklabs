@@ -58,7 +58,7 @@
                     </button>
 
                     <!-- Dots Indicator -->
-                    <div class="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center" id="dotsContainer">
+                    <div class="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-1 md:gap-2" id="dotsContainer">
                     </div>
                 </div>
             </div>
@@ -178,6 +178,7 @@
                 dot.className = 'dot';
                 if (index === 0) dot.classList.add('active');
                 dot.setAttribute('aria-label', `Go to image ${index + 1}`);
+                dot.setAttribute('type', 'button');
                 
                 dot.addEventListener('click', () => {
                     currentIndex = index;
@@ -222,144 +223,152 @@
         createDots();
         updateCarousel(0);
         
-        // Preload images
-        studioImages.forEach(img => {
-            const preload = new Image();
-            preload.src = img.url;
-        });
+        // Preload images lazily
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => {
+                studioImages.forEach(img => {
+                    const preload = new Image();
+                    preload.src = img.url;
+                });
+            });
+        } else {
+            setTimeout(() => {
+                studioImages.forEach(img => {
+                    const preload = new Image();
+                    preload.src = img.url;
+                });
+            }, 200);
+        }
     });
 </script>
 
 <style>
-    /* Touch target base styles - minimum 48px on mobile, 44px on desktop */
+    /* Touch target base styles - minimum 44px */
     .touch-target {
-        min-width: 48px;
-        min-height: 48px;
+        min-width: 44px;
+        min-height: 44px;
     }
     
     /* Dot Indicators - Clean & Modern with proper touch targets */
     .dot {
-        width: 8px;
-        height: 8px;
-        background: rgba(255, 255, 255, 0.4);
-        border-radius: 50%;
-        cursor: pointer;
-        transition: all 0.3s ease;
+        /* Reset button styles */
         border: none;
         padding: 0;
         margin: 0;
-        flex-shrink: 0;
-        /* Touch target size - 48px on mobile */
-        min-width: 48px;
-        min-height: 48px;
+        background: transparent;
+        cursor: pointer;
+        position: relative;
+        /* Touch target */
+        min-width: 44px;
+        min-height: 44px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: transparent;
-        position: relative;
+        flex-shrink: 0;
+        /* Prevent text selection */
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
     }
     
-    .dot.active {
-        width: 24px;
-        background: #3B82F6;
-        border-radius: 12px;
-    }
-    
-    /* Visual dot using pseudo-element */
-    .dot::before {
+    /* Visual dot - the actual visible indicator */
+    .dot::after {
         content: '';
         position: absolute;
         width: 8px;
         height: 8px;
-        background: rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.3);
         border-radius: 50%;
-        transition: all 0.3s ease;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform, width, background;
     }
     
-    .dot.active::before {
-        width: 24px;
+    /* Active dot - subtle but visible */
+    .dot.active::after {
+        width: 20px;
         background: #3B82F6;
-        border-radius: 12px;
+        border-radius: 4px;
     }
     
-    .dot:hover::before {
-        background: rgba(59, 130, 246, 0.7);
-        transform: scale(1.1);
+    /* Hover state - only on devices that support hover */
+    @media (hover: hover) {
+        .dot:hover::after {
+            background: rgba(59, 130, 246, 0.6);
+            transform: scale(1.15);
+        }
+        
+        .dot.active:hover::after {
+            background: #3B82F6;
+            transform: scale(1);
+        }
     }
     
     /* Arrow buttons - proper touch targets */
     #prevBtn, #nextBtn {
-        min-width: 48px;
-        min-height: 48px;
+        min-width: 44px;
+        min-height: 44px;
         display: flex;
         align-items: center;
         justify-content: center;
+        -webkit-tap-highlight-color: transparent;
     }
     
-    /* Loading animation */
-    @keyframes spin {
-        to { transform: rotate(360deg); }
-    }
-    
-    .animate-spin {
-        animation: spin 1s linear infinite;
-    }
-    
-    /* Mobile optimizations (max-width: 768px) */
+    /* Mobile optimizations */
     @media (max-width: 768px) {
-        .dot {
-            min-width: 48px;
-            min-height: 48px;
-        }
-        .dot::before {
-            width: 6px;
-            height: 6px;
-        }
-        .dot.active::before {
-            width: 18px;
-        }
         #dotsContainer {
             gap: 0;
         }
-        #prevBtn, #nextBtn {
-            min-width: 48px;
-            min-height: 48px;
+        
+        .dot {
+            min-width: 16px;
+            min-height: 30px;
         }
+        
+        .dot::after {
+            width: 6px;
+            height: 6px;
+        }
+        
+        .dot.active::after {
+            width: 16px;
+        }
+        
+        #prevBtn, #nextBtn {
+            min-width: 30px;
+            min-height: 30px;
+        }
+        
         #prevBtn svg, #nextBtn svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
         }
     }
     
-    /* Desktop optimizations (min-width: 769px) */
+    /* Desktop optimizations */
     @media (min-width: 769px) {
         #dotsContainer {
-            gap: 0.5rem;
+            gap: 2px;
         }
+        
         .dot {
-            min-width: 44px;
+            min-width: 24px;
             min-height: 44px;
         }
-        .dot::before {
-            width: 10px;
-            height: 10px;
+        
+        .dot::after {
+            width: 8px;
+            height: 8px;
         }
-        .dot.active::before {
-            width: 28px;
-        }
-        #prevBtn, #nextBtn {
-            min-width: 44px;
-            min-height: 44px;
+        
+        .dot.active::after {
+            width: 20px;
         }
     }
     
-    /* Reduced motion preference */
+    /* Reduce motion preference */
     @media (prefers-reduced-motion: reduce) {
-        .dot, .dot::before {
+        .dot::after {
             transition: none;
-        }
-        .dot:hover::before {
-            transform: none;
         }
     }
 </style>

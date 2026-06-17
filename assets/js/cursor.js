@@ -1,12 +1,23 @@
-/* cursor.js - Perfectly Synced Cursor (1:1 Tracking) */
+// cursor.js - Optimized custom cursor for desktop only
 (function() {
+  'use strict';
+
+  // Only initialize on desktop (1024px+)
   if (window.innerWidth < 1024) return;
 
   const cursor = document.getElementById('cursorCircle');
   const rippleContainer = document.getElementById('rippleContainer');
   
-  // PERFECT SYNC - No easing, instant tracking
+  // Safety check - exit if elements don't exist
+  if (!cursor || !rippleContainer) {
+    console.warn('Cursor elements not found');
+    return;
+  }
+
   let mouseX = 0, mouseY = 0;
+  let lastX = 0, lastY = 0;
+  let throttleTimer = false;
+  let isInitialized = false;
   
   function createParticle(x, y) {
     const p = document.createElement('div');
@@ -30,23 +41,19 @@
     setTimeout(() => r.remove(), 600);
   }
   
-  // DIRECT SYNC - No requestAnimationFrame needed
   function updateCursor(x, y) {
     cursor.style.left = x + 'px';
     cursor.style.top = y + 'px';
   }
   
-  let lastX = 0, lastY = 0;
-  let throttleTimer = false;
-  
   function onMouseMove(e) {
     mouseX = e.clientX;
     mouseY = e.clientY;
     
-    // INSTANT UPDATE - Pixel perfect
+    // INSTANT UPDATE - Pixel perfect tracking
     updateCursor(mouseX, mouseY);
     
-    // Particles on movement
+    // Particles on movement (throttled for performance)
     if (!throttleTimer) {
       const dx = mouseX - lastX;
       const dy = mouseY - lastY;
@@ -76,27 +83,70 @@
   }
   
   function setupHovers() {
-    document.querySelectorAll('a, button, input, .whatsapp-btn, .mobile-menu-btn, [role="button"]').forEach(el => {
+    const interactiveElements = document.querySelectorAll(
+      'a, button, input, textarea, select, .whatsapp-btn, .mobile-menu-btn, [role="button"], .btn, .link'
+    );
+    
+    interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('hover-mode'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('hover-mode'));
     });
   }
   
-  // INIT
-  // Set initial position to center
-  const initX = window.innerWidth / 2;
-  const initY = window.innerHeight / 2;
-  cursor.style.left = initX + 'px';
-  cursor.style.top = initY + 'px';
-  
-  document.addEventListener('mousemove', onMouseMove);
-  document.addEventListener('mousedown', onMouseDown);
-  
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupHovers);
-  } else {
-    setupHovers();
+  function initCursor() {
+    if (isInitialized) return;
+    
+    // Set initial position to center of viewport
+    const initX = window.innerWidth / 2;
+    const initY = window.innerHeight / 2;
+    cursor.style.left = initX + 'px';
+    cursor.style.top = initY + 'px';
+    
+    // Event listeners
+    document.addEventListener('mousemove', onMouseMove, { passive: true });
+    document.addEventListener('mousedown', onMouseDown, { passive: true });
+    
+    // Setup hover effects
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupHovers);
+    } else {
+      setupHovers();
+    }
+    
+    // Watch for dynamically added elements
+    const observer = new MutationObserver(() => {
+      setupHovers();
+    });
+    
+    observer.observe(document.body, { 
+      childList: true, 
+      subtree: true 
+    });
+    
+    isInitialized = true;
   }
   
-  new MutationObserver(setupHovers).observe(document.body, { childList: true, subtree: true });
+  // Handle window resize - reinitialize if desktop
+  function handleResize() {
+    if (window.innerWidth >= 1024) {
+      if (!isInitialized) {
+        initCursor();
+      }
+    } else {
+      // Hide cursor on mobile
+      cursor.style.display = 'none';
+      rippleContainer.style.display = 'none';
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mousedown', onMouseDown);
+      isInitialized = false;
+    }
+  }
+  
+  // Initialize on desktop
+  if (window.innerWidth >= 1024) {
+    initCursor();
+  }
+  
+  // Handle resize events
+  window.addEventListener('resize', handleResize);
 })();

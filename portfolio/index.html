@@ -9,11 +9,8 @@ permalink: /portfolio/
 <section class="relative overflow-hidden bg-dark-bg">
     <!-- Spacer for fixed header -->
     <div style="height: 130px;"></div>
-    
-    <!-- Background orbs -->
-    <div class="absolute top-20 right-1/4 w-96 h-96 rounded-full bg-brand/20 blur-[120px] animate-pulse-slow"></div>
-    <div class="absolute bottom-20 left-1/4 w-80 h-80 rounded-full bg-brand-light/10 blur-[100px] animate-pulse-slow" style="animation-delay: 3s"></div>
-    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]">
+    <div
+        class="hidden md:block absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]">
     </div>
 
     <div class="relative z-10 container mx-auto px-6 max-w-6xl text-center pb-20 md:pb-28">
@@ -32,7 +29,8 @@ permalink: /portfolio/
             Explore the work, conversations, content, and creative projects produced by Shubook Labs.
         </p>
         <p class="text-base text-text-muted max-w-3xl mx-auto">
-            From podcast episodes and studio recordings to reels, thumbnails, and personal branding content, this portfolio showcases the quality, creativity, and professionalism behind every project we produce.
+            From podcast episodes and studio recordings to reels, thumbnails, and personal branding content, this
+            portfolio showcases the quality, creativity, and professionalism behind every project we produce.
         </p>
     </div>
 </section>
@@ -46,10 +44,13 @@ permalink: /portfolio/
             <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-4"></div>
         </div>
         <p class="text-center text-text-muted max-w-2xl mx-auto mb-10">
-            Our studio is designed for founders, entrepreneurs, creators, professionals, and brands who want their content to look professional and stand out online.
+            Our studio is designed for founders, entrepreneurs, creators, professionals, and brands who want their
+            content to look professional and stand out online.
         </p>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {% assign studio_features = "Dual Camera Podcast Setup,Canon 750D & Sony Alpha II,Professional Lighting Setup,Premium Podcast Background,Professional Audio Recording,Operator Support,BTS Content Creation,Comfortable Recording Environment,Refreshments & Parking" | split: "," %}
+            {% assign studio_features = "Dual Camera Podcast Setup,Canon 750D & Sony Alpha II,Professional Lighting
+            Setup,Premium Podcast Background,Professional Audio Recording,Operator Support,BTS Content
+            Creation,Comfortable Recording Environment,Refreshments & Parking" | split: "," %}
             {% for feature in studio_features %}
             <div class="glass rounded-xl p-3 text-center border border-white/5 hover:border-brand/30 transition-all">
                 <div class="flex items-center justify-center gap-2">
@@ -87,7 +88,8 @@ permalink: /portfolio/
             <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-4"></div>
         </div>
         <p class="text-center text-text-muted max-w-2xl mx-auto mb-10">
-            The Shubook Show features conversations with entrepreneurs, founders, professionals, creators, coaches, consultants, and industry leaders.
+            The Shubook Show features conversations with entrepreneurs, founders, professionals, creators, coaches,
+            consultants, and industry leaders.
             <br><br>
             Our goal is to capture meaningful stories and transform them into content that creates impact.
         </p>
@@ -124,7 +126,8 @@ permalink: /portfolio/
             <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-4"></div>
         </div>
         <p class="text-center text-text-muted max-w-2xl mx-auto mb-10">
-            From business owners and startup founders to creators and professionals, our guests come from diverse industries and backgrounds.
+            From business owners and startup founders to creators and professionals, our guests come from diverse
+            industries and backgrounds.
         </p>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div class="glass rounded-xl p-6 text-center h-32 flex items-center justify-center">
@@ -162,9 +165,11 @@ permalink: /portfolio/
             <div>
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">Video Podcast Production</h2>
                 <p class="text-text-secondary mb-4">Professional Podcast Production Services In Jaipur</p>
-                <p class="text-text-muted mb-6">Every podcast goes through a complete production workflow to ensure a premium final result.</p>
+                <p class="text-text-muted mb-6">Every podcast goes through a complete production workflow to ensure a
+                    premium final result.</p>
                 <div class="grid grid-cols-2 gap-3">
-                    {% assign production = "Multi-Camera Recording,Audio Enhancement,Professional Editing,Color Correction,Content Optimization,Export For Multiple Platforms" | split: "," %}
+                    {% assign production = "Multi-Camera Recording,Audio Enhancement,Professional Editing,Color
+                    Correction,Content Optimization,Export For Multiple Platforms" | split: "," %}
                     {% for item in production %}
                     <div class="flex items-center gap-2">
                         <span class="text-brand">{% lucide_icon "check" size="14" %}</span>
@@ -193,10 +198,12 @@ permalink: /portfolio/
             <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-4"></div>
         </div>
         <p class="text-center text-text-muted max-w-2xl mx-auto mb-10">
-            We transform podcast conversations into engaging short-form content that helps guests build authority across social media platforms.
+            We transform podcast conversations into engaging short-form content that helps guests build authority across
+            social media platforms.
         </p>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10">
-            {% assign content_types = "Instagram Reels,YouTube Shorts,LinkedIn Clips,Promotional Teasers,BTS Highlights" | split: "," %}
+            {% assign content_types = "Instagram Reels,YouTube Shorts,LinkedIn Clips,Promotional Teasers,BTS Highlights"
+            | split: "," %}
             {% for content in content_types %}
             <div class="glass rounded-xl p-3 text-center border border-white/5 hover:border-brand/30 transition-all">
                 <span class="text-text-secondary text-sm">{{ content | strip }}</span>
@@ -231,7 +238,8 @@ permalink: /portfolio/
             <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-4"></div>
         </div>
         <p class="text-center text-text-muted max-w-2xl mx-auto mb-10">
-            A strong thumbnail can dramatically improve podcast performance. Every thumbnail is created to grab attention while maintaining a professional and premium appearance.
+            A strong thumbnail can dramatically improve podcast performance. Every thumbnail is created to grab
+            attention while maintaining a professional and premium appearance.
         </p>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
             <div class="glass rounded-xl p-4 text-center h-32 flex items-center justify-center">
@@ -271,7 +279,8 @@ permalink: /portfolio/
             <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-4"></div>
         </div>
         <p class="text-center text-text-muted max-w-2xl mx-auto mb-10">
-            Content creation is more than just recording. Explore behind-the-scenes moments from podcast shoots, content production sessions, guest interactions, and studio experiences.
+            Content creation is more than just recording. Explore behind-the-scenes moments from podcast shoots, content
+            production sessions, guest interactions, and studio experiences.
         </p>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
             <div class="glass rounded-xl p-6 text-center h-40 flex items-center justify-center">
@@ -307,7 +316,9 @@ permalink: /portfolio/
             At Shubook Labs, every project is designed to create a premium and stress-free experience.
         </p>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            {% assign client_receives = "Professional Recording Environment,Complete Production Support,Premium Editing,Personal Branding Content,Social Media Assets,Multi-Platform Distribution,Professional Team Assistance" | split: "," %}
+            {% assign client_receives = "Professional Recording Environment,Complete Production Support,Premium
+            Editing,Personal Branding Content,Social Media Assets,Multi-Platform Distribution,Professional Team
+            Assistance" | split: "," %}
             {% for item in client_receives %}
             <div class="flex items-center gap-2 glass rounded-xl p-3">
                 <span class="text-brand">{% lucide_icon "check" size="14" %}</span>
@@ -317,7 +328,8 @@ permalink: /portfolio/
         </div>
         <div class="glass rounded-2xl p-8 text-center border border-brand/20">
             <p class="text-text-primary font-semibold text-lg">Our goal is simple:</p>
-            <p class="text-text-muted">Help every guest and client create content that reflects their expertise and professional image.</p>
+            <p class="text-text-muted">Help every guest and client create content that reflects their expertise and
+                professional image.</p>
         </div>
     </div>
 </section>
@@ -327,10 +339,12 @@ permalink: /portfolio/
     <div class="container mx-auto px-6 max-w-5xl text-center">
         <h2 class="text-3xl md:text-4xl font-bold mb-6">Why Our Portfolio Matters</h2>
         <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mb-8"></div>
-        <p class="text-text-secondary text-lg mb-6">Every image, video, podcast episode, reel, and project displayed here represents our commitment to quality.</p>
+        <p class="text-text-secondary text-lg mb-6">Every image, video, podcast episode, reel, and project displayed
+            here represents our commitment to quality.</p>
         <div class="glass rounded-2xl p-8 border border-brand/20">
             <p class="text-text-muted mb-4">When you work with Shubook Labs, you're not just recording content.</p>
-            <p class="text-text-primary font-semibold">You're creating professional digital assets that can strengthen your personal brand, increase visibility, and build trust.</p>
+            <p class="text-text-primary font-semibold">You're creating professional digital assets that can strengthen
+                your personal brand, increase visibility, and build trust.</p>
         </div>
     </div>
 </section>
@@ -385,14 +399,18 @@ permalink: /portfolio/
         <div class="glass rounded-2xl p-8 md:p-12 border border-brand/20 bg-gradient-to-b from-brand/5 to-transparent">
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Ready To Create Content That Stands Out?</h2>
             <p class="text-text-secondary text-lg mb-8 max-w-2xl mx-auto">
-                Whether you're looking to record a podcast, build your personal brand, or create premium content for your business, Shubook Labs is ready to help.
+                Whether you're looking to record a podcast, build your personal brand, or create premium content for
+                your business, Shubook Labs is ready to help.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                {% include components/button.html url="/podcast-jaipur" text="Book A Podcast" type="primary" icon="mic" %}
-                {% include components/button.html url="/studio-rent" text="Rent The Studio" type="ghost" icon="building" %}
+                {% include components/button.html url="/podcast-jaipur" text="Book A Podcast" type="primary" icon="mic"
+                %}
+                {% include components/button.html url="/studio-rent" text="Rent The Studio" type="ghost" icon="building"
+                %}
                 {% include components/button.html url="/contact" text="Talk To Our Team" type="ghost" icon="phone" %}
             </div>
-            <p class="text-text-muted text-sm mt-8">Shubook Labs • Premium Podcast Studio & Podcast Production Company In Jaipur</p>
+            <p class="text-text-muted text-sm mt-8">Shubook Labs • Premium Podcast Studio & Podcast Production Company
+                In Jaipur</p>
         </div>
     </div>
 </section>

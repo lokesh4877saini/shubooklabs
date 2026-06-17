@@ -14,9 +14,8 @@ faq_subtitle: About Getting Featured on The Shubook Show
     <!-- Spacer for fixed header -->
     <div style="height: 90px;"></div>
     <div
-        class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]">
+        class="hidden md:block absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]">
     </div>
-
     <div class="relative z-10 container mx-auto px-4 max-w-6xl text-center pb-16 md:pb-28">
         <div class="inline-flex items-center gap-2 glass rounded-full px-4 md:px-5 py-1.5 md:py-2 mb-5 md:mb-6">
             <span class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-brand animate-pulse"></span>
@@ -101,7 +100,8 @@ faq_subtitle: About Getting Featured on The Shubook Show
                 class="absolute -top-2 md:-top-3 left-1/2 -translate-x-1/2 bg-brand text-white text-xs font-bold px-2 md:px-3 py-0.5 md:py-1 rounded-full whitespace-nowrap">
                 Best Value Package</div>
             <div class="text-center mb-6 md:mb-8">
-                <div class="text-3xl md:text-6xl font-bold text-brand mb-2 md:mb-4">{{ c.podcast_and_personal_branding_price }}</div>
+                <div class="text-3xl md:text-6xl font-bold text-brand mb-2 md:mb-4">{{
+                    c.podcast_and_personal_branding_price }}</div>
                 <p class="text-text-muted text-xs md:text-sm">One-time investment for complete personal branding package
                 </p>
             </div>

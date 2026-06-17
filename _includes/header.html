@@ -1,22 +1,25 @@
 <header class="fixed top-0 left-0 right-0 z-50 bg-transparent px-4 py-3">
   <div class="max-w-7xl mx-auto">
-    <div class="flex items-center justify-between md:px-5 px-3 py-3 gap-4 bg-dark-card/80 border border-brand/20 rounded-2xl">
+    <div class="flex items-center justify-between md:px-5 px-3 py-3 gap-4 bg-dark-card/95 border border-brand/20 rounded-2xl">
 
       <!-- Logo -->
       <a href="/" aria-label="Shubook Labs Home" class="flex items-center gap-3 group shrink-0">
         <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-brand/20 to-transparent p-0.5">
           <img src="/assets/images/logo/shubook-labs.webp" alt="Shubook Labs" width="128" height="40" loading="eager"
-            class="w-32 h-10 lg:w-32 lg:h-12 rounded-lg object-cover object-center">
+            class="w-28 h-9 lg:w-32 lg:h-12 rounded-lg object-cover object-center">
         </div>
       </a>
 
       <!-- Desktop Navigation -->
       <nav class="desktop-nav items-center gap-1 xl:gap-2">
         {% assign current_url = page.url %}
+        
         <a href="/" class="nav-link {% if current_url == '/' %}active{% endif %}"
           aria-current="{% if current_url == '/' %}page{% endif %}">Home</a>
+        
         <a href="/services" class="nav-link {% if current_url contains '/services' %}active{% endif %}"
           aria-current="{% if current_url contains '/services' %}page{% endif %}">Services</a>
+        
         <a href="/podcast-studio-on-rent"
           class="nav-link {% if current_url == '/podcast-studio-on-rent' or current_url contains '/podcast-studio-on-rent/' %}active{% endif %}"
           aria-current="{% if current_url == '/podcast-studio-on-rent' or current_url contains '/podcast-studio-on-rent/' %}page{% endif %}">
@@ -25,39 +28,43 @@
 
         <a href="/podcast"
           class="nav-link {% if current_url == '/podcast' or current_url contains '/podcast/' and current_url != '/podcast-studio-on-rent' and current_url != '/podcast-studio-on-rent/' %}active{% endif %}"
-          aria-current="{% if current_url == '/podcast' or current_url contains '/podcast/' and current_url != '/podcast-studio-on-rent' %}page{% endif %}">
+          aria-current="{% if current_url == '/podcast' or current_url contains '/podcast/' and current_url != '/podcast-studio-on-rent' and current_url != '/podcast-studio-on-rent/' %}page{% endif %}">
           Podcast
         </a>
+        
         <a href="/portfolio" class="nav-link {% if current_url contains '/portfolio' %}active{% endif %}"
           aria-current="{% if current_url contains '/portfolio' %}page{% endif %}">Portfolio</a>
+        
         <a href="/about" class="nav-link {% if current_url contains '/about' %}active{% endif %}"
           aria-current="{% if current_url contains '/about' %}page{% endif %}">About</a>
+        
         <a href="/blog" class="nav-link {% if current_url contains '/blog' %}active{% endif %}"
           aria-current="{% if current_url contains '/blog' %}page{% endif %}">Blog</a>
+        
         <a href="/contact" class="nav-link {% if current_url contains '/contact' %}active{% endif %}"
           aria-current="{% if current_url contains '/contact' %}page{% endif %}">Contact</a>
       </nav>
 
       <!-- Right Side Actions -->
-      <div class="flex items-center gap-2 sm:gap-3">
-        <!-- WhatsApp Button -->
+      <div class="flex items-center gap-1.5 sm:gap-3">
+        <!-- WhatsApp Button - Mobile Optimized -->
         <a href="https://wa.me/919887247112?text=Hey%2C%20I%20am%20coming%20from%20your%20website.%20I%20want%20to%20record%20a%20podcast."
           target="_blank" rel="noopener noreferrer" role="button"
           aria-label="Chat with us on WhatsApp to record your podcast"
-          class="whatsapp-btn inline-flex items-center gap-2 bg-white/10 hover:bg-[#60A5FA] text-white hover:text-white border border-white/20 hover:border-transparent transition-all duration-300 rounded-xl px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm lg:px-5 lg:py-2.5 lg:text-base">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
-            class="shrink-0" aria-hidden="true">
+          class="whatsapp-btn inline-flex items-center justify-center gap-1.5 bg-white/10 hover:bg-[#60A5FA] text-white hover:text-white border border-white/20 hover:border-transparent transition-all duration-300 rounded-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+            class="shrink-0 whatsapp-icon" aria-hidden="true">
             <path
               d="M12.032 2.001c-5.516 0-10 4.484-10 10 0 1.852.507 3.657 1.459 5.248l-1.461 5.346 5.521-1.447c1.502.823 3.187 1.257 4.91 1.257 5.514 0 9.999-4.484 9.999-9.999s-4.485-10.405-10.029-10.405zm0 18.4c-1.543 0-3.058-.419-4.366-1.2l-.313-.186-3.276.857.876-3.189-.204-.324c-.846-1.335-1.293-2.875-1.293-4.455 0-4.602 3.744-8.347 8.346-8.347s8.345 3.745 8.345 8.347-3.744 8.497-8.345 8.497zm4.576-6.252c-.251-.125-1.484-.732-1.714-.816-.229-.083-.396-.125-.563.125-.167.25-.646.816-.792.983-.146.167-.292.188-.543.063-.251-.125-1.059-.391-2.017-1.245-.746-.666-1.249-1.487-1.395-1.739-.146-.251-.016-.387.11-.512.113-.114.251-.292.377-.438.125-.146.167-.25.25-.417.084-.167.042-.313-.021-.438-.062-.125-.562-1.354-.771-1.855-.203-.487-.409-.42-.563-.428-.146-.008-.313-.008-.479-.008-.167 0-.438.062-.667.313-.229.251-.875.855-.875 2.084 0 1.229.895 2.416 1.02 2.583.125.167 1.762 2.691 4.268 3.774.596.258 1.062.412 1.425.528.598.191 1.143.164 1.573.099.48-.073 1.479-.604 1.687-1.188.209-.584.209-1.084.146-1.188-.062-.104-.229-.167-.479-.292z" />
           </svg>
-          <span class="hidden sm:inline">WhatsApp</span>
+          <span class="whatsapp-text">WhatsApp</span>
         </a>
 
         <!-- Mobile Menu Button -->
         <label for="menuToggle"
-          class="lg:hidden h-10 w-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center cursor-pointer"
+          class="lg:hidden h-9 w-9 sm:h-10 sm:w-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center cursor-pointer"
           aria-label="Open menu">
-          {% lucide_icon "menu" size="20" class="text-white" %}
+          {% lucide_icon "menu" size="18" class="sm:w-5 sm:h-5 text-white" %}
         </label>
       </div>
     </div>
@@ -79,10 +86,13 @@
         </label>
 
         <!-- Logo inside mobile menu -->
-        <div class="px-5 pt-16 pb-4 border-b border-white/10">
+        <div class="px-5 pt-16 pb-4 border-b border-white/10 rounded-none">
+          <a href="/" aria-label="Shubook Labs Home" class="flex items-center gap-3 group shrink-0">
           <img src="/assets/images/logo/shubook-labs.webp" alt="Shubook Labs" width="120" height="35"
-            class="w-32 h-auto">
+            class="w-32 h-auto rounded-lg justify-center mx-auto object-cover object-center">
+          </a>
         </div>
+
 
         <nav class="flex flex-col gap-2 p-4" aria-label="Mobile navigation menu">
           <a href="/" class="mobile-link {% if current_url == '/' %}active{% endif %}"
@@ -102,16 +112,17 @@
           </a>
 
           <a href="/podcast-studio-on-rent/"
-            class="mobile-link {% if current_url contains '/podcast-studio-on-rent' %}active{% endif %}"
-            aria-current="{% if current_url contains '/podcast-studio-on-rent' %}page{% endif %}">
+            class="mobile-link {% if current_url == '/podcast-studio-on-rent' or current_url contains '/podcast-studio-on-rent/' %}active{% endif %}"
+            aria-current="{% if current_url == '/podcast-studio-on-rent' or current_url contains '/podcast-studio-on-rent/' %}page{% endif %}">
             <span class="flex items-center gap-3">
               {% lucide_icon "video" size="18" class="text-brand/60" %}
               <span>Podcast Studio Rent</span>
             </span>
           </a>
 
-          <a href="/podcast/" class="mobile-link {% if current_url contains '/podcast' %}active{% endif %}"
-            aria-current="{% if current_url contains '/podcast' %}page{% endif %}">
+          <a href="/podcast/"
+            class="mobile-link {% if current_url == '/podcast' or current_url contains '/podcast/' and current_url != '/podcast-studio-on-rent' and current_url != '/podcast-studio-on-rent/' %}active{% endif %}"
+            aria-current="{% if current_url == '/podcast' or current_url contains '/podcast/' and current_url != '/podcast-studio-on-rent' and current_url != '/podcast-studio-on-rent/' %}page{% endif %}">
             <span class="flex items-center gap-3">
               {% lucide_icon "headphones" size="18" class="text-brand/60" %}
               <span>Podcast</span>
@@ -166,7 +177,7 @@
   /* Menu hidden by default */
   .mobile-menu { 
     transform: translateX(100%);
-    background-color: black;
+    background-color: #111827;
     transition: transform 0.2s ease;
   }
 
@@ -228,14 +239,80 @@
     background: rgba(96,165,250,0.1);
   }
 
-  /* WhatsApp - NO HOVER on mobile */
-  .whatsapp-btn { background: rgba(255,255,255,0.1); }
+  /* ============================================
+     WHATSAPP BUTTON - MOBILE OPTIMIZED
+  ============================================ */
   
-  @media (min-width: 1024px) {
-    .whatsapp-btn:hover { background: #60A5FA; }
+  /* Default (Mobile First) */
+  .whatsapp-btn {
+    padding: 0.45rem 0.5rem;
+    font-size: 0.7rem;
+    min-height: 32px;
+    min-width: 32px;
+    gap: 0.25rem;
   }
 
-  @media (max-width: 639px) {
-    .whatsapp-btn span { display: none; }
+  .whatsapp-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .whatsapp-text {
+    display: none; /* Hidden on mobile by default */
+  }
+
+  /* Tablet (640px - 1023px) */
+  @media (min-width: 640px) {
+    .whatsapp-btn {
+      padding: 0.375rem 0.75rem;
+      font-size: 0.8rem;
+      min-height: 36px;
+      min-width: 36px;
+      gap: 0.375rem;
+    }
+
+    .whatsapp-icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .whatsapp-text {
+      display: inline; /* Show text on tablet+ */
+    }
+  }
+
+  /* Desktop (1024px+) */
+  @media (min-width: 1024px) {
+    .whatsapp-btn {
+      padding: 0.625rem 1.25rem;
+      font-size: 1rem;
+      min-height: 44px;
+      min-width: 44px;
+      gap: 0.5rem;
+    }
+
+    .whatsapp-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .whatsapp-btn:hover {
+      background: #60A5FA;
+    }
+  }
+
+  /* Very small screens (under 400px) */
+  @media (max-width: 399px) {
+    .whatsapp-btn {
+      padding: 0.2rem 0.4rem;
+      min-height: 28px;
+      min-width: 28px;
+      border-radius: 0.5rem;
+    }
+
+    .whatsapp-icon {
+      width: 12px;
+      height: 12px;
+    }
   }
 </style>
