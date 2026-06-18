@@ -4,15 +4,11 @@ on:
   push:
     branches:
       - main
-  # Add manual trigger for testing
   workflow_dispatch:
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-    
-    # Add timeout to prevent hanging
-    timeout-minutes: 10
 
     steps:
       - name: Checkout
@@ -38,11 +34,18 @@ jobs:
       - name: Build Jekyll
         run: bundle exec jekyll build
 
-      # Add debug step to verify build output
       - name: Verify build output
         run: |
           ls -la ./_site/
           echo "Files in _site: $(find ./_site -type f | wc -l)"
+
+      # 🔍 DEBUG: Check if secrets exist (without exposing values)
+      - name: Debug Secrets (Safe)
+        run: |
+          echo "FTP_SERVER is set: ${{ secrets.FTP_SERVER != '' }}"
+          echo "FTP_USERNAME is set: ${{ secrets.FTP_USERNAME != '' }}"
+          echo "FTP_PASSWORD is set: ${{ secrets.FTP_PASSWORD != '' }}"
+          echo "FTP_PORT is set: ${{ secrets.FTP_PORT != '' }}"
 
       - name: Upload to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -53,7 +56,5 @@ jobs:
           port: ${{ secrets.FTP_PORT }}
           local-dir: ./_site/
           server-dir: /public_html/
-          # Add these optional but helpful parameters
           protocol: ftp
-          log-level: verbose  # This will show you what's being uploaded
-          dangerous-clean-slate: false  # Set to true if you want to clean remote dir first
+          log-level: verbose
