@@ -75,7 +75,7 @@ permalink: /portfolio/
         <div class="carousel-wrapper text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold ">Podcast Trailers</h2>
             <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto mt-4 mb-5"></div>
-            {% include components/carousel.html %}
+            {% include components/local-video-carousel.html %}
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-10">
 
@@ -117,7 +117,7 @@ permalink: /portfolio/
             {% include components/image-carousel.html
             images=thumbnail_images
             id="thumbnailCarousel"
-            container_class="h-[200px] md:h-[300px] lg:h-[400px]"
+            container_class="h-[300px] md:h-[300px] lg:h-[500px]"
             show_dots=true
             show_arrows=true
             autoplay=true
@@ -142,12 +142,12 @@ permalink: /portfolio/
         <div class="max-w-4xl mx-auto">
             {% include components/image-carousel.html
             images=featured_guests_images
-            id="featuredGuestsCarousel"
-            container_class="h-[200px] md:h-[300px] lg:h-[400px]"
+            id="studioCarousel"
+            container_class="aspect-square w-full max-w-[520px] mx-auto"
             show_dots=true
             show_arrows=true
             autoplay=true
-            autoplay_interval=4000
+            autoplay_interval=5000
             %}
         </div>
     </div>
@@ -285,7 +285,7 @@ permalink: /portfolio/
                 %}
                 {% include components/button.html url="/contact" text="Talk To Our Team" type="ghost" icon="phone" %}
             </div>
-            <p class="text-text-muted text-sm mt-8">Shubook Labs • Premium Podcast Studio & Podcast Production 
+            <p class="text-text-muted text-sm mt-8">Shubook Labs • Premium Podcast Studio & Podcast Production
                 In Jaipur</p>
         </div>
     </div>

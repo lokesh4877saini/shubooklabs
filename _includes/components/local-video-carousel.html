@@ -1,0 +1,772 @@
+<!-- components/local-video-carousel.html -->
+{% assign videos = site.data.studio-intro %}
+
+{% if videos == nil or videos.size == 0 %}
+    <div class="text-center text-yellow-400 py-10 border border-yellow-400/20 rounded-xl p-6">
+        <p class="font-bold">⚠️ No videos found</p>
+        <p class="text-sm text-text-muted mt-2">Please check your studio-intro.yml file</p>
+    </div>
+{% else %}
+
+<div class="local-video-carousel-wrapper" data-total="{{ videos.size }}">
+    <!-- Desktop 3D Carousel -->
+    <div class="hidden md:block">
+        <div class="glass-premium rounded-2xl p-8">
+            <div class="desktop-carousel-container">
+                <div class="carousel-3d-stage" id="localCarousel3dStage"></div>
+                <button id="localDesktopPrevBtn" class="carousel-nav-btn carousel-nav-prev" aria-label="Previous slide" title="Previous slide">
+                    {% lucide_icon "chevron-left" size="32" class="text-white" aria-hidden="true" %}
+                </button>
+                <button id="localDesktopNextBtn" class="carousel-nav-btn carousel-nav-next" aria-label="Next slide" title="Next slide">
+                    {% lucide_icon "chevron-right" size="32" class="text-white" aria-hidden="true" %}
+                </button>
+                <div class="carousel-dots-container" id="localCarouselDots"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Simple Card -->
+    <div class="md:hidden">
+        <div class="max-w-4xl mx-auto mb-12">
+            <div class="glass-premium rounded-2xl p-2 border border-brand/20">
+                <div class="relative">
+                    <div class="relative w-full mb-6" id="localVideoContainerMobile">
+                        <div class="relative w-full" style="aspect-ratio: 16 / 9;">
+                            <img id="localVideoThumbnailMobile" src="" alt="Video thumbnail" width="1280" height="720"
+                                loading="lazy"
+                                style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 10;">
+
+                            <video id="localPlayerMobile"
+                                style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 5; display: none;"
+                                controls
+                                playsinline
+                                preload="metadata">
+                            </video>
+
+                            <button id="localPlayButtonMobile" aria-label="Play video" title="Play video"
+                                class="absolute inset-0 z-20 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-all duration-300 opacity-100 group cursor-pointer">
+                                <div class="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-brand/90 hover:bg-brand flex items-center justify-center transition-all duration-300 hover:scale-110">
+                                    {% lucide_icon "play" size="20" class="text-white ml-1 sm:w-8 sm:h-8" aria-hidden="true" %}
+                                </div>
+                            </button>
+
+                            <div id="localLoadingIndicatorMobile"
+                                class="absolute inset-0 flex items-center justify-center bg-black/70 z-30"
+                                style="display: none;">
+                                <div class="w-8 h-8 border-4 border-brand border-t-transparent rounded-full animate-spin"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="inline-flex items-center gap-2 mb-3">
+                            <span class="px-2 py-1 text-xs font-medium bg-brand/20 text-brand rounded-full">Featured Video</span>
+                        </div>
+                        <div class="min-h-[100px]">
+                            <h3 id="localEpisodeTitleMobile" class="text-xl md:text-2xl font-bold text-white mb-2">Loading Video...</h3>
+                            <p id="localEpisodeDescMobile" class="text-text-secondary text-sm md:text-base">Loading description...</p>
+                        </div>
+                    </div>
+
+                    <button id="localPrevEpisodeMobile" aria-label="Previous" title="Previous"
+                        class="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 flex items-center justify-center bg-black/60 hover:bg-black/80 text-white rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20">
+                        {% lucide_icon "chevron-left" size="18" class="text-white" aria-hidden="true" %}
+                    </button>
+
+                    <button id="localNextEpisodeMobile" aria-label="Next" title="Next"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 flex items-center justify-center bg-black/60 hover:bg-black/80 text-white rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20">
+                        {% lucide_icon "chevron-right" size="18" class="text-white" aria-hidden="true" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        let isCarouselLoaded = false;
+        const isMobile = window.innerWidth < 768;
+        
+        // Get data
+        const videos = {{ videos | jsonify }};
+        
+        // Helper function to normalize path
+        function normalizePath(path) {
+            if (!path) return path;
+            if (path.startsWith('http://') || path.startsWith('https://')) {
+                return path;
+            }
+            if (!path.startsWith('/')) {
+                return '/' + path;
+            }
+            return path;
+        }
+
+        function loadCarousel() {
+            if (isCarouselLoaded || !videos || videos.length === 0) {
+                console.log('No videos found');
+                return;
+            }
+            isCarouselLoaded = true;
+
+            if (!isMobile) {
+                // DESKTOP 3D CAROUSEL
+                let currentIndex = 0;
+                let currentPlayer = null;
+                let currentPlayingId = null;
+
+                function playVideoOnCard(card) {
+                    var thumbnail = card.querySelector('.carousel-card-thumbnail');
+                    var img = thumbnail.querySelector('img');
+                    var video = thumbnail.querySelector('video');
+                    var videoId = card.getAttribute('data-video-id');
+                    var playOverlay = thumbnail.querySelector('.play-overlay');
+                    
+                    console.log('playVideoOnCard called for:', videoId);
+                    
+                    if (!video) {
+                        console.log('No video element found');
+                        return;
+                    }
+                    
+                    if (currentPlayingId === videoId && video && !video.paused) {
+                        // If same video is playing, pause it
+                        video.pause();
+                        if (playOverlay) playOverlay.style.display = 'flex';
+                        currentPlayer = null;
+                        currentPlayingId = null;
+                        return;
+                    }
+
+                    // Stop current video if playing
+                    if (currentPlayer) {
+                        var prevVideo = currentPlayer.querySelector('video');
+                        var prevOverlay = currentPlayer.querySelector('.play-overlay');
+                        if (prevVideo) { prevVideo.pause(); prevVideo.currentTime = 0; prevVideo.style.display = 'none'; }
+                        if (prevOverlay) prevOverlay.style.display = 'flex';
+                        var prevImg = currentPlayer.querySelector('img');
+                        if (prevImg) prevImg.style.display = 'block';
+                        currentPlayer = null;
+                        currentPlayingId = null;
+                    }
+
+                    // Show video, hide thumbnail
+                    video.style.display = 'block';
+                    video.currentTime = 0;
+                    
+                    // Load and play the video
+                    video.load();
+                    video.play().then(function() {
+                        console.log('Video playing successfully');
+                        if (playOverlay) playOverlay.style.display = 'none';
+                        img.style.display = 'none';
+                        currentPlayer = thumbnail;
+                        currentPlayingId = videoId;
+                    }).catch(function(e) {
+                        console.log('Video play error:', e);
+                        // If video fails to play, show error state
+                        if (playOverlay) playOverlay.style.display = 'flex';
+                        img.style.display = 'block';
+                        video.style.display = 'none';
+                    });
+                    
+                    // When video ends, show overlay again
+                    video.onended = function() {
+                        if (playOverlay) playOverlay.style.display = 'flex';
+                        img.style.display = 'block';
+                        video.style.display = 'none';
+                        currentPlayer = null;
+                        currentPlayingId = null;
+                    };
+                }
+
+                function createCard(video, position, isClickable) {
+                    var videoPath = normalizePath(video.url);
+                    if (!videoPath) return null;
+                    
+                    var card = document.createElement('div');
+                    card.className = 'carousel-card ' + position;
+                    card.setAttribute('data-video-id', videoPath);
+                    card.setAttribute('data-position', position);
+                    
+                    var thumbnail = document.createElement('div');
+                    thumbnail.className = 'carousel-card-thumbnail';
+                    
+                    // Use thumbnail if available, otherwise placeholder
+                    var img = document.createElement('img');
+                    if (video.thumbnail) {
+                        img.src = normalizePath(video.thumbnail);
+                    } else {
+                        img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720"%3E%3Crect width="1280" height="720" fill="%23111827"/%3E%3Ctext x="640" y="360" font-family="Arial" font-size="24" fill="%2394A3B8" text-anchor="middle"%3EVideo Loading...%3C/text%3E%3C/svg%3E';
+                    }
+                    img.alt = video.title;
+                    img.loading = 'lazy';
+                    thumbnail.appendChild(img);
+                    
+                    // Video element with proper source
+                    var videoEl = document.createElement('video');
+                    videoEl.setAttribute('playsinline', 'true');
+                    videoEl.setAttribute('preload', 'metadata');
+                    videoEl.setAttribute('controls', 'true');
+                    videoEl.style.display = 'none';
+                    videoEl.style.width = '100%';
+                    videoEl.style.height = '100%';
+                    videoEl.style.objectFit = 'cover';
+                    videoEl.style.background = '#000';
+                    
+                    // Create source element
+                    var source = document.createElement('source');
+                    source.src = videoPath;
+                    source.type = 'video/mp4';
+                    videoEl.appendChild(source);
+                    
+                    thumbnail.appendChild(videoEl);
+                    
+                    // Info
+                    var info = document.createElement('div');
+                    info.className = 'carousel-card-info';
+                    
+                    var title = document.createElement('div');
+                    title.className = 'carousel-card-title';
+                    title.textContent = video.title;
+                    
+                    var desc = document.createElement('div');
+                    desc.className = 'carousel-card-desc';
+                    var descText = video.description || '';
+                    desc.textContent = descText.length > 60 ? descText.substring(0, 60) + '...' : descText;
+                    
+                    info.appendChild(title);
+                    info.appendChild(desc);
+                    card.appendChild(thumbnail);
+                    card.appendChild(info);
+                    
+                    // Add play button overlay on thumbnail
+                    var playOverlay = document.createElement('div');
+                    playOverlay.className = 'play-overlay';
+                    playOverlay.innerHTML = `
+                        <div class="play-button-circle">
+                            <svg class="play-icon" viewBox="0 0 24 24" fill="white">
+                                <polygon points="5,3 19,12 5,21" />
+                            </svg>
+                        </div>
+                    `;
+                    thumbnail.appendChild(playOverlay);
+                    
+                    // Add click handler directly on the card for play
+                    card.addEventListener('click', function(e) {
+                        // Check if click is on play overlay or its children
+                        if (e.target.closest('.play-overlay')) {
+                            // Play button clicked
+                            console.log('Play overlay clicked on card:', position);
+                            var cardPosition = card.getAttribute('data-position');
+                            
+                            if (cardPosition !== 'center') {
+                                // Find the index of this video and move to center
+                                for (var i = 0; i < videos.length; i++) {
+                                    var itemPath = normalizePath(videos[i].url);
+                                    if (itemPath === videoPath) {
+                                        updateCarousel(i);
+                                        setTimeout(function() {
+                                            var centerCard = document.querySelector('.carousel-card.center');
+                                            if (centerCard) {
+                                                playVideoOnCard(centerCard);
+                                            }
+                                        }, 500);
+                                        break;
+                                    }
+                                }
+                            } else {
+                                // Center card - play directly
+                                playVideoOnCard(card);
+                            }
+                            return;
+                        }
+                        
+                        // If click is not on play overlay and card is clickable, navigate
+                        if (isClickable) {
+                            for (var i = 0; i < videos.length; i++) {
+                                var itemPath = normalizePath(videos[i].url);
+                                if (itemPath === videoPath && i !== currentIndex) {
+                                    updateCarousel(i);
+                                    break;
+                                }
+                            }
+                        }
+                    });
+                    
+                    return card;
+                }
+
+                function updateCarousel(newIndex) {
+                    if (newIndex === currentIndex) return;
+                    
+                    // Stop current video
+                    if (currentPlayer) {
+                        var prevVideo = currentPlayer.querySelector('video');
+                        var prevOverlay = currentPlayer.querySelector('.play-overlay');
+                        var prevImg = currentPlayer.querySelector('img');
+                        if (prevVideo) { prevVideo.pause(); prevVideo.currentTime = 0; prevVideo.style.display = 'none'; }
+                        if (prevOverlay) prevOverlay.style.display = 'flex';
+                        if (prevImg) prevImg.style.display = 'block';
+                        currentPlayer = null;
+                        currentPlayingId = null;
+                    }
+                    
+                    currentIndex = newIndex;
+                    renderCarousel();
+                }
+
+                function renderCarousel() {
+                    var stage = document.getElementById('localCarousel3dStage');
+                    if (!stage) return;
+                    stage.innerHTML = '';
+                    var total = videos.length;
+                    var indexes = [
+                        (currentIndex - 2 + total) % total,
+                        (currentIndex - 1 + total) % total,
+                        currentIndex,
+                        (currentIndex + 1) % total,
+                        (currentIndex + 2) % total
+                    ];
+                    var positions = ['left-2', 'left-1', 'center', 'right-1', 'right-2'];
+                    var isClickable = [false, true, false, true, false];
+
+                    for (var i = 0; i < 5; i++) {
+                        var card = createCard(videos[indexes[i]], positions[i], isClickable[i]);
+                        if (card) stage.appendChild(card);
+                    }
+
+                    updateDots();
+                }
+
+                function updateDots() {
+                    var dotsContainer = document.getElementById('localCarouselDots');
+                    if (!dotsContainer) return;
+                    dotsContainer.innerHTML = '';
+                    for (var i = 0; i < videos.length; i++) {
+                        var dot = document.createElement('button');
+                        dot.className = 'carousel-dot';
+                        if (i === currentIndex) dot.classList.add('active');
+                        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+                        dot.setAttribute('title', 'Go to slide ' + (i + 1));
+                        dot.addEventListener('click', (function (idx) { return function () { updateCarousel(idx); }; })(i));
+                        dotsContainer.appendChild(dot);
+                    }
+                }
+
+                function prevSlide() { updateCarousel((currentIndex - 1 + videos.length) % videos.length); }
+                function nextSlide() { updateCarousel((currentIndex + 1) % videos.length); }
+
+                var prevBtn = document.getElementById('localDesktopPrevBtn');
+                var nextBtn = document.getElementById('localDesktopNextBtn');
+                if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+                if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+                renderCarousel();
+
+            } else {
+                // MOBILE SIMPLE CARD
+                let currentIndex = 0;
+
+                var episodeTitle = document.getElementById('localEpisodeTitleMobile');
+                var episodeDesc = document.getElementById('localEpisodeDescMobile');
+                var prevBtn = document.getElementById('localPrevEpisodeMobile');
+                var nextBtn = document.getElementById('localNextEpisodeMobile');
+                var videoThumbnail = document.getElementById('localVideoThumbnailMobile');
+                var playButton = document.getElementById('localPlayButtonMobile');
+                var loadingIndicator = document.getElementById('localLoadingIndicatorMobile');
+                var localPlayer = document.getElementById('localPlayerMobile');
+
+                function initPlayer(videoPath) {
+                    if (!videoPath) return;
+                    if (loadingIndicator) loadingIndicator.style.display = 'flex';
+                    if (videoThumbnail) videoThumbnail.style.opacity = '0.5';
+                    
+                    if (localPlayer) {
+                        localPlayer.style.display = 'block';
+                        var normalizedPath = normalizePath(videoPath);
+                        localPlayer.src = normalizedPath;
+                        localPlayer.load();
+                        localPlayer.play().catch(function(e) {
+                            console.log('Video play error:', e);
+                        });
+                        if (loadingIndicator) loadingIndicator.style.display = 'none';
+                        if (videoThumbnail) videoThumbnail.style.display = 'none';
+                        if (playButton) playButton.style.display = 'none';
+                        
+                        localPlayer.onended = function() {
+                            if (videoThumbnail) { videoThumbnail.style.display = 'block'; videoThumbnail.style.opacity = '1'; }
+                            if (playButton) playButton.style.display = 'flex';
+                            localPlayer.style.display = 'none';
+                            localPlayer.currentTime = 0;
+                        };
+                        
+                        localPlayer.onerror = function(e) {
+                            console.log('Video error:', e);
+                            if (loadingIndicator) loadingIndicator.style.display = 'none';
+                            if (videoThumbnail) { videoThumbnail.style.display = 'block'; videoThumbnail.style.opacity = '1'; }
+                            if (playButton) playButton.style.display = 'flex';
+                        };
+                    }
+                }
+
+                function playVideo() {
+                    var video = videos[currentIndex];
+                    if (!video) return;
+                    initPlayer(video.url);
+                }
+
+                function updateContent(index) {
+                    var video = videos[index];
+                    if (!video) return;
+                    
+                    if (episodeTitle) episodeTitle.textContent = video.title;
+                    if (episodeDesc) episodeDesc.textContent = video.description || '';
+                    
+                    if (videoThumbnail) {
+                        if (video.thumbnail) {
+                            videoThumbnail.src = normalizePath(video.thumbnail);
+                        } else {
+                            videoThumbnail.src = '';
+                        }
+                        videoThumbnail.style.display = 'block';
+                        videoThumbnail.style.opacity = '1';
+                        videoThumbnail.alt = video.title;
+                    }
+                    
+                    if (localPlayer) { localPlayer.style.display = 'none'; localPlayer.src = ''; }
+                    
+                    if (playButton) playButton.style.display = 'flex';
+                    if (loadingIndicator) loadingIndicator.style.display = 'none';
+                }
+
+                function nextEpisode() { currentIndex = (currentIndex + 1) % videos.length; updateContent(currentIndex); }
+                function prevEpisode() { currentIndex = (currentIndex - 1 + videos.length) % videos.length; updateContent(currentIndex); }
+
+                if (playButton) playButton.addEventListener('click', function (e) { e.preventDefault(); playVideo(); });
+                if (prevBtn) prevBtn.addEventListener('click', function (e) { e.preventDefault(); prevEpisode(); });
+                if (nextBtn) nextBtn.addEventListener('click', function (e) { e.preventDefault(); nextEpisode(); });
+                updateContent(0);
+            }
+        }
+
+        // Lazy load on scroll
+        var section = document.querySelector('.local-video-carousel-wrapper');
+        if (section) {
+            if (!isMobile) {
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', function () { setTimeout(loadCarousel, 100); });
+                } else { setTimeout(loadCarousel, 100); }
+            } else if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function (entries) {
+                    if (entries[0].isIntersecting) {
+                        setTimeout(loadCarousel, 100);
+                        observer.disconnect();
+                    }
+                }, { threshold: 0.05 });
+                observer.observe(section);
+            } else {
+                window.addEventListener('scroll', function onScroll() {
+                    var rect = section.getBoundingClientRect();
+                    if (rect.top < window.innerHeight + 200) {
+                        loadCarousel();
+                        window.removeEventListener('scroll', onScroll);
+                    }
+                });
+            }
+        }
+    })();
+</script>
+
+<style>
+    .glass-premium {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+        backdrop-filter: blur(12px);
+    }
+
+    /* Desktop 3D Carousel Styles */
+    .hidden.md\:block .glass-premium {
+        overflow: visible;
+    }
+
+    .desktop-carousel-container {
+        position: relative;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .carousel-3d-stage {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 550px;
+        perspective: 1200px;
+    }
+
+    .carousel-card {
+        position: absolute;
+        width: 330px;
+        background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(17, 24, 39, 0.98));
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        cursor: pointer;
+    }
+
+    .carousel-card.center {
+        z-index: 40;
+        width: 680px;
+        transform: scale(1) translateX(0) translateY(0);
+    }
+
+    .carousel-card.left-1 {
+        z-index: 30;
+        transform: scale(0.85) translateX(0px) translateY(10px);
+        filter: brightness(0.8);
+        opacity: 0.9;
+    }
+
+    .carousel-card.right-1 {
+        z-index: 30;
+        transform: scale(0.85) translateX(0px) translateY(10px);
+        filter: brightness(0.8);
+        opacity: 0.9;
+    }
+
+    .carousel-card.left-2 {
+        z-index: 20;
+        transform: scale(0.7) translateX(-110px) translateY(25px);
+        filter: brightness(0.6) blur(1px);
+        opacity: 0.7;
+        pointer-events: none;
+    }
+
+    .carousel-card.right-2 {
+        z-index: 20;
+        transform: scale(0.7) translateX(110px) translateY(25px);
+        filter: brightness(0.6) blur(1px);
+        opacity: 0.7;
+        pointer-events: none;
+    }
+
+    .carousel-card-thumbnail {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: #000;
+        overflow: hidden;
+    }
+
+    .carousel-card-thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        display: block;
+    }
+
+    .carousel-card:hover .carousel-card-thumbnail img {
+        transform: scale(1.05);
+    }
+
+    .carousel-card-thumbnail video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: #000;
+    }
+
+    /* Play Overlay */
+    .play-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 15;
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.2);
+        transition: background 0.3s ease;
+    }
+
+    .play-overlay:hover {
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    .play-button-circle {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: rgba(59, 130, 246, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease, background 0.3s ease;
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+    }
+
+    .play-overlay:hover .play-button-circle {
+        transform: scale(1.1);
+        background: #3B82F6;
+    }
+
+    .play-icon {
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+    }
+
+    .carousel-card-info {
+        padding: 12px 16px 16px;
+        background: linear-gradient(to top, #0f172a, #111827);
+    }
+
+    .carousel-card-title {
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: #fff;
+        margin-bottom: 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .carousel-card-desc {
+        font-size: 0.7rem;
+        color: #94a3b8;
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .carousel-nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 48px;
+        height: 48px;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        z-index: 50;
+    }
+
+    .carousel-nav-btn:hover {
+        background: #3b82f6;
+        transform: translateY(-50%) scale(1.1);
+        border-color: rgba(96, 165, 250, 0.8);
+    }
+
+    .carousel-nav-prev {
+        left: -60px;
+    }
+
+    .carousel-nav-next {
+        right: -60px;
+    }
+
+    /* Dot Indicators */
+    .carousel-dots-container {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 30px;
+    }
+
+    .carousel-dot {
+        width: 8px;
+        height: 8px;
+        background: #4a5568 !important;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .carousel-dot.active {
+        width: 28px;
+        background: #3b82f6 !important;
+        border-radius: 10px;
+    }
+
+    .carousel-dot:hover {
+        background: #60a5fa !important;
+    }
+
+    /* Mobile Styles */
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    .animate-spin {
+        animation: spin 1s linear infinite;
+    }
+
+    #localPlayerMobile {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: auto;
+        background: #000;
+    }
+
+    #localVideoThumbnailMobile {
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        cursor: pointer;
+    }
+
+    #localPlayButtonMobile {
+        transition: opacity 0.3s ease;
+        cursor: pointer;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1400px) {
+        .carousel-card { width: 260px; }
+        .carousel-card.center { width: 540px; }
+        .carousel-card.left-1 { transform: scale(0.85) translateX(-200px) translateY(10px); }
+        .carousel-card.right-1 { transform: scale(0.85) translateX(200px) translateY(10px); }
+        .carousel-card.left-2 { transform: scale(0.7) translateX(-380px) translateY(25px); display: none; }
+        .carousel-card.right-2 { transform: scale(0.7) translateX(380px) translateY(25px); display: none; }
+        .carousel-nav-prev { left: -40px; }
+        .carousel-nav-next { right: -40px; }
+    }
+
+    @media (max-width: 1200px) {
+        .carousel-card { width: 280px; }
+        .carousel-card.center { width: 460px; }
+        .carousel-card.left-1, .carousel-card.right-1 { transform: scale(0.85) translateX(0px) translateY(10px); }
+        .carousel-nav-prev { left: -30px; }
+        .carousel-nav-next { right: -30px; }
+    }
+
+    @media (max-width: 992px) {
+        .carousel-card { width: 260px; }
+        .carousel-card.center { width: 420px; }
+        .carousel-nav-btn { width: 40px; height: 40px; }
+        .carousel-nav-prev { left: -20px; }
+        .carousel-nav-next { right: -20px; }
+    }
+</style>
+{% endif %}

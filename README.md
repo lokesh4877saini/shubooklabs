@@ -24,3 +24,10 @@ Remove-Item -Recurse -Force node_modules
 
 # 5. Remove npm lock file
 Remove-Item -Force package-lock.json
+
+# impg
+ - Build the production site
+
+ ```
+ JEKYLL_ENV=production bundle exec jekyll build
+ ```
