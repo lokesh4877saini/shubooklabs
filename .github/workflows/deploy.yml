@@ -40,21 +40,23 @@ jobs:
       - name: Build Jekyll
         run: bundle exec jekyll build
 
-      - name: Install lftp
-        run: sudo apt-get update && sudo apt-get install -y lftp
+      - name: Verify build output
+        run: |
+          ls -la ./_site/
+          echo "Files in _site: $(find ./_site -type f | wc -l)"
+          test -f ./_site/index.html && echo "✅ index.html found" || echo "❌ index.html missing"
+
+      - name: Install ncftp
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ncftp
 
       - name: Deploy to Hostinger
         run: |
-          lftp -c "
-            open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} -p ${{ secrets.FTP_PORT }} ${{ secrets.FTP_SERVER }}
-            mirror -R -v --delete --parallel=4 \
-              --exclude='.git*' \
-              --exclude='node_modules/' \
-              --exclude='.ftp-deploy-sync-state.json' \
-              ./_site ./public_html
-            quit
-          "
-
-      - name: Verify deployment
-        if: success()
-        run: echo "✅ Site deployed to https://shubook.in"
+          ncftpput -R -v -m \
+            -u ${{ secrets.FTP_USERNAME }} \
+            -p ${{ secrets.FTP_PASSWORD }} \
+            -P ${{ secrets.FTP_PORT }} \
+            ${{ secrets.FTP_SERVER }} \
+            public_html \
+            ./_site/*
