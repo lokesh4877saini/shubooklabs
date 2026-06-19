@@ -40,78 +40,21 @@ jobs:
       - name: Build Jekyll
         run: bundle exec jekyll build
 
-      - name: Verify build output
-        run: |
-          ls -la ./_site/
-          echo "Files in _site: $(find ./_site -type f | wc -l)"
-          test -f ./_site/index.html && echo "✅ index.html found" || echo "❌ index.html missing"
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
 
-      - name: Debug Secrets
+      - name: Deploy to Hostinger
         run: |
-          echo "FTP_SERVER is set: ${{ secrets.FTP_SERVER != '' }}"
-          echo "FTP_USERNAME is set: ${{ secrets.FTP_USERNAME != '' }}"
-          echo "FTP_PASSWORD is set: ${{ secrets.FTP_PASSWORD != '' }}"
-          echo "FTP_PORT is set: ${{ secrets.FTP_PORT != '' }}"
-
-      - name: Prepare _site for upload
-        id: prepare_upload
-        run: |
-          # Check if _site exists
-          if [ ! -d "./_site" ]; then
-            echo "❌ _site folder not found!"
-            exit 1
-          fi
-          
-          # Check if _site has content
-          if [ -z "$(ls -A ./_site)" ]; then
-            echo "❌ _site folder is empty!"
-            exit 1
-          fi
-          
-          echo "✅ _site exists and has content"
-          echo "Files to upload: $(find ./_site -type f | wc -l)"
-
-      - name: Check public_html on server
-        id: check_public_html
-        run: |
-          echo "Checking if public_html exists on server..."
-          
-          RESPONSE=$(curl -s -l --connect-timeout 30 --max-time 60 \
-            --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" \
-            "ftp://${{ secrets.FTP_SERVER }}/" 2>&1 || echo "FAILED")
-          
-          if echo "$RESPONSE" | grep -q "^public_html"; then
-            echo "✅ public_html exists on server"
-            echo "public_html_exists=true" >> $GITHUB_OUTPUT
-          elif echo "$RESPONSE" | grep -q "FAILED"; then
-            echo "⚠️ Could not check FTP, assuming public_html exists"
-            echo "public_html_exists=true" >> $GITHUB_OUTPUT
-          else
-            echo "⚠️ public_html not found, will create it"
-            echo "public_html_exists=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Deploy to Hostinger via FTP
-        uses: sebastianpopp/ftp-action@v2.0.0
-        with:
-          host: ${{ secrets.FTP_SERVER }}
-          user: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          localDir: ./_site
-          remoteDir: public_html
-          # Note: port parameter is not supported in v2.0.0
-          # Uses default FTP port 21
-          # For FTPS, add: forceSsl: true
+          lftp -c "
+            open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} -p ${{ secrets.FTP_PORT }} ${{ secrets.FTP_SERVER }}
+            mirror -R -v --delete --parallel=4 \
+              --exclude='.git*' \
+              --exclude='node_modules/' \
+              --exclude='.ftp-deploy-sync-state.json' \
+              ./_site ./public_html
+            quit
+          "
 
       - name: Verify deployment
         if: success()
-        run: |
-          echo "✅ Deployment completed successfully!"
-          echo "Site should be available at: https://shubook.in"
-
-      - name: Deployment failed notification
-        if: failure()
-        run: |
-          echo "❌ Deployment failed!"
-          echo "Please check the logs above for errors."
-          exit 1
+        run: echo "✅ Site deployed to https://shubook.in"
