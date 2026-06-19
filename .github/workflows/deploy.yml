@@ -44,79 +44,28 @@ jobs:
         run: |
           ls -la ./_site/
           echo "Files in _site: $(find ./_site -type f | wc -l)"
-          test -f ./_site/index.html && echo "✅ index.html found" || echo "❌ index.html missing"
-          # Show video sizes
-          echo "Video files:"
-          find ./_site/assets/videos -name "*.mp4" -exec ls -lh {} \; 2>/dev/null || echo "No videos found"
 
-      - name: Debug Secrets
+      - name: Debug Secrets (Safe)
         run: |
           echo "FTP_SERVER is set: ${{ secrets.FTP_SERVER != '' }}"
           echo "FTP_USERNAME is set: ${{ secrets.FTP_USERNAME != '' }}"
           echo "FTP_PASSWORD is set: ${{ secrets.FTP_PASSWORD != '' }}"
           echo "FTP_PORT is set: ${{ secrets.FTP_PORT != '' }}"
 
-      - name: Install ncftp
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ncftp
-
-      - name: Deploy main files (excluding videos)
-        run: |
-          # Create a temp directory without videos
-          mkdir -p ./_site_no_videos
-          rsync -av --exclude='assets/videos/' ./_site/ ./_site_no_videos/
-          
-          ncftpput -R -v -m \
-            -u "${{ secrets.FTP_USERNAME }}" \
-            -p "${{ secrets.FTP_PASSWORD }}" \
-            -P "${{ secrets.FTP_PORT }}" \
-            "${{ secrets.FTP_SERVER }}" \
-            public_html \
-            ./_site_no_videos/*
-
-      - name: Upload videos separately with retry
-        run: |
-          # Upload videos one by one with retry logic
-          find ./_site/assets/videos -name "*.mp4" | while read video; do
-            echo "Uploading: $video"
-            retry=0
-            max_retries=3
-            while [ $retry -lt $max_retries ]; do
-              if ncftpput -v -m \
-                -u "${{ secrets.FTP_USERNAME }}" \
-                -p "${{ secrets.FTP_PASSWORD }}" \
-                -P "${{ secrets.FTP_PORT }}" \
-                "${{ secrets.FTP_SERVER }}" \
-                public_html/assets/videos/ \
-                "$video"; then
-                echo "✅ Uploaded: $video"
-                break
-              else
-                retry=$((retry+1))
-                echo "⚠️ Retry $retry/$max_retries for $video"
-                sleep 5
-              fi
-            done
-          done
-
-      - name: Upload remaining assets (non-video)
-        if: success() || failure()
-        run: |
-          # Upload any remaining files (images, js, css, etc.)
-          find ./_site/assets -type f ! -path "*/videos/*" | while read file; do
-            echo "Uploading: $file"
-            ncftpput -v -m \
-              -u "${{ secrets.FTP_USERNAME }}" \
-              -p "${{ secrets.FTP_PASSWORD }}" \
-              -P "${{ secrets.FTP_PORT }}" \
-              "${{ secrets.FTP_SERVER }}" \
-              public_html/ \
-              "$file"
-          done
-
-      - name: Verify deployment
-        if: success()
-        run: |
-          echo "✅ Deployment completed successfully!"
-          echo "Site should be available at: https://shubook.in"
+      - name: Upload to Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          local-dir: ./_site/
+          server-dir: /
+          protocol: ftp
+          log-level: verbose
+          security: loose
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            .ftp-deploy-sync-state.json
