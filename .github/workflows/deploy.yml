@@ -60,8 +60,8 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
-          local-dir: ./_site/.
-          server-dir: public_html/
+          local-dir: ./_site/
+          server-dir: /home/u801308553/domains/shubook.in/public_html/
           protocol: ftp
           log-level: verbose
           security: loose
