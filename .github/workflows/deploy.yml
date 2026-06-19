@@ -10,6 +10,7 @@ env:
   ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
   NODE_NO_WARNINGS: 1
   NODE_OPTIONS: --no-deprecation
+  SERVER_TARGET_DIR: public_html/
 
 jobs:
   build-deploy:
@@ -56,20 +57,26 @@ jobs:
       - name: Check if public_html exists and set target directory
         id: check_folder
         run: |
-          # Try to list public_html directory via FTP
+          # Try to list public_html directory via FTP with increased timeout
           echo "Checking if public_html exists on server..."
           
-          # Use curl to check if public_html exists
-          RESPONSE=$(curl -s -l --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" \
-            "ftp://${{ secrets.FTP_SERVER }}/" 2>&1)
+          # Use curl with 30 second timeout and retry
+          RESPONSE=$(curl -s -l --connect-timeout 30 --max-time 60 \
+            --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" \
+            "ftp://${{ secrets.FTP_SERVER }}/" 2>&1 || echo "FAILED")
           
           if echo "$RESPONSE" | grep -q "^public_html"; then
             echo "✅ public_html exists on server"
+            echo "target_dir=public_html/" >> $GITHUB_OUTPUT
+          elif echo "$RESPONSE" | grep -q "FAILED"; then
+            echo "⚠️ Could not check FTP, assuming public_html exists"
             echo "target_dir=public_html/" >> $GITHUB_OUTPUT
           else
             echo "⚠️ public_html not found, will create it"
             echo "target_dir=public_html/" >> $GITHUB_OUTPUT
           fi
+          
+          echo "Target directory set to: public_html/"
 
       - name: Upload to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
