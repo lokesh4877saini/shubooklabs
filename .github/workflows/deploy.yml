@@ -3,7 +3,7 @@ name: Deploy Jekyll to Hostinger
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 env:
@@ -15,7 +15,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     environment: FTP_SERVER 
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -60,7 +60,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
           local-dir: ./_site/
-          server-dir: public_html/
+          server-dir: /
           protocol: ftp
           log-level: verbose
           security: loose
