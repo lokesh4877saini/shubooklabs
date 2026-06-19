@@ -15,7 +15,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     environment: FTP_SERVER 
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -83,7 +83,7 @@ jobs:
           protocol: ftp
           log-level: verbose
           security: loose
-          timeout: 60000
+          timeout: 600000
           exclude: |
             **/.git*
             **/.git*/**
