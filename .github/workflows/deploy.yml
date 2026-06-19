@@ -60,7 +60,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
           local-dir: ./_site/
-          server-dir: public_html
+          server-dir: public_html/
           protocol: ftp
           log-level: verbose
           security: loose
