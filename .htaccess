@@ -1,11 +1,17 @@
+# .htaccess for Shubook Labs
+
 # Force HTTPS
 RewriteEngine On
-
 RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Custom 404
 ErrorDocument 404 /404.html
+
+# Remove .html extension from URLs (Jekyll specific)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
 
 # ========== FIXED CACHING RULES ==========
 
@@ -90,16 +96,26 @@ ErrorDocument 404 /404.html
 
 # ========== ADDITIONAL OPTIMIZATIONS ==========
 
-# Set ETags for better caching validation
-<IfModule mod_headers.c>
-    FileETag MTime Size
-    Header unset ETag
-    Header set ETag "%{REQUEST_TIME}e.%{CONTENT_LENGTH}e"
-</IfModule>
+# Protect sensitive files
+<FilesMatch "^(\.git|\.env|\.htaccess|\.htpasswd|Gemfile|Gemfile\.lock|_config\.yml)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
 
-# Disable caching for development/admin URLs
+# Disable directory browsing
+Options -Indexes
+
+# Security headers
 <IfModule mod_headers.c>
-    <FilesMatch "^(admin|wp-admin|dashboard)">
-        Header set Cache-Control "no-cache, no-store, must-revalidate"
-    </FilesMatch>
+    # Prevent MIME type sniffing
+    Header set X-Content-Type-Options "nosniff"
+    
+    # Enable XSS protection
+    Header set X-XSS-Protection "1; mode=block"
+    
+    # Prevent clickjacking
+    Header set X-Frame-Options "SAMEORIGIN"
+    
+    # Referrer policy
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>

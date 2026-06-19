@@ -9,7 +9,7 @@ Disallow: /wp-admin/
 Disallow: /wp-includes/
 Disallow: /assets/private/
 
-# Sitemap
+# Sitemap - Updated with HTTPS
 Sitemap: https://shubook.in/sitemap.xml
 
 # Crawl delay
