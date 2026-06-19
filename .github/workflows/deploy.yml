@@ -10,7 +10,6 @@ env:
   ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
   NODE_NO_WARNINGS: 1
   NODE_OPTIONS: --no-deprecation
-  SERVER_TARGET_DIR: public_html/
 
 jobs:
   build-deploy:
@@ -54,13 +53,38 @@ jobs:
           echo "FTP_PASSWORD is set: ${{ secrets.FTP_PASSWORD != '' }}"
           echo "FTP_PORT is set: ${{ secrets.FTP_PORT != '' }}"
 
-      - name: Check if public_html exists and set target directory
-        id: check_folder
+      - name: Prepare _site for upload
+        id: prepare_upload
         run: |
-          # Try to list public_html directory via FTP with increased timeout
+          # Check if _site exists
+          if [ ! -d "./_site" ]; then
+            echo "❌ _site folder not found!"
+            exit 1
+          fi
+          
+          # Check if _site has content
+          if [ -z "$(ls -A ./_site)" ]; then
+            echo "❌ _site folder is empty!"
+            exit 1
+          fi
+          
+          # Create a temp directory for upload
+          mkdir -p ./_site_upload
+          
+          # Copy contents of _site to _site_upload
+          cp -r ./_site/* ./_site_upload/
+          
+          echo "✅ _site contents prepared for upload"
+          echo "Files to upload: $(find ./_site_upload -type f | wc -l)"
+          
+          # Set upload directory
+          echo "upload_dir=./_site_upload/" >> $GITHUB_OUTPUT
+
+      - name: Check public_html on server
+        id: check_public_html
+        run: |
           echo "Checking if public_html exists on server..."
           
-          # Use curl with 30 second timeout and retry
           RESPONSE=$(curl -s -l --connect-timeout 30 --max-time 60 \
             --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" \
             "ftp://${{ secrets.FTP_SERVER }}/" 2>&1 || echo "FAILED")
@@ -68,15 +92,10 @@ jobs:
           if echo "$RESPONSE" | grep -q "^public_html"; then
             echo "✅ public_html exists on server"
             echo "target_dir=public_html/" >> $GITHUB_OUTPUT
-          elif echo "$RESPONSE" | grep -q "FAILED"; then
-            echo "⚠️ Could not check FTP, assuming public_html exists"
-            echo "target_dir=public_html/" >> $GITHUB_OUTPUT
           else
             echo "⚠️ public_html not found, will create it"
             echo "target_dir=public_html/" >> $GITHUB_OUTPUT
           fi
-          
-          echo "Target directory set to: public_html/"
 
       - name: Upload to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -85,8 +104,8 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
-          local-dir: ./_site/
-          server-dir: ${{ steps.check_folder.outputs.target_dir }}
+          local-dir: ${{ steps.prepare_upload.outputs.upload_dir }}
+          server-dir: ${{ steps.check_public_html.outputs.target_dir }}
           protocol: ftp
           log-level: verbose
           security: loose
@@ -96,3 +115,16 @@ jobs:
             **/.git*/**
             **/node_modules/**
             .ftp-deploy-sync-state.json
+
+      - name: Cleanup
+        if: always()
+        run: |
+          # Remove temp upload directory
+          rm -rf ./_site_upload
+          echo "🧹 Cleanup completed"
+
+      - name: Verify deployment
+        if: success()
+        run: |
+          echo "✅ Deployment completed successfully!"
+          echo "Site should be available at: https://shubook.in"
