@@ -1,0 +1,73 @@
+name: Deploy Jekyll to Hostinger
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+  NODE_NO_WARNINGS: 1
+  NODE_OPTIONS: --no-deprecation
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    environment: FTP_SERVER 
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4  
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Install Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Install Node Packages
+        run: npm install
+
+      - name: Build Tailwind
+        run: npm run build
+
+      - name: Build Jekyll
+        run: bundle exec jekyll build
+
+      - name: Verify build output
+        run: |
+          ls -la ./_site/
+          echo "Files in _site: $(find ./_site -type f | wc -l)"
+          test -f ./_site/index.html && echo "✅ index.html found" || echo "❌ index.html missing"
+
+      - name: Debug Secrets
+        run: |
+          echo "FTP_SERVER is set: ${{ secrets.FTP_SERVER != '' }}"
+          echo "FTP_USERNAME is set: ${{ secrets.FTP_USERNAME != '' }}"
+          echo "FTP_PASSWORD is set: ${{ secrets.FTP_PASSWORD != '' }}"
+          echo "FTP_PORT is set: ${{ secrets.FTP_PORT != '' }}"
+
+      - name: Upload to Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          local-dir: ./_site/
+          server-dir: /home/u801308553/domains/shubook.in/public_html/
+          protocol: ftp
+          log-level: verbose
+          security: loose
+          timeout: 60000
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            .ftp-deploy-sync-state.json
