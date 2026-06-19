@@ -97,12 +97,21 @@ jobs:
           host: ${{ secrets.FTP_SERVER }}
           user: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: ${{ secrets.FTP_PORT }}
           localDir: ./_site
           remoteDir: public_html
+          # Note: port parameter is not supported in v2.0.0
+          # Uses default FTP port 21
+          # For FTPS, add: forceSsl: true
 
       - name: Verify deployment
         if: success()
         run: |
           echo "✅ Deployment completed successfully!"
           echo "Site should be available at: https://shubook.in"
+
+      - name: Deployment failed notification
+        if: failure()
+        run: |
+          echo "❌ Deployment failed!"
+          echo "Please check the logs above for errors."
+          exit 1
