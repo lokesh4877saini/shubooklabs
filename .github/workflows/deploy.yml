@@ -68,17 +68,8 @@ jobs:
             exit 1
           fi
           
-          # Create a temp directory for upload
-          mkdir -p ./_site_upload
-          
-          # Copy contents of _site to _site_upload
-          cp -r ./_site/* ./_site_upload/
-          
-          echo "✅ _site contents prepared for upload"
-          echo "Files to upload: $(find ./_site_upload -type f | wc -l)"
-          
-          # Set upload directory
-          echo "upload_dir=./_site_upload/" >> $GITHUB_OUTPUT
+          echo "✅ _site exists and has content"
+          echo "Files to upload: $(find ./_site -type f | wc -l)"
 
       - name: Check public_html on server
         id: check_public_html
@@ -91,37 +82,31 @@ jobs:
           
           if echo "$RESPONSE" | grep -q "^public_html"; then
             echo "✅ public_html exists on server"
-            echo "target_dir=public_html/" >> $GITHUB_OUTPUT
+            echo "public_html_exists=true" >> $GITHUB_OUTPUT
+          elif echo "$RESPONSE" | grep -q "FAILED"; then
+            echo "⚠️ Could not check FTP, assuming public_html exists"
+            echo "public_html_exists=true" >> $GITHUB_OUTPUT
           else
             echo "⚠️ public_html not found, will create it"
-            echo "target_dir=public_html/" >> $GITHUB_OUTPUT
+            echo "public_html_exists=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Upload to Hostinger
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy to Hostinger via FTP
+        uses: sebastianpopp/ftp-action@v3.2.0
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
+          host: ${{ secrets.FTP_SERVER }}
+          user: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
-          local-dir: ${{ steps.prepare_upload.outputs.upload_dir }}
-          server-dir: ${{ steps.check_public_html.outputs.target_dir }}
-          protocol: ftp
-          log-level: verbose
-          security: loose
-          timeout: 600000
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            .ftp-deploy-sync-state.json
-
-      - name: Cleanup
-        if: always()
-        run: |
-          # Remove temp upload directory
-          rm -rf ./_site_upload
-          echo "🧹 Cleanup completed"
+          localDir: ./_site
+          remoteDir: public_html
+          options: |
+            --delete
+            --parallel=4
+            --verbose
+            --exclude=.git*
+            --exclude=node_modules/
+            --exclude=.ftp-deploy-sync-state.json
 
       - name: Verify deployment
         if: success()
