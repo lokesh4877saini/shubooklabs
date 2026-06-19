@@ -14,7 +14,8 @@ env:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-
+    environment: FTP_SERVER 
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
