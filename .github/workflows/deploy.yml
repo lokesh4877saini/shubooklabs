@@ -9,6 +9,7 @@ on:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    environment: FTP_SERVER 
 
     steps:
       - name: Checkout
@@ -39,7 +40,6 @@ jobs:
           ls -la ./_site/
           echo "Files in _site: $(find ./_site -type f | wc -l)"
 
-      # 🔍 DEBUG: Check if secrets exist (without exposing values)
       - name: Debug Secrets (Safe)
         run: |
           echo "FTP_SERVER is set: ${{ secrets.FTP_SERVER != '' }}"
