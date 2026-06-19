@@ -100,13 +100,6 @@ jobs:
           port: ${{ secrets.FTP_PORT }}
           localDir: ./_site
           remoteDir: public_html
-          options: |
-            --delete
-            --parallel=4
-            --verbose
-            --exclude=.git*
-            --exclude=node_modules/
-            --exclude=.ftp-deploy-sync-state.json
 
       - name: Verify deployment
         if: success()
