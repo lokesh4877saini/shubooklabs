@@ -14,7 +14,6 @@ env:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-    environment: FTP_SERVER 
 
     steps:
       - name: Checkout
@@ -44,28 +43,28 @@ jobs:
         run: |
           ls -la ./_site/
           echo "Files in _site: $(find ./_site -type f | wc -l)"
+          test -f ./_site/index.html && echo "✅ index.html found" || echo "❌ index.html missing"
 
-      - name: Debug Secrets (Safe)
+      - name: Install ncftp
         run: |
-          echo "FTP_SERVER is set: ${{ secrets.FTP_SERVER != '' }}"
-          echo "FTP_USERNAME is set: ${{ secrets.FTP_USERNAME != '' }}"
-          echo "FTP_PASSWORD is set: ${{ secrets.FTP_PASSWORD != '' }}"
-          echo "FTP_PORT is set: ${{ secrets.FTP_PORT != '' }}"
+          sudo apt-get update
+          sudo apt-get install -y ncftp
 
-      - name: Upload to Hostinger
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: ${{ secrets.FTP_PORT }}
-          local-dir: ./_site/
-          server-dir: /
-          protocol: ftp
-          log-level: verbose
-          security: loose
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            .ftp-deploy-sync-state.json
+      - name: Deploy to Hostinger
+        run: |
+          # Change to _site directory and upload contents directly to public_html
+          cd ./_site
+          ncftpput -R -v -m \
+            -u "${{ secrets.FTP_USERNAME }}" \
+            -p "${{ secrets.FTP_PASSWORD }}" \
+            -P "${{ secrets.FTP_PORT }}" \
+            "${{ secrets.FTP_SERVER }}" \
+            public_html \
+            *
+          cd ..
+
+      - name: Verify deployment
+        if: success()
+        run: |
+          echo "✅ Deployment completed successfully!"
+          echo "Site should be available at: https://shubook.in"
