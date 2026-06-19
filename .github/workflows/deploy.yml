@@ -6,10 +6,14 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+  NODE_NO_WARNINGS: 1
+  NODE_OPTIONS: --no-deprecation
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-    environment: FTP_SERVER 
 
     steps:
       - name: Checkout
@@ -55,6 +59,12 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
           local-dir: ./_site/
-          server-dir: /public_html/
+          server-dir: public_html/
           protocol: ftp
           log-level: verbose
+          security: loose
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            .ftp-deploy-sync-state.json
