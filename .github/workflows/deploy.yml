@@ -14,11 +14,10 @@ env:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-    environment: FTP_SERVER 
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4  
+        uses: actions/checkout@v4
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
@@ -27,7 +26,7 @@ jobs:
           bundler-cache: true
 
       - name: Install Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v4
         with:
           node-version: 22
 
@@ -53,6 +52,24 @@ jobs:
           echo "FTP_PASSWORD is set: ${{ secrets.FTP_PASSWORD != '' }}"
           echo "FTP_PORT is set: ${{ secrets.FTP_PORT != '' }}"
 
+      - name: Check if public_html exists and set target directory
+        id: check_folder
+        run: |
+          # Try to list public_html directory via FTP
+          echo "Checking if public_html exists on server..."
+          
+          # Use curl to check if public_html exists
+          RESPONSE=$(curl -s -l --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}" \
+            "ftp://${{ secrets.FTP_SERVER }}/" 2>&1)
+          
+          if echo "$RESPONSE" | grep -q "^public_html"; then
+            echo "✅ public_html exists on server"
+            echo "target_dir=public_html/" >> $GITHUB_OUTPUT
+          else
+            echo "⚠️ public_html not found, will create it"
+            echo "target_dir=public_html/" >> $GITHUB_OUTPUT
+          fi
+
       - name: Upload to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -61,7 +78,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
           local-dir: ./_site/
-          server-dir: public_html/
+          server-dir: ${{ steps.check_folder.outputs.target_dir }}
           protocol: ftp
           log-level: verbose
           security: loose
