@@ -52,16 +52,11 @@
                     <!-- Media Frame -->
                     <div
                         class="media-frame relative w-[280px] sm:w-[290px] h-[470px] sm:h-[520px] mx-auto my-4 sm:my-6 rounded-[22px] overflow-hidden border border-dark-border/30 bg-gradient-to-br from-white/5 to-white/0 shadow-inner shadow-black/50">
-                        <!-- Skeleton Loading -->
-                        <div class="skeleton-loader absolute inset-0 z-10">
-                            <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0"></div>
-                            <div class="absolute inset-0 shimmer"></div>
-                        </div>
-                        <iframe id="youtubeFrame" class="absolute inset-0 w-full h-full border-0 opacity-0 transition-opacity duration-500"
+                        <iframe id="youtubeFrame" class="absolute inset-0 w-full h-full border-0"
                             src="https://www.youtube.com/embed/{{ youtube_items[0].id }}?rel=0&modestbranding=1&autoplay=0"
                             allowfullscreen loading="lazy"></iframe>
                         <div
-                            class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/20 via-transparent to-transparent z-20">
+                            class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/20 via-transparent to-transparent">
                         </div>
                     </div>
 
@@ -70,9 +65,6 @@
                         <div class="flex items-center justify-between">
                             <span id="youtubeCounter" class="text-xs sm:text-sm text-text-muted font-medium">1 / {{
                                 youtube_items.size }}</span>
-                            <div id="youtubeDots" class="dots-container flex justify-center gap-1.5 sm:gap-2 mt-2 sm:mt-0">
-                                <!-- Dots will be generated dynamically -->
-                            </div>
                             <div class="flex gap-1 sm:gap-2">
                                 <button id="youtubePrevBtn"
                                     class="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white/5 hover:bg-red-500/20 border border-dark-border/30 hover:border-red-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-red-500/20">
@@ -131,22 +123,17 @@
                     <!-- Media Frame -->
                     <div
                         class="media-frame relative w-[280px] sm:w-[290px] h-[470px] sm:h-[520px] mx-auto my-4 sm:my-6 rounded-[22px] overflow-hidden border border-dark-border/30 bg-gradient-to-br from-white/5 to-white/0 shadow-inner shadow-black/50">
-                        <!-- Skeleton Loading -->
-                        <div class="skeleton-loader absolute inset-0 z-10">
-                            <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0"></div>
-                            <div class="absolute inset-0 shimmer"></div>
-                        </div>
                         <video id="instagramVideo" 
-                               class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500" 
+                               class="absolute inset-0 w-full h-full object-cover" 
                                controls
                                playsinline 
-                               preload="metadata"
+                               preload="auto"
                                muted>
                             <source src="{{ instagram_items[0].video }}" type="video/mp4">
                             <p>Video not available. <a href="{{ instagram_items[0].video }}">Download</a></p>
                         </video>
                         <div
-                            class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/20 via-transparent to-transparent z-20">
+                            class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/20 via-transparent to-transparent">
                         </div>
                     </div>
 
@@ -155,9 +142,6 @@
                         <div class="flex items-center justify-between">
                             <span id="instagramCounter" class="text-xs sm:text-sm text-text-muted font-medium">1 / {{
                                 instagram_items.size }}</span>
-                            <div id="instagramDots" class="dots-container flex justify-center gap-1.5 sm:gap-2 mt-2 sm:mt-0">
-                                <!-- Dots will be generated dynamically -->
-                            </div>
                             <div class="flex gap-1 sm:gap-2">
                                 <button id="instagramPrevBtn"
                                     class="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white/5 hover:bg-pink-500/20 border border-dark-border/30 hover:border-pink-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-pink-500/20">
@@ -217,25 +201,20 @@
                     <!-- Media Frame -->
                     <div
                         class="media-frame relative w-[280px] sm:w-[290px] h-[470px] sm:h-[520px] mx-auto my-4 sm:my-6 rounded-[22px] overflow-hidden border border-dark-border/30 bg-gradient-to-br from-white/5 to-white/0 shadow-inner shadow-black/50">
-                        <!-- Skeleton Loading -->
-                        <div class="skeleton-loader absolute inset-0 z-10">
-                            <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0"></div>
-                            <div class="absolute inset-0 shimmer"></div>
-                        </div>
                         <video id="btsVideo" 
-                               class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500" 
+                               class="absolute inset-0 w-full h-full object-cover" 
                                controls
                                playsinline 
-                               preload="metadata"
+                               preload="auto"
                                muted>
                             <source src="{{ bts_items[0].video }}" type="video/mp4">
                             <p>Video not available. <a href="{{ bts_items[0].video }}">Download</a></p>
                         </video>
                         <div
-                            class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/60 via-transparent to-transparent z-20">
+                            class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/60 via-transparent to-transparent">
                         </div>
                         <div
-                            class="absolute bottom-0 left-0 right-0 p-3 sm:p-4 bg-gradient-to-t from-black/80 to-transparent z-20">
+                            class="absolute bottom-0 left-0 right-0 p-3 sm:p-4 bg-gradient-to-t from-black/80 to-transparent">
                             <p class="text-white text-xs sm:text-sm font-medium">{{
                                 bts_items[0].subtitle }}
                             </p>
@@ -248,9 +227,6 @@
                             <span id="btsCounter" class="text-xs sm:text-sm text-text-muted font-medium">1 / {{
                                 bts_items.size
                                 }}</span>
-                            <div id="btsDots" class="dots-container flex justify-center gap-1.5 sm:gap-2 mt-2 sm:mt-0">
-                                <!-- Dots will be generated dynamically -->
-                            </div>
                             <div class="flex gap-1 sm:gap-2">
                                 <button id="btsPrevBtn"
                                     class="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white/5 hover:bg-blue-500/20 border border-dark-border/30 hover:border-blue-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20">
@@ -272,137 +248,8 @@
     </div>
 </section>
 
-<style>
-    /* Skeleton Loading Animation */
-    .skeleton-loader {
-        pointer-events: none;
-    }
-
-    .shimmer {
-        background: linear-gradient(
-            90deg,
-            rgba(255,255,255,0) 0%,
-            rgba(255,255,255,0.05) 50%,
-            rgba(255,255,255,0) 100%
-        );
-        background-size: 200% 100%;
-        animation: shimmer 1.5s infinite;
-    }
-
-    @keyframes shimmer {
-        0% {
-            background-position: -200% 0;
-        }
-        100% {
-            background-position: 200% 0;
-        }
-    }
-
-    /* Hide dots on mobile (screens smaller than 640px) */
-    @media (max-width: 639px) {
-        .dots-container {
-            display: none !important;
-        }
-    }
-
-    /* Dot styles for desktop */
-    .youtube-dot,
-    .instagram-dot,
-    .bts-dot {
-        min-width: 8px;
-        min-height: 8px;
-        cursor: pointer;
-        border: none;
-        outline: none;
-        padding: 0;
-        background: transparent;
-        position: relative;
-        min-width: 32px;
-        min-height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    .youtube-dot::after,
-    .instagram-dot::after,
-    .bts-dot::after {
-        content: '';
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.2);
-        transition: all 0.3s ease;
-    }
-
-    .youtube-dot.bg-red-500::after,
-    .instagram-dot.bg-pink-500::after,
-    .bts-dot.bg-blue-500::after {
-        background: currentColor;
-        width: 24px;
-        border-radius: 12px;
-    }
-
-    .youtube-dot:not(.bg-red-500):hover::after,
-    .instagram-dot:not(.bg-pink-500):hover::after,
-    .bts-dot:not(.bg-blue-500):hover::after {
-        background: rgba(255, 255, 255, 0.4);
-        transform: scale(1.2);
-    }
-
-    .youtube-dot:focus-visible,
-    .instagram-dot:focus-visible,
-    .bts-dot:focus-visible {
-        outline: 2px solid currentColor;
-        outline-offset: 2px;
-        border-radius: 50%;
-    }
-
-    /* Responsive adjustments for dots on tablet */
-    @media (min-width: 640px) and (max-width: 1023px) {
-        .youtube-dot,
-        .instagram-dot,
-        .bts-dot {
-            min-width: 28px;
-            min-height: 28px;
-        }
-
-        .youtube-dot::after,
-        .instagram-dot::after,
-        .bts-dot::after {
-            width: 6px;
-            height: 6px;
-        }
-
-        .youtube-dot.bg-red-500::after,
-        .instagram-dot.bg-pink-500::after,
-        .bts-dot.bg-blue-500::after {
-            width: 18px;
-        }
-    }
-
-    /* Reduce motion preference */
-    @media (prefers-reduced-motion: reduce) {
-        .shimmer {
-            animation: none !important;
-        }
-        
-        .youtube-dot,
-        .instagram-dot,
-        .bts-dot,
-        .youtube-dot::after,
-        .instagram-dot::after,
-        .bts-dot::after {
-            transition: none !important;
-        }
-    }
-</style>
-
 <script>
-    (function() {
-        'use strict';
-
+    (function () {
         // YouTube Carousel Data
         const youtubeData = {{ youtube_items | jsonify }};
         let youtubeCurrentIndex = 0;
@@ -418,19 +265,6 @@
         let btsCurrentIndex = 0;
         const btsTotal = btsData.length;
 
-        function getVisibleDots(total, currentIndex, maxDots = 5) {
-            if (total <= maxDots) {
-                return Array.from({ length: total }, (_, i) => i);
-            }
-            let start = Math.max(0, currentIndex - Math.floor(maxDots / 2));
-            let end = start + maxDots;
-            if (end > total) {
-                end = total;
-                start = Math.max(0, end - maxDots);
-            }
-            return Array.from({ length: end - start }, (_, i) => start + i);
-        }
-
         // YouTube Functions
         function updateYouTube(index) {
             if (youtubeTotal === 0) return;
@@ -440,13 +274,7 @@
 
             const item = youtubeData[index];
             const frame = document.getElementById('youtubeFrame');
-            
-            // Show skeleton
-            const mediaFrame = frame?.closest('.media-frame');
-            const skeleton = mediaFrame?.querySelector('.skeleton-loader');
-            if (skeleton) skeleton.style.display = 'block';
             if (frame) {
-                frame.style.opacity = '0';
                 frame.src = `https://www.youtube.com/embed/${item.id}?rel=0&modestbranding=1&autoplay=0`;
             }
 
@@ -459,23 +287,6 @@
 
             const counterEl = document.getElementById('youtubeCounter');
             if (counterEl) counterEl.textContent = `${index + 1} / ${youtubeTotal}`;
-
-            const dotsContainer = document.getElementById('youtubeDots');
-            if (dotsContainer && window.innerWidth >= 640) {
-                const visibleDots = getVisibleDots(youtubeTotal, index);
-                dotsContainer.innerHTML = visibleDots.map(i => {
-                    const isActive = i === index;
-                    return `<button 
-                        class="youtube-dot w-2 h-2 rounded-full transition-all duration-300 ${isActive ? 'bg-red-500 w-8 shadow-lg shadow-red-500/50' : 'bg-white/20 hover:bg-white/40'}"
-                        data-index="${i}"></button>`;
-                }).join('');
-
-                document.querySelectorAll('.youtube-dot').forEach((dot) => {
-                    dot.addEventListener('click', function () {
-                        updateYouTube(parseInt(this.dataset.index));
-                    });
-                });
-            }
         }
 
         // Instagram Functions
@@ -487,14 +298,8 @@
 
             const item = instagramData[index];
             const video = document.getElementById('instagramVideo');
-            
-            // Show skeleton
-            const mediaFrame = video?.closest('.media-frame');
-            const skeleton = mediaFrame?.querySelector('.skeleton-loader');
-            if (skeleton) skeleton.style.display = 'block';
-            
+
             if (video) {
-                video.style.opacity = '0';
                 video.pause();
                 video.src = item.video;
                 video.load();
@@ -503,23 +308,6 @@
             document.getElementById('instagramTitle').textContent = item.title;
             document.getElementById('instagramSubtitle').textContent = item.subtitle;
             document.getElementById('instagramCounter').textContent = `${index + 1} / ${instagramTotal}`;
-
-            const dotsContainer = document.getElementById('instagramDots');
-            if (dotsContainer && window.innerWidth >= 640) {
-                const visibleDots = getVisibleDots(instagramTotal, index);
-                dotsContainer.innerHTML = visibleDots.map(i => {
-                    const isActive = i === index;
-                    return `<button 
-                        class="instagram-dot w-2 h-2 rounded-full transition-all duration-300 ${isActive ? 'bg-pink-500 w-8 shadow-lg shadow-pink-500/50' : 'bg-white/20 hover:bg-white/40'}"
-                        data-index="${i}"></button>`;
-                }).join('');
-
-                document.querySelectorAll('.instagram-dot').forEach((dot) => {
-                    dot.addEventListener('click', function () {
-                        updateInstagram(parseInt(this.dataset.index));
-                    });
-                });
-            }
         }
 
         // BTS Functions
@@ -531,14 +319,8 @@
 
             const item = btsData[index];
             const video = document.getElementById('btsVideo');
-            
-            // Show skeleton
-            const mediaFrame = video?.closest('.media-frame');
-            const skeleton = mediaFrame?.querySelector('.skeleton-loader');
-            if (skeleton) skeleton.style.display = 'block';
-            
+
             if (video) {
-                video.style.opacity = '0';
                 video.pause();
                 video.src = item.video;
                 video.load();
@@ -547,91 +329,7 @@
             document.getElementById('btsTitle').textContent = item.title;
             document.getElementById('btsSubtitle').textContent = item.subtitle;
             document.getElementById('btsCounter').textContent = `${index + 1} / ${btsTotal}`;
-
-            const dotsContainer = document.getElementById('btsDots');
-            if (dotsContainer && window.innerWidth >= 640) {
-                const visibleDots = getVisibleDots(btsTotal, index);
-                dotsContainer.innerHTML = visibleDots.map(i => {
-                    const isActive = i === index;
-                    return `<button 
-                        class="bts-dot w-2 h-2 rounded-full transition-all duration-300 ${isActive ? 'bg-blue-500 w-8 shadow-lg shadow-blue-500/50' : 'bg-white/20 hover:bg-white/40'}"
-                        data-index="${i}"></button>`;
-                }).join('');
-
-                document.querySelectorAll('.bts-dot').forEach((dot) => {
-                    dot.addEventListener('click', function () {
-                        updateBTS(parseInt(this.dataset.index));
-                    });
-                });
-            }
         }
-
-        // Hide skeleton and show content when loaded
-        function handleMediaLoad(mediaFrame) {
-            const skeleton = mediaFrame?.querySelector('.skeleton-loader');
-            if (skeleton) skeleton.style.display = 'none';
-            const media = mediaFrame?.querySelector('iframe, video');
-            if (media) media.style.opacity = '1';
-        }
-
-        // Add load event listeners to all media elements
-        document.addEventListener('DOMContentLoaded', function() {
-            // YouTube
-            const youtubeFrame = document.getElementById('youtubeFrame');
-            if (youtubeFrame) {
-                youtubeFrame.addEventListener('load', function() {
-                    handleMediaLoad(this.closest('.media-frame'));
-                });
-                // Fallback
-                setTimeout(() => {
-                    const mediaFrame = youtubeFrame.closest('.media-frame');
-                    const skeleton = mediaFrame?.querySelector('.skeleton-loader');
-                    if (skeleton && skeleton.style.display !== 'none') {
-                        skeleton.style.display = 'none';
-                        youtubeFrame.style.opacity = '1';
-                    }
-                }, 5000);
-            }
-
-            // Instagram
-            const instagramVideo = document.getElementById('instagramVideo');
-            if (instagramVideo) {
-                instagramVideo.addEventListener('loadeddata', function() {
-                    handleMediaLoad(this.closest('.media-frame'));
-                });
-                // Fallback
-                setTimeout(() => {
-                    const mediaFrame = instagramVideo.closest('.media-frame');
-                    const skeleton = mediaFrame?.querySelector('.skeleton-loader');
-                    if (skeleton && skeleton.style.display !== 'none') {
-                        skeleton.style.display = 'none';
-                        instagramVideo.style.opacity = '1';
-                    }
-                }, 5000);
-            }
-
-            // BTS
-            const btsVideo = document.getElementById('btsVideo');
-            if (btsVideo) {
-                btsVideo.addEventListener('loadeddata', function() {
-                    handleMediaLoad(this.closest('.media-frame'));
-                });
-                // Fallback
-                setTimeout(() => {
-                    const mediaFrame = btsVideo.closest('.media-frame');
-                    const skeleton = mediaFrame?.querySelector('.skeleton-loader');
-                    if (skeleton && skeleton.style.display !== 'none') {
-                        skeleton.style.display = 'none';
-                        btsVideo.style.opacity = '1';
-                    }
-                }, 5000);
-            }
-
-            // Initialize carousels
-            if (youtubeTotal > 0) updateYouTube(0);
-            if (instagramTotal > 0) updateInstagram(0);
-            if (btsTotal > 0) updateBTS(0);
-        });
 
         // Event Listeners
         const youtubePrev = document.getElementById('youtubePrevBtn');
@@ -649,36 +347,10 @@
         if (btsPrev) btsPrev.addEventListener('click', () => updateBTS(btsCurrentIndex - 1));
         if (btsNext) btsNext.addEventListener('click', () => updateBTS(btsCurrentIndex + 1));
 
-        // Handle window resize for dots visibility
-        let resizeTimeout;
-        window.addEventListener('resize', function() {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                const isMobile = window.innerWidth < 640;
-                // Re-render dots for all carousels if needed
-                if (youtubeTotal > 0 && document.getElementById('youtubeDots')) {
-                    if (!isMobile) {
-                        updateYouTube(youtubeCurrentIndex);
-                    } else {
-                        document.getElementById('youtubeDots').innerHTML = '';
-                    }
-                }
-                if (instagramTotal > 0 && document.getElementById('instagramDots')) {
-                    if (!isMobile) {
-                        updateInstagram(instagramCurrentIndex);
-                    } else {
-                        document.getElementById('instagramDots').innerHTML = '';
-                    }
-                }
-                if (btsTotal > 0 && document.getElementById('btsDots')) {
-                    if (!isMobile) {
-                        updateBTS(btsCurrentIndex);
-                    } else {
-                        document.getElementById('btsDots').innerHTML = '';
-                    }
-                }
-            }, 250);
-        });
+        // Initialize
+        if (youtubeTotal > 0) updateYouTube(0);
+        if (instagramTotal > 0) updateInstagram(0);
+        if (btsTotal > 0) updateBTS(0);
 
     })();
 </script>
