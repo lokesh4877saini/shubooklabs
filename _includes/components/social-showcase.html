@@ -12,7 +12,7 @@
 
             <!-- YouTube Card -->
             {% if youtube_items and youtube_items.size > 0 %}
-            <div class="youtube-carousel-wrapper flex justify-center w-full">
+            <div class="youtube-carousel-wrapper flex justify-center w-full" data-carousel="youtube">
                 <div
                     class="card group relative w-full bg-dark-card/70 backdrop-blur-[18px] border border-dark-border/50 rounded-[28px] overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-red-500/20 hover:border-red-500/30">
                     <!-- Glow Effect -->
@@ -49,12 +49,15 @@
                             {{ youtube_items[0].badge }}</div>
                     </div>
 
-                    <!-- Media Frame -->
+                    <!-- Media Frame with fixed dimensions -->
                     <div
-                        class="media-frame relative w-[280px] sm:w-[290px] h-[470px] sm:h-[520px] mx-auto my-4 sm:my-6 rounded-[22px] overflow-hidden border border-dark-border/30 bg-gradient-to-br from-white/5 to-white/0 shadow-inner shadow-black/50">
-                        <iframe id="youtubeFrame" class="absolute inset-0 w-full h-full border-0"
-                            src="https://www.youtube.com/embed/{{ youtube_items[0].id }}?rel=0&modestbranding=1&autoplay=0"
-                            allowfullscreen loading="lazy"></iframe>
+                        class="media-frame relative w-full max-w-[290px] aspect-[290/520] mx-auto my-4 sm:my-6 rounded-[22px] overflow-hidden border border-dark-border/30 bg-gradient-to-br from-white/5 to-white/0 shadow-inner shadow-black/50">
+                        <iframe id="youtubeFrame" 
+                                class="absolute inset-0 w-full h-full border-0"
+                                src="https://www.youtube.com/embed/{{ youtube_items[0].id }}?rel=0&modestbranding=1&autoplay=0"
+                                allowfullscreen 
+                                loading="lazy"
+                                title="YouTube video player"></iframe>
                         <div
                             class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/20 via-transparent to-transparent">
                         </div>
@@ -70,11 +73,13 @@
                             </div>
                             <div class="flex gap-1 sm:gap-2">
                                 <button id="youtubePrevBtn"
-                                    class="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white/5 hover:bg-red-500/20 border border-dark-border/30 hover:border-red-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-red-500/20">
+                                    class="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white/5 hover:bg-red-500/20 border border-dark-border/30 hover:border-red-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-red-500/20"
+                                    aria-label="Previous video">
                                     {% lucide_icon "chevron-left" size="18" class="text-white" %}
                                 </button>
                                 <button id="youtubeNextBtn"
-                                    class="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white/5 hover:bg-red-500/20 border border-dark-border/30 hover:border-red-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-red-500/20">
+                                    class="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white/5 hover:bg-red-500/20 border border-dark-border/30 hover:border-red-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-red-500/20"
+                                    aria-label="Next video">
                                     {% lucide_icon "chevron-right" size="18" class="text-white" %}
                                 </button>
                             </div>
@@ -86,7 +91,7 @@
 
             <!-- Instagram Card -->
             {% if instagram_items and instagram_items.size > 0 %}
-            <div class="instagram-carousel-wrapper flex justify-center w-full">
+            <div class="instagram-carousel-wrapper flex justify-center w-full" data-carousel="instagram">
                 <div
                     class="card group relative w-full bg-dark-card/70 backdrop-blur-[18px] border border-dark-border/50 rounded-[28px] overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-pink-500/20 hover:border-pink-500/30">
                     <!-- Glow Effect -->
@@ -119,19 +124,20 @@
                         </div>
                         <div id="instagramBadge"
                             class="badge px-2 sm:px-3 py-1 sm:py-2 rounded-full bg-pink-500/20 text-pink-400 text-xs sm:text-sm font-medium border border-pink-500/20">
-                            REEL
+                            {{ instagram_items[0].badge | default: "REEL" }}
                         </div>
                     </div>
 
-                    <!-- Media Frame -->
+                    <!-- Media Frame with fixed dimensions -->
                     <div
-                        class="media-frame relative w-[280px] sm:w-[290px] h-[470px] sm:h-[520px] mx-auto my-4 sm:my-6 rounded-[22px] overflow-hidden border border-dark-border/30 bg-gradient-to-br from-white/5 to-white/0 shadow-inner shadow-black/50">
+                        class="media-frame relative w-full max-w-[290px] aspect-[290/520] mx-auto my-4 sm:my-6 rounded-[22px] overflow-hidden border border-dark-border/30 bg-gradient-to-br from-white/5 to-white/0 shadow-inner shadow-black/50">
                         <video id="instagramVideo" 
                                class="absolute inset-0 w-full h-full object-cover" 
                                controls
                                playsinline 
-                               preload="auto"
-                               muted>
+                               preload="metadata"
+                               muted
+                               poster="{{ instagram_items[0].poster | default: '' }}">
                             <source src="{{ instagram_items[0].video }}" type="video/mp4">
                             <p>Video not available. <a href="{{ instagram_items[0].video }}">Download</a></p>
                         </video>
@@ -150,11 +156,13 @@
                             </div>
                             <div class="flex gap-1 sm:gap-2">
                                 <button id="instagramPrevBtn"
-                                    class="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white/5 hover:bg-pink-500/20 border border-dark-border/30 hover:border-pink-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-pink-500/20">
+                                    class="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white/5 hover:bg-pink-500/20 border border-dark-border/30 hover:border-pink-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-pink-500/20"
+                                    aria-label="Previous video">
                                     {% lucide_icon "chevron-left" size="18" class="text-white" %}
                                 </button>
                                 <button id="instagramNextBtn"
-                                    class="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white/5 hover:bg-pink-500/20 border border-dark-border/30 hover:border-pink-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-pink-500/20">
+                                    class="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white/5 hover:bg-pink-500/20 border border-dark-border/30 hover:border-pink-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-pink-500/20"
+                                    aria-label="Next video">
                                     {% lucide_icon "chevron-right" size="18" class="text-white" %}
                                 </button>
                             </div>
@@ -166,7 +174,7 @@
 
             <!-- BTS Card -->
             {% if bts_items and bts_items.size > 0 %}
-            <div class="bts-carousel-wrapper flex justify-center w-full">
+            <div class="bts-carousel-wrapper flex justify-center w-full" data-carousel="bts">
                 <div
                     class="card group relative w-full bg-dark-card/70 backdrop-blur-[18px] border border-dark-border/50 rounded-[28px] overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/20 hover:border-blue-500/30">
                     <!-- Glow Effect -->
@@ -200,19 +208,20 @@
                         </div>
                         <div id="btsBadge"
                             class="badge px-2 sm:px-3 py-1 sm:py-2 rounded-full bg-blue-500/20 text-blue-400 text-xs sm:text-sm font-medium border border-blue-500/20">
-                            BTS
+                            {{ bts_items[0].badge | default: "BTS" }}
                         </div>
                     </div>
 
-                    <!-- Media Frame -->
+                    <!-- Media Frame with fixed dimensions -->
                     <div
-                        class="media-frame relative w-[280px] sm:w-[290px] h-[470px] sm:h-[520px] mx-auto my-4 sm:my-6 rounded-[22px] overflow-hidden border border-dark-border/30 bg-gradient-to-br from-white/5 to-white/0 shadow-inner shadow-black/50">
+                        class="media-frame relative w-full max-w-[290px] aspect-[290/520] mx-auto my-4 sm:my-6 rounded-[22px] overflow-hidden border border-dark-border/30 bg-gradient-to-br from-white/5 to-white/0 shadow-inner shadow-black/50">
                         <video id="btsVideo" 
                                class="absolute inset-0 w-full h-full object-cover" 
                                controls
                                playsinline 
-                               preload="auto"
-                               muted>
+                               preload="metadata"
+                               muted
+                               poster="{{ bts_items[0].poster | default: '' }}">
                             <source src="{{ bts_items[0].video }}" type="video/mp4">
                             <p>Video not available. <a href="{{ bts_items[0].video }}">Download</a></p>
                         </video>
@@ -238,11 +247,13 @@
                             </div>
                             <div class="flex gap-1 sm:gap-2">
                                 <button id="btsPrevBtn"
-                                    class="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white/5 hover:bg-blue-500/20 border border-dark-border/30 hover:border-blue-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20">
+                                    class="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white/5 hover:bg-blue-500/20 border border-dark-border/30 hover:border-blue-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20"
+                                    aria-label="Previous video">
                                     {% lucide_icon "chevron-left" size="18" class="text-white" %}
                                 </button>
                                 <button id="btsNextBtn"
-                                    class="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white/5 hover:bg-blue-500/20 border border-dark-border/30 hover:border-blue-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20">
+                                    class="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-white/5 hover:bg-blue-500/20 border border-dark-border/30 hover:border-blue-500/30 text-white transition-all duration-300 flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20"
+                                    aria-label="Next video">
                                     {% lucide_icon "chevron-right" size="18" class="text-white" %}
                                 </button>
                             </div>
@@ -257,173 +268,392 @@
     </div>
 </section>
 
+<style>
+    /* Prevent layout shift with fixed aspect ratios */
+    .media-frame {
+        aspect-ratio: 290 / 520;
+        width: 100%;
+        max-width: 290px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        background: #1a1a1a; /* Fallback background */
+    }
+
+    /* Ensure iframes and videos fill the container */
+    .media-frame iframe,
+    .media-frame video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+        .media-frame {
+            max-width: 280px;
+            aspect-ratio: 280 / 520;
+        }
+    }
+
+    @media (min-width: 641px) and (max-width: 1024px) {
+        .media-frame {
+            max-width: 290px;
+            aspect-ratio: 290 / 520;
+        }
+    }
+
+    /* Loading placeholder */
+    .media-frame::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    /* Skeleton loading animation */
+    .media-frame.loading::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            90deg,
+            rgba(255,255,255,0.02) 25%,
+            rgba(255,255,255,0.05) 50%,
+            rgba(255,255,255,0.02) 75%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    @keyframes shimmer {
+        0% {
+            background-position: -200% 0;
+        }
+        100% {
+            background-position: 200% 0;
+        }
+    }
+
+    /* Dot styles */
+    .youtube-dot,
+    .instagram-dot,
+    .bts-dot {
+        min-width: 8px;
+        min-height: 8px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        padding: 0;
+        background: transparent;
+        position: relative;
+        min-width: 32px;
+        min-height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .youtube-dot::after,
+    .instagram-dot::after,
+    .bts-dot::after {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .youtube-dot.bg-red-500::after,
+    .instagram-dot.bg-pink-500::after,
+    .bts-dot.bg-blue-500::after {
+        background: currentColor;
+        width: 24px;
+        border-radius: 12px;
+    }
+
+    .youtube-dot:not(.bg-red-500):hover::after,
+    .instagram-dot:not(.bg-pink-500):hover::after,
+    .bts-dot:not(.bg-blue-500):hover::after {
+        background: rgba(255, 255, 255, 0.4);
+        transform: scale(1.2);
+    }
+
+    .youtube-dot:focus-visible,
+    .instagram-dot:focus-visible,
+    .bts-dot:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+        border-radius: 50%;
+    }
+
+    @media (max-width: 768px) {
+        .youtube-dot,
+        .instagram-dot,
+        .bts-dot {
+            min-width: 28px;
+            min-height: 28px;
+        }
+
+        .youtube-dot::after,
+        .instagram-dot::after,
+        .bts-dot::after {
+            width: 6px;
+            height: 6px;
+        }
+
+        .youtube-dot.bg-red-500::after,
+        .instagram-dot.bg-pink-500::after,
+        .bts-dot.bg-blue-500::after {
+            width: 18px;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .youtube-dot,
+        .instagram-dot,
+        .bts-dot {
+            min-width: 24px;
+            min-height: 24px;
+        }
+
+        .youtube-dot::after,
+        .instagram-dot::after,
+        .bts-dot::after {
+            width: 5px;
+            height: 5px;
+        }
+
+        .youtube-dot.bg-red-500::after,
+        .instagram-dot.bg-pink-500::after,
+        .bts-dot.bg-blue-500::after {
+            width: 14px;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .youtube-dot,
+        .instagram-dot,
+        .bts-dot,
+        .youtube-dot::after,
+        .instagram-dot::after,
+        .bts-dot::after,
+        .media-frame.loading::after {
+            transition: none !important;
+            animation: none !important;
+        }
+    }
+</style>
+
 <script>
-    (function () {
-        // YouTube Carousel Data
-        const youtubeData = {{ youtube_items | jsonify }};
-        let youtubeCurrentIndex = 0;
-        const youtubeTotal = youtubeData.length;
+    (function() {
+        'use strict';
 
-        // Instagram Carousel Data
-        const instagramData = {{ instagram_items | jsonify }};
-        let instagramCurrentIndex = 0;
-        const instagramTotal = instagramData.length;
+        // Carousel configuration
+        const MAX_VISIBLE_DOTS = 5;
+        const CAROUSEL_CONFIGS = {
+            youtube: {
+                data: {{ youtube_items | jsonify }},
+                prefix: 'youtube',
+                color: 'red',
+                getSrc: (item) => `https://www.youtube.com/embed/${item.id}?rel=0&modestbranding=1&autoplay=0`
+            },
+            instagram: {
+                data: {{ instagram_items | jsonify }},
+                prefix: 'instagram',
+                color: 'pink',
+                getSrc: (item) => item.video
+            },
+            bts: {
+                data: {{ bts_items | jsonify }},
+                prefix: 'bts',
+                color: 'blue',
+                getSrc: (item) => item.video
+            }
+        };
 
-        // BTS Carousel Data
-        const btsData = {{ bts_items | jsonify }};
-        let btsCurrentIndex = 0;
-        const btsTotal = btsData.length;
-
-        function getVisibleDots(total, currentIndex, maxDots = 5) {
+        // Helper function to get visible dots
+        function getVisibleDots(total, currentIndex, maxDots = MAX_VISIBLE_DOTS) {
             if (total <= maxDots) {
                 return Array.from({ length: total }, (_, i) => i);
             }
+            
             let start = Math.max(0, currentIndex - Math.floor(maxDots / 2));
             let end = start + maxDots;
+            
             if (end > total) {
                 end = total;
                 start = Math.max(0, end - maxDots);
             }
+            
             return Array.from({ length: end - start }, (_, i) => start + i);
         }
 
-        // YouTube Functions
-        function updateYouTube(index) {
-            if (youtubeTotal === 0) return;
-            if (index < 0) index = youtubeTotal - 1;
-            if (index >= youtubeTotal) index = 0;
-            youtubeCurrentIndex = index;
-
-            const item = youtubeData[index];
-            const frame = document.getElementById('youtubeFrame');
-            if (frame) {
-                frame.src = `https://www.youtube.com/embed/${item.id}?rel=0&modestbranding=1&autoplay=0`;
+        // Initialize a single carousel
+        function initCarousel(config) {
+            const { data, prefix, color, getSrc } = config;
+            const total = data.length;
+            
+            if (total === 0) {
+                console.warn(`No data for ${prefix} carousel`);
+                return;
             }
 
-            const titleEl = document.getElementById('youtubeTitle');
-            const subtitleEl = document.getElementById('youtubeSubtitle');
-            const badgeEl = document.getElementById('youtubeBadge');
-            if (titleEl) titleEl.textContent = item.title;
-            if (subtitleEl) subtitleEl.textContent = item.subtitle;
-            if (badgeEl) badgeEl.textContent = item.badge;
+            let currentIndex = 0;
 
-            const counterEl = document.getElementById('youtubeCounter');
-            if (counterEl) counterEl.textContent = `${index + 1} / ${youtubeTotal}`;
+            // Get DOM elements
+            const frame = document.getElementById(`${prefix}Frame`);
+            const titleEl = document.getElementById(`${prefix}Title`);
+            const subtitleEl = document.getElementById(`${prefix}Subtitle`);
+            const badgeEl = document.getElementById(`${prefix}Badge`);
+            const counterEl = document.getElementById(`${prefix}Counter`);
+            const dotsContainer = document.getElementById(`${prefix}Dots`);
+            const prevBtn = document.getElementById(`${prefix}PrevBtn`);
+            const nextBtn = document.getElementById(`${prefix}NextBtn`);
 
-            const dotsContainer = document.getElementById('youtubeDots');
-            if (dotsContainer) {
-                const visibleDots = getVisibleDots(youtubeTotal, index);
-                dotsContainer.innerHTML = visibleDots.map(i => {
-                    const isActive = i === index;
-                    return `<button 
-                        class="youtube-dot w-2 h-2 rounded-full transition-all duration-300 ${isActive ? 'bg-red-500 w-8 shadow-lg shadow-red-500/50' : 'bg-white/20 hover:bg-white/40'}"
-                        data-index="${i}"></button>`;
-                }).join('');
+            // Update function
+            function updateCarousel(index) {
+                // Validate index
+                if (index < 0) index = total - 1;
+                if (index >= total) index = 0;
+                currentIndex = index;
 
-                document.querySelectorAll('.youtube-dot').forEach((dot) => {
-                    dot.addEventListener('click', function () {
-                        updateYouTube(parseInt(this.dataset.index));
+                const item = data[index];
+                if (!item) return;
+
+                // Update frame
+                if (frame) {
+                    if (frame.tagName === 'IFRAME') {
+                        frame.src = getSrc(item);
+                    } else if (frame.tagName === 'VIDEO') {
+                        frame.pause();
+                        frame.src = getSrc(item);
+                        frame.load();
+                    }
+                }
+
+                // Update text content
+                if (titleEl) titleEl.textContent = item.title || '';
+                if (subtitleEl) subtitleEl.textContent = item.subtitle || '';
+                if (badgeEl) badgeEl.textContent = item.badge || '';
+                if (counterEl) counterEl.textContent = `${index + 1} / ${total}`;
+
+                // Update dots
+                if (dotsContainer) {
+                    const visibleDots = getVisibleDots(total, index);
+                    dotsContainer.innerHTML = visibleDots.map(i => {
+                        const isActive = i === index;
+                        const activeClasses = `bg-${color}-500 w-8 shadow-lg shadow-${color}-500/50`;
+                        const inactiveClasses = `bg-white/20 hover:bg-white/40`;
+                        return `<button 
+                            class="${prefix}-dot w-2 h-2 rounded-full transition-all duration-300 ${isActive ? activeClasses : inactiveClasses}"
+                            data-index="${i}"
+                            aria-label="Go to image ${i + 1}"
+                            type="button"></button>`;
+                    }).join('');
+
+                    // Add click listeners to dots
+                    dotsContainer.querySelectorAll(`.${prefix}-dot`).forEach((dot) => {
+                        dot.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            const idx = parseInt(this.dataset.index);
+                            if (!isNaN(idx) && idx !== currentIndex) {
+                                updateCarousel(idx);
+                            }
+                        });
                     });
+                }
+            }
+
+            // Navigation functions
+            function nextImage() {
+                updateCarousel(currentIndex + 1);
+            }
+
+            function prevImage() {
+                updateCarousel(currentIndex - 1);
+            }
+
+            // Add event listeners
+            if (prevBtn) prevBtn.addEventListener('click', prevImage);
+            if (nextBtn) nextBtn.addEventListener('click', nextImage);
+
+            // Keyboard navigation
+            const wrapper = document.querySelector(`[data-carousel="${prefix}"]`);
+            if (wrapper) {
+                wrapper.addEventListener('keydown', function(e) {
+                    if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        prevImage();
+                    } else if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        nextImage();
+                    }
                 });
+                wrapper.setAttribute('tabindex', '0');
+                wrapper.setAttribute('role', 'region');
+                wrapper.setAttribute('aria-label', `${prefix} carousel`);
+            }
+
+            // Handle window resize
+            let resizeTimeout;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    updateCarousel(currentIndex);
+                }, 250);
+            });
+
+            // Initialize
+            updateCarousel(0);
+
+            // Add loading class and remove after content loads
+            const mediaFrame = frame?.closest('.media-frame');
+            if (mediaFrame) {
+                mediaFrame.classList.add('loading');
+                frame.addEventListener('load', function() {
+                    mediaFrame.classList.remove('loading');
+                });
+                // Fallback: remove loading after 3 seconds
+                setTimeout(() => {
+                    mediaFrame.classList.remove('loading');
+                }, 3000);
             }
         }
 
-        // Instagram Functions
-        function updateInstagram(index) {
-            if (instagramTotal === 0) return;
-            if (index < 0) index = instagramTotal - 1;
-            if (index >= instagramTotal) index = 0;
-            instagramCurrentIndex = index;
-
-            const item = instagramData[index];
-            const video = document.getElementById('instagramVideo');
-
-            if (video) {
-                video.pause();
-                video.src = item.video;
-                video.load();
-            }
-
-            document.getElementById('instagramTitle').textContent = item.title;
-            document.getElementById('instagramSubtitle').textContent = item.subtitle;
-            document.getElementById('instagramCounter').textContent = `${index + 1} / ${instagramTotal}`;
-
-            const dotsContainer = document.getElementById('instagramDots');
-            if (dotsContainer) {
-                const visibleDots = getVisibleDots(instagramTotal, index);
-                dotsContainer.innerHTML = visibleDots.map(i => {
-                    const isActive = i === index;
-                    return `<button 
-                        class="instagram-dot w-2 h-2 rounded-full transition-all duration-300 ${isActive ? 'bg-pink-500 w-8 shadow-lg shadow-pink-500/50' : 'bg-white/20 hover:bg-white/40'}"
-                        data-index="${i}"></button>`;
-                }).join('');
-
-                document.querySelectorAll('.instagram-dot').forEach((dot) => {
-                    dot.addEventListener('click', function () {
-                        updateInstagram(parseInt(this.dataset.index));
-                    });
-                });
-            }
+        // Initialize all carousels
+        function initAllCarousels() {
+            Object.entries(CAROUSEL_CONFIGS).forEach(([key, config]) => {
+                if (config.data && config.data.length > 0) {
+                    try {
+                        initCarousel(config);
+                    } catch (error) {
+                        console.error(`Error initializing ${key} carousel:`, error);
+                    }
+                }
+            });
         }
 
-        // BTS Functions
-        function updateBTS(index) {
-            if (btsTotal === 0) return;
-            if (index < 0) index = btsTotal - 1;
-            if (index >= btsTotal) index = 0;
-            btsCurrentIndex = index;
-
-            const item = btsData[index];
-            const video = document.getElementById('btsVideo');
-
-            if (video) {
-                video.pause();
-                video.src = item.video;
-                video.load();
-            }
-
-            document.getElementById('btsTitle').textContent = item.title;
-            document.getElementById('btsSubtitle').textContent = item.subtitle;
-            document.getElementById('btsCounter').textContent = `${index + 1} / ${btsTotal}`;
-
-            const dotsContainer = document.getElementById('btsDots');
-            if (dotsContainer) {
-                const visibleDots = getVisibleDots(btsTotal, index);
-                dotsContainer.innerHTML = visibleDots.map(i => {
-                    const isActive = i === index;
-                    return `<button 
-                        class="bts-dot w-2 h-2 rounded-full transition-all duration-300 ${isActive ? 'bg-blue-500 w-8 shadow-lg shadow-blue-500/50' : 'bg-white/20 hover:bg-white/40'}"
-                        data-index="${i}"></button>`;
-                }).join('');
-
-                document.querySelectorAll('.bts-dot').forEach((dot) => {
-                    dot.addEventListener('click', function () {
-                        updateBTS(parseInt(this.dataset.index));
-                    });
-                });
-            }
+        // Run initialization when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initAllCarousels);
+        } else {
+            initAllCarousels();
         }
 
-        // Event Listeners
-        const youtubePrev = document.getElementById('youtubePrevBtn');
-        const youtubeNext = document.getElementById('youtubeNextBtn');
-        if (youtubePrev) youtubePrev.addEventListener('click', () => updateYouTube(youtubeCurrentIndex - 1));
-        if (youtubeNext) youtubeNext.addEventListener('click', () => updateYouTube(youtubeCurrentIndex + 1));
-
-        const instagramPrev = document.getElementById('instagramPrevBtn');
-        const instagramNext = document.getElementById('instagramNextBtn');
-        if (instagramPrev) instagramPrev.addEventListener('click', () => updateInstagram(instagramCurrentIndex - 1));
-        if (instagramNext) instagramNext.addEventListener('click', () => updateInstagram(instagramCurrentIndex + 1));
-
-        const btsPrev = document.getElementById('btsPrevBtn');
-        const btsNext = document.getElementById('btsNextBtn');
-        if (btsPrev) btsPrev.addEventListener('click', () => updateBTS(btsCurrentIndex - 1));
-        if (btsNext) btsNext.addEventListener('click', () => updateBTS(btsCurrentIndex + 1));
-
-        // Initialize
-        if (youtubeTotal > 0) updateYouTube(0);
-        if (instagramTotal > 0) updateInstagram(0);
-        if (btsTotal > 0) updateBTS(0);
+        // Also run on window load
+        window.addEventListener('load', function() {
+            setTimeout(initAllCarousels, 100);
+        });
 
     })();
 </script>

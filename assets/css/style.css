@@ -998,6 +998,10 @@ body {
   aspect-ratio: 1 / 1;
 }
 
+.aspect-\[290\/520\] {
+  aspect-ratio: 290/520;
+}
+
 .h-0\.5 {
   height: 0.125rem;
 }
@@ -1360,6 +1364,10 @@ body {
 
 .max-w-\[90\%\] {
   max-width: 90%;
+}
+
+.max-w-\[290px\] {
+  max-width: 290px;
 }
 
 .flex-1 {
