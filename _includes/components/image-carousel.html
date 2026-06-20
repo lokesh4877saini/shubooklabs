@@ -41,7 +41,11 @@
         <!-- Dots Indicator -->
         {% if show_dots %}
         <div id="{{ carousel_id }}Dots" 
-             class="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-1 md:gap-2">
+             class="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-1 md:gap-2 max-w-[90%] md:max-w-[70%]">
+            <div id="{{ carousel_id }}DotsWrapper" 
+                 class="flex items-center justify-center gap-1 md:gap-2 overflow-hidden px-1">
+                <!-- Dots will be rendered here -->
+            </div>
         </div>
         {% endif %}
     </div>
@@ -54,6 +58,7 @@
         const carouselId = '{{ carousel_id }}';
         const autoplay = {{ autoplay }};
         const autoplayInterval = {{ autoplay_interval }};
+        const MAX_VISIBLE_DOTS = 5;
 
         // Validate images exist
         if (!images || images.length === 0) {
@@ -67,17 +72,27 @@
         }
 
         let currentIndex = 0;
+        let dotStartIndex = 0;
         let autoplayTimer = null;
+        let isMobile = window.innerWidth < 768;
 
         // Get DOM elements
         const carouselImage = document.getElementById(carouselId + 'Image');
         const prevBtn = document.getElementById(carouselId + 'PrevBtn');
         const nextBtn = document.getElementById(carouselId + 'NextBtn');
+        const dotsWrapper = document.getElementById(carouselId + 'DotsWrapper');
         const dotsContainer = document.getElementById(carouselId + 'Dots');
 
-        if (!carouselImage) {
-            console.error('Carousel image element not found:', carouselId);
+        if (!carouselImage || !dotsWrapper) {
+            console.error('Carousel elements not found:', carouselId);
             return;
+        }
+
+        // Get visible dot count based on screen size
+        function getVisibleDotCount() {
+            if (window.innerWidth < 360) return 3;
+            if (window.innerWidth < 768) return 4;
+            return MAX_VISIBLE_DOTS;
         }
 
         // Function to update image
@@ -89,50 +104,75 @@
             carouselImage.alt = image.alt || image.title || 'Carousel image';
 
             // Update dots
-            if (dotsContainer) {
-                const dots = dotsContainer.querySelectorAll('.dot');
-                dots.forEach((dot, i) => {
-                    if (i === index) {
-                        dot.classList.add('active');
-                    } else {
-                        dot.classList.remove('active');
-                    }
-                });
-            }
+            const dots = dotsWrapper.querySelectorAll('.dot');
+            dots.forEach((dot, i) => {
+                const dotIndex = dotStartIndex + i;
+                if (dotIndex === index) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
         }
 
-        // Create dots
+        // Create dots with pagination
         function createDots() {
-            if (!dotsContainer) return;
-
-            dotsContainer.innerHTML = '';
-
-            images.forEach((_, index) => {
+            dotsWrapper.innerHTML = '';
+            const totalDots = images.length;
+            const visibleCount = getVisibleDotCount();
+            
+            // Adjust dotStartIndex if needed
+            if (dotStartIndex > totalDots - visibleCount) {
+                dotStartIndex = Math.max(0, totalDots - visibleCount);
+            }
+            
+            const start = dotStartIndex;
+            const end = Math.min(start + visibleCount, totalDots);
+            
+            for (let i = start; i < end; i++) {
                 const dot = document.createElement('button');
                 dot.className = 'dot';
-                if (index === 0) dot.classList.add('active');
-                dot.setAttribute('aria-label', `Go to image ${index + 1}`);
+                if (i === currentIndex) dot.classList.add('active');
+                dot.setAttribute('aria-label', `Go to image ${i + 1}`);
                 dot.setAttribute('type', 'button');
+                dot.dataset.index = i;
 
                 dot.addEventListener('click', () => {
-                    currentIndex = index;
+                    currentIndex = i;
                     updateCarousel(currentIndex);
                     resetAutoplay();
                 });
 
-                dotsContainer.appendChild(dot);
-            });
+                dotsWrapper.appendChild(dot);
+            }
         }
 
         // Next image
         function nextImage() {
             currentIndex = (currentIndex + 1) % images.length;
+            // Check if we need to scroll dots
+            const visibleCount = getVisibleDotCount();
+            if (currentIndex >= dotStartIndex + visibleCount) {
+                dotStartIndex = Math.min(images.length - visibleCount, currentIndex);
+                createDots();
+            } else if (currentIndex < dotStartIndex) {
+                dotStartIndex = Math.max(0, currentIndex);
+                createDots();
+            }
             updateCarousel(currentIndex);
         }
 
         // Previous image
         function prevImage() {
             currentIndex = (currentIndex - 1 + images.length) % images.length;
+            const visibleCount = getVisibleDotCount();
+            if (currentIndex < dotStartIndex) {
+                dotStartIndex = Math.max(0, currentIndex);
+                createDots();
+            } else if (currentIndex >= dotStartIndex + visibleCount) {
+                dotStartIndex = Math.min(images.length - visibleCount, currentIndex - visibleCount + 1);
+                createDots();
+            }
             updateCarousel(currentIndex);
         }
 
@@ -156,6 +196,18 @@
             }
         }
 
+        // Handle window resize
+        function handleResize() {
+            const oldVisibleCount = getVisibleDotCount();
+            const newIsMobile = window.innerWidth < 768;
+            
+            if (newIsMobile !== isMobile || oldVisibleCount !== getVisibleDotCount()) {
+                isMobile = newIsMobile;
+                createDots();
+                updateCarousel(currentIndex);
+            }
+        }
+
         // Event listeners
         if (prevBtn) {
             prevBtn.addEventListener('click', () => {
@@ -173,7 +225,6 @@
 
         // Keyboard navigation
         document.addEventListener('keydown', function(e) {
-            // Only if the carousel is visible in viewport
             const carousel = document.querySelector(`#${carouselId}Image`)?.closest('.relative');
             if (!carousel) return;
             
@@ -205,6 +256,9 @@
                 carousel.addEventListener('touchend', startAutoplay);
             }
         }
+
+        // Window resize
+        window.addEventListener('resize', handleResize);
 
         // Initialize carousel
         createDots();
@@ -332,10 +386,9 @@
        MOBILE OPTIMIZATIONS
     ============================================ */
     @media (max-width: 768px) {
-        #dotsContainer,
-        [id$="Dots"] {
+        #dotsWrapper,
+        [id$="DotsWrapper"] {
             gap: 0;
-            padding: 4px 0;
         }
 
         .dot {
