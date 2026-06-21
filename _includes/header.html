@@ -5,21 +5,21 @@
       <!-- Logo -->
       <a href="/" aria-label="Shubook Labs Home" class="flex items-center gap-3 group shrink-0">
         <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-brand/20 to-transparent p-0.5">
-          <img src="/assets/images/logo/shubook-labs.webp" alt="Shubook Labs" width="128" height="40" loading="eager"
-            class="w-28 h-9 lg:w-32 lg:h-12 rounded-lg object-cover object-center">
+          <img src="/assets/images/logo/shubook-labs.webp" alt="Shubook Labs" width="138" height="50" loading="eager"
+            class="w-34 h-12 lg:w-34 lg:h-12 rounded-lg object-cover object-center">
         </div>
       </a>
 
       <!-- Desktop Navigation -->
       <nav class="desktop-nav items-center gap-1 xl:gap-2">
         {% assign current_url = page.url %}
-        
+
         <a href="/" class="nav-link {% if current_url == '/' %}active{% endif %}"
           aria-current="{% if current_url == '/' %}page{% endif %}">Home</a>
-        
+
         <a href="/services" class="nav-link {% if current_url contains '/services' %}active{% endif %}"
           aria-current="{% if current_url contains '/services' %}page{% endif %}">Services</a>
-        
+
         <a href="/podcast-studio-on-rent"
           class="nav-link {% if current_url == '/podcast-studio-on-rent' or current_url contains '/podcast-studio-on-rent/' %}active{% endif %}"
           aria-current="{% if current_url == '/podcast-studio-on-rent' or current_url contains '/podcast-studio-on-rent/' %}page{% endif %}">
@@ -31,16 +31,16 @@
           aria-current="{% if current_url == '/podcast' or current_url contains '/podcast/' and current_url != '/podcast-studio-on-rent' and current_url != '/podcast-studio-on-rent/' %}page{% endif %}">
           Podcast
         </a>
-        
+
         <a href="/portfolio" class="nav-link {% if current_url contains '/portfolio' %}active{% endif %}"
           aria-current="{% if current_url contains '/portfolio' %}page{% endif %}">Portfolio</a>
-        
+
         <a href="/about" class="nav-link {% if current_url contains '/about' %}active{% endif %}"
           aria-current="{% if current_url contains '/about' %}page{% endif %}">About</a>
-        
+
         <a href="/blog" class="nav-link {% if current_url contains '/blog' %}active{% endif %}"
           aria-current="{% if current_url contains '/blog' %}page{% endif %}">Blog</a>
-        
+
         <a href="/contact" class="nav-link {% if current_url contains '/contact' %}active{% endif %}"
           aria-current="{% if current_url contains '/contact' %}page{% endif %}">Contact</a>
       </nav>
@@ -52,8 +52,8 @@
           target="_blank" rel="noopener noreferrer" role="button"
           aria-label="Chat with us on WhatsApp to record your podcast"
           class="whatsapp-btn inline-flex items-center justify-center gap-1.5 bg-white/10 hover:bg-[#60A5FA] text-white hover:text-white border border-white/20 hover:border-transparent transition-all duration-300 rounded-xl">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-            class="shrink-0 whatsapp-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="shrink-0 whatsapp-icon"
+            style="width: 24px; height: 24px; transform: scale(1);" aria-hidden="true">
             <path
               d="M12.032 2.001c-5.516 0-10 4.484-10 10 0 1.852.507 3.657 1.459 5.248l-1.461 5.346 5.521-1.447c1.502.823 3.187 1.257 4.91 1.257 5.514 0 9.999-4.484 9.999-9.999s-4.485-10.405-10.029-10.405zm0 18.4c-1.543 0-3.058-.419-4.366-1.2l-.313-.186-3.276.857.876-3.189-.204-.324c-.846-1.335-1.293-2.875-1.293-4.455 0-4.602 3.744-8.347 8.346-8.347s8.345 3.745 8.345 8.347-3.744 8.497-8.345 8.497zm4.576-6.252c-.251-.125-1.484-.732-1.714-.816-.229-.083-.396-.125-.563.125-.167.25-.646.816-.792.983-.146.167-.292.188-.543.063-.251-.125-1.059-.391-2.017-1.245-.746-.666-1.249-1.487-1.395-1.739-.146-.251-.016-.387.11-.512.113-.114.251-.292.377-.438.125-.146.167-.25.25-.417.084-.167.042-.313-.021-.438-.062-.125-.562-1.354-.771-1.855-.203-.487-.409-.42-.563-.428-.146-.008-.313-.008-.479-.008-.167 0-.438.062-.667.313-.229.251-.875.855-.875 2.084 0 1.229.895 2.416 1.02 2.583.125.167 1.762 2.691 4.268 3.774.596.258 1.062.412 1.425.528.598.191 1.143.164 1.573.099.48-.073 1.479-.604 1.687-1.188.209-.584.209-1.084.146-1.188-.062-.104-.229-.167-.479-.292z" />
           </svg>
@@ -80,7 +80,7 @@
       <div class="h-full rounded-l-2xl bg-dark-card/98 border-l border-t border-b border-brand/20 overflow-y-auto">
 
         <!-- Close button inside menu -->
-        <label for="menuToggle" class="absolute top-4 right-4 p-2 rounded-lg cursor-pointer z-10"
+        <label for="menuToggle" class="absolute top-4 right-4 p-2 rounded-lg cursor-pointer z-[999]"
           aria-label="Close menu">
           {% lucide_icon "x" size="24" class="text-white" %}
         </label>
@@ -88,9 +88,8 @@
         <!-- Logo inside mobile menu -->
         <div class="px-5 pt-16 pb-4 border-b border-white/10 rounded-none">
           <a href="/" aria-label="Shubook Labs Home" class="flex items-center gap-3 group shrink-0">
-          <img src="/assets/images/logo/shubook-labs.webp" alt="Shubook Labs" width="120" height="35"
-            class="w-32 h-auto rounded-lg justify-center mx-auto object-cover object-center">
-          </a>
+            <img src="/assets/images/logo/shubook-labs.webp" alt="Shubook Labs" width="138" height="50" loading="eager"
+              class="w-34 h-12 lg:w-34 lg:h-12 rounded-lg object-cover object-center">
         </div>
 
 
@@ -172,32 +171,56 @@
      SUPER FAST - ABSOLUTE MINIMUM
   ============================================ */
 
-  #menuToggle { display: none; }
+  #menuToggle {
+    display: none;
+  }
 
   /* Menu hidden by default */
-  .mobile-menu { 
+  .mobile-menu {
     transform: translateX(100%);
     background-color: #111827;
     transition: transform 0.2s ease;
   }
 
-  .menu-overlay { display: none; }
+  .menu-overlay {
+    display: none;
+  }
 
   /* Show menu when checked */
-  #menuToggle:checked ~ .mobile-menu { transform: translateX(0); }
-  #menuToggle:checked ~ .menu-overlay { display: block; }
+  #menuToggle:checked~.mobile-menu {
+    transform: translateX(0);
+  }
+
+  #menuToggle:checked~.menu-overlay {
+    display: block;
+  }
 
   /* Prevent scroll */
-  body:has(#menuToggle:checked) { overflow: hidden; }
+  body:has(#menuToggle:checked) {
+    overflow: hidden;
+  }
 
   /* Desktop */
-  .desktop-nav { display: none; }
-  
+  .desktop-nav {
+    display: none;
+  }
+
   @media (min-width: 1024px) {
-    .desktop-nav { display: flex; }
-    label[for="menuToggle"] { display: none; }
-    .mobile-menu { display: none; }
-    .menu-overlay { display: none !important; }
+    .desktop-nav {
+      display: flex;
+    }
+
+    label[for="menuToggle"] {
+      display: none;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    .menu-overlay {
+      display: none !important;
+    }
   }
 
   /* Simple nav links - NO HOVER ON MOBILE */
@@ -212,14 +235,14 @@
 
   .nav-link.active {
     color: #60A5FA;
-    background: rgba(96,165,250,0.08);
+    background: rgba(96, 165, 250, 0.08);
   }
 
   /* Only hover on desktop */
   @media (min-width: 1024px) {
     .nav-link:hover {
       color: #60A5FA;
-      background: rgba(96,165,250,0.08);
+      background: rgba(96, 165, 250, 0.08);
     }
   }
 
@@ -236,13 +259,13 @@
 
   .mobile-link.active {
     color: #60A5FA;
-    background: rgba(96,165,250,0.1);
+    background: rgba(96, 165, 250, 0.1);
   }
 
   /* ============================================
      WHATSAPP BUTTON - MOBILE OPTIMIZED
   ============================================ */
-  
+
   /* Default (Mobile First) */
   .whatsapp-btn {
     padding: 0.45rem 0.5rem;
@@ -258,7 +281,8 @@
   }
 
   .whatsapp-text {
-    display: none; /* Hidden on mobile by default */
+    display: none;
+    /* Hidden on mobile by default */
   }
 
   /* Tablet (640px - 1023px) */
@@ -277,7 +301,8 @@
     }
 
     .whatsapp-text {
-      display: inline; /* Show text on tablet+ */
+      display: inline;
+      /* Show text on tablet+ */
     }
   }
 
