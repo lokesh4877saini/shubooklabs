@@ -59,6 +59,7 @@ defaults:
       image: "/assets/images/og/og-default.png"
       author: "Shubook Labs"
       layout: "default"
+      description: "Premium podcast recording studio and content creation service in Jaipur. Best studio rent in Jaipur for podcast production. Professional audio/video recording, editing, and publishing services for founders, creators, and businesses."
   
   # Default for blog posts
   - scope:
@@ -69,6 +70,7 @@ defaults:
       permalink: "/blog/:title/"
       author: "Shubook Labs"
       image: "/assets/images/og/og-default.png"
+      description: "Read the latest podcast insights, studio tips, and content creation guides from Shubook Labs in Jaipur."
 
 # Exclude files from build
 exclude:

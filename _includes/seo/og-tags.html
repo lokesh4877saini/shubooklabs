@@ -1,23 +1,27 @@
-<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
-<meta property="og:site_name" content="Shubook Labs">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-
-{% if page.image %}
-<!-- 1. Page-specific image -->
-<meta property="og:image" content="{{ page.image | absolute_url }}">
-<meta property="og:image:alt" content="{{ page.title }}">
-{% elsif site.data.og_default_image %}
-<meta property="og:image" content="{{ site.data.og_default_image.url | absolute_url }}">
-<meta property="og:image:alt" content="{{ site.data.og_default_image.alt | default: site.title }}">
+{% if page.description %}
+  <meta property="og:description" content="{{ page.description }}" />
 {% else %}
-<meta property="og:image" content="{{ '/assets/images/favicon/favicon-96x96.png' | absolute_url }}">
-<meta property="og:image:alt" content="{{ site.title }}">
-<meta property="og:image:width" content="96">
-<meta property="og:image:height" content="96">
+  <meta property="og:description" content="{{ site.description }}" />
 {% endif %}
 
-<!-- Twitter Card -->
+<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+
+<meta property="og:site_name" content="Shubook Labs">
+
+{% if page.image %}
+  <meta property="og:image" content="{{ page.image | absolute_url }}">
+  <meta property="og:image:alt" content="{{ page.title }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+{% else %}
+  <meta property="og:image" content="{{ '/assets/images/og/og-default.png' | absolute_url }}">
+  <meta property="og:image:alt" content="Shubook Labs - Podcast Studio in Jaipur">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+{% endif %}
+
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@shubooklabs">
 <meta name="twitter:creator" content="@shubooklabs">
