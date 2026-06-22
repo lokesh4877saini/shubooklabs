@@ -78,4 +78,4 @@ jobs:
           echo "✅ Deployment completed successfully!"
           echo "Files uploaded to FTP root"
           echo "Please ensure files are moved to public_html/ if needed"
-          echo "Site should be available at: https://shubook.in"
+          echo "Site should be available at: https://www.shubook.in"
