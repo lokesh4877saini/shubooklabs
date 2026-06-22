@@ -1,5 +1,5 @@
 # robots.txt for Shubook Labs
-# For AI/Large Language Model instructions, see: https://shubook.in/llms.txt
+# For AI/Large Language Model instructions, see: https://www.shubook.in/llms.txt
 
 User-agent: *
 Allow: /
@@ -10,7 +10,7 @@ Disallow: /wp-includes/
 Disallow: /assets/private/
 
 # Sitemap - Updated with HTTPS
-Sitemap: https://shubook.in/sitemap.xml
+Sitemap: https://www.shubook.in/sitemap.xml
 
 # Crawl delay
 Crawl-delay: 1

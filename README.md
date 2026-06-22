@@ -31,3 +31,8 @@ Remove-Item -Force package-lock.json
  ```
  JEKYLL_ENV=production bundle exec jekyll build
  ```
+# ADD this for DESKTOP in GEMFILE
+```
+gem 'tzinfo', '>= 1', '< 3'
+gem "tzinfo-data"
+```
