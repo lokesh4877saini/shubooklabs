@@ -1,0 +1,167 @@
+---
+layout: default
+title: Shubham | Author
+author_id: shubham
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | {{ site.title }}</title>
+    {% seo %}
+    
+    <!-- Blog CSS -->
+    <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
+</head>
+<body class="bg-dark-bg text-text-primary antialiased">
+
+    {% assign author_data = site.data.authors | where: "id", page.author_id | first %}
+    {% assign author_posts = site.posts | where: "author", page.author_id | sort: "date" | reverse %}
+
+    <!-- Author Header -->
+    <header class="relative overflow-hidden bg-gradient-to-b from-dark-card/95 to-dark-card/60 border-b border-brand/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+            
+            <!-- Back to Blog -->
+            <a href="/blog"
+                class="inline-flex items-center gap-2 text-text-muted hover:text-brand-light transition-colors mb-6 text-sm">
+                {% lucide_icon "arrow-left" size="16" class="shrink-0" %}
+                Back to Blog
+            </a>
+
+            <!-- Author Info -->
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
+                <!-- Avatar -->
+                {% if author_data.avatar %}
+                <img src="{{ author_data.avatar | relative_url }}" 
+                     alt="{{ author_data.full_name }}"
+                     class="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-brand-light/30"
+                     loading="lazy">
+                {% else %}
+                <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-brand-gradient flex items-center justify-center text-4xl font-bold text-white border-4 border-brand-light/30">
+                    {{ author_data.name | slice: 0 }}
+                </div>
+                {% endif %}
+
+                <div class="text-center md:text-left">
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">
+                        {{ author_data.full_name }}
+                    </h1>
+                    <p class="text-brand-light text-lg mb-2">{{ author_data.title }}</p>
+                    <p class="text-text-secondary max-w-2xl">{{ author_data.bio }}</p>
+                    
+                    <!-- Social Links -->
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 mt-4">
+                        {% if author_data.social.twitter %}
+                        <a href="https://twitter.com/{{ author_data.social.twitter }}" 
+                           target="_blank" rel="noopener noreferrer"
+                           class="text-text-muted hover:text-brand-light transition-colors">
+                            {% lucide_icon "twitter" size="18" %}
+                        </a>
+                        {% endif %}
+                        
+                        {% if author_data.social.linkedin %}
+                        <a href="https://linkedin.com/in/{{ author_data.social.linkedin }}" 
+                           target="_blank" rel="noopener noreferrer"
+                           class="text-text-muted hover:text-brand-light transition-colors">
+                            {% lucide_icon "linkedin" size="18" %}
+                        </a>
+                        {% endif %}
+                        
+                        {% if author_data.social.instagram %}
+                        <a href="https://instagram.com/{{ author_data.social.instagram }}" 
+                           target="_blank" rel="noopener noreferrer"
+                           class="text-text-muted hover:text-brand-light transition-colors">
+                            {% lucide_icon "instagram" size="18" %}
+                        </a>
+                        {% endif %}
+                        
+                        {% if author_data.website %}
+                        <a href="{{ author_data.website }}" 
+                           target="_blank" rel="noopener noreferrer"
+                           class="text-text-muted hover:text-brand-light transition-colors">
+                            {% lucide_icon "globe" size="18" %}
+                        </a>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- DYNAMIC Post Count -->
+                    <div class="mt-4 flex items-center justify-center md:justify-start gap-4 text-sm text-text-muted">
+                        <span class="flex items-center gap-1">
+                            {% lucide_icon "file-text" size="16" %}
+                            {{ author_posts.size }} Posts
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Author Posts -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 class="text-2xl font-bold text-white mb-8">Posts by {{ author_data.name }}</h2>
+        
+        {% if author_posts.size > 0 %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for post in author_posts %}
+            <article class="group bg-dark-card rounded-2xl border border-dark-border overflow-hidden hover:border-brand-light/50 transition-all duration-300 hover:shadow-glow hover:-translate-y-1">
+                
+                {% if post.image %}
+                <a href="{{ post.url | relative_url }}" class="block overflow-hidden">
+                    <img src="{{ post.image | relative_url }}" 
+                         alt="{{ post.title }}" 
+                         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                         loading="lazy">
+                </a>
+                {% endif %}
+
+                <div class="p-6">
+                    <!-- Categories -->
+                    {% if post.categories %}
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        {% for category in post.categories limit:2 %}
+                        <span class="text-xs px-2 py-1 bg-dark-surface text-brand-light rounded-full border border-dark-border">
+                            {{ category }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <!-- Title -->
+                    <h3 class="text-xl font-bold mb-2">
+                        <a href="{{ post.url | relative_url }}" class="hover:text-brand-light transition-colors">
+                            {{ post.title }}
+                        </a>
+                    </h3>
+
+                    <!-- Excerpt -->
+                    <p class="text-text-secondary text-sm line-clamp-3 mb-4">
+                        {{ post.excerpt | strip_html | truncatewords: 25 }}
+                    </p>
+
+                    <!-- Meta -->
+                    <div class="flex items-center justify-between text-xs text-text-muted pt-4 border-t border-dark-border">
+                        <div class="flex items-center gap-2">
+                            <time datetime="{{ post.date | date_to_xmlschema }}">
+                                {{ post.date | date: "%b %d, %Y" }}
+                            </time>
+                        </div>
+                        {% if post.read_time %}
+                        <span>{{ post.read_time }} min read</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-16">
+            <p class="text-text-secondary">No posts found by this author.</p>
+        </div>
+        {% endif %}
+    </main>
+
+</body>
+</html>
