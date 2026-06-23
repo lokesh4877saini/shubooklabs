@@ -1,7 +1,7 @@
 # Site settings
-title: "ShuBook Labs"
-description: "Premium Podcast Studio in Jaipur"
-url: "https://shubook.in"
+title: "Shubook Labs - Podcast Studio in Jaipur"
+description: "Premium Podcast Studio in Jaipur | Studio Rent, Recording & Production"
+url: "https://www.shubook.in"
 baseurl: ""
 timezone: Asia/Kolkata
 
@@ -22,12 +22,55 @@ plugins:
   - jekyll-paginate-v2
   - jekyll-lucide
 
+# ============================================ #
+# SEO TAG CONFIGURATION                        #
+# ============================================ #
+jekyll-seo-tag:
+  title: "Shubook Labs - Podcast Studio in Jaipur"
+  title_separator: "|"
+  description: "Premium podcast recording studio and content creation service in Jaipur. Best studio rent in Jaipur for podcast production."
+  twitter:
+    username: "shubooklabs"
+    card: "summary_large_image"
+  social:
+    name: "Shubook Labs"
+    links:
+      - "https://www.instagram.com/shubook.in"
+      - "https://www.youtube.com/@shubook"
+      - "https://creators.spotify.com/pod/show/2zCKgpwBkTf3l8djsOgOR6/home"
+      - "https://podcastsconnect.apple.com/my-podcasts/show/the-shubook-show/2b9bbaac-1d3c-4312-868f-f00fa6a99c0b/episodes"
+  logo: "/assets/images/logo/shubook-labs-black.png"
+
 # Pagination (jekyll-paginate-v2)
 pagination:
   enabled: true
   collection: posts
   per_page: 9
   permalink: "/blog/page/:num/"
+
+# ============================================ #
+# DEFAULTS FOR FRONTMATTER                     #
+# ============================================ #
+defaults:
+  # Default for all pages
+  - scope:
+      path: ""
+    values:
+      image: "/assets/images/og/og-default-v2.png"
+      author: "Shubook Labs"
+      layout: "default"
+      description: "Premium podcast recording studio and content creation service in Jaipur. Best studio rent in Jaipur for podcast production. Professional audio/video recording, editing, and publishing services for founders, creators, and businesses."
+  
+  # Default for blog posts
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      permalink: "/blog/:title/"
+      author: "Shubook Labs"
+      image: "/assets/images/og/og-default-v2.png"
+      description: "Read the latest podcast insights, studio tips, and content creation guides from Shubook Labs in Jaipur."
 
 # Exclude files from build
 exclude:

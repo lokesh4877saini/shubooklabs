@@ -1,0 +1,57 @@
+{% if page.local_business != false %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://www.shubook.in/#business",
+  "name": "Shubook Labs - Podcast Studio in Jaipur",
+  "alternateName": "Shubook Studios",
+  "description": "{{ page.description | default: site.description }}",
+  "image": "{{ '/assets/images/logo/shubook-labs-black.png' | absolute_url }}",
+  "url": "{{ site.url }}",
+  "telephone": "+919887247112",
+  "email": "shubham@shubook.in",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Sanganer",
+    "addressLocality": "Jaipur",
+    "addressRegion": "Rajasthan",
+    "postalCode": "302029",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "26.813944",
+    "longitude": "75.796000"
+  },
+  "sameAs": [
+    "https://www.instagram.com/shubook.in",
+    "https://www.youtube.com/@shubook",
+    "https://creators.spotify.com/pod/show/2zCKgpwBkTf3l8djsOgOR6/home",
+    "https://podcastsconnect.apple.com/my-podcasts/show/the-shubook-show/2b9bbaac-1d3c-4312-868f-f00fa6a99c0b/episodes"
+  ],
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "name": "Podcast Studio in Jaipur",
+      "description": "Professional podcast recording studio in Jaipur with state-of-the-art equipment and acoustically treated rooms"
+    },
+    {
+      "@type": "Offer",
+      "name": "Studio Rent in Jaipur",
+      "description": "Rent our premium podcast studio in Jaipur for your recording sessions. Best studio rent in Jaipur for podcast production"
+    },
+    {
+      "@type": "Offer",
+      "name": "Product Shooting in Jaipur",
+      "description": "Professional product photography and videography services for brands and e-commerce businesses"
+    },
+    {
+      "@type": "Offer",
+      "name": "Video Production in Jaipur",
+      "description": "Professional video recording, editing, and publishing services in Jaipur"
+    }
+  ]
+}
+</script>
+{% endif %}
