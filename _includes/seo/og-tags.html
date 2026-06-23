@@ -1,27 +1,12 @@
-{% if page.description %}
-  <meta property="og:description" content="{{ page.description }}" />
-{% else %}
-  <meta property="og:description" content="{{ site.description }}" />
-{% endif %}
-
-<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
-
-<meta property="og:site_name" content="Shubook Labs">
-
 {% if page.image %}
-  <meta property="og:image" content="{{ page.image | absolute_url }}">
-  <meta property="og:image:alt" content="{{ page.title }}">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ page.title }}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 {% else %}
-  <meta property="og:image" content="{{ '/assets/images/og/og-default-v2.png' | absolute_url }}">
-  <meta property="og:image:alt" content="Shubook Labs - Podcast Studio in Jaipur">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Shubook Labs - Podcast Studio in Jaipur" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 {% endif %}
 
-<meta property="og:url" content="{{ page.url | absolute_url }}">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@shubooklabs">
-<meta name="twitter:creator" content="@shubooklabs">
+<meta name="twitter:site" content="@shubooklabs" />
+<meta name="twitter:creator" content="@shubooklabs" />
