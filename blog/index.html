@@ -1,123 +1,229 @@
 ---
 layout: default
-title: Blog | Coming Soon - ShuBook Labs
-permalink: /blog/
+title: Blog
+pagination:
+  enabled: true
+  collection: posts
+  per_page: 2
+  permalink: /blog/page/:num/
+  sort_field: date
+  sort_reverse: true
 ---
 
-<!-- Hero Section -->
-<section class="relative overflow-hidden bg-dark-bg">
-<div class="hidden md:block absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]">
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | {{ site.title }}</title>
+  {% seo %}
+  
+  <!-- Blog-specific CSS -->
+  <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
+</head>
+<body class="bg-dark-bg text-text-primary antialiased">
 
-    <div class="relative z-10 container mx-auto px-6 max-w-6xl text-center py-20 md:py-28">
-        <div class="inline-flex items-center gap-2 glass rounded-full px-5 py-2 mb-6">
-            <span class="w-2 h-2 rounded-full bg-brand"></span>
-            <span class="text-sm font-medium tracking-wide text-text-secondary">Coming Soon</span>
-            <span class="w-2 h-2 rounded-full bg-brand"></span>
-        </div>
-        
-        <div class="mb-8">
-            <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-brand/20 flex items-center justify-center mx-auto mb-6">
-                {% lucide_icon "file-text" size="48" class="text-brand" %}
+  <!-- Blog Header -->
+  <header class="relative overflow-hidden bg-hero-gradient border-b border-dark-border">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+        <span class="bg-gradient-to-r from-brand-light to-brand-DEFAULT bg-clip-text text-transparent">
+          Blog
+        </span>
+      </h1>
+      <p class="text-text-secondary text-lg max-w-2xl mx-auto">
+        Insights, stories, and tips from the Shubook Labs team
+      </p>
+    </div>
+  </header>
+
+  <!-- Blog Posts Grid -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    {% if paginator.posts.size > 0 %}
+      
+      <!-- Featured Post (only on page 1) -->
+      {% if paginator.page == 1 %}
+        {% assign featured_post = paginator.posts | first %}
+        <div class="mb-12">
+          <article class="group bg-dark-card rounded-2xl border border-dark-border overflow-hidden hover:border-brand-light/50 transition-all duration-300 hover:shadow-glow">
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+              {% if featured_post.image %}
+                <a href="{{ featured_post.url | relative_url }}" class="block overflow-hidden">
+                  <img 
+                    src="{{ featured_post.image | relative_url }}" 
+                    alt="{{ featured_post.title }}" 
+                    class="w-full h-64 lg:h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  >
+                </a>
+              {% endif %}
+              
+              <div class="p-8 flex flex-col justify-center">
+                {% if featured_post.categories %}
+                  <div class="flex flex-wrap gap-2 mb-3">
+                    {% for category in featured_post.categories limit:2 %}
+                      <span class="text-xs px-2 py-1 bg-dark-surface text-brand-light rounded-full border border-dark-border">
+                        {{ category }}
+                      </span>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+
+                <h2 class="text-2xl md:text-3xl font-bold mb-3">
+                  <a href="{{ featured_post.url | relative_url }}" class="hover:text-brand-light transition-colors">
+                    {{ featured_post.title }}
+                  </a>
+                </h2>
+
+                <p class="text-text-secondary text-base line-clamp-3 mb-4">
+                  {{ featured_post.excerpt | strip_html | truncatewords: 30 }}
+                </p>
+
+                <!-- Featured Post Meta with Author Link -->
+                <div class="flex items-center justify-between text-sm text-text-muted pt-4 border-t border-dark-border">
+                  <div class="flex items-center gap-2">
+                    {% assign author_data = site.data.authors | where: "id", featured_post.author | first %}
+                    {% if author_data %}
+                      <a href="/blog/author/{{ author_data.id }}/" 
+                         class="text-text-primary hover:text-brand-light transition-colors font-medium">
+                        {{ author_data.name }}
+                      </a>
+                    {% else %}
+                      <span class="text-text-primary">{{ featured_post.author | default: site.author }}</span>
+                    {% endif %}
+                    <span>•</span>
+                    <time datetime="{{ featured_post.date | date_to_xmlschema }}">
+                      {{ featured_post.date | date: "%B %d, %Y" }}
+                    </time>
+                  </div>
+                  {% if featured_post.read_time %}
+                    <span>{{ featured_post.read_time }} min read</span>
+                  {% endif %}
+                </div>
+              </div>
             </div>
+          </article>
         </div>
-        
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
-            Blog
-            <span class="bg-brand-gradient bg-clip-text text-transparent block mt-2">
-                Coming Soon
+      {% endif %}
+
+      <!-- Posts Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for post in paginator.posts %}
+          <!-- Skip featured post on first page -->
+          {% if paginator.page == 1 and forloop.first %}
+            {% continue %}
+          {% endif %}
+          
+          <article class="group bg-dark-card rounded-2xl border border-dark-border overflow-hidden hover:border-brand-light/50 transition-all duration-300 hover:shadow-glow hover:-translate-y-1">
+            
+            {% if post.image %}
+              <a href="{{ post.url | relative_url }}" class="block overflow-hidden">
+                <img 
+                  src="{{ post.image | relative_url }}" 
+                  alt="{{ post.title }}" 
+                  class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                >
+              </a>
+            {% endif %}
+
+            <div class="p-6">
+              {% if post.categories %}
+                <div class="flex flex-wrap gap-2 mb-3">
+                  {% for category in post.categories limit:2 %}
+                    <span class="text-xs px-2 py-1 bg-dark-surface text-brand-light rounded-full border border-dark-border">
+                      {{ category }}
+                    </span>
+                  {% endfor %}
+                </div>
+              {% endif %}
+
+              <h2 class="text-xl font-bold mb-2">
+                <a href="{{ post.url | relative_url }}" class="hover:text-brand-light transition-colors">
+                  {{ post.title }}
+                </a>
+              </h2>
+
+              <p class="text-text-secondary text-sm line-clamp-3 mb-4">
+                {{ post.excerpt | strip_html | truncatewords: 25 }}
+              </p>
+
+              <!-- Post Meta with Author Link -->
+              <div class="flex items-center justify-between text-xs text-text-muted pt-4 border-t border-dark-border">
+                <div class="flex items-center gap-2">
+                  {% assign author_data = site.data.authors | where: "id", post.author | first %}
+                  {% if author_data %}
+                    <a href="/blog/author/{{ author_data.id }}/" 
+                       class="text-text-primary hover:text-brand-light transition-colors text-sm font-medium">
+                      {{ author_data.name }}
+                    </a>
+                  {% else %}
+                    <span class="text-text-primary text-sm">{{ post.author | default: site.author }}</span>
+                  {% endif %}
+                  <span>•</span>
+                  <time datetime="{{ post.date | date_to_xmlschema }}">
+                    {{ post.date | date: "%b %d, %Y" }}
+                  </time>
+                </div>
+                {% if post.read_time %}
+                  <span>{{ post.read_time }} min read</span>
+                {% endif %}
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+      <!-- Pagination -->
+      {% if paginator.total_pages > 1 %}
+        <nav class="mt-12 flex justify-center items-center gap-2" aria-label="Blog pagination">
+          {% if paginator.previous_page %}
+            <a href="{{ paginator.previous_page_path | relative_url }}" class="px-4 py-2 bg-dark-card border border-dark-border rounded-lg text-text-secondary hover:text-brand-light hover:border-brand-light transition-all">
+              <span aria-hidden="true">←</span> Previous
+            </a>
+          {% else %}
+            <span class="px-4 py-2 bg-dark-surface border border-dark-border rounded-lg text-text-muted cursor-not-allowed opacity-50">
+              <span aria-hidden="true">←</span> Previous
             </span>
-        </h1>
-        
-        <p class="text-xl md:text-2xl text-text-secondary max-w-3xl mx-auto mb-6">
-            Insights, stories, and expertise from the world of podcasting, personal branding, and content creation.
-        </p>
-        
-        <p class="text-base text-text-muted max-w-2xl mx-auto mb-10">
-            We're working on creating valuable content to help you grow your podcast, build your personal brand, and create professional content that stands out.
-        </p>
-        
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="/contact/" class="bg-brand hover:bg-brand-dark text-white font-semibold px-6 py-3 rounded-xl transition-all flex items-center justify-center gap-2">
-                {% lucide_icon "mail" size="18" %} Get Notified
+          {% endif %}
+
+          <div class="flex gap-1" aria-label="Page numbers">
+            {% for page_num in (1..paginator.total_pages) %}
+              {% if page_num == paginator.page %}
+                <span class="px-4 py-2 bg-brand-DEFAULT text-white rounded-lg" aria-current="page">{{ page_num }}</span>
+              {% else %}
+                <a href="{% if page_num == 1 %}{{ '/blog/' | relative_url }}{% else %}{{ '/blog/page/' | append: page_num | relative_url }}{% endif %}" 
+                   class="px-4 py-2 bg-dark-card border border-dark-border rounded-lg text-text-secondary hover:text-brand-light hover:border-brand-light transition-all"
+                   aria-label="Page {{ page_num }}">
+                  {{ page_num }}
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          {% if paginator.next_page %}
+            <a href="{{ paginator.next_page_path | relative_url }}" class="px-4 py-2 bg-dark-card border border-dark-border rounded-lg text-text-secondary hover:text-brand-light hover:border-brand-light transition-all">
+              Next <span aria-hidden="true">→</span>
             </a>
-            <a href="/" class="glass hover:bg-brand/20 border border-white/10 hover:border-brand/40 rounded-xl px-6 py-3 font-medium text-text-secondary hover:text-brand transition-all flex items-center justify-center gap-2">
-                {% lucide_icon "home" size="18" %} Back to Home
-            </a>
-        </div>
-    </div>
-</section>
+          {% else %}
+            <span class="px-4 py-2 bg-dark-surface border border-dark-border rounded-lg text-text-muted cursor-not-allowed opacity-50">
+              Next <span aria-hidden="true">→</span>
+            </span>
+          {% endif %}
+        </nav>
+      {% endif %}
 
-<!-- What to Expect Section -->
-<section class="py-2 md:py-12 lg:py-14 bg-dark-card">
-    <div class="container mx-auto px-6 max-w-6xl">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">What to Expect</h2>
-            <div class="w-20 h-1 bg-brand-gradient rounded-full mx-auto"></div>
-        </div>
-        
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="glass rounded-2xl p-6 text-center border border-white/10">
-                <div class="w-14 h-14 rounded-full bg-brand/20 flex items-center justify-center mx-auto mb-4">
-                    {% lucide_icon "mic" size="24" class="text-brand" %}
-                </div>
-                <h3 class="text-xl font-semibold mb-2">Podcast Tips</h3>
-                <p class="text-text-muted text-sm">Expert advice on recording, editing, and growing your podcast audience.</p>
-            </div>
-            
-            <div class="glass rounded-2xl p-6 text-center border border-white/10">
-                <div class="w-14 h-14 rounded-full bg-brand/20 flex items-center justify-center mx-auto mb-4">
-                    {% lucide_icon "trending-up" size="24" class="text-brand" %}
-                </div>
-                <h3 class="text-xl font-semibold mb-2">Personal Branding</h3>
-                <p class="text-text-muted text-sm">Strategies to build authority and visibility through content.</p>
-            </div>
-            
-            <div class="glass rounded-2xl p-6 text-center border border-white/10">
-                <div class="w-14 h-14 rounded-full bg-brand/20 flex items-center justify-center mx-auto mb-4">
-                    {% lucide_icon "video" size="24" class="text-brand" %}
-                </div>
-                <h3 class="text-xl font-semibold mb-2">Studio Insights</h3>
-                <p class="text-text-muted text-sm">Behind-the-scenes looks at professional podcast production.</p>
-            </div>
-        </div>
-    </div>
-</section>
+    {% else %}
+      <div class="text-center py-16">
+        <p class="text-text-secondary">No posts found.</p>
+      </div>
+    {% endif %}
 
-<!-- Newsletter Signup -->
-<section class="py-20 md:py-28 bg-dark-bg">
-    <div class="container mx-auto px-6 max-w-4xl text-center">
-        <div class="glass rounded-2xl p-8 md:p-12 border border-brand/20 bg-gradient-to-b from-brand/5 to-transparent">
-            <h2 class="text-2xl md:text-3xl font-bold mb-3">Get Notified When We Launch</h2>
-            <p class="text-text-muted mb-6">Be the first to know when our blog goes live with fresh content.</p>
-            
-            <form action="#" method="POST" class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input type="email" 
-                       placeholder="Your email address" 
-                       required 
-                       class="flex-1 glass rounded-xl px-4 py-3 border border-white/10 focus:border-brand/50 outline-none text-text-primary">
-                <button type="submit" class="bg-brand hover:bg-brand-dark text-white font-semibold px-6 py-3 rounded-xl transition-all whitespace-nowrap">
-                    Notify Me
-                </button>
-            </form>
-            
-            <p class="text-text-muted text-xs mt-4">No spam. Unsubscribe anytime.</p>
-        </div>
-    </div>
-</section>
+  </main>
 
-<!-- Final CTA Section -->
-<section class="py-2 md:py-12 lg:py-14 bg-dark-card">
-    <div class="container mx-auto px-6 max-w-5xl text-center">
-        <div class="glass rounded-2xl p-8 md:p-12 border border-brand/20 bg-gradient-to-b from-brand/5 to-transparent">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Ready to Start Your Podcast?</h2>
-            <p class="text-text-secondary text-lg mb-8 max-w-2xl mx-auto">
-                While we prepare our blog content, our studio is ready for you.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="/contact/" class="bg-brand hover:bg-brand-dark text-white font-semibold px-6 py-3 rounded-xl transition-all">Book Your Session</a>
-                <a href="/podcast-studio-on-rent/" class="glass hover:bg-brand/20 border border-white/10 hover:border-brand/40 rounded-xl px-6 py-3 font-medium text-text-secondary hover:text-brand transition-all">Rent the Studio</a>
-            </div>
-        </div>
-    </div>
-</section>
+  <!-- Blog-specific JavaScript -->
+  <script src="{{ '/assets/js/blog.js' | relative_url }}" defer></script>
+
+</body>
+</html>

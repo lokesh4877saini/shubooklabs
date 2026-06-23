@@ -1,0 +1,185 @@
+---
+layout: default
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | {{ site.title }}</title>
+    {% seo %}
+
+    <!-- Blog CSS -->
+    <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
+</head>
+
+<body class="bg-dark-bg text-text-primary antialiased">
+
+    <!-- Blog Header -->
+    <header class="relative overflow-hidden bg-gradient-to-b from-dark-card/95 to-dark-card/60 border-b border-brand/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+
+            <!-- Back to Blog -->
+            <a href="/blog"
+                class="inline-flex items-center gap-2 text-text-muted hover:text-brand-light transition-colors mb-6 text-sm">
+                {% lucide_icon "arrow-left" size="16" class="shrink-0" %}
+                Back to Blog
+            </a>
+
+            <!-- Post Title -->
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 text-white">
+                {{ page.title }}
+            </h1>
+
+            <!-- Post Meta -->
+            <div class="flex flex-wrap items-center gap-3 text-text-secondary text-sm">
+                <span class="text-text-primary font-medium">{{ page.author | default: site.author }}</span>
+                <span>•</span>
+                <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+                {% if page.read_time %}
+                <span>•</span>
+                <span>{{ page.read_time }} min read</span>
+                {% endif %}
+            </div>
+
+            <!-- Featured Image -->
+            {% if page.image %}
+            <div class="mt-6 rounded-2xl overflow-hidden border border-dark-border">
+                <img src="{{ page.image | relative_url }}" alt="{{ page.title }}"
+                    class="w-full h-auto max-h-[400px] object-cover" loading="lazy">
+            </div>
+            {% endif %}
+        </div>
+    </header>
+
+    <!-- Main Content with Sidebar Layout -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+
+            <!-- LEFT SIDEBAR - STICKY TOC -->
+            <aside class="lg:w-72 lg:shrink-0">
+                <div class="lg:sticky lg:top-24">
+                    <!-- Check if TOC exists in front matter -->
+                    {% if page.toc_content %}
+                    <!-- Render TOC from front matter -->
+                    <div class="blog-toc-wrapper">
+                        <h2 class="blog-toc-title">Table of Contents</h2>
+                        <div class="blog-toc-scroll">
+                            {{ page.toc_content }}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </aside>
+
+            <!-- RIGHT CONTENT -->
+            <article class="flex-1 min-w-0 blog-content">
+                {{ content }}
+            </article>
+
+        </div>
+
+        <!-- Tags -->
+        {% if page.tags %}
+        <div class="mt-12 pt-6 border-t border-dark-border">
+            <div class="flex flex-wrap gap-2">
+                {% for tag in page.tags %}
+                <span
+                    class="px-3 py-1 bg-dark-surface text-text-secondary text-sm rounded-full border border-dark-border">#{{
+                    tag }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Author Bio -->
+        {% if page.author or site.author %}
+        <div class="mt-10 p-6 bg-dark-surface rounded-2xl border border-dark-border">
+            <div class="flex items-start gap-4">
+                {% if site.author_image %}
+                <img src="{{ site.author_image | relative_url }}" alt="{{ site.author }}"
+                    class="w-14 h-14 rounded-full object-cover border-2 border-brand-light" loading="lazy">
+                {% else %}
+                <div
+                    class="w-14 h-14 rounded-full bg-brand-gradient flex items-center justify-center text-2xl font-bold text-white">
+                    {{ site.author | slice: 0 }}
+                </div>
+                {% endif %}
+                <div>
+                    <h4 class="font-semibold text-text-primary">{{ page.author | default: site.author }}</h4>
+                    <p class="text-text-secondary text-sm mt-1">{{ site.author_bio | default: "Content creator at
+                        Shubook Labs" }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Navigation - Fully Responsive with Lucide Icons -->
+        <div class="mt-10 pt-6 border-t border-dark-border">
+            <!-- Desktop/Tablet: Side by side -->
+            <div class="hidden sm:flex flex-wrap justify-between items-center gap-4">
+                {% if page.previous %}
+                <a href="{{ page.previous.url | relative_url }}"
+                    class="group flex items-center gap-2 text-text-secondary hover:text-brand-light transition-colors max-w-[45%] min-w-0">
+                    {% lucide_icon "chevron-left" size="18" class="shrink-0 group-hover:-translate-x-1 transition-transform" %}
+                    <span class="truncate text-sm md:text-base">{{ page.previous.title }}</span>
+                </a>
+                {% else %}
+                <span class="flex items-center gap-2 text-text-muted opacity-50 max-w-[45%] min-w-0">
+                    {% lucide_icon "chevron-left" size="18" class="shrink-0" %}
+                    <span class="truncate text-sm md:text-base">Previous</span>
+                </span>
+                {% endif %}
+
+                {% if page.next %}
+                <a href="{{ page.next.url | relative_url }}"
+                    class="group flex items-center gap-2 text-text-secondary hover:text-brand-light transition-colors max-w-[45%] min-w-0 text-right">
+                    <span class="truncate text-sm md:text-base">{{ page.next.title }}</span>
+                    {% lucide_icon "chevron-right" size="18" class="shrink-0 group-hover:translate-x-1 transition-transform" %}
+                </a>
+                {% else %}
+                <span class="flex items-center gap-2 text-text-muted opacity-50 max-w-[45%] min-w-0 text-right">
+                    <span class="truncate text-sm md:text-base">Next</span>
+                    {% lucide_icon "chevron-right" size="18" class="shrink-0" %}
+                </span>
+                {% endif %}
+            </div>
+
+            <!-- Mobile: Stacked layout -->
+            <div class="flex sm:hidden flex-col gap-3">
+                {% if page.previous %}
+                <a href="{{ page.previous.url | relative_url }}"
+                    class="group flex items-center gap-2 text-text-secondary hover:text-brand-light transition-colors w-full p-2 rounded-lg hover:bg-dark-surface/50">
+                    {% lucide_icon "chevron-left" size="16" class="shrink-0 group-hover:-translate-x-1 transition-transform" %}
+                    <span class="truncate text-sm">{{ page.previous.title }}</span>
+                </a>
+                {% else %}
+                <span class="flex items-center gap-2 text-text-muted opacity-50 w-full p-2">
+                    {% lucide_icon "chevron-left" size="16" class="shrink-0" %}
+                    <span class="truncate text-sm">Previous</span>
+                </span>
+                {% endif %}
+
+                <div class="border-t border-dark-border/50"></div>
+
+                {% if page.next %}
+                <a href="{{ page.next.url | relative_url }}"
+                    class="group flex items-center gap-2 text-text-secondary hover:text-brand-light transition-colors w-full p-2 rounded-lg hover:bg-dark-surface/50">
+                    <span class="truncate text-sm">{{ page.next.title }}</span>
+                    {% lucide_icon "chevron-right" size="16" class="shrink-0 group-hover:translate-x-1 transition-transform" %}
+                </a>
+                {% else %}
+                <span class="flex items-center gap-2 text-text-muted opacity-50 w-full p-2">
+                    <span class="truncate text-sm">Next</span>
+                    {% lucide_icon "chevron-right" size="16" class="shrink-0" %}
+                </span>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
