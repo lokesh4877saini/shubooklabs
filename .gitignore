@@ -2,3 +2,7 @@ node_modules
 _site
 .jekyll-cache
 Gemfile.lock
+.bundle
+package-lock.json
+.DS_Store
+vendor
