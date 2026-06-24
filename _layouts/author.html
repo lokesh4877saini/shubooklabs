@@ -2,207 +2,347 @@
 layout: default
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.author_name }} | {{ site.title }}</title>
-    {% seo %}
-    
-    <!-- Blog CSS -->
-    <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
-</head>
-<body class="bg-dark-bg text-text-primary antialiased">
+{% comment %}
+This layout is used by author pages.
+It expects the following variables to be set in the page frontmatter:
+- author_id: The author's ID (e.g., "shubham", "karan")
+- per_page: (optional) Number of posts per page, defaults to 2
+{% endcomment %}
 
-    <!-- Author Header -->
-    <header class="relative overflow-hidden bg-gradient-to-b from-dark-card/95 to-dark-card/60 border-b border-brand/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-            
-            <!-- Back to Blog -->
-            <a href="/blog"
-                class="inline-flex items-center gap-2 text-text-muted hover:text-brand-light transition-colors mb-6 text-sm">
-                {% lucide_icon "arrow-left" size="16" class="shrink-0" %}
-                Back to Blog
-            </a>
+{% assign author_id = page.author_id %}
+{% assign author_data = site.data.authors | where: "id", author_id | first %}
 
-            <!-- Author Info -->
-            <div class="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
-                <!-- Avatar -->
-                {% if page.author_data.avatar %}
-                <img src="{{ page.author_data.avatar | relative_url }}" 
-                     alt="{{ page.author_data.full_name }}"
-                     class="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-brand-light/30"
-                     loading="lazy">
-                {% else %}
-                <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-brand-gradient flex items-center justify-center text-4xl font-bold text-white border-4 border-brand-light/30">
-                    {{ page.author_data.name | slice: 0 }}
+<!-- If author_data is empty, try to get it from the page title or URL -->
+{% if author_data == nil %}
+{% assign author_id_from_url = page.url | split: '/' | last %}
+{% assign author_data = site.data.authors | where: "id", author_id_from_url | first %}
+{% if author_data %}
+{% assign author_id = author_id_from_url %}
+{% endif %}
+{% endif %}
+
+<!-- ============================================ -->
+<!-- MANUAL PAGINATION LOGIC                      -->
+<!-- ============================================ -->
+
+<!-- Get all posts for this author -->
+{% assign all_author_posts = site.posts | where: "author", author_id | sort: 'date' | reverse %}
+
+<!-- Pagination settings -->
+{% assign per_page = page.per_page | default: 2 %}
+{% assign total_posts = all_author_posts.size %}
+{% assign total_pages = total_posts | divided_by: per_page %}
+{% assign remainder = total_posts | modulo: per_page %}
+{% if remainder > 0 %}
+{% assign total_pages = total_pages | plus: 1 %}
+{% endif %}
+{% if total_pages == 0 %}
+{% assign total_pages = 1 %}
+{% endif %}
+
+<!-- Get current page from URL -->
+{% assign current_page = 1 %}
+{% assign url_parts = page.url | split: '/' %}
+{% for part in url_parts %}
+{% if part == 'page' %}
+{% assign next_index = forloop.index %}
+{% assign page_num = url_parts[next_index] | plus: 0 %}
+{% if page_num > 0 %}
+{% assign current_page = page_num %}
+{% endif %}
+{% endif %}
+{% endfor %}
+
+<!-- Ensure current_page is within bounds -->
+{% if current_page > total_pages %}
+{% assign current_page = total_pages %}
+{% endif %}
+{% if current_page < 1 %} {% assign current_page=1 %} {% endif %} <!-- Get posts for current page -->
+    {% assign start_index = current_page | minus: 1 | times: per_page %}
+    {% assign end_index = start_index | plus: per_page %}
+    {% if end_index > total_posts %}
+    {% assign end_index = total_posts %}
+    {% endif %}
+
+    {% assign page_posts = "" | split: "" %}
+    {% if total_posts > 0 %}
+    {% assign page_posts = all_author_posts | slice: start_index, per_page %}
+    {% endif %}
+
+    <!-- Build the base URL for pagination links -->
+    {% assign base_url = page.url | replace: 'index.html', '' | replace: 'page/2/', '' | replace: 'page/3/', '' |
+    replace: 'page/4/', '' | replace: 'page/5/', '' %}
+    {% if base_url == '' %}
+    {% assign base_url = '/' %}
+    {% endif %}
+    {% if base_url contains '//' %}
+    {% assign base_url = base_url | replace: '//', '/' %}
+    {% endif %}
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% if author_data %}Posts by {{ author_data.full_name }}{% else %}Author Not Found{% endif %} | {{
+            site.title }}</title>
+        {% seo %}
+        <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
+    </head>
+
+    <body class="bg-dark-bg text-text-primary antialiased">
+
+        <!-- Author Header -->
+        <header
+            class="relative overflow-hidden bg-gradient-to-b from-dark-card/95 to-dark-card/60 border-b border-brand/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+
+                <!-- Breadcrumb Navigation with Lucide Icons -->
+                <div class="flex items-center gap-2 text-sm text-text-muted mb-6">
+                    <!-- Home -->
+                    <a href="/" class="hover:text-brand-light transition-colors" aria-label="Home">
+                        {% lucide_icon "home" size="16" class="text-text-muted hover:text-brand-light transition-colors"
+                        %}
+                    </a>
+
+                    <!-- Separator -->
+                    {% lucide_icon "chevron-right" size="16" class="text-text-muted/50" %}
+
+                    <!-- Blog -->
+                    <a href="/blog" class="hover:text-brand-light transition-colors">
+                        Blog
+                    </a>
+
+                    <!-- Separator -->
+                    {% lucide_icon "chevron-right" size="16" class="text-text-muted/50" %}
+
+                    <!-- Author (Current) -->
+                    <span class="text-brand-light font-medium">{{ author_data.name }}</span>
+
+                    <!-- Page number (if on page > 1) -->
+                    {% if current_page > 1 %}
+                    <!-- Separator -->
+                    {% lucide_icon "chevron-right" size="16" class="text-text-muted/50" %}
+
+                    <!-- Page -->
+                    <span class="text-text-muted">Page {{ current_page }}</span>
+                    {% endif %}
                 </div>
-                {% endif %}
 
-                <div class="text-center md:text-left">
-                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">
-                        {{ page.author_data.full_name }}
-                    </h1>
-                    <p class="text-brand-light text-lg mb-2">{{ page.author_data.title }}</p>
-                    <p class="text-text-secondary max-w-2xl">{{ page.author_data.bio }}</p>
-                    
-                    <!-- Social Links -->
-                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 mt-4">
-                        {% if page.author_data.social.twitter %}
-                        <a href="https://twitter.com/{{ page.author_data.social.twitter }}" 
-                           target="_blank" rel="noopener noreferrer"
-                           class="text-text-muted hover:text-brand-light transition-colors">
-                            {% lucide_icon "twitter" size="18" %}
-                        </a>
-                        {% endif %}
-                        
-                        {% if page.author_data.social.linkedin %}
-                        <a href="https://linkedin.com/in/{{ page.author_data.social.linkedin }}" 
-                           target="_blank" rel="noopener noreferrer"
-                           class="text-text-muted hover:text-brand-light transition-colors">
-                            {% lucide_icon "linkedin" size="18" %}
-                        </a>
-                        {% endif %}
-                        
-                        {% if page.author_data.social.instagram %}
-                        <a href="https://instagram.com/{{ page.author_data.social.instagram }}" 
-                           target="_blank" rel="noopener noreferrer"
-                           class="text-text-muted hover:text-brand-light transition-colors">
-                            {% lucide_icon "instagram" size="18" %}
-                        </a>
-                        {% endif %}
-                        
-                        {% if page.author_data.website %}
-                        <a href="{{ page.author_data.website }}" 
-                           target="_blank" rel="noopener noreferrer"
-                           class="text-text-muted hover:text-brand-light transition-colors">
-                            {% lucide_icon "globe" size="18" %}
-                        </a>
-                        {% endif %}
-                    </div>
-                    
-                    <!-- DYNAMIC Post Count - Calculated automatically -->
-                    <div class="mt-4 flex items-center justify-center md:justify-start gap-4 text-sm text-text-muted">
-                        <span class="flex items-center gap-1">
-                            {% lucide_icon "file-text" size="16" %}
-                            {{ page.posts.size }} Posts
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Author Posts - DYNAMIC -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h2 class="text-2xl font-bold text-white mb-8">Posts by {{ page.author_data.name }}</h2>
-        
-        {% if page.posts.size > 0 %}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {% for post in page.posts %}
-            <article class="group bg-dark-card rounded-2xl border border-dark-border overflow-hidden hover:border-brand-light/50 transition-all duration-300 hover:shadow-glow hover:-translate-y-1">
-                
-                {% if post.image %}
-                <a href="{{ post.url | relative_url }}" class="block overflow-hidden">
-                    <img src="{{ post.image | relative_url }}" 
-                         alt="{{ post.title }}" 
-                         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-                         loading="lazy">
-                </a>
-                {% endif %}
-
-                <div class="p-6">
-                    <!-- Categories -->
-                    {% if post.categories %}
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        {% for category in post.categories limit:2 %}
-                        <span class="text-xs px-2 py-1 bg-dark-surface text-brand-light rounded-full border border-dark-border">
-                            {{ category }}
-                        </span>
-                        {% endfor %}
+                <!-- Author Info -->
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
+                    <!-- Avatar -->
+                    {% if author_data.avatar %}
+                    <img src="{{ author_data.avatar | relative_url }}" alt="{{ author_data.full_name }}"
+                        class="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-brand-light/30"
+                        loading="lazy">
+                    {% else %}
+                    <div
+                        class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-brand-gradient flex items-center justify-center text-4xl font-bold text-white border-4 border-brand-light/30">
+                        {{ author_data.name | slice: 0 | upcase }}
                     </div>
                     {% endif %}
 
-                    <!-- Title -->
-                    <h3 class="text-xl font-bold mb-2">
-                        <a href="{{ post.url | relative_url }}" class="hover:text-brand-light transition-colors">
-                            {{ post.title }}
-                        </a>
-                    </h3>
+                    <div class="text-center md:text-left">
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">
+                            {{ author_data.full_name }}
+                        </h1>
+                        <p class="text-brand-light text-lg mb-2">{{ author_data.title }}</p>
+                        <p class="text-text-secondary max-w-2xl">{{ author_data.bio }}</p>
 
-                    <!-- Excerpt -->
-                    <p class="text-text-secondary text-sm line-clamp-3 mb-4">
-                        {{ post.excerpt | strip_html | truncatewords: 25 }}
-                    </p>
+                        <!-- Social Links -->
+                        <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 mt-4">
+                            {% if author_data.social.twitter %}
+                            <a href="https://twitter.com/{{ author_data.social.twitter }}" target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-text-muted hover:text-brand-light transition-colors">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                </svg>
+                            </a>
+                            {% endif %}
 
-                    <!-- Meta -->
-                    <div class="flex items-center justify-between text-xs text-text-muted pt-4 border-t border-dark-border">
-                        <div class="flex items-center gap-2">
-                            <time datetime="{{ post.date | date_to_xmlschema }}">
-                                {{ post.date | date: "%b %d, %Y" }}
-                            </time>
+                            {% if author_data.social.linkedin %}
+                            <a href="https://linkedin.com/in/{{ author_data.social.linkedin }}" target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-text-muted hover:text-brand-light transition-colors">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                </svg>
+                            </a>
+                            {% endif %}
+
+                            {% if author_data.social.instagram %}
+                            <a href="https://instagram.com/{{ author_data.social.instagram }}" target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-text-muted hover:text-brand-light transition-colors">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                                </svg>
+                            </a>
+                            {% endif %}
+
+                            {% if author_data.website %}
+                            <a href="{{ author_data.website }}" target="_blank" rel="noopener noreferrer"
+                                class="text-text-muted hover:text-brand-light transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
+                                </svg>
+                            </a>
+                            {% endif %}
                         </div>
-                        {% if post.read_time %}
-                        <span>{{ post.read_time }} min read</span>
-                        {% endif %}
+
+                        <!-- Post Count -->
+                        <div
+                            class="mt-4 flex items-center justify-center md:justify-start gap-4 text-sm text-text-muted">
+                            <span class="flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                                </svg>
+                                {{ total_posts }} Posts
+                            </span>
+                            {% if total_pages > 1 %}
+                            <span>•</span>
+                            <span>Page {{ current_page }} of {{ total_pages }}</span>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
-            </article>
-            {% endfor %}
-        </div>
+            </div>
+        </header>
 
-        <!-- Pagination -->
-        {% if paginator.total_pages > 1 %}
-        <nav class="mt-12 flex justify-center items-center gap-2" aria-label="Blog pagination">
-            {% if paginator.previous_page %}
-            <a href="{{ paginator.previous_page_path | relative_url }}" 
-               class="px-4 py-2 bg-dark-card border border-dark-border rounded-lg text-text-secondary hover:text-brand-light hover:border-brand-light transition-all">
-                {% lucide_icon "chevron-left" size="16" %}
-                Previous
-            </a>
-            {% else %}
-            <span class="px-4 py-2 bg-dark-surface border border-dark-border rounded-lg text-text-muted cursor-not-allowed opacity-50">
-                {% lucide_icon "chevron-left" size="16" %}
-                Previous
-            </span>
-            {% endif %}
+        <!-- POST CONTENT - This renders the page content -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-            <div class="flex gap-1" aria-label="Page numbers">
-                {% for page_num in (1..paginator.total_pages) %}
-                {% if page_num == paginator.page %}
-                <span class="px-4 py-2 bg-brand-DEFAULT text-white rounded-lg" aria-current="page">{{ page_num }}</span>
-                {% else %}
-                <a href="{% if page_num == 1 %}{{ '/blog/author/' | append: page.author_id | relative_url }}{% else %}{{ '/blog/author/' | append: page.author_id | append: '/page/' | append: page_num | relative_url }}{% endif %}" 
-                   class="px-4 py-2 bg-dark-card border border-dark-border rounded-lg text-text-secondary hover:text-brand-light hover:border-brand-light transition-all"
-                   aria-label="Page {{ page_num }}">
-                    {{ page_num }}
-                </a>
-                {% endif %}
+            <!-- Debug Info (remove in production) -->
+            <!-- <div style="background: #1a1a2e; color: #fff; padding: 15px; margin: 0 0 20px 0; border-radius: 8px; border-left: 4px solid #00ff88; font-family: monospace; font-size: 14px;">
+            <p><strong>✅ Manual Pagination Working:</strong></p>
+            <p>Author: {{ author_id }}</p>
+            <p>Total Posts: {{ total_posts }}</p>
+            <p>Posts per page: {{ per_page }}</p>
+            <p>Total Pages: {{ total_pages }}</p>
+            <p>Current Page: {{ current_page }}</p>
+            <p>Posts on this page: {{ page_posts.size }}</p>
+            <p>Base URL: {{ base_url }}</p>
+        </div> -->
+
+            <!-- Posts Grid -->
+            {% if page_posts.size > 0 %}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for post in page_posts %}
+                <article
+                    class="group bg-dark-card rounded-2xl border border-dark-border overflow-hidden hover:border-brand-light/50 transition-all duration-300 hover:shadow-glow hover:-translate-y-1">
+
+                    {% if post.image %}
+                    <a href="{{ post.url | relative_url }}" class="block overflow-hidden">
+                        <img src="{{ post.image | relative_url }}" alt="{{ post.title }}"
+                            class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                            loading="lazy">
+                    </a>
+                    {% endif %}
+
+                    <div class="p-6">
+                        {% if post.categories %}
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            {% for category in post.categories limit:2 %}
+                            <span
+                                class="text-xs px-2 py-1 bg-dark-surface text-brand-light rounded-full border border-dark-border">
+                                {{ category }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        <h2 class="text-xl font-bold mb-2">
+                            <a href="{{ post.url | relative_url }}" class="hover:text-brand-light transition-colors">
+                                {{ post.title }}
+                            </a>
+                        </h2>
+
+                        <p class="text-text-secondary text-sm line-clamp-3 mb-4">
+                            {{ post.excerpt | strip_html | truncatewords: 25 }}
+                        </p>
+
+                        <!-- Post Meta -->
+                        <div
+                            class="flex items-center justify-between text-xs text-text-muted pt-4 border-t border-dark-border">
+                            <div class="flex items-center gap-2">
+                                <span class="text-text-primary text-sm">{{ author_data.name }}</span>
+                                <span>•</span>
+                                <time datetime="{{ post.date | date_to_xmlschema }}">
+                                    {{ post.date | date: "%b %d, %Y" }}
+                                </time>
+                            </div>
+                            {% if post.read_time %}
+                            <span>{{ post.read_time }} min read</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </article>
                 {% endfor %}
             </div>
 
-            {% if paginator.next_page %}
-            <a href="{{ paginator.next_page_path | relative_url }}" 
-               class="px-4 py-2 bg-dark-card border border-dark-border rounded-lg text-text-secondary hover:text-brand-light hover:border-brand-light transition-all">
-                Next
-                {% lucide_icon "chevron-right" size="16" %}
-            </a>
-            {% else %}
-            <span class="px-4 py-2 bg-dark-surface border border-dark-border rounded-lg text-text-muted cursor-not-allowed opacity-50">
-                Next
-                {% lucide_icon "chevron-right" size="16" %}
-            </span>
+            <!-- Pagination -->
+            {% if total_pages > 1 %}
+            <nav class="mt-12 flex justify-center items-center gap-2 flex-wrap" aria-label="Blog pagination">
+                <!-- Previous Button -->
+                {% if current_page > 1 %}
+                <a href="{% if current_page == 2 %}{{ base_url }}{% else %}{{ base_url }}page/{{ current_page | minus: 1 }}/{% endif %}"
+                    class="px-4 py-2 bg-dark-card border border-dark-border rounded-lg text-text-secondary hover:text-brand-light hover:border-brand-light transition-all">
+                    <span aria-hidden="true">←</span> Previous
+                </a>
+                {% else %}
+                <span
+                    class="px-4 py-2 bg-dark-surface border border-dark-border rounded-lg text-text-muted cursor-not-allowed opacity-50">
+                    <span aria-hidden="true">←</span> Previous
+                </span>
+                {% endif %}
+
+                <!-- Page Numbers -->
+                <div class="flex gap-1 flex-wrap" aria-label="Page numbers">
+                    {% for page_num in (1..total_pages) %}
+                    {% if page_num == current_page %}
+                    <span class="px-4 py-2 bg-brand-DEFAULT text-white rounded-lg" aria-current="page">{{ page_num
+                        }}</span>
+                    {% else %}
+                    <a href="{% if page_num == 1 %}{{ base_url }}{% else %}{{ base_url }}page/{{ page_num }}/{% endif %}"
+                        class="px-4 py-2 bg-dark-card border border-dark-border rounded-lg text-text-secondary hover:text-brand-light hover:border-brand-light transition-all"
+                        aria-label="Page {{ page_num }}">
+                        {{ page_num }}
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+
+                <!-- Next Button -->
+                {% if current_page < total_pages %} <a href="{{ base_url }}page/{{ current_page | plus: 1 }}/"
+                    class="px-4 py-2 bg-dark-card border border-dark-border rounded-lg text-text-secondary hover:text-brand-light hover:border-brand-light transition-all">
+                    Next <span aria-hidden="true">→</span>
+                    </a>
+                    {% else %}
+                    <span
+                        class="px-4 py-2 bg-dark-surface border border-dark-border rounded-lg text-text-muted cursor-not-allowed opacity-50">
+                        Next <span aria-hidden="true">→</span>
+                    </span>
+                    {% endif %}
+            </nav>
             {% endif %}
-        </nav>
-        {% endif %}
 
-        {% else %}
-        <div class="text-center py-16">
-            <p class="text-text-secondary">No posts found by this author.</p>
-        </div>
-        {% endif %}
-    </main>
+            {% else %}
+            <div class="text-center py-16">
+                <p class="text-text-secondary">No posts found by this author.</p>
+                <p class="text-text-muted text-sm mt-2">Author: {{ author_id }}</p>
+            </div>
+            {% endif %}
 
-</body>
-</html>
+        </main>
+
+    </body>
+
+    </html>
