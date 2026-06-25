@@ -295,42 +295,68 @@
   }
   
   /* ============================================
-     RESPONSIVE
+     RESPONSIVE - Clean mobile TOC
      ============================================ */
   @media (max-width: 1023px) {
     .blog-toc-wrapper {
       margin-bottom: 2rem;
+      padding: 1.25rem;
+    }
+    
+    .blog-toc-scroll {
+      max-height: 320px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+    
+    .blog-toc-list {
+      display: block;
+    }
+    
+    .blog-toc-item {
+      margin-bottom: 0.125rem;
+    }
+    
+    .blog-toc-link {
+      padding: 0.4rem 0.75rem;
+      font-size: 0.875rem;
+      border-left: 2px solid transparent;
+      border-radius: 0.25rem;
+      background: transparent;
+    }
+    
+    .blog-toc-link:hover {
+      background: rgba(96, 165, 250, 0.06);
+      border-left-color: #60A5FA;
+    }
+    
+    .blog-toc-sublist {
+      padding-left: 1.25rem;
+    }
+    
+    .blog-toc-subitem .blog-toc-link {
+      font-size: 0.8125rem;
+      padding: 0.3rem 0.75rem;
+    }
+  }
+  
+  /* Small mobile phones */
+  @media (max-width: 480px) {
+    .blog-toc-wrapper {
       padding: 1rem;
     }
     
     .blog-toc-scroll {
-      max-height: 300px;
-    }
-    
-    .blog-toc-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.25rem;
-    }
-    
-    .blog-toc-item {
-      margin-bottom: 0;
-    }
-    
-    .blog-toc-sublist {
-      flex-basis: 100%;
-      padding-left: 1rem;
+      max-height: 280px;
     }
     
     .blog-toc-link {
-      padding: 0.25rem 0.75rem;
+      padding: 0.35rem 0.65rem;
       font-size: 0.8125rem;
-      background: rgba(31, 41, 55, 0.3);
-      border: 1px solid rgba(55, 65, 81, 0.2);
-      border-radius: 0.25rem;
     }
     
-    .blog-toc-link:hover {
-      background: rgba(96, 165, 250, 0.1);
+    .blog-toc-subitem .blog-toc-link {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.65rem;
     }
   }

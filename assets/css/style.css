@@ -1170,6 +1170,14 @@ body {
   height: 100%;
 }
 
+.h-\[15px\] {
+  height: 15px;
+}
+
+.h-\[35px\] {
+  height: 35px;
+}
+
 .max-h-\[400px\] {
   max-height: 400px;
 }
