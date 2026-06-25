@@ -879,11 +879,6 @@ body {
   margin-bottom: 1.25rem;
 }
 
-.my-6 {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
 .-ml-2 {
   margin-left: -0.5rem;
 }
@@ -1009,10 +1004,6 @@ body {
 
 .inline-flex {
   display: inline-flex;
-}
-
-.table {
-  display: table;
 }
 
 .grid {
@@ -2318,10 +2309,6 @@ body {
 
 .pb-16 {
   padding-bottom: 4rem;
-}
-
-.pb-2 {
-  padding-bottom: 0.5rem;
 }
 
 .pb-20 {
