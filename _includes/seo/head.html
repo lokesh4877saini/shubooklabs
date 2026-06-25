@@ -1,6 +1,13 @@
 {% include seo/og-tags.html %}
 {% include seo/meta-tags.html %}
 {% include seo/favicon.html %}
-{% include seo/schema/local-business.html %}
+
 {% include seo/schema/website.html %}
+{% include seo/schema/local-business.html %}
+{% include seo/schema/webpage.html %}
+
+{% if page.faq_key %}
+{% include seo/schema/faq-schema.html %}
+{% endif %}
+
 {% include seo/hreflang.html %}
