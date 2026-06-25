@@ -667,18 +667,6 @@ body {
   background-color: rgb(37 211 102 / var(--tw-bg-opacity, 1));
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
 .pointer-events-none {
   pointer-events: none;
 }
@@ -1728,11 +1716,6 @@ body {
   border-color: rgb(59 130 246 / var(--tw-border-opacity, 1));
 }
 
-.border-brand-light {
-  --tw-border-opacity: 1;
-  border-color: rgb(96 165 250 / var(--tw-border-opacity, 1));
-}
-
 .border-brand-light\/30 {
   border-color: rgb(96 165 250 / 0.3);
 }
@@ -1977,10 +1960,6 @@ body {
   background-image: linear-gradient(to top, var(--tw-gradient-stops));
 }
 
-.bg-hero-gradient {
-  background-image: linear-gradient(180deg, #0B1120 0%, #111827 60%, #0B1120 100%);
-}
-
 .from-black {
   --tw-gradient-from: #000 var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position);
@@ -2026,12 +2005,6 @@ body {
 .from-brand-dark {
   --tw-gradient-from: #2563EB var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(37 99 235 / 0) var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
-.from-brand-light {
-  --tw-gradient-from: #60A5FA var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(96 165 250 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
@@ -2559,6 +2532,10 @@ body {
   color: rgb(148 163 184 / var(--tw-text-opacity, 1));
 }
 
+.text-text-muted\/50 {
+  color: rgb(148 163 184 / 0.5);
+}
+
 .text-text-primary {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
@@ -2593,10 +2570,6 @@ body {
 .text-yellow-400 {
   --tw-text-opacity: 1;
   color: rgb(250 204 21 / var(--tw-text-opacity, 1));
-}
-
-.text-text-muted\/50 {
-  color: rgb(148 163 184 / 0.5);
 }
 
 .line-through {
@@ -3004,6 +2977,10 @@ body {
   color: rgb(96 165 250 / var(--tw-text-opacity, 1));
 }
 
+.hover\:text-brand-light\/80:hover {
+  color: rgb(96 165 250 / 0.8);
+}
+
 .hover\:text-dark-bg:hover {
   --tw-text-opacity: 1;
   color: rgb(11 17 32 / var(--tw-text-opacity, 1));
@@ -3012,10 +2989,6 @@ body {
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-
-.hover\:text-brand-light\/80:hover {
-  color: rgb(96 165 250 / 0.8);
 }
 
 .hover\:underline:hover {
