@@ -127,14 +127,14 @@ pagination:
     {% if page_posts.size > 0 %}
       
       <!-- Debug Info -->
-      <div style="background: #1a1a2e; color: #fff; padding: 15px; margin: 0 0 20px 0; border-radius: 8px; border-left: 4px solid #00ff88; font-family: monospace; font-size: 14px;">
+      <!-- <div style="background: #1a1a2e; color: #fff; padding: 15px; margin: 0 0 20px 0; border-radius: 8px; border-left: 4px solid #00ff88; font-family: monospace; font-size: 14px;">
         <p><strong>✅ WORKING SOLUTION:</strong></p>
         <p>Total Shubham Posts: {{ total_posts }}</p>
         <p>Total Pages: {{ total_pages }}</p>
         <p>Current Page: {{ current_page }}</p>
         <p>Posts on this page: {{ page_posts.size }}</p>
       </div>
-      
+       -->
       <!-- Posts Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {% for post in page_posts %}
