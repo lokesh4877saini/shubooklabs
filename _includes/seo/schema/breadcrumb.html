@@ -9,18 +9,13 @@
       "position": 1,
       "name": "Home",
       "item": "{{ site.url }}"
-    }
-    {% if page.breadcrumb_items %}
-      {% for item in page.breadcrumb_items %}
-        ,
-        {
-          "@type": "ListItem",
-          "position": {{ forloop.index | plus: 1 }},
-          "name": "{{ item.name }}",
-          "item": "{{ item.url | absolute_url }}"
-        }
-      {% endfor %}
-    {% endif %}
+    }{% if page.breadcrumb_items %}{% for item in page.breadcrumb_items %},
+    {
+      "@type": "ListItem",
+      "position": {{ forloop.index | plus: 1 }},
+      "name": "{{ item.name }}",
+      "item": "{{ item.url | absolute_url }}"
+    }{% endfor %}{% endif %}
   ]
 }
 </script>

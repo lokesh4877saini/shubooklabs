@@ -7,7 +7,7 @@
     background: rgba(17, 24, 39, 0.6);
     border: 1px solid rgba(55, 65, 81, 0.3);
     border-radius: 0.75rem;
-    padding: 1.5rem;
+    padding: 0.5rem;
   }
   
   .blog-toc-title {
@@ -300,7 +300,7 @@
   @media (max-width: 1023px) {
     .blog-toc-wrapper {
       margin-bottom: 2rem;
-      padding: 1.25rem;
+      padding: 0.25rem;
     }
     
     .blog-toc-scroll {
@@ -343,7 +343,7 @@
   /* Small mobile phones */
   @media (max-width: 480px) {
     .blog-toc-wrapper {
-      padding: 1rem;
+      padding: 0.5rem;
     }
     
     .blog-toc-scroll {
