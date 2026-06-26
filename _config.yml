@@ -46,7 +46,7 @@ pagination:
   enabled: true
   collection: posts
   per_page: 9
-  permalink: "/blog/page/:num/"
+  permalink: "/page/:num/"
 
 # ============================================ #
 # DEFAULTS FOR FRONTMATTER                     #

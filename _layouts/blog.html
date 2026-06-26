@@ -1,0 +1,134 @@
+---
+layout: default
+---
+<!-- Main Content -->
+<main class="p-6" role="main">
+
+    <!-- Blog Content -->
+    <article class="blog-content" role="article">
+        {{ content }}
+    </article>
+
+    <!-- Tags -->
+    {% if page.tags %}
+    <div class="mt-12 pt-6 border-t border-dark-border">
+        <div class="flex flex-wrap gap-2">
+            {% for tag in page.tags %}
+            <span class="px-3 py-1 bg-dark-surface text-text-secondary text-sm rounded-full border border-dark-border">
+                #{{ tag }}
+            </span>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Author -->
+    {% assign author_data = site.data.authors | where: "id", page.author | first %}
+    {% if author_data %}
+    <div class="mt-12 p-6 bg-dark-surface rounded-2xl border border-dark-border" role="complementary"
+        aria-label="Author information">
+        <div class="flex items-start gap-4">
+            {% if author_data.avatar %}
+            <img src="{{ author_data.avatar | relative_url }}" alt="{{ author_data.full_name }}" width="56" height="56"
+                class="rounded-full object-cover border-2 border-brand-light/30 flex-shrink-0" loading="lazy">
+            {% else %}
+            <div class="w-14 h-14 rounded-full bg-brand-gradient flex items-center justify-center text-2xl font-bold text-white flex-shrink-0 border-2 border-brand-light/30"
+                aria-hidden="true">
+                {{ author_data.name | slice: 0 | upcase }}
+            </div>
+            {% endif %}
+
+            <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-3 flex-wrap">
+                    <h3 class="font-semibold text-text-primary text-lg">{{ author_data.full_name }}</h3>
+                    <span class="text-xs text-brand-light">{{ author_data.title }}</span>
+                </div>
+                <p class="text-text-secondary text-sm mt-2">{{ author_data.bio }}</p>
+
+                {% if author_data.social %}
+                <div class="flex items-center gap-3 mt-3">
+                    {% if author_data.social.twitter %}
+                    <a href="https://twitter.com/{{ author_data.social.twitter }}" target="_blank"
+                        rel="noopener noreferrer" class="text-text-muted hover:text-brand-light transition-colors"
+                        aria-label="Twitter profile of {{ author_data.full_name }}">
+                        {% lucide_icon "twitter" size="18" aria-hidden="true" %}
+                    </a>
+                    {% endif %}
+
+                    {% if author_data.social.linkedin %}
+                    <a href="https://linkedin.com/in/{{ author_data.social.linkedin }}" target="_blank"
+                        rel="noopener noreferrer" class="text-text-muted hover:text-brand-light transition-colors"
+                        aria-label="LinkedIn profile of {{ author_data.full_name }}">
+                        {% lucide_icon "linkedin" size="18" aria-hidden="true" %}
+                    </a>
+                    {% endif %}
+
+                    {% if author_data.social.instagram %}
+                    <a href="https://instagram.com/{{ author_data.social.instagram }}" target="_blank"
+                        rel="noopener noreferrer" class="text-text-muted hover:text-brand-light transition-colors"
+                        aria-label="Instagram profile of {{ author_data.full_name }}">
+                        {% lucide_icon "instagram" size="18" aria-hidden="true" %}
+                    </a>
+                    {% endif %}
+
+                    {% if author_data.social.youtube %}
+                    <a href="https://youtube.com/{{ author_data.social.youtube }}" target="_blank"
+                        rel="noopener noreferrer" class="text-text-muted hover:text-brand-light transition-colors"
+                        aria-label="YouTube channel of {{ author_data.full_name }}">
+                        {% lucide_icon "youtube" size="18" aria-hidden="true" %}
+                    </a>
+                    {% endif %}
+
+                    {% if author_data.website %}
+                    <a href="{{ author_data.website }}" target="_blank" rel="noopener noreferrer"
+                        class="text-text-muted hover:text-brand-light transition-colors"
+                        aria-label="Website of {{ author_data.full_name }}">
+                        {% lucide_icon "globe" size="18" aria-hidden="true" %}
+                    </a>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <a href="/blog/author/{{ author_data.id }}/"
+                    class="inline-flex items-center gap-1 text-sm text-brand-light hover:text-brand-light/80 transition-colors mt-3">
+                    View all posts by {{ author_data.name }}
+                    {% lucide_icon "arrow-right" size="16" aria-hidden="true" %}
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <nav class="mt-10 pt-6 border-t border-dark-border" aria-label="Post navigation">
+        <div class="flex flex-wrap justify-between items-center gap-4">
+            {% if page.previous %}
+            <a href="{{ page.previous.url | relative_url }}"
+                class="group flex items-center gap-2 text-text-secondary hover:text-brand-light transition-colors max-w-[45%] min-w-0"
+                aria-label="Previous post: {{ page.previous.title }}">
+                {% lucide_icon "chevron-left" size="18" class="shrink-0 group-hover:-translate-x-1 transition-transform"
+                aria-hidden="true" %}
+                <span class="truncate text-sm">{{ page.previous.title }}</span>
+            </a>
+            {% else %}
+            <span class="flex items-center gap-2 text-text-muted max-w-[45%] min-w-0" aria-hidden="true">
+                {% lucide_icon "chevron-left" size="18" class="shrink-0" aria-hidden="true" %}
+                <span class="truncate text-sm">Previous</span>
+            </span>
+            {% endif %}
+
+            {% if page.next %}
+            <a href="{{ page.next.url | relative_url }}"
+                class="group flex items-center gap-2 text-text-secondary hover:text-brand-light transition-colors max-w-[45%] min-w-0 text-right"
+                aria-label="Next post: {{ page.next.title }}">
+                <span class="truncate text-sm">{{ page.next.title }}</span>
+                {% lucide_icon "chevron-right" size="18" class="shrink-0 group-hover:translate-x-1 transition-transform"
+                aria-hidden="true" %}
+            </a>
+            {% else %}
+            <span class="flex items-center gap-2 text-text-muted max-w-[45%] min-w-0 text-right" aria-hidden="true">
+                <span class="truncate text-sm">Next</span>
+                {% lucide_icon "chevron-right" size="18" class="shrink-0" aria-hidden="true" %}
+            </span>
+            {% endif %}
+        </div>
+    </nav>
+</main>

@@ -1,0 +1,209 @@
+---
+layout: default
+---
+
+{% assign author_id = page.author_id %}
+
+{% if author_id == nil %}
+  {% assign url_parts = page.url | split: '/' %}
+  {% assign author_id = url_parts | last %}
+{% endif %}
+
+{% assign author_data = site.data.authors | where: "id", author_id | first %}
+
+<!-- MANUAL FILTER: Get only posts for this author -->
+{% assign all_author_posts = site.posts | where: "author", author_id | sort: 'date' | reverse %}
+{% assign total_posts = all_author_posts.size %}
+
+<!-- READ per_page FROM FRONTMATTER -->
+{% assign per_page = page.per_page | default: 2 %}
+
+<!-- Calculate total pages -->
+{% assign total_pages = total_posts | divided_by: per_page %}
+{% assign remainder = total_posts | modulo: per_page %}
+{% if remainder > 0 %}
+  {% assign total_pages = total_pages | plus: 1 %}
+{% endif %}
+{% if total_pages == 0 %}
+  {% assign total_pages = 1 %}
+{% endif %}
+
+<!-- Get current page -->
+{% assign current_page = 1 %}
+{% assign url_parts = page.url | split: '/' %}
+{% for part in url_parts %}
+  {% if part == 'page' %}
+    {% assign next_index = forloop.index %}
+    {% assign page_num = url_parts[next_index] | plus: 0 %}
+    {% if page_num > 0 %}
+      {% assign current_page = page_num %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+<!-- Ensure current_page is within bounds -->
+{% if current_page > total_pages %}
+  {% assign current_page = total_pages %}
+{% endif %}
+{% if current_page < 1 %}
+  {% assign current_page = 1 %}
+{% endif %}
+
+<!-- Get posts for current page -->
+{% assign start_index = current_page | minus: 1 | times: per_page %}
+{% assign page_posts = all_author_posts | slice: start_index, per_page %}
+
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  
+  <!-- Author Header -->
+  {% if author_data %}
+  <header class="mb-12">
+    <div class="flex items-center gap-4 mb-4">
+      <a href="/blog" class="text-text-muted hover:text-brand-light transition-colors text-sm">
+        ← Back to Blog
+      </a>
+    </div>
+    
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+      {% if author_data.avatar %}
+        <img src="{{ author_data.avatar | relative_url }}" alt="{{ author_data.full_name }}"
+          class="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-brand-light/30">
+      {% else %}
+        <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-brand-gradient flex items-center justify-center text-4xl font-bold text-white border-4 border-brand-light/30">
+          {{ author_data.name | slice: 0 | upcase }}
+        </div>
+      {% endif %}
+      
+      <div class="text-center md:text-left">
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">{{ author_data.full_name }}</h1>
+        <p class="text-brand-light text-lg mb-2">{{ author_data.title }}</p>
+        <p class="text-text-secondary max-w-2xl">{{ author_data.bio }}</p>
+        
+        <div class="mt-4 text-sm text-text-muted">
+          {{ total_posts }} posts
+          {% if total_pages > 1 %}
+            • Page {{ current_page }} of {{ total_pages }}
+          {% endif %}
+          • Showing {{ per_page }} per page
+        </div>
+      </div>
+    </div>
+  </header>
+  {% else %}
+    <div class="text-center py-16">
+      <p class="text-text-secondary">Author not found. Author ID: {{ author_id }}</p>
+    </div>
+  {% endif %}
+
+  <!-- Posts Grid -->
+  {% if page_posts.size > 0 %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for post in page_posts %}
+        <article class="bg-dark-card rounded-2xl border border-dark-border overflow-hidden hover:border-brand-light/50 transition-all duration-300 hover:shadow-glow hover:-translate-y-1">
+          
+          {% if post.image %}
+            <a href="{{ post.url | relative_url }}" class="block overflow-hidden">
+              <img src="{{ post.image | relative_url }}" alt="{{ post.title }}"
+                class="w-full h-48 object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+            </a>
+          {% endif %}
+
+          <div class="p-6">
+            {% if post.categories %}
+              <div class="flex flex-wrap gap-2 mb-3">
+                {% for category in post.categories limit:2 %}
+                  <span class="text-xs px-2 py-1 bg-dark-surface text-brand-light rounded-full border border-dark-border">
+                    {{ category }}
+                  </span>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            <h2 class="text-xl font-bold mb-2">
+              <a href="{{ post.url | relative_url }}" class="hover:text-brand-light transition-colors">
+                {{ post.title }}
+              </a>
+            </h2>
+
+            <p class="text-text-secondary text-sm line-clamp-3 mb-4">
+              {{ post.excerpt | strip_html | truncatewords: 25 }}
+            </p>
+
+            <div class="flex items-center justify-between text-xs text-text-muted pt-4 border-t border-dark-border">
+              <time datetime="{{ post.date | date_to_xmlschema }}">
+                {{ post.date | date: "%b %d, %Y" }}
+              </time>
+              {% if post.read_time %}
+                <span>{{ post.read_time }} min read</span>
+              {% endif %}
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if total_pages > 1 %}
+      <nav class="mt-12 flex justify-center items-center gap-2" aria-label="Blog pagination">
+        <!-- Previous -->
+        {% if current_page > 1 %}
+          {% if current_page == 2 %}
+            <a href="/blog/author/{{ author_id }}/" class="px-4 py-2 bg-dark-card border border-dark-border rounded-lg text-text-secondary hover:text-brand-light hover:border-brand-light transition-all">
+              ← Previous
+            </a>
+          {% else %}
+            <a href="/blog/author/{{ author_id }}/page/{{ current_page | minus: 1 }}/" class="px-4 py-2 bg-dark-card border border-dark-border rounded-lg text-text-secondary hover:text-brand-light hover:border-brand-light transition-all">
+              ← Previous
+            </a>
+          {% endif %}
+        {% else %}
+          <span class="px-4 py-2 bg-dark-surface border border-dark-border rounded-lg text-text-muted cursor-not-allowed opacity-50">
+            ← Previous
+          </span>
+        {% endif %}
+
+        <!-- Page Numbers -->
+        <div class="flex gap-1">
+          {% for page_num in (1..total_pages) %}
+            {% if page_num == current_page %}
+              <span class="px-4 py-2 bg-brand-DEFAULT text-white rounded-lg">{{ page_num }}</span>
+            {% else %}
+              {% if page_num == 1 %}
+                <a href="/blog/author/{{ author_id }}/" class="px-4 py-2 bg-dark-card border border-dark-border rounded-lg text-text-secondary hover:text-brand-light hover:border-brand-light transition-all">
+                  {{ page_num }}
+                </a>
+              {% else %}
+                <a href="/blog/author/{{ author_id }}/page/{{ page_num }}/" class="px-4 py-2 bg-dark-card border border-dark-border rounded-lg text-text-secondary hover:text-brand-light hover:border-brand-light transition-all">
+                  {{ page_num }}
+                </a>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <!-- Next -->
+        {% if current_page < total_pages %}
+          <a href="/blog/author/{{ author_id }}/page/{{ current_page | plus: 1 }}/" class="px-4 py-2 bg-dark-card border border-dark-border rounded-lg text-text-secondary hover:text-brand-light hover:border-brand-light transition-all">
+            Next →
+          </a>
+        {% else %}
+          <span class="px-4 py-2 bg-dark-surface border border-dark-border rounded-lg text-text-muted cursor-not-allowed opacity-50">
+            Next →
+          </span>
+        {% endif %}
+      </nav>
+    {% endif %}
+
+  {% else %}
+    <div class="text-center py-16">
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-dark-card border border-dark-border mb-4">
+        <svg class="w-10 h-10 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+      </div>
+      <h3 class="text-xl font-semibold text-white mb-2">No Posts Found</h3>
+      <p class="text-text-secondary">This author hasn't published any posts yet.</p>
+    </div>
+  {% endif %}
+
+</main>

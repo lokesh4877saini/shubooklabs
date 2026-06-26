@@ -1,0 +1,15 @@
+# _data/authors.yml
+- id: shubham
+  name: Shubham
+  full_name: Shubham Saini
+  title: Founder & Podcast Host
+  bio: |
+    Shubham is the founder of Shubook Labs and host of The Shubook Show. 
+    With 4+ years of experience in content creation, he helps creators 
+    launch and grow their podcasts in Jaipur.
+  avatar: /assets/images/founder/founder-image-1.webp
+  social:
+    twitter: shubooklabs
+    linkedin: shubham-kumar
+    instagram: shubook.in
+  website: https://www.shubook.in

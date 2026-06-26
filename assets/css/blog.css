@@ -1,0 +1,277 @@
+/* ============================================
+   BLOG LAYOUT - TWO COLUMN WITH STICKY TOC
+   ============================================ */
+   .blog-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2.5rem;
+    max-width: 1270px;
+    margin: 0 auto;
+    padding: 2rem 0;
+    align-items: start;
+  }
+  
+  /* LEFT COLUMN - TOC (Sticky) */
+  .blog-toc-column {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+  }
+  
+  .blog-toc-wrapper {
+    background: rgba(17, 24, 39, 0.8);
+    border: 1px solid rgba(55, 65, 81, 0.3);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  .blog-toc-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #9CA3AF;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(55, 65, 81, 0.2);
+  }
+  
+  .blog-toc-scroll {
+    max-height: calc(100vh - 250px);
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+  
+  .blog-toc-scroll::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  .blog-toc-scroll::-webkit-scrollbar-track {
+    background: rgba(31, 41, 55, 0.3);
+    border-radius: 10px;
+  }
+  
+  .blog-toc-scroll::-webkit-scrollbar-thumb {
+    background: #374151;
+    border-radius: 10px;
+  }
+  
+  .blog-toc-scroll::-webkit-scrollbar-thumb:hover {
+    background: #4B5563;
+  }
+  
+  .blog-toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .blog-toc-item {
+    margin-bottom: 0.125rem;
+  }
+  
+  .blog-toc-link {
+    display: block;
+    padding: 0.4rem 0.75rem;
+    color: #D1D5DB;
+    text-decoration: none;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    border-left: 2px solid transparent;
+    line-height: 1.4;
+  }
+  
+  .blog-toc-link:hover {
+    color: #60A5FA;
+    background: rgba(96, 165, 250, 0.08);
+    border-left-color: #60A5FA;
+  }
+  
+  .blog-toc-link:focus-visible {
+    outline: 2px solid #60A5FA;
+    outline-offset: 2px;
+  }
+  
+  /* RIGHT COLUMN - Blog Content */
+  .blog-content-column {
+    min-width: 0;
+  }
+  
+  .featured-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(55, 65, 81, 0.3);
+    margin-bottom: 2rem;
+  }
+  
+  .blog-content {
+    color: #D1D5DB;
+  }
+  
+  .blog-content h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #F3F4F6;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+  
+  .blog-content h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #F3F4F6;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(55, 65, 81, 0.3);
+    scroll-margin-top: 100px;
+  }
+  
+  .blog-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #F3F4F6;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    scroll-margin-top: 100px;
+  }
+  
+  .blog-content p {
+    line-height: 1.8;
+    margin: 1rem 0;
+    color: #D1D5DB;
+  }
+  
+  .blog-content a {
+    color: #60A5FA;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+  }
+  
+  .blog-content a:hover {
+    color: #93C5FD;
+  }
+  
+  .blog-content a:focus-visible {
+    outline: 2px solid #60A5FA;
+    outline-offset: 2px;
+  }
+  
+  .blog-content strong {
+    color: #F3F4F6;
+    font-weight: 600;
+  }
+  
+  .blog-content ul,
+  .blog-content ol {
+    margin: 1rem 0;
+    padding-left: 0.5rem;
+    color: #D1D5DB;
+  }
+  
+  .blog-content li {
+    margin: 0.5rem 0;
+    line-height: 1.8;
+  }
+  
+  .blog-content li::marker {
+    color: #60A5FA;
+  }
+  
+  .blog-content hr {
+    border: none;
+    border-top: 1px solid rgba(55, 65, 81, 0.3);
+    margin: 2.5rem 0;
+  }
+    
+  /* Link underline for accessibility */
+  .link-underline {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  
+  /* ============================================
+     RESPONSIVE - Mobile First
+     ============================================ */
+  @media (max-width: 1023px) {
+    .blog-layout {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem 0.5rem;
+    }
+  
+    .blog-toc-column {
+      position: static;
+    }
+  
+    .blog-toc-wrapper {
+      padding: 1rem;
+    }
+  
+    .blog-toc-scroll {
+      max-height: 300px;
+    }
+  
+    .blog-toc-link {
+      padding: 0.35rem 0.65rem;
+      font-size: 0.875rem;
+    }
+  
+    .blog-content h1 {
+      font-size: 1.75rem;
+    }
+  
+    .blog-content h2 {
+      font-size: 1.5rem;
+    }
+  
+    .blog-content h3 {
+      font-size: 1.25rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .blog-layout {
+      padding: 1rem 0.75rem;
+    }
+  
+    .blog-toc-wrapper {
+      padding: 0.75rem;
+    }
+  
+    .blog-toc-scroll {
+      max-height: 250px;
+    }
+  
+    .blog-toc-link {
+      font-size: 0.8125rem;
+      padding: 0.3rem 0.6rem;
+    }
+  
+    .blog-content h1 {
+      font-size: 1.5rem;
+    }
+  
+    .blog-content h2 {
+      font-size: 1.25rem;
+    }
+  
+    .blog-content h3 {
+      font-size: 1.125rem;
+    }
+  
+    .blog-content p {
+      font-size: 0.9375rem;
+    }
+  
+    .blog-content ul,
+    .blog-content ol {
+      padding-left: 1.25rem;
+    }
+  }
+  

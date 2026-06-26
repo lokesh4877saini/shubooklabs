@@ -29,6 +29,18 @@
 
     {% endif %}
 
+    {% if page.breadcrumb_items %}
+      {% for item in page.breadcrumb_items %}
+        ,
+        {
+          "@type": "ListItem",
+          "position": {{ forloop.index | plus: pos | minus: 1 }},
+          "name": "{{ item.name }}",
+          "item": "{{ item.url | absolute_url }}"
+        }
+      {% endfor %}
+    {% endif %}
+
     ,
     {
       "@type": "ListItem",
