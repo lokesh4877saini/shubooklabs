@@ -2,12 +2,15 @@
 {% include seo/meta-tags.html %}
 {% include seo/favicon.html %}
 
+{% if page.webSite_key != false %}
 {% include seo/schema/website.html %}
+{% endif %}
 {% include seo/schema/local-business.html %}
+{% if page.webPage_key != false %}
 {% include seo/schema/webpage.html %}
-
+{% endif %}
 {% if page.faq_key %}
 {% include seo/schema/faq-schema.html %}
 {% endif %}
-
+{% include seo/schema/breadcrumb.html %}
 {% include seo/hreflang.html %}
