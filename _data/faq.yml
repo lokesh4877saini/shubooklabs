@@ -1,14 +1,18 @@
 home:
   - question: "What is the cost of podcast studio rent in Jaipur?"
-    answer: "Our studio rent starts at ₹1,000 per hour."
-  - question: "Do you provide full podcast production services?"
-    answer: "Yes, Shubook Labs offers complete podcast production in Jaipur."
+    answer: "Our podcast studio rent in Jaipur starts at ₹1,000 per hour. We offer flexible packages for half-day and full-day bookings."
+  - question: "Do you provide full podcast production services in Jaipur?"
+    answer: "Yes, Shubook Labs offers complete podcast production in Jaipur including recording, editing, mastering, and distribution to all major platforms like Spotify, Apple Podcasts, and YouTube."
   - question: "Is this studio suitable for video podcasts?"
-    answer: "Yes, it is built for both audio and video podcast recording."
+    answer: "Yes, our podcast studio is built for both audio and video podcast recording. We have 4K multi-camera setup with professional lighting."
   - question: "Can I book the studio for content shoots?"
-    answer: "Yes, the studio can be rented for podcast shoots, interviews, and premium content creation."
+    answer: "Yes, our studio in Jaipur can be rented for podcast shoots, interviews, and premium content creation. We provide the full setup including cameras, lighting, and audio equipment."
   - question: "Where is your studio located?"
     answer: "We serve Jaipur and nearby local clients looking for a professional podcast studio in Jaipur."
+  - question: "What equipment is available at your podcast studio?"
+    answer: "Our podcast studio in Jaipur is equipped with professional microphones, audio interfaces, 4K video cameras, studio monitors, acoustic treatment, and professional lighting."
+  - question: "How can I book the podcast studio in Jaipur?"
+    answer: "You can book our podcast studio on rent in Jaipur through our website contact form, WhatsApp, or by calling us directly. Advance booking is recommended."
 
 services:
   - question: "What are podcast production services?"

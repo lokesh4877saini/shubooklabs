@@ -1,13 +1,86 @@
 <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": "{{ page.url | absolute_url }}#webpage",
-      "url": "{{ page.url | absolute_url }}",
-      "name": "{{ page.title }}",
-      "description": "{{ page.description | default: site.description }}",
-      "isPartOf": {
-        "@id": "{{ '/' | absolute_url }}#website"
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "{{ page.url | absolute_url }}#webpage",
+    "url": "{{ page.url | absolute_url }}",
+    "name": "{{ page.title }}",
+    "description": "{{ page.description | default: site.description | truncate: 160 }}",
+    "about": {
+      "@type": "Thing",
+      "name": "Podcast Studio in Jaipur"
+    },
+    "audience": {
+      "@type": "Audience",
+      "name": "Founders, Creators, Business Leaders, Coach, Entrepreneurs, Doctors, Educators, Agencies, Real Estate",
+      "audienceType": "Professionals seeking podcast production services"
+    },
+    "keywords": "{{ page.keywords | default: 'podcast studio in Jaipur, best podcast studio Jaipur' }}",
+    "inLanguage": "en-US",
+    "isPartOf": {
+      "@id": "{{ '/' | absolute_url }}#website"
+    },
+    "primaryImageOfPage": {
+      "@type": "ImageObject",
+      "url": "{{ '/assets/images/logo/shubook-labs-black.png' | absolute_url }}",
+      "width": "1200",
+      "height": "630",
+      "caption": "Best Podcast Studio in Jaipur - Shubook Labs"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ '/' | absolute_url }}"
+        }
+      ]
+    },
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "@id": "{{ '/' | absolute_url }}#business"
+    },
+    "potentialAction": [
+      {
+        "@type": "ReadAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "{{ page.url | absolute_url }}",
+          "inLanguage": "en-US",
+          "actionPlatform": [
+            "http://schema.org/DesktopWebPlatform",
+            "http://schema.org/MobileWebPlatform"
+          ]
+        }
+      },
+      {
+        "@type": "ViewAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "{{ page.url | absolute_url }}",
+          "inLanguage": "en-US"
+        }
+      }
+    ],
+    "datePublished": "{{ page.date | default: '2026-01-01' | date_to_xmlschema }}",
+    "dateModified": "{{ page.last_modified_at | default: site.time | date_to_xmlschema }}",
+    "author": {
+      "@type": "Organization",
+      "name": "Shubook Labs",
+      "url": "{{ '/' | absolute_url }}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Shubook Labs",
+      "url": "{{ '/' | absolute_url }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ '/assets/images/logo/shubook-labs-black.png' | absolute_url }}",
+        "width": "250",
+        "height": "80"
       }
     }
-    </script>
+  }
+  </script>

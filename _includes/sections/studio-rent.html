@@ -17,10 +17,9 @@
         <!-- Heading -->
         <div class="text-center mb-4 md:mb-6">
             <h2 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-3 md:mb-4">
-                Podcast Studio
-                <span class="text-brand">on Rent</span>
+                Best <span class="text-brand">Podcast Studio</span>
+                <br>on Rent in Jaipur
             </h2>
-            <p class="text-xl md:text-3xl text-white/60 tracking-wide">in Jaipur</p>
             <div class="w-16 md:w-20 h-1 bg-brand rounded-full mx-auto mt-4 md:mt-6"></div>
         </div>
 
@@ -30,23 +29,31 @@
                 Looking for a premium podcast studio for rent in Jaipur?
             </p>
         </div>
-
+        <!-- Add after the description -->
+        <div class="max-w-6xl mx-auto mt-6">
+            <p class="text-lg leading-relaxed mt-4">
+                Our <strong>podcast studio for rent in Jaipur</strong> includes everything you need for a professional
+                recording session. From industry-standard microphones to 4K video cameras, we provide the equipment and
+                expertise to help you create content that stands out. Whether you're a solo creator or hosting a
+                multi-guest podcast, our studio adapts to your needs.
+            </p>
+        </div>
         <!-- Full Width Image Carousel -->
-        <div class="mb-10 md:mb-12 mt-6 md:mt-8">
+        <div class="max-w-6xl mx-auto mb-10 md:mb-12 mt-6 md:mt-8">
             {% assign studio_images = site.data.studio.studio %}
-            {% include components/image-carousel.html 
-                images=studio_images 
-                id="studioCarousel" 
-                container_class="h-[300px] md:h-[500px] lg:h-[600px]"
-                show_dots=true 
-                show_arrows=true 
-                autoplay=true 
-                autoplay_interval=5000 
+            {% include components/image-carousel.html
+            images=studio_images
+            id="studioCarousel"
+            container_class="h-[250px] sm:h-[350px] md:h-[400px] max-w-6xl lg:h-[450px]"
+            show_dots=true
+            show_arrows=true
+            autoplay=true
+            autoplay_interval=4000
             %}
         </div>
 
         <!-- Studio Stats -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-10 md:mb-12">
+        <div class="grid max-w-6xl mx-auto grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-10 md:mb-12">
             <div class="text-center p-3 md:p-4 rounded-xl bg-white/5 border border-white/10">
                 <div class="text-brand text-xl md:text-2xl font-bold">100+</div>
                 <div class="text-text-secondary text-xs md:text-sm">Podcasts Recorded</div>
@@ -67,26 +74,32 @@
 
         <!-- Perfect For Grid -->
         <div class="mb-10 md:mb-12 mt-10 md:mt-16">
-            <h3 class="text-center text-base md:text-lg font-semibold text-white/70 tracking-wide mb-6 md:mb-8">PERFECT FOR</h3>
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-4">
-                <div class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
-                    {% lucide_icon "mic" size="14" class="text-brand md:w-4 md:h-4" %}
+            <h3 class="text-center text-base md:text-lg font-semibold text-white/70 tracking-wide mb-6 md:mb-8">PERFECT
+                FOR</h3>
+            <div class="grid max-w-6xl mx-auto grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-4">
+                <div
+                    class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
+                    {% lucide_icon "mic" size="14" class="hidden md:block text-brand md:w-4 md:h-4" %}
                     <span class="text-xs md:text-sm font-medium text-white/80">Podcast shooting</span>
                 </div>
-                <div class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
-                    {% lucide_icon "users" size="14" class="text-brand md:w-4 md:h-4" %}
+                <div
+                    class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
+                    {% lucide_icon "users" size="14" class="hidden md:block text-brand md:w-4 md:h-4" %}
                     <span class="text-xs md:text-sm font-medium text-white/80">Video interviews</span>
                 </div>
-                <div class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
-                    {% lucide_icon "smartphone" size="14" class="text-brand md:w-4 md:h-4" %}
+                <div
+                    class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
+                    {% lucide_icon "smartphone" size="14" class="hidden md:block text-brand md:w-4 md:h-4" %}
                     <span class="text-xs md:text-sm font-medium text-white/80">Reels & shorts</span>
                 </div>
-                <div class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
-                    {% lucide_icon "youtube" size="14" class="text-brand md:w-4 md:h-4" %}
+                <div
+                    class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10">
+                    {% lucide_icon "youtube" size="14" class="hidden md:block text-brand md:w-4 md:h-4" %}
                     <span class="text-xs md:text-sm font-medium text-white/80">YouTube recordings</span>
                 </div>
-                <div class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10 sm:col-span-3 lg:col-span-1">
-                    {% lucide_icon "briefcase" size="14" class="text-brand md:w-4 md:h-4" %}
+                <div
+                    class="flex items-center flex-wrap justify-center gap-1 md:gap-2 px-2 md:px-3 py-2 rounded-full bg-white/5 border border-white/10 sm:col-span-3 lg:col-span-1">
+                    {% lucide_icon "briefcase" size="14" class="hidden md:block text-brand md:w-4 md:h-4" %}
                     <span class="text-xs md:text-sm font-medium text-white/80">Client brand content</span>
                 </div>
             </div>

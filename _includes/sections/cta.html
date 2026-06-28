@@ -1,5 +1,5 @@
 <!-- sections/final-cta.html -->
-<section class="relative md:py-6 lg:py-24 bg-dark-bg overflow-hidden">
+<section class="relative md:py-6 lg:py-24 bg-dark-bg overflow-hidden" aria-labelledby="cta-heading">
 
   <div class="relative py-2 z-10 container mx-auto px-4 max-w-5xl">
 
@@ -7,23 +7,67 @@
     <div class="text-center">
 
       <!-- Heading -->
-      <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-        Book Your Podcast Studio
-        <span class="bg-brand-gradient bg-clip-text text-transparent block mt-2">
-          in Jaipur Today
-        </span>
+      <h2 id="cta-heading" class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+        Book the <span class="bg-brand-gradient bg-clip-text text-transparent">Best Podcast Studio</span>
+        <span class="block mt-2">in Jaipur Today</span>
       </h2>
 
-      <!-- Description -->
-      <p class="text-lg md:text-xl text-text-secondary leading-relaxed max-w-3xl mx-auto mb-12">
-        If you are ready to create premium content, build authority, and grow your brand,
-        <span class="text-white font-semibold">Shubook Labs</span> is here to help.
-      </p>
+      <!-- Description - EXPANDED -->
+      <div class="max-w-3xl mx-auto mb-12">
+        <p class="text-lg md:text-xl text-text-secondary leading-relaxed">
+          Ready to record your <strong>professional podcast in Jaipur</strong>? 
+          Choose Shubook Labs - the <strong>best podcast studio in Jaipur</strong> 
+          for founders, creators, and business leaders.
+        </p>
+        <p class="text-base md:text-lg text-text-muted leading-relaxed mt-4">
+          With <strong>4K video recording</strong>, professional audio production, 
+          and flexible <strong>studio rent in Jaipur</strong>, we make it easy to create 
+          content that builds authority and grows your audience.
+        </p>
+        <p class="text-sm md:text-base text-text-muted leading-relaxed mt-3">
+          <span class="inline-flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-brand"></span>
+            Limited slots available - book now to secure your preferred date
+          </span>
+        </p>
+      </div>
 
       <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row justify-center gap-5 md:gap-6">
-        {% include components/button.html url="/book-podcast" text="Book Your Podcast" type="primary" icon="mic" %}
-        {% include components/button.html url="/rent-studio" text="Rent the Studio" type="ghost" icon="calendar" %}
+      <div class="flex flex-col sm:flex-row justify-center my-2 gap-5 md:gap-6">
+        {% include components/button.html 
+          url="/book-podcast" 
+          text="Book Your Podcast" 
+          type="primary" 
+          icon="mic"
+          aria_label="Book your podcast session at Shubook Labs - best podcast studio in Jaipur"
+        %}
+        {% include components/button.html 
+          url="/rent-studio" 
+          text="Rent the Studio" 
+          type="ghost" 
+          icon="calendar"
+          aria_label="Rent our premium podcast studio in Jaipur - Shubook Labs"
+        %}
+      </div>
+
+      <!-- Trust Signals -->
+      <div class="mt-8 flex flex-wrap justify-center gap-4 md:gap-8">
+        <div class="flex items-center gap-2 text-text-muted">
+          {% lucide_icon "check-circle" size="16" class="text-brand" %}
+          <span class="text-sm">No hidden charges</span>
+        </div>
+        <div class="flex items-center gap-2 text-text-muted">
+          {% lucide_icon "check-circle" size="16" class="text-brand" %}
+          <span class="text-sm">Professional equipment</span>
+        </div>
+        <div class="flex items-center gap-2 text-text-muted">
+          {% lucide_icon "check-circle" size="16" class="text-brand" %}
+          <span class="text-sm">Expert support team</span>
+        </div>
+        <div class="flex items-center gap-2 text-text-muted">
+          {% lucide_icon "check-circle" size="16" class="text-brand" %}
+          <span class="text-sm">Flexible booking</span>
+        </div>
       </div>
 
     </div>
