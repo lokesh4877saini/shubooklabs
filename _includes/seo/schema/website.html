@@ -1,15 +1,69 @@
 <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "@id": "https://www.shubook.in/#website",
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "{{ '/' | absolute_url }}#website",
+    "url": "{{ site.url }}",
+    "name": "{{ site.title | default: 'Shubook Labs - Best Podcast Studio in Jaipur' }}",
+    "alternateName": "Shubook Studios",
+    "description": "{{ site.description | default: 'Best podcast studio in Jaipur offering 4K video recording, professional audio, and premium studio rent for founders, creators, and business leaders.' | truncate: 200 }}",
+    "inLanguage": "en-US",
+    "publisher": {
+      "@type": "Organization",
+      "@id": "{{ '/' | absolute_url }}#business",
+      "name": "Shubook Labs",
       "url": "{{ site.url }}",
-      "name": "Shubook Labs - Podcast Studio in Jaipur",
-      "description": "{{ site.description }}",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "{{ site.url }}/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ '/assets/images/logo/shubook-labs-black.png' | absolute_url }}",
+        "width": "250",
+        "height": "80"
       }
-    }
-    </script>
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "{{ site.url }}/search?q={search_term_string}",
+        "inLanguage": "en-US"
+      },
+      "query-input": "required name=search_term_string"
+    },
+    "sameAs": [
+      "https://www.instagram.com/shubook.in",
+      "https://www.youtube.com/@shubook",
+      "https://creators.spotify.com/pod/show/2zCKgpwBkTf3l8djsOgOR6/home",
+      "https://podcastsconnect.apple.com/my-podcasts/show/the-shubook-show/2b9bbaac-1d3c-4312-868f-f00fa6a99c0b/episodes"
+    ],
+    "copyrightHolder": {
+      "@type": "Organization",
+      "name": "Shubook Labs"
+    },
+    "copyrightYear": "{{ site.time | date: '%Y' }}",
+    "author": {
+      "@type": "Organization",
+      "name": "Shubook Labs",
+      "url": "{{ site.url }}"
+    },
+    "audience": {
+      "@type": "Audience",
+      "Founders, Creators, Business Leaders, Coach, Entrepreneurs, Doctors, Educators, Agencies, Real Estate",
+      "audienceType": "Professionals seeking podcast studio rent in Jaipur"
+    },
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Podcast Studio in Jaipur"
+      },
+      {
+        "@type": "Thing",
+        "name": "Best Podcast Studio in Jaipur"
+      },
+      {
+        "@type": "Thing",
+        "name": "Podcast Recording Studio Jaipur"
+      }
+    ],
+    "keywords": "podcast studio in Jaipur, best podcast studio Jaipur, podcast recording studio Jaipur, podcast production Jaipur, studio rent Jaipur"
+  }
+  </script>

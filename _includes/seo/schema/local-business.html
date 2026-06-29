@@ -4,13 +4,18 @@
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "@id": "https://www.shubook.in/#business",
-  "name": "Shubook Labs - Podcast Studio in Jaipur",
+  "name": "Shubook Labs - Best Podcast Studio in Jaipur",
   "alternateName": "Shubook Studios",
-  "description": "{{ page.description | default: site.description }}",
+  "description": "{{ page.description | default: site.description | truncate: 200 }}",
   "image": "{{ '/assets/images/logo/shubook-labs-black.png' | absolute_url }}",
   "url": "{{ site.url }}",
   "telephone": "+919887247112",
   "email": "shubham@shubook.in",
+  "priceRange": "₹₹",
+  "openingHours": "Mo-Sa 10:00-19:00",
+  "paymentAccepted": "Cash, Credit Card, UPI, Bank Transfer",
+  "currenciesAccepted": "INR",
+  "hasMap": "https://maps.google.com/?q=Shubook+Labs+Jaipur",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Sanganer",
@@ -33,25 +38,97 @@
   "makesOffer": [
     {
       "@type": "Offer",
-      "name": "Podcast Studio in Jaipur",
-      "description": "Professional podcast recording studio in Jaipur with state-of-the-art equipment and acoustically treated rooms"
+      "name": "Best Podcast Studio in Jaipur",
+      "description": "Professional podcast recording studio in Jaipur with state-of-the-art equipment, 4K video production, and acoustically treated rooms",
+      "price": "1000",
+      "priceCurrency": "INR",
+      "availability": "https://schema.org/InStock",
+      "validFrom": "2026-01-01",
+      "url": "{{ site.url }}/podcast-studio-on-rent/"
+    },
+    {
+      "@type": "Offer",
+      "name": "Podcast Studio on Rent in Jaipur",
+      "description": "Rent our premium podcast studio in Jaipur for your recording sessions. Best studio rent in Jaipur for podcast production",
+      "price": "1000",
+      "priceCurrency": "INR",
+      "availability": "https://schema.org/InStock",
+      "validFrom": "2026-01-01",
+      "url": "{{ site.url }}/podcast-studio-on-rent/"
+    },
+    {
+      "@type": "Offer",
+      "name": "4K Video Podcast Production in Jaipur",
+      "description": "Professional 4K video podcast production in Jaipur with multi-camera setup, professional lighting, and expert editing support",
+      "price": "2500",
+      "priceCurrency": "INR",
+      "availability": "https://schema.org/InStock",
+      "validFrom": "2026-01-01",
+      "url": "{{ site.url }}/podcast/"
     },
     {
       "@type": "Offer",
       "name": "Studio Rent in Jaipur",
-      "description": "Rent our premium podcast studio in Jaipur for your recording sessions. Best studio rent in Jaipur for podcast production"
+      "description": "Premium studio rent in Jaipur for founders, creators, and business leaders. Includes professional equipment and expert support",
+      "price": "1000",
+      "priceCurrency": "INR",
+      "availability": "https://schema.org/InStock",
+      "validFrom": "2026-01-01",
+      "url": "{{ site.url }}/podcast-studio-on-rent/"
     },
     {
       "@type": "Offer",
-      "name": "Product Shooting in Jaipur",
-      "description": "Professional product photography and videography services for brands and e-commerce businesses"
+      "name": "Product Photography in Jaipur",
+      "description": "Professional product photography and videography services for brands and e-commerce businesses in Jaipur",
+      "url": "{{ site.url }}/services/"
     },
     {
       "@type": "Offer",
-      "name": "Video Production in Jaipur",
-      "description": "Professional video recording, editing, and publishing services in Jaipur"
+      "name": "Video Production Services in Jaipur",
+      "description": "Professional video recording, editing, and publishing services in Jaipur for brands, creators, and businesses",
+      "url": "{{ site.url }}/services/"
     }
-  ]
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "21",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Umesh Yadav"
+      },
+      "reviewBody": "Best podcast studio in Jaipur - truly premium experience! The soundproof room, 4K video setup, and professional microphones are outstanding. and I randomly searched for a podcast studio in Jaipur and ended up here. Genuinely the best decision. The team guided me with everything and my final recording looked super professional.",
+      "ratingValue": "5"
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Aakash Upadhyaya"
+      },
+      "reviewBody": "One-stop solution for podcast and video production in Jaipur. Professional team and broadcast-quality output every time. and Had a great podcast shoot at Shubook Labs. The setup and equipment are top notch and the staff is very supportive.",
+      "ratingValue": "5"
+    }
+  ],
+  "potentialAction": {
+    "@type": "BookAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ site.url }}/contact",
+      "inLanguage": "en-US",
+      "actionPlatform": [
+        "http://schema.org/DesktopWebPlatform",
+        "http://schema.org/MobileWebPlatform"
+      ]
+    },
+    "name": "Book Podcast Studio in Jaipur"
+  }
 }
 </script>
 {% endif %}

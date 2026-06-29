@@ -10,10 +10,13 @@
         <span class="text-xs font-medium tracking-wider text-text-secondary uppercase">Got Questions?</span>
         <span class="w-1.5 h-1.5 rounded-full bg-brand"></span>
       </div>
-      <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-        {{ include.title | default: page.faq_title | default: "Frequently Asked Questions" }}
-        <span class="bg-brand-gradient bg-clip-text text-transparent block mt-1.5">
-          {{ include.subtitle | default: page.faq_subtitle | default: "Find answers to common questions" }}
+      <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-center">
+        <span class="bg-brand-gradient bg-clip-text text-transparent">
+          {{ include.title | default: page.faq_title | default: "Frequently Asked Questions" }}
+        </span>
+        <span class="block text-white/70 text-base sm:text-lg font-light mt-3 max-w-2xl mx-auto">
+          {{ include.subtitle | default: page.faq_subtitle | default: "Everything you need to know about our podcast
+          studio in Jaipur" }}
         </span>
       </h2>
       <div class="w-16 h-0.5 bg-brand-gradient rounded-full mx-auto mt-4"></div>
@@ -22,35 +25,36 @@
     <!-- FAQ Accordion -->
     <div class="space-y-3" id="faqAccordion">
       {% assign faq_items = nil %}
-      
+
       {% if include.faqs %}
-        {% assign faq_items = include.faqs %}
+      {% assign faq_items = include.faqs %}
       {% elsif page.faq_key and site.data.faq[page.faq_key] %}
-        {% assign faq_items = site.data.faq[page.faq_key] %}
+      {% assign faq_items = site.data.faq[page.faq_key] %}
       {% elsif page.faqs %}
-        {% assign faq_items = page.faqs %}
+      {% assign faq_items = page.faqs %}
       {% elsif include.key and site.data.faq[include.key] %}
-        {% assign faq_items = site.data.faq[include.key] %}
+      {% assign faq_items = site.data.faq[include.key] %}
       {% endif %}
-      
+
       {% if faq_items and faq_items.size > 0 %}
-        {% for faq in faq_items %}
-        <div class="faq-item" data-faq-item>
-          <button class="faq-btn" aria-expanded="false">
-            <span class="faq-q">{{ faq.question }}</span>
-            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
-          <div class="faq-a" data-faq-answer>
-            <div class="faq-a-inner">
-              {{ faq.answer }}
-            </div>
+      {% for faq in faq_items %}
+      <div class="faq-item" data-faq-item>
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-q">{{ faq.question }}</span>
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="faq-a" data-faq-answer>
+          <div class="faq-a-inner">
+            {{ faq.answer }}
           </div>
         </div>
-        {% endfor %}
+      </div>
+      {% endfor %}
       {% else %}
-        <p class="text-center text-text-muted">No FAQs available for this section.</p>
+      <p class="text-center text-text-muted">No FAQs available for this section.</p>
       {% endif %}
     </div>
 
@@ -71,16 +75,16 @@
 <style>
   /* Minimal, performant CSS */
   .faq-item {
-    background: rgba(255,255,255,.03);
+    background: rgba(255, 255, 255, .03);
     border-radius: 12px;
-    border: 1px solid rgba(255,255,255,.06);
+    border: 1px solid rgba(255, 255, 255, .06);
     transition: border-color .2s;
   }
-  
+
   .faq-item:hover {
-    border-color: rgba(255,255,255,.12);
+    border-color: rgba(255, 255, 255, .12);
   }
-  
+
   .faq-btn {
     width: 100%;
     padding: 1rem 1.25rem;
@@ -97,7 +101,7 @@
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
   }
-  
+
   .faq-q {
     font-weight: 600;
     font-size: 1rem;
@@ -105,49 +109,50 @@
     flex: 1;
     line-height: 1.4;
   }
-  
+
   .faq-icon {
     flex-shrink: 0;
     color: #3B82F6;
     transition: transform .25s ease;
   }
-  
+
   .faq-item.open .faq-icon {
     transform: rotate(180deg);
   }
-  
+
   .faq-a {
     max-height: 0;
     overflow: hidden;
-    transition: max-height .3s cubic-bezier(.4,0,.2,1);
+    transition: max-height .3s cubic-bezier(.4, 0, .2, 1);
   }
-  
+
   .faq-a-inner {
     padding: 0.5rem 1.25rem 1.25rem;
     color: #94A3B8;
     line-height: 1.6;
     font-size: .9375rem;
-    border-top: 1px solid rgba(255,255,255,.05);
+    border-top: 1px solid rgba(255, 255, 255, .05);
   }
-  
+
   /* Mobile optimizations */
   @media (max-width: 640px) {
     .faq-btn {
       padding: .875rem 1rem;
     }
-    
+
     .faq-q {
       font-size: .9375rem;
     }
-    
+
     .faq-a-inner {
       padding: 0 1rem 1rem;
       font-size: .875rem;
     }
   }
-  
+
   /* Reduce motion preference */
   @media (prefers-reduced-motion: reduce) {
+
     .faq-icon,
     .faq-a {
       transition: none;
@@ -156,18 +161,18 @@
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     const items = document.querySelectorAll('[data-faq-item]');
-    
+
     if (!items.length) return;
-    
+
     items.forEach(item => {
       const btn = item.querySelector('.faq-btn');
       const answer = item.querySelector('[data-faq-answer]');
-      
-      btn.addEventListener('click', function(e) {
+
+      btn.addEventListener('click', function (e) {
         const isOpen = item.classList.contains('open');
-        
+
         // Close others (accordion behavior)
         items.forEach(other => {
           if (other !== item && other.classList.contains('open')) {
@@ -177,7 +182,7 @@
             other.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
           }
         });
-        
+
         // Toggle current
         if (isOpen) {
           item.classList.remove('open');

@@ -879,6 +879,10 @@ body {
   grid-column: span 2 / span 2;
 }
 
+.m-2 {
+  margin: 0.5rem;
+}
+
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
@@ -2268,6 +2272,14 @@ body {
   padding: 1px;
 }
 
+.p-32 {
+  padding: 8rem;
+}
+
+.p-12 {
+  padding: 3rem;
+}
+
 .px-1 {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -2988,6 +3000,10 @@ body {
   border-color: rgb(59 130 246 / 0.4);
 }
 
+.hover\:border-brand\/50:hover {
+  border-color: rgb(59 130 246 / 0.5);
+}
+
 .hover\:border-pink-500\/30:hover {
   border-color: rgb(236 72 153 / 0.3);
 }
@@ -3065,6 +3081,10 @@ body {
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.hover\:text-brand\/80:hover {
+  color: rgb(59 130 246 / 0.8);
 }
 
 .hover\:underline:hover {
@@ -3742,6 +3762,14 @@ body {
     height: 500px;
   }
 
+  .md\:h-\[450px\] {
+    height: 450px;
+  }
+
+  .md\:h-\[600px\] {
+    height: 600px;
+  }
+
   .md\:min-h-\[620px\] {
     min-height: 620px;
   }
@@ -3820,6 +3848,18 @@ body {
 
   .md\:w-\[18px\] {
     width: 18px;
+  }
+
+  .md\:w-\[300px\] {
+    width: 300px;
+  }
+
+  .md\:w-\[350px\] {
+    width: 350px;
+  }
+
+  .md\:w-\[450px\] {
+    width: 450px;
   }
 
   .md\:max-w-\[70\%\] {
@@ -4255,6 +4295,10 @@ body {
 
   .lg\:pl-12 {
     padding-left: 3rem;
+  }
+
+  .lg\:text-left {
+    text-align: left;
   }
 
   .lg\:text-2xl {
