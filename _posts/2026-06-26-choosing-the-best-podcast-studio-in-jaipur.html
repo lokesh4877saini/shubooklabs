@@ -25,8 +25,8 @@ webPage_key: false
 <div class="blog-layout">
   
   <!-- LEFT COLUMN - TABLE OF CONTENTS (Sticky) -->
-  <aside class="blog-toc-column" aria-label="Table of Contents">
-        <input type="checkbox" id="toc-trigger" class="toc-checkbox-toggle" aria-hidden="true">
+   <aside class="blog-toc-column" aria-label="Table of Contents">
+    <input type="checkbox" id="toc-trigger" class="toc-checkbox-toggle" aria-hidden="true">
 
     <label for="toc-trigger"
       class="toc-mobile-toggle bg-dark-card border border-dark-border rounded-xl p-4 mb-2 cursor-pointer flex items-center justify-between text-text-primary font-semibold">
@@ -35,30 +35,31 @@ webPage_key: false
         Table of Contents
       </span>
       <span class="toc-arrow-icon">
-         {% lucide_icon "arrow-down" size="20" class="inline-block mr-2 text-brand-DEFAULT" aria-hidden="true" %}
+         {% lucide_icon "chevron-down" size="20" class="inline-block mr-2 text-brand-DEFAULT" aria-hidden="true" %}
       </span>
     </label>
-    <div class="blog-toc-wrapper">
-      <div class="blog-toc-title">
-        {% lucide_icon "list" size="16" class="inline-block mr-2" aria-hidden="true" %}
+
+    <div class="blog-toc-wrapper bg-dark-card rounded-xl p-6 border border-dark-border sticky top-24">
+      <div class="blog-toc-title text-lg font-semibold text-text-primary mb-4 lg:flex items-center hidden md:flex">
+        {% lucide_icon "list" size="20" class="inline-block mr-2 text-brand-DEFAULT" aria-hidden="true" %}
         Table of Contents
       </div>
-      <div class="blog-toc-scroll">
-        <ul class="blog-toc-list">
-          <li class="blog-toc-item"><a href="#introduction" class="blog-toc-link">Introduction</a></li>
-          <li class="blog-toc-item"><a href="#why-professional-studio-matters" class="blog-toc-link">Why a Professional Podcast Studio Matters</a></li>
-          <li class="blog-toc-item"><a href="#audio-quality-priority" class="blog-toc-link">1. Audio Quality Should Be the Top Priority</a></li>
-          <li class="blog-toc-item"><a href="#video-podcast-setup" class="blog-toc-link">2. Check the Video Podcast Setup</a></li>
-          <li class="blog-toc-item"><a href="#comfortable-studio-design" class="blog-toc-link">3. Look for Comfortable Studio Design</a></li>
-          <li class="blog-toc-item"><a href="#production-support" class="blog-toc-link">4. Production Support Can Save Hours of Work</a></li>
-          <li class="blog-toc-item"><a href="#business-podcast-experience" class="blog-toc-link">5. Evaluate Experience With Business Podcasts</a></li>
-          <li class="blog-toc-item"><a href="#location-accessibility" class="blog-toc-link">6. Consider Location and Accessibility</a></li>
-          <li class="blog-toc-item"><a href="#compare-value" class="blog-toc-link">7. Compare Value, Not Just Price</a></li>
-          <li class="blog-toc-item"><a href="#review-previous-episodes" class="blog-toc-link">8. Review Previous Podcast Episodes</a></li>
-          <li class="blog-toc-item"><a href="#why-businesses-start-podcasts" class="blog-toc-link">Why More Businesses Are Starting Podcasts</a></li>
-          <li class="blog-toc-item"><a href="#why-shubook-labs" class="blog-toc-link">Why Choose Shubook Labs?</a></li>
-          <li class="blog-toc-item"><a href="#faq" class="blog-toc-link">Frequently Asked Questions</a></li>
-          <li class="blog-toc-item"><a href="#conclusion" class="blog-toc-link">Final Thoughts</a></li>
+      <div class="blog-toc-scroll max-h-[600px] overflow-y-auto pr-2">
+        <ul class="blog-toc-list space-y-2">
+           <li class="blog-toc-item" class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center" ><a href="#introduction" class="blog-toc-link">Introduction</a></li>
+          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#why-professional-studio-matters" class="blog-toc-link">Why a Professional Podcast Studio Matters</a></li>
+          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#audio-quality-priority" class="blog-toc-link">1. Audio Quality Should Be the Top Priority</a></li>
+          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#video-podcast-setup" class="blog-toc-link">2. Check the Video Podcast Setup</a></li>
+          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#comfortable-studio-design" class="blog-toc-link">3. Look for Comfortable Studio Design</a></li>
+          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#production-support" class="blog-toc-link">4. Production Support Can Save Hours of Work</a></li>
+          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#business-podcast-experience" class="blog-toc-link">5. Evaluate Experience With Business Podcasts</a></li>
+          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#location-accessibility" class="blog-toc-link">6. Consider Location and Accessibility</a></li>
+          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#compare-value" class="blog-toc-link">7. Compare Value, Not Just Price</a></li>
+          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#review-previous-episodes" class="blog-toc-link">8. Review Previous Podcast Episodes</a></li>
+          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#why-businesses-start-podcasts" class="blog-toc-link">Why More Businesses Are Starting Podcasts</a></li>
+          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#why-shubook-labs" class="blog-toc-link">Why Choose Shubook Labs?</a></li>
+          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#faq" class="blog-toc-link">Frequently Asked Questions</a></li>
+          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#conclusion" class="blog-toc-link">Final Thoughts</a></li>
         </ul>
       </div>
     </div>
