@@ -1,39 +1,3 @@
-/* blog posts list */
-.post-image {
-    display: block;
-    overflow: hidden;
-    border-radius: 8px; /* Optional */
-}
-
-/* Image */
-.post-image img {
-    object-fit: cover;
-    transition: transform 0.5s ease;
-    display: block;
-}
-
-.post-image:hover img {
-    transform: scale(1.05);
-}
-@media (max-width: 1024px) {
-    .post-image img {
-        height: 220px;
-    }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    .post-image img {
-        height: 290px;
-    }
-}
-
-/* Small Mobile */
-@media (max-width: 480px) {
-    .post-image img {
-        height: 230px;
-    }
-}
 /* ============================================
    BLOG LAYOUT - TWO COLUMN WITH STICKY TOC
    ============================================ */
@@ -41,7 +5,7 @@
 .blog-layout {
   display: grid;
   grid-template-columns: 280px 1fr;
-  gap: 0.5rem;
+  gap: 2.5rem;
   max-width: 1270px;
   margin: 0 auto;
   padding: 2rem 0;
@@ -252,7 +216,7 @@
 @media (max-width: 1023px) {
   .blog-layout {
     grid-template-columns: 1fr;
-    gap: 0.5rem;
+    gap: 2.5rem;
     padding: 1.5rem 0.5rem;
   }
 
