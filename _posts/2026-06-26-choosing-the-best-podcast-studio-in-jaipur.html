@@ -25,45 +25,161 @@ webPage_key: false
 <div class="blog-layout">
   
   <!-- LEFT COLUMN - TABLE OF CONTENTS (Sticky) -->
-   <aside class="blog-toc-column" aria-label="Table of Contents">
-    <input type="checkbox" id="toc-trigger" class="toc-checkbox-toggle" aria-hidden="true">
+<aside class="blog-toc-column" aria-label="Table of Contents">
 
-    <label for="toc-trigger"
-      class="toc-mobile-toggle bg-dark-card border border-dark-border rounded-xl p-4 mb-2 cursor-pointer flex items-center justify-between text-text-primary font-semibold">
-      <span class="flex items-center">
-        {% lucide_icon "list" size="20" class="inline-block mr-2 text-brand-DEFAULT" aria-hidden="true" %}
-        Table of Contents
-      </span>
-      <span class="toc-arrow-icon">
-         {% lucide_icon "chevron-down" size="20" class="inline-block mr-2 text-brand-DEFAULT" aria-hidden="true" %}
-      </span>
-    </label>
+  <!-- Mobile Toggle -->
+  <input type="checkbox" id="toc-trigger" class="peer hidden">
 
-    <div class="blog-toc-wrapper bg-dark-card rounded-xl p-6 border border-dark-border sticky top-24">
-      <div class="blog-toc-title text-lg font-semibold text-text-primary mb-4 lg:flex items-center hidden md:flex">
-        {% lucide_icon "list" size="20" class="inline-block mr-2 text-brand-DEFAULT" aria-hidden="true" %}
+  <label for="toc-trigger"
+    class="lg:hidden flex items-center justify-between bg-dark-card border border-dark-border rounded-xl p-4 cursor-pointer">
+
+    <span class="flex items-center font-semibold text-text-primary">
+      {% lucide_icon "list" size="20" class="mr-2 text-brand-DEFAULT" aria-hidden="true" %}
+      Table of Contents
+    </span>
+
+    <span class="transition-transform duration-300 peer-checked:rotate-180">
+      {% lucide_icon "chevron-down" size="20" class="text-brand-DEFAULT" aria-hidden="true" %}
+    </span>
+
+  </label>
+
+  <!-- TOC -->
+  <div class="
+      mt-3
+      overflow-hidden
+      max-h-0
+      opacity-0
+      transition-all
+      duration-300
+      peer-checked:max-h-[700px]
+      peer-checked:opacity-100
+
+      lg:block
+      lg:max-h-none
+      lg:opacity-100
+      lg:mt-0
+    ">
+
+    <div class="bg-dark-card border border-dark-border rounded-xl p-5 lg:sticky lg:top-24">
+
+      <!-- Desktop Heading -->
+      <div class="hidden lg:flex items-center text-lg font-semibold text-text-primary mb-5">
+        {% lucide_icon "list" size="20" class="mr-2 text-brand-DEFAULT" aria-hidden="true" %}
         Table of Contents
       </div>
-      <div class="blog-toc-scroll max-h-[600px] overflow-y-auto pr-2">
-        <ul class="blog-toc-list space-y-2">
-           <li class="blog-toc-item" class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center" ><a href="#introduction" class="blog-toc-link">Introduction</a></li>
-          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#why-professional-studio-matters" class="blog-toc-link">Why a Professional Podcast Studio Matters</a></li>
-          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#audio-quality-priority" class="blog-toc-link">1. Audio Quality Should Be the Top Priority</a></li>
-          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#video-podcast-setup" class="blog-toc-link">2. Check the Video Podcast Setup</a></li>
-          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#comfortable-studio-design" class="blog-toc-link">3. Look for Comfortable Studio Design</a></li>
-          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#production-support" class="blog-toc-link">4. Production Support Can Save Hours of Work</a></li>
-          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#business-podcast-experience" class="blog-toc-link">5. Evaluate Experience With Business Podcasts</a></li>
-          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#location-accessibility" class="blog-toc-link">6. Consider Location and Accessibility</a></li>
-          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#compare-value" class="blog-toc-link">7. Compare Value, Not Just Price</a></li>
-          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#review-previous-episodes" class="blog-toc-link">8. Review Previous Podcast Episodes</a></li>
-          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#why-businesses-start-podcasts" class="blog-toc-link">Why More Businesses Are Starting Podcasts</a></li>
-          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#why-shubook-labs" class="blog-toc-link">Why Choose Shubook Labs?</a></li>
-          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#faq" class="blog-toc-link">Frequently Asked Questions</a></li>
-          <li class="blog-toc-item"  class="blog-toc-link text-text-secondary hover:text-brand-light transition-colors duration-200 text-sm flex items-center"><a href="#conclusion" class="blog-toc-link">Final Thoughts</a></li>
+
+      <nav class="max-h-[60vh] lg:max-h-[70vh] overflow-y-auto pr-1">
+
+        <ul class="space-y-1">
+
+          <li>
+            <a href="#introduction"
+              class="block rounded-lg px-3 py-2 text-sm text-text-secondary hover:bg-brand-DEFAULT/10 hover:text-brand-light transition-colors">
+              Introduction
+            </a>
+          </li>
+
+          <li>
+            <a href="#why-professional-studio-matters"
+              class="block rounded-lg px-3 py-2 text-sm text-text-secondary hover:bg-brand-DEFAULT/10 hover:text-brand-light transition-colors">
+              Why a Professional Podcast Studio Matters
+            </a>
+          </li>
+
+          <li>
+            <a href="#audio-quality-priority"
+              class="block rounded-lg px-3 py-2 text-sm text-text-secondary hover:bg-brand-DEFAULT/10 hover:text-brand-light transition-colors">
+              1. Audio Quality Should Be the Top Priority
+            </a>
+          </li>
+
+          <li>
+            <a href="#video-podcast-setup"
+              class="block rounded-lg px-3 py-2 text-sm text-text-secondary hover:bg-brand-DEFAULT/10 hover:text-brand-light transition-colors">
+              2. Check the Video Podcast Setup
+            </a>
+          </li>
+
+          <li>
+            <a href="#comfortable-studio-design"
+              class="block rounded-lg px-3 py-2 text-sm text-text-secondary hover:bg-brand-DEFAULT/10 hover:text-brand-light transition-colors">
+              3. Look for Comfortable Studio Design
+            </a>
+          </li>
+
+          <li>
+            <a href="#production-support"
+              class="block rounded-lg px-3 py-2 text-sm text-text-secondary hover:bg-brand-DEFAULT/10 hover:text-brand-light transition-colors">
+              4. Production Support Can Save Hours of Work
+            </a>
+          </li>
+
+          <li>
+            <a href="#business-podcast-experience"
+              class="block rounded-lg px-3 py-2 text-sm text-text-secondary hover:bg-brand-DEFAULT/10 hover:text-brand-light transition-colors">
+              5. Evaluate Experience With Business Podcasts
+            </a>
+          </li>
+
+          <li>
+            <a href="#location-accessibility"
+              class="block rounded-lg px-3 py-2 text-sm text-text-secondary hover:bg-brand-DEFAULT/10 hover:text-brand-light transition-colors">
+              6. Consider Location and Accessibility
+            </a>
+          </li>
+
+          <li>
+            <a href="#compare-value"
+              class="block rounded-lg px-3 py-2 text-sm text-text-secondary hover:bg-brand-DEFAULT/10 hover:text-brand-light transition-colors">
+              7. Compare Value, Not Just Price
+            </a>
+          </li>
+
+          <li>
+            <a href="#review-previous-episodes"
+              class="block rounded-lg px-3 py-2 text-sm text-text-secondary hover:bg-brand-DEFAULT/10 hover:text-brand-light transition-colors">
+              8. Review Previous Podcast Episodes
+            </a>
+          </li>
+
+          <li>
+            <a href="#why-businesses-start-podcasts"
+              class="block rounded-lg px-3 py-2 text-sm text-text-secondary hover:bg-brand-DEFAULT/10 hover:text-brand-light transition-colors">
+              Why More Businesses Are Starting Podcasts
+            </a>
+          </li>
+
+          <li>
+            <a href="#why-shubook-labs"
+              class="block rounded-lg px-3 py-2 text-sm text-text-secondary hover:bg-brand-DEFAULT/10 hover:text-brand-light transition-colors">
+              Why Choose Shubook Labs?
+            </a>
+          </li>
+
+          <li>
+            <a href="#faq"
+              class="block rounded-lg px-3 py-2 text-sm text-text-secondary hover:bg-brand-DEFAULT/10 hover:text-brand-light transition-colors">
+              Frequently Asked Questions
+            </a>
+          </li>
+
+          <li>
+            <a href="#conclusion"
+              class="block rounded-lg px-3 py-2 text-sm text-text-secondary hover:bg-brand-DEFAULT/10 hover:text-brand-light transition-colors">
+              Final Thoughts
+            </a>
+          </li>
+
         </ul>
-      </div>
+
+      </nav>
+
     </div>
-  </aside>
+
+  </div>
+
+</aside>
 
   <!-- RIGHT COLUMN - BLOG CONTENT -->
   <main class="blog-content-column">
