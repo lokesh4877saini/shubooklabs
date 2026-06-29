@@ -196,20 +196,6 @@
   text-underline-offset: 2px;
 }
 
-.toc-checkbox-toggle {
-  display: none !important;
-}
-
-/* Base styles for Mobile Toggle (hidden on desktop screens) */
-.toc-mobile-toggle {
-  display: none;
-}
-
-.toc-arrow-icon {
-  transition: transform 0.2s ease-in-out;
-  font-size: 0.8rem;
-}
-
 /* ============================================
      RESPONSIVE - Mobile First
      ============================================ */
@@ -249,39 +235,10 @@
     font-size: 1.25rem;
   }
 }
-@media (max-width: 767px) {
-  /* Show the mobile toggle button bar */
-  .toc-mobile-toggle {
-    display: flex;
-  }
-
-  /* Hide the actual list content by default on mobile */
-  .blog-toc-wrapper {
-    display: none;
-    margin-top: 0.5rem;
-    position: static !important; /* Remove sticky on mobile for better scrolling */
-  }
-
-  /* HACK: When checkbox is checked, display the TOC content */
-  .toc-checkbox-toggle:checked ~ .blog-toc-wrapper {
-    display: block;
-  }
-
-  /* Rotate the arrow icon 180 degrees when open */
-  .toc-checkbox-toggle:checked ~ .toc-mobile-toggle .toc-arrow-icon {
-    transform: rotate(180deg);
-  }
-}
 
 /* ==========================================================================
    Desktop Adjustments (Screens 768px and wider)
    ========================================================================== */
-@media (min-width: 768px) {
-  /* Ensure the TOC content is always visible on desktop */
-  .blog-toc-wrapper {
-    display: block !important;
-  }
-}
 @media (max-width: 480px) {
   .blog-layout {
     padding: 1rem 0.5rem;
