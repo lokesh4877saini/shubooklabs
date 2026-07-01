@@ -4,7 +4,7 @@
     "@type": "WebSite",
     "@id": "{{ '/' | absolute_url }}#website",
     "url": "{{ site.url }}",
-    "name": "{{ site.title}}",
+    "name": "{% if site.title != nil %}{{ site.title }}{% else %}Shubook Labs - Best Podcast Studio in Jaipur{% endif %}"
     "alternateName": "Shubook Studios",
     "description": "{{ site.description | default: 'Best podcast studio in Jaipur offering 4K video recording, professional audio, and premium studio rent for founders, creators, and business leaders.' | truncate: 200 }}",
     "inLanguage": "en-US",
