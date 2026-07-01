@@ -1,4 +1,5 @@
 # Site settings
+title: "Best Podcast Studio in Jaipur - 4K Video & Audio | Shubook Labs"
 description: "Shubook Labs - the best podcast studio in Jaipur offering 4K video recording, professional audio, and premium studio rent for founders, creators, and business leaders."
 url: "https://www.shubook.in"
 baseurl: ""
@@ -25,7 +26,7 @@ plugins:
 # SEO TAG CONFIGURATION                        #
 # ============================================ #
 jekyll-seo-tag:
-  title: "Shubook Labs - Best Podcast Studio in Jaipur"
+  title: "Best Podcast Studio in Jaipur - 4K Video & Audio | Shubook Labs"
   title_separator: "|"
   description: "Shubook Labs - the best podcast studio in Jaipur offering 4K video recording, professional audio, and premium studio rent for founders, creators, and business leaders."
   twitter:
