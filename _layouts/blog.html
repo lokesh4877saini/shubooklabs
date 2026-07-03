@@ -43,7 +43,7 @@ layout: default
                     <h3 class="font-semibold text-text-primary text-lg">{{ author_data.full_name }}</h3>
                     <span class="text-xs text-brand-light">{{ author_data.title }}</span>
                 </div>
-                <p class="text-text-secondary text-sm mt-2">{{ author_data.bio }}</p>
+                <p class="text-text-secondary text-sm mt-2">{{ author_data.bio | truncatewords: 17 }}</p>
 
                 {% if author_data.social %}
                 <div class="flex items-center gap-3 mt-3">
