@@ -4,7 +4,7 @@
     "@type": "WebSite",
     "@id": "{{ '/' | absolute_url }}#website",
     "url": "{{ site.url }}",
-    "name": "{% if site.title != nil %}{{ site.title }}{% else %}Shubook Labs - Best Podcast Studio in Jaipur{% endif %}"
+    "name": "{% if site.title != nil %}{{ site.title }}{% else %}Shubook Labs - Best Podcast Studio in Jaipur{% endif %}",
     "alternateName": "Shubook Studios",
     "description": "{{ site.description | default: 'Best podcast studio in Jaipur offering 4K video recording, professional audio, and premium studio rent for founders, creators, and business leaders.' | truncate: 200 }}",
     "inLanguage": "en-US",
@@ -47,8 +47,8 @@
     },
     "audience": {
       "@type": "Audience",
-      "Founders, Creators, Business Leaders, Coach, Entrepreneurs, Doctors, Educators, Agencies, Real Estate",
-      "audienceType": "Professionals seeking podcast studio rent in Jaipur"
+      "name": "Founders, Creators, Business Leaders, Coach, Entrepreneurs, Doctors, Educators, Agencies, Real Estate",
+      "audienceType": "Founders, Creators, Entrepreneurs"
     },
     "about": [
       {
@@ -62,6 +62,14 @@
       {
         "@type": "Thing",
         "name": "Podcast Recording Studio Jaipur"
+      },
+      {
+        "@type": "Thing",
+        "name": "Premium Podcast Recording Studio Jaipur"
+      },
+      {
+        "@type": "Thing",
+        "name": "Premium Podcast Studio Jaipur"
       }
     ],
     "keywords": "podcast studio in Jaipur, best podcast studio Jaipur, podcast recording studio Jaipur, podcast production Jaipur, studio rent Jaipur"
